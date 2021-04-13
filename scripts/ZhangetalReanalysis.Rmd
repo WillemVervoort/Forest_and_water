@@ -1,0 +1,143 @@
+---
+title: "Forest cover runoff relationship"
+author: "Willem Vervoort, Eliana Nervi, Jimena Alonso"
+date: "01/04/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+require(tidyverse)
+require(lubridate)
+require(mgcv) # to do the generalise modelling
+```
+
+
+## Introduction
+
+Zhang et al. (2017) presented a review of changes in streamflow due to changes in forest cover based on a global data set. However, in the actual analysis, the authors used very basuic linear regression to look at individual variables and factors. However, these factors are fo course all interrelated, and we really should be analysing the marginal trends, taking into account the other factors and variables in the data set. The idea of this paper is to use the fantastic data set collected by Zhang et al. (2017) and to reanalyse the relationship between change in forest, but to use more advanced statistical techniques that allow discovery of the marginal effects of the different drivers of streamflow change.
+
+In particular, we want to use generalised linear (GLM) and generalised additive models (GAM) to be able to include both factors and continuous variables, and to be able to analyses these drivers as non-linear effects (if there are clear hypotheses to support non-linear relationships).
+
+## The data
+
+The data consists of the two tables in the supplementary data from Zhang et al. (2017), which means there is one table for small catchments (<1000 km2) and one table for large catchments (> 1000 km2). We might combine these tables as we can easily add a variable indicating whether the catchment originates from the small or large table.
+
+```{r}
+Zhang_small <- read_csv("TablesZhangetal2017_small.csv")
+Zhang_large <- read_csv("TablesZhangetal2017_large.csv")
+```
+
+### change names of columns
+
+the package`mgcv` does not seem to be happy with complex names, so probably better to make all names simple
+
+```{r}
+names(Zhang_small)[3:4] <- c("Area_km2", "Pa_mm")
+names(Zhang_large)[3:4] <- c("Area_km2", "Pa_mm")
+names(Zhang_small)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(Zhang_large)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(Zhang_small)[9:10] <- c("Precip_data_type", "Assessment_technique")
+names(Zhang_large)[9:10] <- c("Precip_data_type", "Assessment_technique")
+```
+
+
+
+## Simple generalised linear model
+
+This will use the pacakge `mgcv`, which can do both generalised linear modelling and generalised additive modelling
+
+We will start with a simple linear model which essentially predicts the change in streamflow $\Delta Qf\%$ as a function of the other variables:
+$\Delta Qf\% ~ Area + Pa + Forest type + Hydrological regime + \Delta F\% + Precipitation data type + Assessment technique$
+
+### Small catchments
+
+```{r}
+linear_model_small <- gam(DeltaQf_perc ~ DeltaF_perc + Area_km2 + Pa_mm + Forest_type + 
+                            Hydrological_regime + Precip_data_type +  Assessment_technique, data = Zhang_small)
+summary(linear_model_small)
+gam.check(linear_model_small)
+
+```
+This shows that the change in forestry is a highly signficant predictor of the change in flow, and this indicates a decrease in the change in flow withe an increase in the change in forestry. In other words it shows the same relationship as figure 2 in Zhang et al.
+However, it is dependent on rainfall (with higher rainfall showing steeper declines) and the type of forest (with Mixed forest types causing a greater decline in flow with an increase in forestry). None of the other variables are significant.
+
+The residuals of the model are slightly problematic, they are skewed and show some increase in variance. This is probably due to the distribution of the y-variable (the change in flow).
+
+Check distribution of the y-variable
+
+```{r}
+hist(Zhang_small$DeltaQf_perc)
+min(Zhang_small$DeltaQf_perc)
+```
+Doing a log transformation on the y-variable is problematic as the change in flow ranges from -200% to +200%. However, it is possible when you divide the percentage by 100, and then use a log10(y + 1) transformation.
+
+```{r}
+linear_model_small_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + Area_km2 + Pa_mm + Forest_type + 
+                            Hydrological_regime + Precip_data_type +  Assessment_technique, data = Zhang_small)
+summary(linear_model_small_log)
+gam.check(linear_model_small_log)
+```
+This improves the residuals, but the results of the analysis is the same.
+
+### Large catchments
+
+```{r}
+linear_model_large <- gam(DeltaQf_perc ~ DeltaF_perc + Area_km2 + Pa_mm + Forest_type + Hydrological_regime + Precip_data_type +
+                    Assessment_technique, data = Zhang_large)
+summary(linear_model_large)
+gam.check(linear_model_large)
+```
+The results for the last catchments shows that in this case the change in forestry is not significant at p < 0.05 as the p-value is 0.11. Increasing Rainfall is associated with a lower change in runoff, while having a snow dominated hydrological regime is associated with a higher change in runoff (at p <0.05). The "SH" assessment technique (combined use of hydrographs and statistical techniques) is also associated with a lower change in runoff.
+
+The residuals are again a little skewed, again because the change in runoff percentage data is skewed.
+
+```{r}
+hist(Zhang_large$DeltaQf_perc)
+```
+
+Using a similar transformation as for the small catchments results on the change in streamflow, and a log transformation of the rainfall however results in quite a different model outcome
+
+```{r}
+linear_model_large_log <- gam(log10(DeltaQf_perc/100+1) ~ DeltaF_perc + Area_km2 + log10(Pa_mm) + Forest_type + Hydrological_regime + Precip_data_type +
+                    Assessment_technique, data = Zhang_large)
+summary(linear_model_large_log)
+gam.check(linear_model_large_log)
+
+```
+The residuals are much better distributed. And the results now show that the change in forestry is a significant predictor, resulting in a decrease of the change in stream flow with an increase in the change in forestry.. In addition, increasing rainfall also decreases the change in streamflow. while snow dominated  regimes, hydrological modelling techniques and statistical and hydrograph approaches predict higher changes in streamflow.
+
+## is the separation in large and small arbitrary
+
+Stack the two data frames and run the GAM and check if the size of the catchment is significant.
+
+```{r}
+Zhang_all <- bind_rows(Zhang_small, Zhang_large)
+
+linear_model_all_log <- gam(log10(DeltaQf_perc/100+1) ~ DeltaF_perc + Area_km2 + log10(Pa_mm) + Forest_type + Hydrological_regime + Precip_data_type +
+                    Assessment_technique, data = Zhang_all)
+summary(linear_model_all_log)
+gam.check(linear_model_all_log)
+
+
+
+```
+
+
+
+## Work to be done
+
+1. Extend the analysis to include a smooth non-linear rainfall response?  
+2. In the paper, they also use PET which is not in the data, se we need to find some value of PET for each catchment. I wonder how you define PET for the whole of the Amazon?
+3. We also probably want to extract the "continent" and I think also Latitude  
+4. We also need to check if we know of more published data that is not in the current dataset
+
+
+
+Key arguments we are making are:  
+1. regression approach is too simple, ignores possible interactions and possible non-linear behaviour (for example rainfall).  
+2. Is the 1000 km2 is an arbitrary cut-off?  Or is there an interaction with the assessment technique?  
+3. Can you actually define "annual rainfall" or "annual PET" for a large catchment? Would there not be a major effect of spatial variability?
