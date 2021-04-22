@@ -1,6 +1,11 @@
 potential papers deforestation
 
 Brown, A.E., Western, A.W., McMahon, T.A., Zhang, L., 2013. Impact of forest cover changes on annual streamflow and flow duration curves. Journal of Hydrology, 483(0): 39-50. DOI:http://dx.doi.org/10.1016/j.jhydrol.2012.12.031
+from this paper: https://doi.org/10.1016/S0168-1923(96)02376-3: New Zealand catchments
+http://www.wrc.org.za/wp-content/uploads/mdocs/810-1-00.pdf: South African catchments
+https://doi.org/10.1016/0022-1694(89)90093-0 : Western Australian catchments (Schofield)
+Some of these are already in Zhang 2017, but might need updating, some can be added
+
 
 Silvio Frosini de Barros Ferraz, Carolina Bozetti Rodrigues, Lara Gabrielle Garcia, Clayton Alcarde Alvares, Walter de Paula Lima, Effects of Eucalyptus plantations on streamflow in Brazil: Moving beyond the water use debate, Forest Ecology and Management,Volume 453, 2019, 117571, ISSN 0378-1127,
 https://doi.org/10.1016/j.foreco.2019.117571.
