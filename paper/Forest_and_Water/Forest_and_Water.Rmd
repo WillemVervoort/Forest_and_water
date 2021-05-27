@@ -1,0 +1,67 @@
+---
+title: Do larger catchments respond different to forest cover change? Re-analysing a global data set.
+author:
+  - name: R. Willem Vervoort
+    email: willem.vervoort@sydney.edu.au
+    affiliation: The University of Sydney, INIA
+    footnote: 1
+  - name: Eliana Nervi
+    email: eliananervi@gmail.com
+    affiliation: INIA
+  - name: Jimena Alonso
+    email: jalonso@fing.edu.uy
+    affiliation: IMFIA
+    footnote: 2
+address:
+  - code: The University of Sydney
+    address: School of Life and Environmental Sciences, The University of Sydney, Sydney, NSW 2006, Australia
+  - code: INIA
+    address: INIA, Uruguay
+  - code: IMFIA
+    address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la República, 11200 Montevideo, Departamento de Montevideo, Uruguay
+footnote:
+  - code: 1
+    text: "Corresponding Author"
+  - code: 2
+    text: "Equal contribution"
+abstract: |
+  This is the abstract.
+
+  It consists of two paragraphs.
+
+journal: "Journal of Hydrology"
+date: "`r Sys.Date()`"
+bibliography: forest_and_water.bib
+linenumbers: true
+#numbersections: true
+csl: elsevier-harvard.csl
+output: rticles::elsevier_article
+---
+
+Introduction
+==========================
+
+## Introduction
+
+There has been an long and on-going discussion in the hydrologcal literature around the impact of forests on streamflow [@andreassian2004; @jackson2005; @zhang2017; @brown2005; @brown2013]. The historic work highlights provides a general consensus that if forest areas increase, streamflow decreases and vice-versa. The most dramatic result in relation to this, is Figure 5 in @zhang2011 indicating (or Australian watersheds) a 100% decrease in stream flow for watersheds with 100% forest cover. However, on the other end of the spectrum, in a series of French watersheds [@cosandey2005], there was no change in streamflow characteristics in 2 of the three watersheds studied in relation to deforestation.
+
+There have been several review papers aiming to summarize different studies across the globe, in relation to paired watershed studies [@brown2005; @hewlett1984] and more generally [@jackson2005; @zhang2017]. These studies are aiming to generalize the individual findings and to identify if there are global trends or relationships that can be developed. The most recent review [@zhang2017] developed an impressive database of watershed studies in relation to changes in streamflow due to changes in forest cover based on a global data set. This dataset, which covers over 250 studies are described in terms of the change in streamflow as a result of the change in forest cover, where studies related to both forestation (increase in forest cover) and deforestation (decrease in forest cover) were included.
+
+The conclusions of the paper [@zhang2017] suggest that there is a distinct difference in the change in flow as a result of forestation or deforestation between small watersheds, defined as < 1000 km^2^ and large watersheds > 1000 km^2^. While for small watersheds there was no real change in runoff with changes in cover, for large watersheds there was a clear trend showing a decrease in runoff with and increase in forest cover. Their main conclusion was that the response in annual runoff to forest cover was scale dependent and appeared to be more sensitive to forest cover change in water limited watersheds relative to energy limited watershed [@zhang2017].
+
+Encouraged by the work presented by @zhang2017 and the fantastic database of studies presented by these authors, we believe we can add to the discussion by presenting further analysis of the data and by adding further watersheds and enhancements to the data base. 
+
+In particular, the main method in the work by @zhang2017 is using simple linear regression. And the main assumption is that the threshold at 1000 km^2^ is a distinct separation between "small" and "large" watersheds. Given the fantastic data set collected, the analysis can be easily expanded to look at interactions between the terms and to test the assumption of a distinct threshold at 1000 km^2^.
+
+In particular, the objective of this paper is to 1) enhance the data set from @zhang2017 with further watersheds and spatial coordinates and 2) to analyse the possibility of non-linear and partial effects of the different factors and variables in the data base using generalised linear (GLM) and generalised additive models (GAM @wood2006). Finally we hope to point to further research that can expand our work and that outlined @zhang2017 to better understand the impact of forest cover change on streamflow.
+
+Methods
+==========
+
+The staerting point of this paper is the data base of studies which were included in @zhang2017 as supplementary material. The columns in this dataset 
+
+
+
+
+References {#references .unnumbered}
+==========

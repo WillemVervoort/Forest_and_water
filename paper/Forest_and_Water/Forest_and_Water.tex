@@ -1,0 +1,237 @@
+\documentclass[]{elsarticle} %review=doublespace preprint=single 5p=2 column
+%%% Begin My package additions %%%%%%%%%%%%%%%%%%%
+\usepackage[hyphens]{url}
+
+  \journal{Journal of Hydrology} % Sets Journal name
+
+
+\usepackage{lineno} % add
+  \linenumbers % turns line numbering on
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{graphicx}
+\usepackage{booktabs} % book-quality tables
+%%%%%%%%%%%%%%%% end my additions to header
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{fontspec}
+  \ifxetex
+    \usepackage{xltxtra,xunicode}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\bibliographystyle{elsarticle-harv}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={Short Paper},
+            colorlinks=false,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+\setcounter{secnumdepth}{0}
+% Pandoc toggle for numbering sections (defaults to be off)
+\setcounter{secnumdepth}{0}
+
+% Pandoc citation processing
+
+% Pandoc header
+
+
+
+\begin{document}
+\begin{frontmatter}
+
+  \title{Short Paper}
+    \author[The University of Sydney, INIA]{R. Willem Vervoort\corref{1}}
+   \ead{willem.vervoort@sydney.edu.au} 
+    \author[INIA]{Eliana Nervi}
+   \ead{eliananervi@gmail.com} 
+    \author[IMFIA]{Jimena Alonso\corref{2}}
+   \ead{jalonso@fing.edu.uy} 
+      \address[The University of Sydney]{School of Life and Environmental Sciences, The University of Sydney,
+Sydney, NSW 2006, Australia}
+    \address[INIA]{INIA, Uruguay}
+    \address[IMFIA]{Institute of Fluid Mechanics and Environmental Engineering, School of
+Engineering, Universidad de la República, 11200 Montevideo, Departamento
+de Montevideo, Uruguay}
+      \cortext[1]{Corresponding Author}
+    \cortext[2]{Equal contribution}
+  
+  \begin{abstract}
+  This is the abstract.
+  
+  It consists of two paragraphs.
+  \end{abstract}
+  
+ \end{frontmatter}
+
+\emph{Text based on elsarticle sample manuscript, see
+\url{http://www.elsevier.com/author-schemas/latex-instructions\#elsarticle}}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+\hypertarget{introduction-1}{%
+\subsection{Introduction}\label{introduction-1}}
+
+There has been an long and on-going discussion in the hydrologcal
+literature around the impact of forests on streamflow (Andréassian,
+2004; Brown et al., 2013, 2005; Jackson et al., 2005; Zhang et al.,
+2017). The historic work highlights provides a general consensus that if
+forest areas increase, streamflow decreases and vice-versa. The most
+dramatic result in relation to this, is Figure 5 in Zhang et al. (2011)
+indicating (or Australian watersheds) a 100\% decrease in stream flow
+for watersheds with 100\% forest cover. However, on the other end of the
+spectrum, in a series of French watersheds (Cosandey et al., 2005),
+there was no change in streamflow characteristics in 2 of the three
+watersheds studied in relation to deforestation.
+
+There have been several review papers aiming to summarize different
+studies across the globe, in relation to paired watershed studies (Bosch
+and Hewlett, 1982; Brown et al., 2005) and more generally (Jackson et
+al., 2005; Zhang et al., 2017). These studies are aiming to generalize
+the individual findings and to identify if there are global trends or
+relationships that can be developed. The most recent review (Zhang et
+al., 2017) developed an impressive database of watershed studies in
+relation to changes in streamflow due to changes in forest cover based
+on a global data set. This dataset, that covers over 250 studies are
+described in terms of the change in streamflow as a result of the change
+in forest cover, where studies related to both forestation (increase in
+forest cover) and deforestation (decrease in forest cover) were
+included.
+
+The conclusions of the paper (Zhang et al., 2017) suggest that there is
+a distinct difference in the change in flow as a result of forestation
+or deforestation between small watersheds, defined as \textless{} 1000
+km\textsuperscript{2} and large watersheds \textgreater{} 1000
+km\textsuperscript{2}. While for small watersheds there was no real
+change in runoff with changes in cover, for large watersheds there was a
+clear trend showing a decrease in runoff with and increase in forest
+cover. Their main conclusion was that the response in annual runoff to
+forest cover was scale dependent and appeared to be more sensitive to
+forest cover change in water limited watersheds relative to energy
+limited watershed (Zhang et al., 2017).
+
+Encouraged by the work presented by Zhang et al. (2017) and the
+fantastic database of studies presented by these authors, we believe we
+can add to the discussion by presenting further analysis of the data and
+by adding further watersheds and enhancements to the data base.
+
+In particular, the main method in the work by Zhang et al. (2017) is
+using simple linear regression. And the main assumption is that the
+threshold at 1000 km\textsuperscript{2} is a distinct separation between
+``small'' and ``large'' watersheds. Given the fantastic data set
+collected, the analysis can be easily expanded to look at interactions
+between the terms and to test the assumption of a distinct threshold at
+1000 km\textsuperscript{2}.
+
+In particular, the objective of this paper is to 1) enhance the data set
+from ({\textbf{???}}) with further watersheds and spatial coordinates
+and 2) to analyse the possibility of non-linear and partial effects of
+the different factors and variables in the data base using generalised
+linear (GLM) and generalised additive models (GAM Wood (2006)). Finally
+we hope to point to further research that can expand our work and that
+outlined Zhang et al. (2017) to better understand the impact of forest
+cover change on streamflow.
+
+\hypertarget{front-matter}{%
+\section{Front matter}\label{front-matter}}
+
+The author names and affiliations could be formatted in two ways:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  Group the authors per affiliation.
+\item
+  Use footnotes to indicate the affiliations.
+\end{enumerate}
+
+See the front matter of this document for examples. You are recommended
+to conform your choice to the journal you are submitting to.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-andreassian2004}{}%
+Andréassian, V., 2004. Waters and forests: From historical controversy
+to scientific debate. Journal of Hydrology 291, 1--27.
+doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2003.12.015}{https://doi.org/10.1016/j.jhydrol.2003.12.015}
+
+\leavevmode\hypertarget{ref-hewlett1984}{}%
+Bosch, J.M., Hewlett, J.D., 1982. A review of catchment experiments to
+determine the effect of vegetation changes on water yield and
+evapotranspiration. Journal of Hydrology 55, 3--23.
+
+\leavevmode\hypertarget{ref-brown2013}{}%
+Brown, A.E., Western, A.W., McMahon, T.A., Zhang, L., 2013. Impact of
+forest cover changes on annual streamflow and flow duration curves.
+Journal of Hydrology 483, 39--50.
+doi:\href{https://doi.org/http://dx.doi.org/10.1016/j.jhydrol.2012.12.031}{http://dx.doi.org/10.1016/j.jhydrol.2012.12.031}
+
+\leavevmode\hypertarget{ref-brown2005}{}%
+Brown, A.E., Zhang, L., McMahon, T.A., Western, A.W., Vertessy, R.A.,
+2005. A review of paired catchment studies for determining changes in
+water yield resulting from alterations in vegetation. Journal of
+Hydrology 310, 28--61.
+
+\leavevmode\hypertarget{ref-cosandey2005}{}%
+Cosandey, C., Andréassian, V., Martin, C., Didon-Lescot, J.F., Lavabre,
+J., Folton, N., Mathys, N., Richard, D., 2005. The hydrological impact
+of the mediterranean forest: A review of french research. Journal of
+Hydrology 301, 235--249.
+doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2004.06.040}{https://doi.org/10.1016/j.jhydrol.2004.06.040}
+
+\leavevmode\hypertarget{ref-jackson2005}{}%
+Jackson, R.B., Jobbagy, E.G., Avissar, R., Roy, S.B., Barrett, D.J.,
+Cook, C.W., Farley, K.A., Maitre, D.C. le, McCarl, B.A., Murray, B.C.,
+2005. Trading water for carbon with biological carbon sequestration.
+Science 310, 1944--1947.
+doi:\href{https://doi.org/10.1126/science.1119282}{10.1126/science.1119282}
+
+\leavevmode\hypertarget{ref-wood2006}{}%
+Wood, S., 2006. Generalized additive models: An introduction with r. CRC
+Press, Boca Raton, FL.
+
+\leavevmode\hypertarget{ref-zhang2011}{}%
+Zhang, L., Zhao, F., Chen, Y., Dixon, R.N.M., 2011. Estimating effects
+of plantation expansion and climate variability on streamflow for
+catchments in australia. Water Resources Research 47, W12539.
+doi:\href{https://doi.org/10.1029/2011wr010711}{10.1029/2011wr010711}
+
+\leavevmode\hypertarget{ref-zhang2017}{}%
+Zhang, M., Liu, N., Harper, R., Li, Q., Liu, K., Wei, X., Ning, D., Hou,
+Y., Liu, S., 2017. A global review on hydrological responses to forest
+change across multiple spatial scales: Importance of scale, climate,
+forest type and hydrological regime. Journal of Hydrology 546, 44--59.
+doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2016.12.040}{https://doi.org/10.1016/j.jhydrol.2016.12.040}
+
+
+\end{document}
+
+

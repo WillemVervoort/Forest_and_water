@@ -31,4 +31,6 @@ Thornton, C.M., Cowie, B.A., Freebairn, D.M., Playford, C.L., 2007. The Brigalow
 
 Borg, H., Bell, R.W., Loh, I.C., 1988. Streamflow and stream salinity in a small water supply catchment in southwest Western Australia after reforestation. Journal of Hydrology, 103(3): 323-333. DOI:https://doi.org/10.1016/0022-1694(88)90141-2
 
+Zhao, F., Zhang, L., Xu, Z., Scott, D.F., 2010. Evaluation of methods for estimating the effects of vegetation change and climate variability on streamflow. Water Resour. Res., 46(3): W03505. DOI:10.1029/2009wr007702
+Cross check against other papers
 
