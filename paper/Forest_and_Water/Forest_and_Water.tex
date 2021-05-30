@@ -34,6 +34,7 @@
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \bibliographystyle{elsarticle-harv}
+\usepackage{longtable}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -44,7 +45,7 @@
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={},
-            pdftitle={Short Paper},
+            pdftitle={Do larger catchments respond different to forest cover change? Re-analysing a global data set.},
             colorlinks=false,
             urlcolor=blue,
             linkcolor=magenta,
@@ -64,7 +65,8 @@
 \begin{document}
 \begin{frontmatter}
 
-  \title{Short Paper}
+  \title{Do larger catchments respond different to forest cover change?
+Re-analysing a global data set.}
     \author[The University of Sydney, INIA]{R. Willem Vervoort\corref{1}}
    \ead{willem.vervoort@sydney.edu.au} 
     \author[INIA]{Eliana Nervi}
@@ -87,9 +89,6 @@ de Montevideo, Uruguay}
   \end{abstract}
   
  \end{frontmatter}
-
-\emph{Text based on elsarticle sample manuscript, see
-\url{http://www.elsevier.com/author-schemas/latex-instructions\#elsarticle}}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -117,7 +116,7 @@ the individual findings and to identify if there are global trends or
 relationships that can be developed. The most recent review (Zhang et
 al., 2017) developed an impressive database of watershed studies in
 relation to changes in streamflow due to changes in forest cover based
-on a global data set. This dataset, that covers over 250 studies are
+on a global data set. This dataset, which covers over 250 studies are
 described in terms of the change in streamflow as a result of the change
 in forest cover, where studies related to both forestation (increase in
 forest cover) and deforestation (decrease in forest cover) were
@@ -149,7 +148,7 @@ between the terms and to test the assumption of a distinct threshold at
 1000 km\textsuperscript{2}.
 
 In particular, the objective of this paper is to 1) enhance the data set
-from ({\textbf{???}}) with further watersheds and spatial coordinates
+from Zhang et al. (2017) with further watersheds and spatial coordinates
 and 2) to analyse the possibility of non-linear and partial effects of
 the different factors and variables in the data base using generalised
 linear (GLM) and generalised additive models (GAM Wood (2006)). Finally
@@ -157,21 +156,158 @@ we hope to point to further research that can expand our work and that
 outlined Zhang et al. (2017) to better understand the impact of forest
 cover change on streamflow.
 
-\hypertarget{front-matter}{%
-\section{Front matter}\label{front-matter}}
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
 
-The author names and affiliations could be formatted in two ways:
+\hypertarget{the-original-data-set}{%
+\subsection{The original data set}\label{the-original-data-set}}
 
-\begin{enumerate}
-\def\labelenumi{(\arabic{enumi})}
-\item
-  Group the authors per affiliation.
-\item
-  Use footnotes to indicate the affiliations.
-\end{enumerate}
+The starting point of this paper is the data base of studies which were
+included in Zhang et al. (2017) as supplementary material. The columns
+in this data set are the watershed number, the watershed name, the Area
+in km\textsuperscript{2}, the annual average precipitation (Pa) in mm,
+the forest type, hydrological regime, and climate type, the change in
+forest cover in \% (\(\Delta\)F\%) and the change in streamflow in \%
+(\(\Delta\)Qf(\%), based on equation 1 in Zhang et al. (2017)), the
+precipitation data type, the assessment technique, and the source of the
+info, which is a citation. Several of these columns contain
+abbreviations to describe the different variables, which are summarised
+in Table 1.
 
-See the front matter of this document for examples. You are recommended
-to conform your choice to the journal you are submitting to.
+Table 1 Summary of abbreviations of factors used in the Zhang et al.
+(2017) data set
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Factor & Abbreviation & Definition\tabularnewline
+\midrule
+\endhead
+forest type & CF & coniferous forest\tabularnewline
+& BF & broadleaf forest\tabularnewline
+& MF & mixed forest\tabularnewline
+hydrological regime & RD & rain dominated\tabularnewline
+& SD & snow dominated\tabularnewline
+climate type & EL & energy limited\tabularnewline
+& WL & water limited\tabularnewline
+& EQ & equitant\tabularnewline
+precipitation data type & OB & observed\tabularnewline
+& SG & spatial gridded\tabularnewline
+& MD & modelled\tabularnewline
+assessment technique & PWE & paired watershed experiment\tabularnewline
+& QPW & quasi-paired watershed experiment\tabularnewline
+& HM & hydrological modelling\tabularnewline
+& EA & elastictity analysis\tabularnewline
+& SH & combined use of statistical methods\tabularnewline
+& & and hydrographs\tabularnewline
+\bottomrule
+\end{longtable}
+
+While the Zhang et al. (2017) use the dryness index in their analysis,
+potential or reference evapotranspiration is not part of the data set.
+We combined the tables for small (\textless{} 1000
+km\textsuperscript{2}) and large (\textgreater= 1000
+km\textsuperscript{2}) watreshed data sets in our analysis. Some small
+naming errors and citations for some of the data sets for some of the
+small watersheds were fixed as we were familiar with the studies. But
+overall the original data set was not changed.
+
+\hypertarget{additional-data-collection}{%
+\subsection{Additional data
+collection}\label{additional-data-collection}}
+
+To enhance the existing data set, this study added additional variables.
+The first variables added were the latitude and longitude for the center
+of the watershed as an approximation of its spatial location. Using this
+information annual average reference evapotranspiration (E0) was
+extracted from \textbf{XXXXX} if value of E0 were not available from the
+original papers. For large water watersheds, this value, similar to
+annual average rainfall, is an approximation of the climate at the
+location.
+
+The length of the study can be a variable influencing the change in flow
+(e.g.~Jackson et al., 2005) and therefore, the length of the different
+studies was extracted from the references provided by Zhang et al.
+(2017).
+
+Several additional data points from watershed studies were extracted
+from Zhang et al. (2011), Zhao et al. (2010), Borg et al. (1988),
+Thornton et al. (2007), Zhou et al. (2010), Rodriguez et al. (2010),
+Ruprecht et al. (1991) and Peña-Arancibia et al. (2012), and these were
+checked against the existing studies to prevent overlap. In the citation
+column in the data set, in general the main reference for the calculated
+change in streamflow was used, because sometimes the original study did
+not provide the quantification of the change in streamflow (i.e.~Table 6
+in Zhang et al. (2011))
+
+The final column in the improved data set is a ``notes'' column, which
+is not further used in the analysis, but gives context to some of the
+data for future research.
+
+\hypertarget{statistical-modelling}{%
+\subsection{Statistical modelling}\label{statistical-modelling}}
+
+To estimate how the change in streamflow is affected by the change in
+forest cover while considering the effects of the other variables, we
+applied generalised additive modelling (GAM) (Wood, 2006). In particular
+we fitted the following initial model to replicate the variables in the
+analysis from Zhang et al. (2017):
+
+\[\tag{1}
+\begin{aligned}
+\Delta \%Q \sim ~&\Delta \%forest + s(Pa) + s(Area) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+\end{aligned}\]
+
+However, the overall skewed distribution of the predictant
+(\(\Delta \%Q\)) is problematic, and this results in a skewed
+distribution of the GAM model residuals. As a result we transformed
+\(\Delta \%Q\) and \(\Delta \%forest\) back to fractions (0 - 1) and log
+transformed using \(log10(x + 1)\), where \(x\) is either \(\Delta Q\)
+or \(\Delta forest\). This means that the model residuals are
+\(\sim N(0,\sigma^2)\) results in the following equation:
+
+\[\tag{2}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa, k = 3) + s(Area, k = 3) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+\end{aligned}\]
+
+In this model, the assumption is that all continuous variables (such as
+Pa) can have a linear or non-linear relationship with
+\(log10(\Delta Q)\). This means that a smooth function \(s()\) is
+applied to the variable. To restrict the smoothness of the fit, the
+smoothness factor \(k\) is restricted to a value of 3 (Wood, 2006). This
+restriction was applied to smooth variables throughout this paper and we
+have dropped this from the subsequent equations.
+
+For the model in equation 2, we only used the data from Zhang et al.
+(2017) to make sure that the additional watersheds added to the data set
+did not influence the analysis. Given that in Zhang et al. (2017),
+dryness (\(\frac{E0}{Pa}\)) is used to look at variations in the change
+in flow, we also fitted the following model:
+
+\[\tag{3}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+\end{aligned}\]
+
+Subsequently, using the full data set, including the additional
+watersheds and the additional variables the following two models were
+fitted:
+
+\[\tag{4}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa) + s(Area) + s(Latitude) + s(Longitude) + \\
+& s(years) + {forest~type} + {climate~type} + {assessment~type} + \\ & {hydrologic~regime} + \varepsilon
+\end{aligned}\]
+
+\[\tag{5}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) + s(Latitude) + s(Longitude) + \\
+& s(years) + {forest~type} + {climate~type} + {assessment~type} + \\ & {hydrologic~regime} + \varepsilon
+\end{aligned}\]
+
+The results were analysed to identify:\\
+1. the significance of the different variables\\
+2. the direction of the categorical or shape of the smooth variables
 
 \hypertarget{references}{%
 \section*{References}\label{references}}
@@ -182,6 +318,12 @@ to conform your choice to the journal you are submitting to.
 Andréassian, V., 2004. Waters and forests: From historical controversy
 to scientific debate. Journal of Hydrology 291, 1--27.
 doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2003.12.015}{https://doi.org/10.1016/j.jhydrol.2003.12.015}
+
+\leavevmode\hypertarget{ref-borg1988}{}%
+Borg, H., Bell, R.W., Loh, I.C., 1988. Streamflow and stream salinity in
+a small water supply catchment in southwest western australia after
+reforestation. Journal of Hydrology 103, 323--333.
+doi:\href{https://doi.org/https://doi.org/10.1016/0022-1694(88)90141-2}{https://doi.org/10.1016/0022-1694(88)90141-2}
 
 \leavevmode\hypertarget{ref-hewlett1984}{}%
 Bosch, J.M., Hewlett, J.D., 1982. A review of catchment experiments to
@@ -214,6 +356,33 @@ Cook, C.W., Farley, K.A., Maitre, D.C. le, McCarl, B.A., Murray, B.C.,
 Science 310, 1944--1947.
 doi:\href{https://doi.org/10.1126/science.1119282}{10.1126/science.1119282}
 
+\leavevmode\hypertarget{ref-pena-arancibia2012}{}%
+Peña-Arancibia, J.L., Dijk, A.I.J.M. van, Guerschman, J.P., Mulligan,
+M., Bruijnzeel, L.A., McVicar, T.R., 2012. Detecting changes in
+streamflow after partial woodland clearing in two large catchments in
+the seasonal tropics. Journal of Hydrology 416-417, 60--71.
+doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2011.11.036}{https://doi.org/10.1016/j.jhydrol.2011.11.036}
+
+\leavevmode\hypertarget{ref-rodriguez2010}{}%
+Rodriguez, D.A., Tomasella, J., Linhares, C., 2010. Is the forest
+conversion to pasture affecting the hydrological response of amazonian
+catchments? Signals in the ji-paraná basin. Hydrological Processes 24,
+1254--1269.
+doi:\href{https://doi.org/https://doi.org/10.1002/hyp.7586}{https://doi.org/10.1002/hyp.7586}
+
+\leavevmode\hypertarget{ref-ruprechtetal1991}{}%
+Ruprecht, J.K., Schofield, N.J., Crombie, D.S., Vertessy, R.A.,
+Stoneman, G.L., 1991. Early hydrological response to intense forest
+thinning in southwestern australia. Journal of Hydrology 127, 261--277.
+doi:\href{https://doi.org/https://doi.org/10.1016/0022-1694(91)90118-2}{https://doi.org/10.1016/0022-1694(91)90118-2}
+
+\leavevmode\hypertarget{ref-thornton2007}{}%
+Thornton, C.M., Cowie, B.A., Freebairn, D.M., Playford, C.L., 2007. The
+brigalow catchment study: II*. Clearing brigalow (acacia harpophylla)
+for cropping or pasture increases runoff. Australian Journal of Soil
+Research 45, 496--511.
+doi:\href{https://doi.org/doi:10.1071/SR07064}{doi:10.1071/SR07064}
+
 \leavevmode\hypertarget{ref-wood2006}{}%
 Wood, S., 2006. Generalized additive models: An introduction with r. CRC
 Press, Boca Raton, FL.
@@ -230,6 +399,18 @@ Y., Liu, S., 2017. A global review on hydrological responses to forest
 change across multiple spatial scales: Importance of scale, climate,
 forest type and hydrological regime. Journal of Hydrology 546, 44--59.
 doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2016.12.040}{https://doi.org/10.1016/j.jhydrol.2016.12.040}
+
+\leavevmode\hypertarget{ref-zhao2010}{}%
+Zhao, F., Zhang, L., Xu, Z., Scott, D.F., 2010. Evaluation of methods
+for estimating the effects of vegetation change and climate variability
+on streamflow. Water Resources Research 46, W03505.
+doi:\href{https://doi.org/10.1029/2009wr007702}{10.1029/2009wr007702}
+
+\leavevmode\hypertarget{ref-zhou2010}{}%
+Zhou, G., Wei, X., Luo, Y., Zhang, M., Li, Y., Qiao, Y., Liu, H., Wang,
+C., 2010. Forest recovery and river discharge at the regional scale of
+guangdong province, china. Water Resources Research 46.
+doi:\href{https://doi.org/https://doi.org/10.1029/2009WR008829}{https://doi.org/10.1029/2009WR008829}
 
 
 \end{document}

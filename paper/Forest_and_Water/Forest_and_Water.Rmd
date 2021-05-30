@@ -58,9 +58,92 @@ In particular, the objective of this paper is to 1) enhance the data set from @z
 Methods
 ==========
 
-The staerting point of this paper is the data base of studies which were included in @zhang2017 as supplementary material. The columns in this dataset 
+## The original data set
+
+The starting point of this paper is the data base of studies which were included in @zhang2017 as supplementary material. The columns in this data set are the watershed number, the	watershed name, the	Area in km^2^, the annual average precipitation	(Pa) in mm, the	forest type, hydrological regime, and climate type, the change in forest cover	in % ($\Delta$F%) and the change in streamflow in % ($\Delta$Qf(%), based on equation 1 in @zhang2017), the precipitation data type, the assessment technique, and the	source of the info, which is a citation. 
+Several of these columns contain abbreviations to describe the different variables, which are summarised in Table 1.
 
 
+Table 1  Summary of abbreviations of factors used in the @zhang2017 data set
+
+|Factor | Abbreviation | Definition |
+|:------------|:-------|:----------|
+| forest type | CF |coniferous forest | 
+|  | BF | broadleaf forest |
+|  | MF |mixed forest  |
+|hydrological regime|RD|rain dominated|
+| |SD|snow dominated|
+| climate type| EL| energy limited|
+| |WL| water limited|
+| |EQ| equitant|
+|precipitation data type|OB|observed|
+| |SG|spatial gridded|
+| |MD|modelled|
+|assessment technique|PWE|paired watershed experiment|
+| |QPW|quasi-paired watershed experiment|
+| |HM|hydrological modelling|
+| |EA|elastictity analysis|
+| |SH|combined use of statistical methods|
+| | |and hydrographs|
+
+While the @zhang2017 use the dryness index in their analysis, potential or reference evapotranspiration is not part of the data set.
+We combined the tables for small (< 1000 km^2^) and large (>= 1000 km^2^) watreshed data sets in our analysis. Some small naming errors and citations for some of the data sets for some of the small watersheds were fixed as we were familiar with the studies. But overall the original data set was not changed.
+
+## Additional data collection
+
+To enhance the existing data set, this study added additional variables. The first variables added were the latitude and longitude for the center of the watershed as an approximation of its spatial location. Using this information  annual average reference evapotranspiration (E0) was extracted from **XXXXX** if value of E0 were not available from the original papers. For large water watersheds, this value, similar to annual average rainfall, is an approximation of the climate at the location. 
+
+The length of the study can be a variable influencing the change in flow [e.g. @jackson2005] and therefore, the length of the different studies was extracted from the references provided by @zhang2017.
+
+Several additional data points from watershed studies were extracted from @zhang2011, @zhao2010, @borg1988, @thornton2007, @zhou2010, @rodriguez2010, @ruprechtetal1991 and @pena-arancibia2012, and these were checked against the existing studies to prevent overlap. In the citation column in the data set, in general the main reference for the calculated change in streamflow  was used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e. Table 6 in @zhang2011)
+
+The final column in the improved data set is a "notes" column, which is not further used in the analysis, but gives context to some of the data for future research.
+
+## Statistical modelling
+
+To estimate how the change in streamflow is affected by the change in forest cover while considering the effects of the other variables, we applied generalised additive modelling (GAM) [@wood2006]. In particular we fitted the following initial model to replicate the variables in the analysis from @zhang2017:  
+
+
+$$\tag{1}
+\begin{aligned}
+\Delta \%Q \sim ~&\Delta \%forest + s(Pa) + s(Area) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+\end{aligned}$$
+
+However, the overall skewed distribution of the predictant ($\Delta \%Q$) is problematic, and this results in a skewed distribution of the GAM model residuals. As a result we transformed $\Delta \%Q$ and $\Delta \%forest$ back to fractions (0 - 1) and log transformed using $log10(x + 1)$, where $x$ is either $\Delta Q$ or $\Delta forest$. This means that the model residuals are $\sim N(0,\sigma^2)$ results in the following equation: 
+
+
+$$\tag{2}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa, k = 3) + s(Area, k = 3) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+\end{aligned}$$
+
+
+In this model, the assumption is that all continuous variables (such as Pa) can have a linear or non-linear relationship with $log10(\Delta Q)$. This means that a smooth function $s()$ is applied to the variable. To restrict the smoothness of the fit, the smoothness factor $k$ is restricted to a value of 3 [@wood2006]. This restriction was applied to smooth variables throughout this paper and we have dropped this from the subsequent equations.
+
+For the model in equation 2, we only used the data from @zhang2017 to make sure that the additional watersheds added to the data set did not influence the analysis. Given that in @zhang2017, dryness ($\frac{E0}{Pa}$) is used to look at variations in the change in flow, we also fitted the following model:
+
+$$\tag{3}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+\end{aligned}$$
+
+Subsequently, using the full data set, including the additional watersheds and the additional variables the following two models were fitted:
+
+$$\tag{4}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa) + s(Area) + s(Latitude) + s(Longitude) + \\
+& s(years) + {forest~type} + {climate~type} + {assessment~type} + \\ & {hydrologic~regime} + \varepsilon
+\end{aligned}$$
+
+$$\tag{5}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) + s(Latitude) + s(Longitude) + \\
+& s(years) + {forest~type} + {climate~type} + {assessment~type} + \\ & {hydrologic~regime} + \varepsilon
+\end{aligned}$$
+
+The results were analysed to identify:  
+1. the significance of the different variables  
+2. the direction of the categorical or shape of the smooth variables
 
 
 References {#references .unnumbered}
