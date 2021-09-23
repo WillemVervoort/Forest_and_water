@@ -109,11 +109,46 @@ The final column in the improved data set is a "notes" column, which is not furt
 
 ## Statistical modelling
 
-Building on the analyses by @zhang2017 and @filoso2017, and combining their conclusions, the main hypothesis to test is that the change in streamflow is impacted by the change in forest cover. However, this change is clearly modulated by the area under consideration (affecting the length of the flowpaths @zhou2015), the length of the study (c.f. @jackson2005) and possibly the climate (as indicated by either Pa and E0 or latitude and longitude @filoso2017; @zhou2015).
+<!----
+The starting point consists of the two tables in the supplementary data from Zhang et al. (2017), which means there is one table for small watersheds (< 1000 km2) and one table for large watersheds (> 1000 km2). We might combine these tables as we can easily add a variable indicating whether the watershed originates from the small or large table.
+--->
+```{r, echo = F, message = F}
+require(tidyverse)
+require(lubridate)
+
+Zhang_small <- read_csv("data/TablesZhangetal2017_small.csv")
+Zhang_large <- read_csv("data/TablesZhangetal2017_large.csv")
+```
+
+<!--- ### change names of columns
+
+the package`mgcv` does not seem to be happy with complex names, so probably better to make all names simple --->
+
+```{r, echo = F}
+names(Zhang_small)[3:4] <- c("Area_km2", "Pa_mm")
+names(Zhang_large)[3:4] <- c("Area_km2", "Pa_mm")
+names(Zhang_small)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(Zhang_large)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(Zhang_small)[9:10] <- c("Precip_data_type", "Assessment_technique")
+names(Zhang_large)[9:10] <- c("Precip_data_type", "Assessment_technique")
+```
+
+<!-- combine both tables -->
+
+```{r, echo = F}
+Zhang_small$From <- as.numeric(Zhang_small$From)
+Zhang_small$To <- as.numeric(Zhang_small$To)
+Zhang_all <- bind_rows(Zhang_large,Zhang_small)
+```
+
+
+Building on the analyses by @zhang2017 and @filoso2017, and combining their conclusions, the main hypothesis to test is that the change in streamflow is impacted by the change in forest cover. However, this change is clearly modulated by the area under consideration (affecting the length of the flowpaths @zhou2015), the length of the study (c.f. @jackson2005) and possibly the climate (as indicated by either E0/Pa or latitude and longitude @filoso2017; @zhou2015).
 
 However, there could be further confounding factors, which are eluded to by @filoso2017:  
-- the type of analysis, i.e. paired catchment studies, modelling, time series analysis etc.  
-- the age of the study, assuming that historical studies might not have had the ability to measure at the accuracy that currently is available to researchers, or that more careful historical attention to detail in field studies might have been lost more recently due to reductions in research investment.
+
+- the type of analysis, i.e. paired catchment studies, modelling, time series analysis etc.
+
+- the age of the study, assuming that historical studies might not have had the ability to measure at the accuracy that currently is available to researchers, or that more careful historical attention to detail in field studies might have been lost more recently due to reductions in research investment.  
 
 To estimate how the change in streamflow is affected by the change in forest cover while considering the effects of the other variables, we applied generalised additive modelling (GAM) [@wood2006]. 
 
@@ -121,14 +156,14 @@ The first model applied in this analysis is based on the main hypothesis outline
 
 $$\tag{1}
 \begin{aligned}
-\Delta \%Q \sim ~&\Delta \%forest + Pa + Area + {climate~type} + \varepsilon
+\Delta \%Q \sim ~&\Delta \%forest + Pa + Area + Latitude + Longitude + \varepsilon
 \end{aligned}$$
 
 However, the overall skewed distribution of the predictant ($\Delta \%Q$) is problematic, and this results in a skewed distribution of the GAM model residuals, which violates the linear model assumptions. As a result we transformed $\Delta \%Q$ and $\Delta \%forest$ back to fractions (0 - 1) and log transformed using $log10(x + 1)$, where $x$ is either $\Delta Q$ or $\Delta forest$. This means that the model residuals approximate $\sim N(0,\sigma^2)$ and this results in the following equation: 
 
 $$\tag{2}
 \begin{aligned}
-log10(\Delta Q) \sim ~ &log10(\Delta forest) + Pa + Area + {climate~type} + \varepsilon
+log10(\Delta Q) \sim ~ &log10(\Delta forest) + Pa + Area + Latitude + Longitude + \varepsilon
 \end{aligned}$$
 
 A second model included all the variables in the analysis from @zhang2017 in one model:  
@@ -167,6 +202,18 @@ log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) + \\
 The results were analysed to identify:  
 1. the significance of the different variables  
 2. the direction of the categorical or shape of the smooth variables
+
+Results
+===========
+
+<!-- analysis -->
+```{r model2, echo = F}
+require(mgcv)
+linear_model_all_log <- gam(log10(DeltaQf_perc/100+1) ~ DeltaF_perc + Area_km2 + Pa_mm, data = Zhang_all)
+summary(linear_model_all_log)
+gam.check(linear_model_all_log)
+```
+
 
 
 References {#references .unnumbered}
