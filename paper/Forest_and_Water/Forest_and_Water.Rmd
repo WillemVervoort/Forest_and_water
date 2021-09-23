@@ -43,22 +43,28 @@ Introduction
 
 ## Introduction
 
-There has been an long and on-going discussion in the hydrologcal literature around the impact of forests on streamflow [@andreassian2004; @jackson2005; @zhang2017; @brown2005; @brown2013]. The historic work highlights provides a general consensus that if forest areas increase, streamflow decreases and vice-versa. The most dramatic result in relation to this, is Figure 5 in @zhang2011 indicating (or Australian watersheds) a 100% decrease in stream flow for watersheds with 100% forest cover. However, on the other end of the spectrum, in a series of French watersheds [@cosandey2005], there was no change in streamflow characteristics in 2 of the three watersheds studied in relation to deforestation.
+There has been an long and on-going discussion in the hydrologcal literature around the impact of forests on streamflow [@andreassian2004; @jackson2005; @zhang2017; @brown2005; @brown2013; @filoso2017]. The historic work highlights a general consensus that if forest areas increase, streamflow decreases and vice-versa. The most dramatic result in relation to this, is Figure 5 in @zhang2011 indicating (for Australian watersheds) a 100% decrease in stream flow for watersheds with 100% forest cover. However, on the other end of the spectrum, in a series of French watersheds [@cosandey2005], there was no change in streamflow characteristics in 2 of the three watersheds studied in relation to deforestation.
 
-There have been several review papers aiming to summarize different studies across the globe, in relation to paired watershed studies [@brown2005; @hewlett1984] and more generally [@jackson2005; @zhang2017]. These studies are aiming to generalize the individual findings and to identify if there are global trends or relationships that can be developed. The most recent review [@zhang2017] developed an impressive database of watershed studies in relation to changes in streamflow due to changes in forest cover based on a global data set. This dataset, which covers over 250 studies are described in terms of the change in streamflow as a result of the change in forest cover, where studies related to both forestation (increase in forest cover) and deforestation (decrease in forest cover) were included.
+<!-- Include Filoso paper -->
 
-The conclusions of the paper [@zhang2017] suggest that there is a distinct difference in the change in flow as a result of forestation or deforestation between small watersheds, defined as < 1000 km^2^ and large watersheds > 1000 km^2^. While for small watersheds there was no real change in runoff with changes in cover, for large watersheds there was a clear trend showing a decrease in runoff with and increase in forest cover. Their main conclusion was that the response in annual runoff to forest cover was scale dependent and appeared to be more sensitive to forest cover change in water limited watersheds relative to energy limited watershed [@zhang2017].
+Several review papers have summarized different studies across the globe, in relation to paired watershed studies [@brown2005; @hewlett1984], related to reforestation in particular [@filoso2017], and more generally [@jackson2005; @zhang2017]. These studies aim to generalize the individual findings and to identify if there are global trends or relationships that can be developed. The most recent reviews [@zhang2017; @filoso2017] developed an impressive global database of watershed studies in relation to changes in streamflow due to changes in forest cover. The @zhang2017 dataset, which covers over 250 studies, is described in terms of the change in streamflow as a result of the change in forest cover, where studies related to both forestation (increase in forest cover) and deforestation (decrease in forest cover) were included. In contrast, the paper by @filoso2017 focused primarily on reforestation, and covered an equally impressive database of 167 studies using a systematic review. In this case the collected data is mostly coded as count data and only a subset of 37 studies was analysed for actual water yield change.
 
-Encouraged by the work presented by @zhang2017 and the fantastic database of studies presented by these authors, we believe we can add to the discussion by presenting further analysis of the data and by adding further watersheds and enhancements to the data base. 
+The conclusions of the first paper [@zhang2017] suggest that there is a distinct difference in the change in flow as a result of forestation or deforestation between small watersheds, defined as < 1000 km^2^ and large watersheds > 1000 km^2^. While for small watersheds there was no real change in runoff with changes in cover, for large watersheds there was a clear trend showing a decrease in runoff with and increase in forest cover. Their main conclusion was that the response in annual runoff to forest cover was scale dependent and appeared to be more sensitive to forest cover change in water limited watersheds relative to energy limited watershed [@zhang2017].
 
-In particular, the main method in the work by @zhang2017 is using simple linear regression. And the main assumption is that the threshold at 1000 km^2^ is a distinct separation between "small" and "large" watersheds. Given the fantastic data set collected, the analysis can be easily expanded to look at interactions between the terms and to test the assumption of a distinct threshold at 1000 km^2^.
+The second study [@filoso2017] was a systematic review which classified the historical research and highlighted gaps in the spatial distribution, the types of studies and the types of analysis. Their main conclusion was also that reforestation decreases streamflow, but that there were many interacting factors. For a subset of quantitative data (37) they showed a relationship between catchment size and decline in streamflow.
 
-In particular, the objective of this paper is to 1) enhance the data set from @zhang2017 with further watersheds and spatial coordinates and 2) to analyse the possibility of non-linear and partial effects of the different factors and variables in the data base using generalised linear (GLM) and generalised additive models (GAM @wood2006). Finally we hope to point to further research that can expand our work and that outlined @zhang2017 to better understand the impact of forest cover change on streamflow.
+A final summary paper that includes much of the same data as @zhang2017 and @filoso2017 is @zhou2015, which has one author in common with @zhang2017. However, this paper aims to explain the variation in the data using the Fuh model, and in particular aims to link the variation in the observed data to variations in the exponent *m* in the model. A key observation is that in drier environments, the effects of deforestation are much greater than in wetter environments, which is also suggested by Figure 4 in @zhang2017. 
+
+Encouraged by the work presented by @zhang2017 and @filoso2017 and the fantastic database of studies presented by these authors, we believe we can add to the discussion. In this paper, the aim is to develop further analysis of the collected data and expanding and combining the two data sets to provide further depth. 
+
+In particular, the main method in the work by @zhang2017 is using simple linear regression, and in @filoso2017 the focus is mainly on classification. As @zhang2017 points out, the main assumption in their work is that the threshold at 1000 km^2^ is a distinct separation between "small" and "large" watersheds, but the subset of data in @filoso2017 does not appear to support this. And while te work @filoso2017 provides important insights in study types, analysis types and broad classification, there is limited quantification of actual impact. This is because the work had a strict criterion to select quantitative studies. However, given the fantastic data sets collected, the analyses can be easily expanded to look at interactions between the terms and to test the assumption of a distinct threshold at 1000 km^2^.
+
+As a result the objective of this paper is to 1) enhance the data set from @zhang2017 with further watersheds (such as from @filoso2017) and spatial coordinates and 2) to analyse the possibility of non-linear, interactions and partial effects of the different factors and variables in the data using generalised linear (GLM) and generalised additive models (GAM @wood2006). Finally, this work aims to point to further research that can expand this area of work, based on the collected data, to better understand the impact of forest cover change on streamflow.
 
 Methods
 ==========
 
-## The original data set
+## The original data sets
 
 The starting point of this paper is the data base of studies which were included in @zhang2017 as supplementary material. The columns in this data set are the watershed number, the	watershed name, the	Area in km^2^, the annual average precipitation	(Pa) in mm, the	forest type, hydrological regime, and climate type, the change in forest cover	in % ($\Delta$F%) and the change in streamflow in % ($\Delta$Qf(%), based on equation 1 in @zhang2017), the precipitation data type, the assessment technique, and the	source of the info, which is a citation. 
 Several of these columns contain abbreviations to describe the different variables, which are summarised in Table 1.
@@ -86,59 +92,76 @@ Table 1  Summary of abbreviations of factors used in the @zhang2017 data set
 | |SH|combined use of statistical methods|
 | | |and hydrographs|
 
-While the @zhang2017 use the dryness index in their analysis, potential or reference evapotranspiration is not part of the data set.
-We combined the tables for small (< 1000 km^2^) and large (>= 1000 km^2^) watreshed data sets in our analysis. Some small naming errors and citations for some of the data sets for some of the small watersheds were fixed as we were familiar with the studies. But overall the original data set was not changed.
+While @zhang2017 use the dryness index in their analysis, potential or reference evapotranspiration was not originally included as part of the published data set.
+We combined the tables for small (< 1000 km^2^) and large (>= 1000 km^2^) watershed data sets in our analysis. 
 
 ## Additional data collection
 
-To enhance the existing data set, this study added additional variables. The first variables added were the latitude and longitude for the center of the watershed as an approximation of its spatial location. Using this information  annual average reference evapotranspiration (E0) was extracted from **XXXXX** if value of E0 were not available from the original papers. For large water watersheds, this value, similar to annual average rainfall, is an approximation of the climate at the location. 
+To enhance the existing data set, this study added additional variables and cross-checked the studies with the data set from @filoso2017. In particular, we focussed on the 37 data points included in the quantitative analysis in @filoso2017.
 
-The length of the study can be a variable influencing the change in flow [e.g. @jackson2005] and therefore, the length of the different studies was extracted from the references provided by @zhang2017.
+In addition, additional variables added were the latitude and longitude for the center of the watershed as an approximation of its spatial location. Using this information  annual average reference evapotranspiration (E0) was extracted from **XXXXX** if a value of E0 was not available from the original papers. For large watersheds, this value, similar to annual average rainfall, is only an approximation of the climate at the location. 
+
+The length of the study can be a variable influencing the change in flow [e.g. @jackson2005] and therefore, the length, starting data and completion date of the different studies was extracted from the references provided by @zhang2017.
 
 Several additional data points from watershed studies were extracted from @zhang2011, @zhao2010, @borg1988, @thornton2007, @zhou2010, @rodriguez2010, @ruprechtetal1991 and @pena-arancibia2012, and these were checked against the existing studies to prevent overlap. In the citation column in the data set, in general the main reference for the calculated change in streamflow  was used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e. Table 6 in @zhang2011)
 
-The final column in the improved data set is a "notes" column, which is not further used in the analysis, but gives context to some of the data for future research.
+The final column in the improved data set is a "notes" column, which is not further used in the analysis, but gives context to some of the data for future research and highlights some of the discrepancies that we found between the original papers and the data in the tables from @zhang2017. 
 
 ## Statistical modelling
 
-To estimate how the change in streamflow is affected by the change in forest cover while considering the effects of the other variables, we applied generalised additive modelling (GAM) [@wood2006]. In particular we fitted the following initial model to replicate the variables in the analysis from @zhang2017:  
+Building on the analyses by @zhang2017 and @filoso2017, and combining their conclusions, the main hypothesis to test is that the change in streamflow is impacted by the change in forest cover. However, this change is clearly modulated by the area under consideration (affecting the length of the flowpaths @zhou2015), the length of the study (c.f. @jackson2005) and possibly the climate (as indicated by either Pa and E0 or latitude and longitude @filoso2017; @zhou2015).
 
+However, there could be further confounding factors, which are eluded to by @filoso2017:  
+- the type of analysis, i.e. paired catchment studies, modelling, time series analysis etc.  
+- the age of the study, assuming that historical studies might not have had the ability to measure at the accuracy that currently is available to researchers, or that more careful historical attention to detail in field studies might have been lost more recently due to reductions in research investment.
+
+To estimate how the change in streamflow is affected by the change in forest cover while considering the effects of the other variables, we applied generalised additive modelling (GAM) [@wood2006]. 
+
+The first model applied in this analysis is based on the main hypothesis outlined above, can the change in streamflow be predicted from the change in forest cover, modulated by area, the length of the study and the climate.
 
 $$\tag{1}
 \begin{aligned}
-\Delta \%Q \sim ~&\Delta \%forest + s(Pa) + s(Area) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+\Delta \%Q \sim ~&\Delta \%forest + Pa + Area + {climate~type} + \varepsilon
 \end{aligned}$$
 
-However, the overall skewed distribution of the predictant ($\Delta \%Q$) is problematic, and this results in a skewed distribution of the GAM model residuals. As a result we transformed $\Delta \%Q$ and $\Delta \%forest$ back to fractions (0 - 1) and log transformed using $log10(x + 1)$, where $x$ is either $\Delta Q$ or $\Delta forest$. This means that the model residuals are $\sim N(0,\sigma^2)$ results in the following equation: 
-
+However, the overall skewed distribution of the predictant ($\Delta \%Q$) is problematic, and this results in a skewed distribution of the GAM model residuals, which violates the linear model assumptions. As a result we transformed $\Delta \%Q$ and $\Delta \%forest$ back to fractions (0 - 1) and log transformed using $log10(x + 1)$, where $x$ is either $\Delta Q$ or $\Delta forest$. This means that the model residuals approximate $\sim N(0,\sigma^2)$ and this results in the following equation: 
 
 $$\tag{2}
+\begin{aligned}
+log10(\Delta Q) \sim ~ &log10(\Delta forest) + Pa + Area + {climate~type} + \varepsilon
+\end{aligned}$$
+
+A second model included all the variables in the analysis from @zhang2017 in one model:  
+
+$$\tag{3}
 \begin{aligned}
 log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa, k = 3) + s(Area, k = 3) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
 \end{aligned}$$
 
 
-In this model, the assumption is that all continuous variables (such as Pa) can have a linear or non-linear relationship with $log10(\Delta Q)$. This means that a smooth function $s()$ is applied to the variable. To restrict the smoothness of the fit, the smoothness factor $k$ is restricted to a value of 3 [@wood2006]. This restriction was applied to smooth variables throughout this paper and we have dropped this from the subsequent equations.
+In this model, no direct interactions are assumed, and the assumption is that all continuous variables (such as Pa) can have a linear or non-linear relationship with $log10(\Delta Q)$. This means that a smooth function $s()$ is applied to the variable. To restrict the smoothness of the fit, the smoothness factor $k$ is restricted to a value of 3 [@wood2006]. This restriction was applied to smooth variables throughout this paper and we have dropped this from the notation in subsequent equations.
 
-For the model in equation 2, we only used the data from @zhang2017 to make sure that the additional watersheds added to the data set did not influence the analysis. Given that in @zhang2017, dryness ($\frac{E0}{Pa}$) is used to look at variations in the change in flow, we also fitted the following model:
+For the model in equation 3, we only used the data from @zhang2017 to make sure that the additional watersheds added to the data set did not influence the analysis. Given that in @zhang2017, dryness ($\frac{E0}{Pa}$) is used to look at variations in the change in flow, we also fitted the following model:
 
-$$\tag{3}
+$$\tag{4}
 \begin{aligned}
 log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
 \end{aligned}$$
 
 Subsequently, using the full data set, including the additional watersheds and the additional variables the following two models were fitted:
 
-$$\tag{4}
-\begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa) + s(Area) + s(Latitude) + s(Longitude) + \\
-& s(years) + {forest~type} + {climate~type} + {assessment~type} + \\ & {hydrologic~regime} + \varepsilon
-\end{aligned}$$
-
 $$\tag{5}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) + s(Latitude) + s(Longitude) + \\
-& s(years) + {forest~type} + {climate~type} + {assessment~type} + \\ & {hydrologic~regime} + \varepsilon
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa) + s(Area) + s(Latitude) + s(Longitude) + \\
+& s(begin_{year}) + s(length_{study}) + {forest~type} + \\ & {climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+\end{aligned}$$
+
+$$\tag{6}
+\begin{aligned}
+log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) + \\ 
+& s(Latitude) + s(Longitude) + s(begin_{year}) + s(length_{study}) + \\ 
+& {forest~type} + {climate~type} + {assessment~type} + \\  
+& {hydrologic~regime} + \varepsilon
 \end{aligned}$$
 
 The results were analysed to identify:  
