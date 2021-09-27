@@ -1,12 +1,12 @@
-﻿Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,DeltaF_perc,DeltaQf_perc,Precipitation,Assessment technique,Source of info,E0,Latitiude,Longitude,Length of study (years),Notes,From,To,"Location Details AL=aprox location given by author, PL=point location given by author, GE= coordinates guessed from google maps"
+﻿Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,DeltaF_perc,DeltaQf_perc,Precipitation,Assessment technique,Source of info,E0,Latitude,Longitude,Length of study (years),Notes,From,To,"Location Details AL=aprox location given by author, PL=point location given by author, GE= coordinates guessed from google maps"
 1,Amazon,3702481,2000,BF,RD,-7,2,OB,PWE,"Roche, 1981",,-14.9177,-51.1497,2,"Aproximate loction defined by Roche's map in Amazon Region in French Guyana. Is is Amazon region?
 ",1976,1978,AL 
 2,Araguaia River ,82632,1730,MF,RD,-27,16.5,SG,HM,"Coe et al., 2011",,-15,-35,20,Did not find forest variation reported value,1970,1990,AL
 3,Baker Creek,1570,542,CF,SD,-42.2,201.2,SG,SH,"Zhang and Wei, 2012",,32,103,26,Did not find reported values,1970,1996,AL 
 4,Be River catchment,7500,2400,BF,RD,-16.3,0.4,SG,HM,"Nguyen Khoi and Suetsugi,2014",,11.0028,106.01,19,"Calibration (1981–1990),Validation (1991–2000)",1981,2000,AL
 5,Bowron  River,3500,920,CF,SD,-27,0,OB,SH,"Wei and Davidson,1998",,53.6754,-121.7472,5,Data from plot 2,1950,1955,AL
-6,Chaohe,4854,500,BF,RD,13.9,-21.9,OB,"EA, HM","Wang et al., 2013",,116,42,44,,1963,2007,AL
-7,Columbia River ,567000,1200,CF,SD,-21,6.5,SG,HM,"Matheussen et al., 2000",, 53.676555°,-121.7838,10,,1969,1979,AL
+6,Chaohe,4854,500,BF,RD,13.9,-21.9,OB,"EA, HM","Wang et al., 2013",,42,116,44,,1963,2007,AL
+7,Columbia River ,567000,1200,CF,SD,-21,6.5,SG,HM,"Matheussen et al., 2000",,53.676555,-121.7838,10,,1969,1979,AL
 8,Comet river,16440,660,BF,RD,-44.8,40,SG,HM,"Siriwardena et al., 2006",,-37.3533,145.1454,30,,1970,2000,AL
 9,CSHC,129654,440.7,BF,RD,30,-21.6,OB,EA,"Zhang et al. , 2008a",,37.5,110,41,Whole catchment studied in Zhang 2008a (repetitive?),1959,2000,AL
 10,Delegate,1135.65,859,MF,RD,16,-12.2,SG,HM,"Tuteja et al. , 2007",,-37.0111,146.3876,40,,1960,2000,AL
@@ -55,7 +55,7 @@ in the eastern Himalayas. Change citation to: https://doi.org/10.1016/j.jhydrol.
 52,Upstream Heihe river basin,11145,600,CF,RD,12,8.6,MD,HM,"Wu et al.,2015",,38,100,30,,1980,2010,AL 
 53,Victoria River,16000,829,MF,RD,0.7,-0.7,,HM,"van Dijk et al., 2007",,-37.1493,147.2999,14,,1988,2002,GE
 54,Weifen ,1548,491.6,BF,RD,27,-19.8,OB,EA,"Zhang et al. , 2008a",,37.5,111,44,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006661,1956,2000,AL
-55,Willow  River,2860,820,CF,SD,-31.9,9.8,OB,SH,"Wei and Zhang, 2010",,122.5,54.2,50,,1953,2003,PL
+55,Willow  River,2860,820,CF,SD,-31.9,9.8,OB,SH,"Wei and Zhang, 2010",,54.2,112.5,50,,1953,2003,PL
 56,Wuding River watershed ,30261,391,BF,RD,34,-26.5,OB,EA,"Li et al. , 2007",,37.9865,109.8497,40,,1960,2000,AL
 57,Xiangxi catchment,3200,1000,BF,RD,3.6,-0.7,,HM,"Bieger et al., 2015",,31.3333,110.6667,20,,1987,2007,AL
 58,Xinancha watershed,2582,631,CF,RD,20,-22,OB,SH,"Yao et al.,2015",,46.9667,128.7,40,,1970,2010,PL

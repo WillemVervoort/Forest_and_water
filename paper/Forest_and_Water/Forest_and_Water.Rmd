@@ -59,7 +59,17 @@ Encouraged by the work presented by @zhang2017 and @filoso2017 and the fantastic
 
 In particular, the main method in the work by @zhang2017 is using simple linear regression, and in @filoso2017 the focus is mainly on classification. As @zhang2017 points out, the main assumption in their work is that the threshold at 1000 km^2^ is a distinct separation between "small" and "large" watersheds, but the subset of data in @filoso2017 does not appear to support this. And while te work @filoso2017 provides important insights in study types, analysis types and broad classification, there is limited quantification of actual impact. This is because the work had a strict criterion to select quantitative studies. However, given the fantastic data sets collected, the analyses can be easily expanded to look at interactions between the terms and to test the assumption of a distinct threshold at 1000 km^2^.
 
-As a result the objective of this paper is to 1) enhance the data set from @zhang2017 with further watersheds (such as from @filoso2017) and spatial coordinates and 2) to analyse the possibility of non-linear, interactions and partial effects of the different factors and variables in the data using generalised linear (GLM) and generalised additive models (GAM @wood2006). Finally, this work aims to point to further research that can expand this area of work, based on the collected data, to better understand the impact of forest cover change on streamflow.
+As a result the objective of this paper is to 1) enhance the data set from @zhang2017 with further watersheds (such as from @filoso2017) and spatial coordinates and 2) to analyse the possibility of non-linear, interactions and partial effects of the different factors and variables in the data using generalised linear (GLM) and generalised additive models (GAM @wood2006).
+
+Building on the analyses by @zhang2017 and @filoso2017, and combining their conclusions, the main hypothesis to test is that the change in streamflow is impacted by the change in forest cover. However, this change is clearly modulated by the area under consideration (affecting the length of the flowpaths @zhou2015), the length of the study (c.f. @jackson2005) and possibly the climate (as indicated by either E0/Pa or latitude and longitude @filoso2017; @zhou2015).
+
+However, there could be further confounding factors, which are eluded to by @filoso2017:  
+
+* the type of analysis, i.e. paired catchment studies, modelling, time series analysis etc.
+
+* the age of the study, assuming that historical studies might not have had the ability to measure at the accuracy that currently is available to researchers, or that more careful historical attention to detail in field studies might have been lost more recently due to reductions in research investment.  
+
+Finally, this work aims to point to further research that can expand this area of work, based on the collected data, to better understand the impact of forest cover change on streamflow.
 
 Methods
 ==========
@@ -142,14 +152,6 @@ Zhang_all <- bind_rows(Zhang_large,Zhang_small)
 ```
 
 
-Building on the analyses by @zhang2017 and @filoso2017, and combining their conclusions, the main hypothesis to test is that the change in streamflow is impacted by the change in forest cover. However, this change is clearly modulated by the area under consideration (affecting the length of the flowpaths @zhou2015), the length of the study (c.f. @jackson2005) and possibly the climate (as indicated by either E0/Pa or latitude and longitude @filoso2017; @zhou2015).
-
-However, there could be further confounding factors, which are eluded to by @filoso2017:  
-
-- the type of analysis, i.e. paired catchment studies, modelling, time series analysis etc.
-
-- the age of the study, assuming that historical studies might not have had the ability to measure at the accuracy that currently is available to researchers, or that more careful historical attention to detail in field studies might have been lost more recently due to reductions in research investment.  
-
 To estimate how the change in streamflow is affected by the change in forest cover while considering the effects of the other variables, we applied generalised additive modelling (GAM) [@wood2006]. 
 
 The first model applied in this analysis is based on the main hypothesis outlined above, can the change in streamflow be predicted from the change in forest cover, modulated by area, the length of the study and the climate.
@@ -212,6 +214,87 @@ require(mgcv)
 linear_model_all_log <- gam(log10(DeltaQf_perc/100+1) ~ DeltaF_perc + Area_km2 + Pa_mm, data = Zhang_all)
 summary(linear_model_all_log)
 gam.check(linear_model_all_log)
+```
+<!-- This shows that Area is not significant -->
+
+<!-- include Lat and Long (later E0) -->
+
+```{r model2a, echo = F}
+linear_model_all_log <- gam(log10(DeltaQf_perc/100+1) ~ DeltaF_perc + Area_km2 + Pa_mm + Latitude + Longitude, data = Zhang_all)
+summary(linear_model_all_log)
+gam.check(linear_model_all_log)
+```
+
+<!-- include all the other numerical variables -->
+
+```{r model2a, echo = F}
+Zhang_all <- Zhang_all %>%
+  mutate(length = To - From)
+linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + Pa_mm +  Latitude + Longitude + From + length, data = Zhang_all)
+summary(linear_model_all_log)
+gam.check(linear_model_all_log)
+```
+
+<!-- model 2b also include categorical variables -->
+```{r model2b, echo = F}
+
+
+linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + s(Area_km2, k=3) + s(Pa_mm, k=3) + s(From,k = 3) + s(length, k=3) + Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime, data = Zhang_all)
+summary(linear_model_all_log)
+gam.check(linear_model_all_log)
+```
+<!-- model 2c include smooth variables -->
+
+```{r model2c, echo = F}
+
+
+linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + s(Area_km2, k=3) + s(Pa_mm, k=3) + s(From,k = 3) + s(length, k=3) + Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime, data = Zhang_all)
+summary(linear_model_all_log)
+gam.check(linear_model_all_log)
+```
+
+No evidence of effect of area
+
+<!-- Should area be log transformed? model 2d -->
+
+```{r model2d, echo = F}
+
+linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + s(Pa_mm, k=3) + From + length + Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime + Latitude + Longitude, data = Zhang_all)
+summary(linear_model_all_log)
+gam.check(linear_model_all_log)
+```
+```{r}
+Zhang_all %>%
+  ggplot(aes(Assessment_technique,log10(Area_km2))) + geom_boxplot()
+```
+
+```{r}
+Zhang_all %>%
+  ggplot(aes(DeltaF_perc, log10(DeltaQf_perc/100 + 1), colour = Assessment_technique,size = log10(Area_km2))) + geom_point()
+```
+```{r}
+tiff("flow_forest_byArea.tiff", width = 2000, height = 1400, res = 300)
+Zhang_all %>%
+  ggplot(aes(DeltaF_perc/100, (DeltaQf_perc/100 + 1), colour = Assessment_technique, size = log10(Area_km2))) + geom_point() +
+  theme_bw() + ylab("log10 (fractional change in flow + 1)") +
+  xlab("fractional change in forestry") + scale_y_log10() + scale_size_continuous(name = "log10 Area in km2") +
+  scale_colour_discrete(name = "Assessment Technique")
+dev.off()
+```
+
+```{r}
+Zhang_all %>%
+  ggplot(aes(Latitude, log10(DeltaQf_perc/100 + 1), colour = DeltaF_perc,size = log10(Area_km2))) + geom_point()
+```
+
+Check the size distribition of the catchments
+
+```{r}
+Zhang_all %>%
+  ggplot(aes(Area_km2)) + geom_histogram(fill="blue", bins =50) +
+  scale_x_log10()
+total <- nrow(Zhang_all)
+length(Zhang_all$Area_km2[Zhang_all$Area_km2<10])/total
 ```
 
 
