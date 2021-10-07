@@ -34,7 +34,48 @@
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \bibliographystyle{elsarticle-harv}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable}
+\usepackage{graphicx}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -184,10 +225,35 @@ from Zhang et al. (2017) with further watersheds (such as from Filoso et
 al. (2017)) and spatial coordinates and 2) to analyse the possibility of
 non-linear, interactions and partial effects of the different factors
 and variables in the data using generalised linear (GLM) and generalised
-additive models (GAM Wood (2006)). Finally, this work aims to point to
-further research that can expand this area of work, based on the
-collected data, to better understand the impact of forest cover change
-on streamflow.
+additive models (GAM Wood (2006)).
+
+Building on the analyses by Zhang et al. (2017) and Filoso et al.
+(2017), and combining their conclusions, the main hypothesis to test is
+that the change in streamflow is impacted by the change in forest cover.
+However, this change is clearly modulated by the area under
+consideration (affecting the length of the flowpaths Zhou et al.
+(2015)), the length of the study (c.f. Jackson et al. (2005)) and
+possibly the climate (as indicated by either E0/Pa or latitude and
+longitude Filoso et al. (2017); Zhou et al. (2015)).
+
+However, there could be further confounding factors, which are eluded to
+by Filoso et al. (2017):
+
+\begin{itemize}
+\item
+  the type of analysis, i.e.~paired catchment studies, modelling, time
+  series analysis etc.
+\item
+  the age of the study, assuming that historical studies might not have
+  had the ability to measure at the accuracy that currently is available
+  to researchers, or that more careful historical attention to detail in
+  field studies might have been lost more recently due to reductions in
+  research investment.
+\end{itemize}
+
+Finally, this work aims to point to further research that can expand
+this area of work, based on the collected data, to better understand the
+impact of forest cover change on streamflow.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -282,24 +348,11 @@ Zhang et al. (2017).
 \hypertarget{statistical-modelling}{%
 \subsection{Statistical modelling}\label{statistical-modelling}}
 
-Building on the analyses by Zhang et al. (2017) and Filoso et al.
-(2017), and combining their conclusions, the main hypothesis to test is
-that the change in streamflow is impacted by the change in forest cover.
-However, this change is clearly modulated by the area under
-consideration (affecting the length of the flowpaths Zhou et al.
-(2015)), the length of the study (c.f. Jackson et al. (2005)) and
-possibly the climate (as indicated by either Pa and E0 or latitude and
-longitude Filoso et al. (2017); Zhou et al. (2015)).
+\begin{verbatim}
+## Warning: NAs introduced by coercion
 
-However, there could be further confounding factors, which are eluded to
-by Filoso et al. (2017):\\
-- the type of analysis, i.e.~paired catchment studies, modelling, time
-series analysis etc.\\
-- the age of the study, assuming that historical studies might not have
-had the ability to measure at the accuracy that currently is available
-to researchers, or that more careful historical attention to detail in
-field studies might have been lost more recently due to reductions in
-research investment.
+## Warning: NAs introduced by coercion
+\end{verbatim}
 
 To estimate how the change in streamflow is affected by the change in
 forest cover while considering the effects of the other variables, we
@@ -312,21 +365,22 @@ the climate.
 
 \[\tag{1}
 \begin{aligned}
-\Delta \%Q \sim ~&\Delta \%forest + Pa + Area + {climate~type} + \varepsilon
+\Delta \%Q \sim ~&\Delta \%forest + Pa + Area + Latitude + Longitude + \varepsilon
 \end{aligned}\]
 
 However, the overall skewed distribution of the predictant
 (\(\Delta \%Q\)) is problematic, and this results in a skewed
 distribution of the GAM model residuals, which violates the linear model
-assumptions. As a result we transformed \(\Delta \%Q\) and
-\(\Delta \%forest\) back to fractions (0 - 1) and log transformed using
-\(log10(x + 1)\), where \(x\) is either \(\Delta Q\) or
-\(\Delta forest\). This means that the model residuals approximate
+assumptions. As a result we transformed \(\Delta \%Q\) back to fractions
+(0 - 1) and log transformed using \(log10(x + 1)\), where \(x\) is
+\(\Delta Q\). After transformation the model residuals approximate
 \(\sim N(0,\sigma^2)\) and this results in the following equation:
 
 \[\tag{2}
 \begin{aligned}
-log10(\Delta Q) \sim ~ &log10(\Delta forest) + Pa + Area + {climate~type} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~ &\Delta \%{forest~cover}
++ Pa + Area + Latitude + 
+\\ &Longitude + \varepsilon
 \end{aligned}\]
 
 A second model included all the variables in the analysis from Zhang et
@@ -334,7 +388,9 @@ al. (2017) in one model:
 
 \[\tag{3}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa, k = 3) + s(Area, k = 3) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~ &\Delta \% forest~cover + s(Pa, k = 3) + s(Area, k = 3) +  \\
+& {forest~type} + {climate~type} + {assessment~type} + \\  
+& {hydrologic~regime} + \varepsilon
 \end{aligned}\]
 
 In this model, no direct interactions are assumed, and the assumption is
@@ -354,7 +410,8 @@ in flow, we also fitted the following model:
 
 \[\tag{4}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover + s(\frac{E0}{Pa}) + s(Area) +  {forest~type} + 
+\\  &{climate~type} + {assessment~type} + \\  &{hydrologic~regime} + \varepsilon
 \end{aligned}\]
 
 Subsequently, using the full data set, including the additional
@@ -363,21 +420,472 @@ fitted:
 
 \[\tag{5}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa) + s(Area) + s(Latitude) + s(Longitude) + \\
-& s(begin_{year}) + s(length_{study}) + {forest~type} + \\ & {climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover + s(Pa) + s(Area) + s(Latitude) + \\
+& s(Longitude) + s(begin_{year}) + s(length_{study}) +\\
+&{forest~type} + {climate~type} + {assessment~type} +\\
+& {hydrologic~regime} + \varepsilon
 \end{aligned}\]
 
 \[\tag{6}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) + \\ 
-& s(Latitude) + s(Longitude) + s(begin_{year}) + s(length_{study}) + \\ 
-& {forest~type} + {climate~type} + {assessment~type} + \\  
-& {hydrologic~regime} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover +
+s(\frac{E0}{Pa}) + s(Area) + \\ 
+& s(Latitude) + s(Longitude) + s(begin_{year}) + \\ 
+& s(length_{study}) + {forest~type} + {climate~type} + \\ 
+& {assessment~type} + {hydrologic~regime} + \varepsilon
 \end{aligned}\]
 
-The results were analysed to identify:\\
-1. the significance of the different variables\\
-2. the direction of the categorical or shape of the smooth variables
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+\begin{verbatim}
+## Loading required package: mgcv
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: nlme
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'nlme'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     collapse
+\end{verbatim}
+
+\begin{verbatim}
+## This is mgcv 1.8-35. For overview type 'help("mgcv-package")'.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in eval(predvars, data, env): NaNs produced
+
+## Warning in eval(predvars, data, env): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + Area_km2 + Pa_mm
+## 
+## Parametric coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  4.430e-02  1.759e-02   2.519   0.0123 *  
+## DeltaF_perc -1.345e-03  1.468e-04  -9.163   <2e-16 ***
+## Area_km2    -1.657e-08  3.057e-08  -0.542   0.5883    
+## Pa_mm       -7.989e-06  1.164e-05  -0.686   0.4930    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## 
+## R-sq.(adj) =   0.21   Deviance explained = 21.8%
+## GCV = 0.018116  Scale est. = 0.017882  n = 310
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/model2-1.pdf}
+
+\begin{verbatim}
+## 
+## Method: GCV   Optimizer: magic
+## Model required no smoothing parameter selectionModel rank =  4 / 4
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in eval(predvars, data, env): NaNs produced
+
+## Warning in eval(predvars, data, env): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + Area_km2 + Pa_mm + 
+##     Latitude + Longitude
+## 
+## Parametric coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  7.296e-02  1.964e-02   3.715 0.000243 ***
+## DeltaF_perc -1.552e-03  1.526e-04 -10.173  < 2e-16 ***
+## Area_km2    -2.963e-08  2.996e-08  -0.989 0.323525    
+## Pa_mm       -1.382e-05  1.205e-05  -1.147 0.252393    
+## Latitude    -1.276e-03  2.826e-04  -4.516 9.07e-06 ***
+## Longitude   -2.121e-05  8.975e-05  -0.236 0.813323    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## 
+## R-sq.(adj) =  0.271   Deviance explained = 28.3%
+## GCV = 0.017125  Scale est. = 0.016787  n = 304
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/model2a-1.pdf}
+
+\begin{verbatim}
+## 
+## Method: GCV   Optimizer: magic
+## Model required no smoothing parameter selectionModel rank =  6 / 6
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in eval(predvars, data, env): NaNs produced
+
+## Warning in eval(predvars, data, env): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + 
+##     Pa_mm + Latitude + Longitude + From + length
+## 
+## Parametric coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)     -1.027e+00  9.040e-01  -1.136 0.256902    
+## DeltaF_perc     -1.267e-03  1.594e-04  -7.947 5.83e-14 ***
+## log10(Area_km2) -2.003e-02  4.386e-03  -4.567 7.63e-06 ***
+## Pa_mm           -7.871e-06  1.255e-05  -0.627 0.531281    
+## Latitude        -1.084e-03  2.834e-04  -3.827 0.000163 ***
+## Longitude        6.268e-05  9.560e-05   0.656 0.512595    
+## From             5.612e-04  4.583e-04   1.225 0.221809    
+## length          -2.931e-06  7.036e-06  -0.417 0.677294    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## 
+## R-sq.(adj) =  0.303   Deviance explained = 32.1%
+## GCV = 0.016008  Scale est. = 0.01553   n = 268
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/model2a1-1.pdf}
+
+\begin{verbatim}
+## 
+## Method: GCV   Optimizer: magic
+## Model required no smoothing parameter selectionModel rank =  8 / 8
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in eval(predvars, data, env): NaNs produced
+
+## Warning in eval(predvars, data, env): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + s(Area_km2, k = 3) + 
+##     s(Pa_mm, k = 3) + s(From, k = 3) + s(length, k = 3) + Precip_data_type + 
+##     Assessment_technique + Forest_type + Hydrological_regime
+## 
+## Parametric coefficients:
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                 -0.0962315  0.0558563  -1.723   0.0862 .  
+## DeltaF_perc                 -0.0008839  0.0001711  -5.165 4.98e-07 ***
+## Precip_data_typeOB          -0.0329926  0.0418383  -0.789   0.4311    
+## Precip_data_typeSG           0.0595846  0.0474089   1.257   0.2100    
+## Assessment_techniqueEA, HM   0.0143199  0.1329271   0.108   0.9143    
+## Assessment_techniqueHM       0.0910165  0.0445991   2.041   0.0423 *  
+## Assessment_techniquePWE      0.2041286  0.0457201   4.465 1.22e-05 ***
+## Assessment_techniquePWE, HM  0.0977846  0.1370941   0.713   0.4764    
+## Assessment_techniqueQPW      0.0850446  0.0731186   1.163   0.2459    
+## Assessment_techniqueSH       0.1066145  0.0473168   2.253   0.0251 *  
+## Forest_typeCF               -0.0029430  0.0268072  -0.110   0.9127    
+## Forest_typeMF               -0.0463517  0.0265852  -1.744   0.0825 .  
+## Hydrological_regimeSD        0.0111796  0.0319040   0.350   0.7263    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##              edf Ref.df     F p-value  
+## s(Area_km2) 1.00  1.000 0.301  0.5839  
+## s(Pa_mm)    1.25  1.437 0.640  0.3574  
+## s(From)     1.00  1.000 3.194  0.0751 .
+## s(length)   1.00  1.000 0.540  0.4631  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.274   Deviance explained = 31.9%
+## GCV = 0.017635  Scale est. = 0.016474  n = 262
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/model2b-1.pdf}
+
+\begin{verbatim}
+## 
+## Method: GCV   Optimizer: magic
+## Smoothing parameter selection converged after 8 iterations.
+## The RMS GCV score gradient at convergence was 2.042593e-08 .
+## The Hessian was positive definite.
+## Model rank =  21 / 21 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index<1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##               k'  edf k-index p-value    
+## s(Area_km2) 2.00 1.00    0.97    0.29    
+## s(Pa_mm)    2.00 1.25    0.78  <2e-16 ***
+## s(From)     2.00 1.00    0.85    0.01 ** 
+## s(length)   2.00 1.00    0.90    0.02 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in eval(predvars, data, env): NaNs produced
+
+## Warning in eval(predvars, data, env): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + s(Area_km2, k = 3) + 
+##     s(Pa_mm, k = 3) + s(From, k = 3) + s(length, k = 3) + Precip_data_type + 
+##     Assessment_technique + Forest_type + Hydrological_regime
+## 
+## Parametric coefficients:
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                 -0.0962315  0.0558563  -1.723   0.0862 .  
+## DeltaF_perc                 -0.0008839  0.0001711  -5.165 4.98e-07 ***
+## Precip_data_typeOB          -0.0329926  0.0418383  -0.789   0.4311    
+## Precip_data_typeSG           0.0595846  0.0474089   1.257   0.2100    
+## Assessment_techniqueEA, HM   0.0143199  0.1329271   0.108   0.9143    
+## Assessment_techniqueHM       0.0910165  0.0445991   2.041   0.0423 *  
+## Assessment_techniquePWE      0.2041286  0.0457201   4.465 1.22e-05 ***
+## Assessment_techniquePWE, HM  0.0977846  0.1370941   0.713   0.4764    
+## Assessment_techniqueQPW      0.0850446  0.0731186   1.163   0.2459    
+## Assessment_techniqueSH       0.1066145  0.0473168   2.253   0.0251 *  
+## Forest_typeCF               -0.0029430  0.0268072  -0.110   0.9127    
+## Forest_typeMF               -0.0463517  0.0265852  -1.744   0.0825 .  
+## Hydrological_regimeSD        0.0111796  0.0319040   0.350   0.7263    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##              edf Ref.df     F p-value  
+## s(Area_km2) 1.00  1.000 0.301  0.5839  
+## s(Pa_mm)    1.25  1.437 0.640  0.3574  
+## s(From)     1.00  1.000 3.194  0.0751 .
+## s(length)   1.00  1.000 0.540  0.4631  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.274   Deviance explained = 31.9%
+## GCV = 0.017635  Scale est. = 0.016474  n = 262
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/model2c-1.pdf}
+
+\begin{verbatim}
+## 
+## Method: GCV   Optimizer: magic
+## Smoothing parameter selection converged after 8 iterations.
+## The RMS GCV score gradient at convergence was 2.042593e-08 .
+## The Hessian was positive definite.
+## Model rank =  21 / 21 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index<1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##               k'  edf k-index p-value    
+## s(Area_km2) 2.00 1.00    0.97   0.330    
+## s(Pa_mm)    2.00 1.25    0.78  <2e-16 ***
+## s(From)     2.00 1.00    0.85   0.015 *  
+## s(length)   2.00 1.00    0.90   0.095 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+No evidence of effect of area
+
+\begin{verbatim}
+## Warning in eval(predvars, data, env): NaNs produced
+
+## Warning in eval(predvars, data, env): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + 
+##     s(Pa_mm, k = 3) + From + length + Precip_data_type + Assessment_technique + 
+##     Forest_type + Hydrological_regime + Latitude + Longitude
+## 
+## Parametric coefficients:
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                 -1.2633792  1.1731739  -1.077  0.28260    
+## DeltaF_perc                 -0.0010709  0.0001693  -6.324 1.21e-09 ***
+## log10(Area_km2)             -0.0106973  0.0079411  -1.347  0.17921    
+## From                         0.0006320  0.0005902   1.071  0.28528    
+## length                       0.0002020  0.0007979   0.253  0.80032    
+## Precip_data_typeOB          -0.0496200  0.0405500  -1.224  0.22226    
+## Precip_data_typeSG           0.0379293  0.0474175   0.800  0.42455    
+## Assessment_techniqueEA, HM   0.0190552  0.1279391   0.149  0.88173    
+## Assessment_techniqueHM       0.0665563  0.0447830   1.486  0.13852    
+## Assessment_techniquePWE      0.1335480  0.0529257   2.523  0.01226 *  
+## Assessment_techniquePWE, HM  0.0724841  0.1341116   0.540  0.58936    
+## Assessment_techniqueQPW      0.0585720  0.0713099   0.821  0.41224    
+## Assessment_techniqueSH       0.0649925  0.0482180   1.348  0.17895    
+## Forest_typeCF                0.0129954  0.0267350   0.486  0.62735    
+## Forest_typeMF               -0.0171200  0.0262238  -0.653  0.51448    
+## Hydrological_regimeSD        0.0425574  0.0316727   1.344  0.18031    
+## Latitude                    -0.0010038  0.0003307  -3.035  0.00267 ** 
+## Longitude                    0.0001756  0.0001025   1.713  0.08803 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##            edf Ref.df     F p-value
+## s(Pa_mm) 1.004  1.008 1.285   0.256
+## 
+## R-sq.(adj) =  0.328   Deviance explained = 37.5%
+## GCV = 0.016441  Scale est. = 0.015249  n = 262
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/model2d-1.pdf}
+
+\begin{verbatim}
+## 
+## Method: GCV   Optimizer: magic
+## Smoothing parameter selection converged after 5 iterations.
+## The RMS GCV score gradient at convergence was 2.648312e-07 .
+## The Hessian was positive definite.
+## Model rank =  20 / 20 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index<1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##          k' edf k-index p-value    
+## s(Pa_mm)  2   1     0.8  <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Zhang_all }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(Assessment_technique,}\KeywordTok{log10}\NormalTok{(Area_km2))) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Zhang_all }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(DeltaF_perc, }\KeywordTok{log10}\NormalTok{(DeltaQf_perc}\OperatorTok{/}\DecValTok{100} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{), }\DataTypeTok{colour =}\NormalTok{ Assessment_technique,}\DataTypeTok{size =} \KeywordTok{log10}\NormalTok{(Area_km2))) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in FUN(X[[i]], ...): NaNs produced
+
+## Warning in FUN(X[[i]], ...): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tiff}\NormalTok{(}\StringTok{"flow_forest_byArea.tiff"}\NormalTok{, }\DataTypeTok{width =} \DecValTok{2000}\NormalTok{, }\DataTypeTok{height =} \DecValTok{1400}\NormalTok{, }\DataTypeTok{res =} \DecValTok{300}\NormalTok{)}
+\NormalTok{Zhang_all }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(DeltaF_perc}\OperatorTok{/}\DecValTok{100}\NormalTok{, (DeltaQf_perc}\OperatorTok{/}\DecValTok{100} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{), }\DataTypeTok{colour =}\NormalTok{ Assessment_technique, }\DataTypeTok{size =} \KeywordTok{log10}\NormalTok{(Area_km2))) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"log10 (fractional change in flow + 1)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"fractional change in forestry"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_log10}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_size_continuous}\NormalTok{(}\DataTypeTok{name =} \StringTok{"log10 Area in km2"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_colour_discrete}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Assessment Technique"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in self$trans$transform(x): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Transformation introduced infinite values in continuous y-axis
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (geom_point).
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## pdf 
+##   2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Zhang_all }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(Latitude, }\KeywordTok{log10}\NormalTok{(DeltaQf_perc}\OperatorTok{/}\DecValTok{100} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{), }\DataTypeTok{colour =}\NormalTok{ DeltaF_perc,}\DataTypeTok{size =} \KeywordTok{log10}\NormalTok{(Area_km2))) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in FUN(X[[i]], ...): NaNs produced
+
+## Warning in FUN(X[[i]], ...): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 8 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+Check the size distribition of the catchments
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Zhang_all }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(Area_km2)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{bins =}\DecValTok{50}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_log10}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(Zhang_all)}
+\KeywordTok{length}\NormalTok{(Zhang_all}\OperatorTok{$}\NormalTok{Area_km2[Zhang_all}\OperatorTok{$}\NormalTok{Area_km2}\OperatorTok{<}\DecValTok{10}\NormalTok{])}\OperatorTok{/}\NormalTok{total}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6570513
+\end{verbatim}
 
 \hypertarget{references}{%
 \section*{References}\label{references}}

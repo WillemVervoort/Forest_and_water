@@ -125,9 +125,10 @@ The starting point consists of the two tables in the supplementary data from Zha
 ```{r, echo = F, message = F}
 require(tidyverse)
 require(lubridate)
+require(mgcv)
 
-Zhang_small <- read_csv("data/TablesZhangetal2017_small.csv")
-Zhang_large <- read_csv("data/TablesZhangetal2017_large.csv")
+Zhang_small <- read_csv("../../data/TablesZhangetal2017_small.csv")
+Zhang_large <- read_csv("../../data/TablesZhangetal2017_large.csv")
 ```
 
 <!--- ### change names of columns
@@ -161,18 +162,22 @@ $$\tag{1}
 \Delta \%Q \sim ~&\Delta \%forest + Pa + Area + Latitude + Longitude + \varepsilon
 \end{aligned}$$
 
-However, the overall skewed distribution of the predictant ($\Delta \%Q$) is problematic, and this results in a skewed distribution of the GAM model residuals, which violates the linear model assumptions. As a result we transformed $\Delta \%Q$ and $\Delta \%forest$ back to fractions (0 - 1) and log transformed using $log10(x + 1)$, where $x$ is either $\Delta Q$ or $\Delta forest$. This means that the model residuals approximate $\sim N(0,\sigma^2)$ and this results in the following equation: 
+However, the overall skewed distribution of the predictant ($\Delta \%Q$) is problematic, and this results in a skewed distribution of the GAM model residuals, which violates the linear model assumptions. As a result we transformed $\Delta \%Q$ back to fractions (0 - 1) and log transformed using $log10(x + 1)$, where $x$ is $\Delta Q$.  After transformation the model residuals approximate $\sim N(0,\sigma^2)$ and this results in the following equation: 
 
 $$\tag{2}
 \begin{aligned}
-log10(\Delta Q) \sim ~ &log10(\Delta forest) + Pa + Area + Latitude + Longitude + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~ &\Delta \%{forest~cover}
++ Pa + Area + Latitude + 
+\\ &Longitude + \varepsilon
 \end{aligned}$$
 
 A second model included all the variables in the analysis from @zhang2017 in one model:  
 
 $$\tag{3}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa, k = 3) + s(Area, k = 3) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~ &\Delta \% forest~cover + s(Pa, k = 3) + s(Area, k = 3) +  \\
+& {forest~type} + {climate~type} + {assessment~type} + \\  
+& {hydrologic~regime} + \varepsilon
 \end{aligned}$$
 
 
@@ -182,39 +187,74 @@ For the model in equation 3, we only used the data from @zhang2017 to make sure 
 
 $$\tag{4}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) +  {forest~type} + \\  &{climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover + s(\frac{E0}{Pa}) + s(Area) +  {forest~type} + 
+\\  &{climate~type} + {assessment~type} + \\  &{hydrologic~regime} + \varepsilon
 \end{aligned}$$
 
 Subsequently, using the full data set, including the additional watersheds and the additional variables the following two models were fitted:
 
 $$\tag{5}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(Pa) + s(Area) + s(Latitude) + s(Longitude) + \\
-& s(begin_{year}) + s(length_{study}) + {forest~type} + \\ & {climate~type} + {assessment~type} + {hydrologic~regime} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover + s(Pa) + s(Area) + s(Latitude) + \\
+& s(Longitude) + s(begin_{year}) + s(length_{study}) +\\
+&{forest~type} + {climate~type} + {assessment~type} +\\
+& {hydrologic~regime} + \varepsilon
 \end{aligned}$$
 
 $$\tag{6}
 \begin{aligned}
-log10(\Delta Q) \sim ~&log10(\Delta forest) + s(\frac{E0}{Pa}) + s(Area) + \\ 
-& s(Latitude) + s(Longitude) + s(begin_{year}) + s(length_{study}) + \\ 
-& {forest~type} + {climate~type} + {assessment~type} + \\  
-& {hydrologic~regime} + \varepsilon
+log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover +
+s(\frac{E0}{Pa}) + s(Area) + \\ 
+& s(Latitude) + s(Longitude) + s(begin_{year}) + \\ 
+& s(length_{study}) + {forest~type} + {climate~type} + \\ 
+& {assessment~type} + {hydrologic~regime} + \varepsilon
 \end{aligned}$$
-
+<!--
 The results were analysed to identify:  
 1. the significance of the different variables  
 2. the direction of the categorical or shape of the smooth variables
+-->
 
 Results
 ===========
 
 <!-- analysis -->
-```{r model2, echo = F}
-require(mgcv)
-linear_model_all_log <- gam(log10(DeltaQf_perc/100+1) ~ DeltaF_perc + Area_km2 + Pa_mm, data = Zhang_all)
-summary(linear_model_all_log)
-gam.check(linear_model_all_log)
+Create a new data frame in which all the change in forestry is positive, but an additional column is added that indicates whether it was a forest cover increase or decrease. 
+
+
+```{r}
+Zhang_all2 <- Zhang_all %>%
+  mutate(Forest_Sign = ifelse(DeltaF_perc < 0,
+                              "decrease", "increase"),
+         DeltaF_perc_pos = ifelse(DeltaF_perc < 0,
+                                  -1*DeltaF_perc,
+                                  DeltaF_perc))
+
 ```
+
+linear regression just looking at the change in forestry and the sign of the change (deforestation or forestation)
+
+
+```{r model1, echo = F}
+linear_model_simple <- gam(DeltaQf_perc ~ DeltaF_perc_pos +
+                             Forest_Sign, 
+                           data = Zhang_all2)
+summary(linear_model_simple)
+gam.check(linear_model_simple)
+
+```
+Change in forest cover has a significant impact on the change in flow, and the change in flow is different under deforestation compared to reforestation. In fact, reforestation has a 32% lower impact than deforestation. Overall model explanatory power is just `r summary(linear_model_simple)$r.squared`
+
+
+```{r model2, echo = F}
+
+linear_model2 <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + Area_km2 + Pa_mm, data = Zhang_all2)
+summary(linear_model2)
+gam.check(linear_model2)
+```
+Area is not a significant predictor of the change in flow.
+But decreases in forestry definitely have a different effect from increases in flow.
+
 <!-- This shows that Area is not significant -->
 
 <!-- include Lat and Long (later E0) -->
@@ -227,7 +267,7 @@ gam.check(linear_model_all_log)
 
 <!-- include all the other numerical variables -->
 
-```{r model2a, echo = F}
+```{r model2a1, echo = F}
 Zhang_all <- Zhang_all %>%
   mutate(length = To - From)
 linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + Pa_mm +  Latitude + Longitude + From + length, data = Zhang_all)
@@ -269,16 +309,21 @@ Zhang_all %>%
 ```
 
 ```{r}
-Zhang_all %>%
-  ggplot(aes(DeltaF_perc, log10(DeltaQf_perc/100 + 1), colour = Assessment_technique,size = log10(Area_km2))) + geom_point()
+Zhang_all2 %>%
+  ggplot(aes(DeltaF_perc_pos, DeltaQf_perc, colour = Assessment_technique,size = log10(Area_km2), shape = Forest_Sign)) + geom_point()
 ```
 ```{r}
-tiff("flow_forest_byArea.tiff", width = 2000, height = 1400, res = 300)
-Zhang_all %>%
-  ggplot(aes(DeltaF_perc/100, (DeltaQf_perc/100 + 1), colour = Assessment_technique, size = log10(Area_km2))) + geom_point() +
-  theme_bw() + ylab("log10 (fractional change in flow + 1)") +
-  xlab("fractional change in forestry") + scale_y_log10() + scale_size_continuous(name = "log10 Area in km2") +
-  scale_colour_discrete(name = "Assessment Technique")
+tiff("flow_forest_byArea.tiff", width = 2500, height = 1800, res = 300)
+Zhang_all2 %>%
+  ggplot(aes(DeltaF_perc_pos, DeltaQf_perc, colour = Assessment_technique,size = log10(Area_km2), 
+             shape = Forest_Sign)) + geom_point(alpha = 0.5) +
+  theme_bw() + ylab("% change in flow") +
+  theme(axis.title = element_text(size = rel(2)),
+        axis.text = element_text(size = rel(1.5))) +
+  xlab("% change in forestry") + #scale_y_log10() +
+  scale_size_continuous(name = "log10(Area in km2)") +
+  scale_colour_discrete(name = "Assessment Technique") +
+  scale_shape_discrete(name = "Forest cover direction")
 dev.off()
 ```
 
@@ -296,7 +341,18 @@ Zhang_all %>%
 total <- nrow(Zhang_all)
 length(Zhang_all$Area_km2[Zhang_all$Area_km2<10])/total
 ```
-
+```{r}
+Zhang_all %>%
+  ggplot(aes(length)) + geom_histogram(fill="blue", bins =50) 
+```
+```{r}
+#windows()
+Zhang_all %>%
+  ggplot(aes(log10(length), (DeltaQf_perc/100 + 1), colour = DeltaF_perc/100, size = log10(Area_km2))) + geom_point() +
+  theme_bw() + ylab("log10 (fractional change in flow + 1)") +
+  xlab("Length of study") + scale_size_continuous(name = "log10 Area in km2") +
+  scale_colour_continuous(name = "change in forest cover")
+```
 
 
 References {#references .unnumbered}
