@@ -232,7 +232,9 @@ Zhang_all2 <- Zhang_all %>%
 
 ```
 
-linear regression just looking at the change in forestry and the sign of the change (deforestation or forestation)
+We start of with a simple linear regression (i.e. following @zhang2017) just looking at the change in flow as a result in the percent change forestry and including the direction of the change, increase in forest cover, or decrease in forest cover.
+
+
 
 
 ```{r model1, echo = F}
