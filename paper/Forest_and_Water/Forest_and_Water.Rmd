@@ -109,9 +109,9 @@ We combined the tables for small (< 1000 km^2^) and large (>= 1000 km^2^) waters
 
 To enhance the existing data set, this study added additional variables and cross-checked the studies with the data set from @filoso2017. In particular, we focussed on the 37 data points included in the quantitative analysis in @filoso2017.
 
-In addition, additional variables added were the latitude and longitude for the center of the watershed as an approximation of its spatial location. Using this information  annual average reference evapotranspiration (E0) was extracted from **XXXXX** if a value of E0 was not available from the original papers. For large watersheds, this value, similar to annual average rainfall, is only an approximation of the climate at the location. 
+In addition, additional variables added were the latitude and longitude for the center of the watershed as an approximation of its spatial location. Using this information  annual average potential evapotranspiration (E_{pot}) was extracted from the MODIS16 ET product, if a value of E0 was not available from the original papers. This involved downloading the MODIS product for PET at 500 m scale for the approximate catchment centroid using the package MODISTools via the [MODIS/VIIRS subsets](https://modis.ornl.gov/data/modis_webservice.html) for the period 1 January 2000 - 31 December 2020. The average annual PET calculated from this series was used as the an approximation of average annual E0. For large watersheds, this value, similar to annual average rainfall, is only an approximation of the climate at the location. 
 
-The length of the study can be a variable influencing the change in flow [e.g. @jackson2005] and therefore, the length, starting data and completion date of the different studies was extracted from the references provided by @zhang2017.
+The length of the study can be a variable influencing the change in flow [e.g. @jackson2005], as for example, more mature plantations are thought to have smaller impacts on flow. Therefore, the length of the study calculate as the difference between the starting data and completion date of the different studies was extracted from the references provided by @zhang2017.
 
 Several additional data points from watershed studies were extracted from @zhang2011, @zhao2010, @borg1988, @thornton2007, @zhou2010, @rodriguez2010, @ruprechtetal1991 and @pena-arancibia2012, and these were checked against the existing studies to prevent overlap. In the citation column in the data set, in general the main reference for the calculated change in streamflow  was used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e. Table 6 in @zhang2011)
 
@@ -154,6 +154,8 @@ Zhang_all <- bind_rows(Zhang_large,Zhang_small)
 
 
 To estimate how the change in streamflow is affected by the change in forest cover while considering the effects of the other variables, we applied generalised additive modelling (GAM) [@wood2006]. 
+
+**This methods section is no longer correct and needs rewriting**
 
 The first model applied in this analysis is based on the main hypothesis outlined above, can the change in streamflow be predicted from the change in forest cover, modulated by area, the length of the study and the climate.
 
@@ -219,7 +221,19 @@ Results
 ===========
 
 <!-- analysis -->
-Create a new data frame in which all the change in forestry is positive, but an additional column is added that indicates whether it was a forest cover increase or decrease. 
+#### description of the data
+
+The overall dataset contains `r nrow(Zhang_all)` observations of changes in flow. The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. 
+
+```{r}
+Zhang_all %>%
+  pivot_longer(c(DeltaF_perc, DeltaQf_perc, Area_km2, Pa_mm), 
+               names_to = "variable", values_to = "value") %>%
+  ggplot(aes(value)) + geom_histogram(fill = "steelblue", bins=50) + theme_bw() + facet_wrap(~variable, scales = "free")
+```
+
+
+The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang 2017, these changes were analysed jointly, which assumes that the effect on the change in flow is linear and non-hysteretic. However, it is a reasonable hypothesis that this is not the case, and that the impact of an increase in forest cover is different from the same fractional decrease in forest cover. To be able to analyse this difference, all the change in forest cover is converted to positive values, but an additional column is added that indicates whether it was a forest cover increase or decrease. 
 
 
 ```{r}
@@ -232,10 +246,10 @@ Zhang_all2 <- Zhang_all %>%
 
 ```
 
+
+#### The initial relationship between change in forest cover and streamflow
+
 We start of with a simple linear regression (i.e. following @zhang2017) just looking at the change in flow as a result in the percent change forestry and including the direction of the change, increase in forest cover, or decrease in forest cover.
-
-
-
 
 ```{r model1, echo = F}
 linear_model_simple <- gam(DeltaQf_perc ~ DeltaF_perc_pos +
@@ -245,8 +259,12 @@ summary(linear_model_simple)
 gam.check(linear_model_simple)
 
 ```
-Change in forest cover has a significant impact on the change in flow, and the change in flow is different under deforestation compared to reforestation. In fact, reforestation has a 32% lower impact than deforestation. Overall model explanatory power is just `r summary(linear_model_simple)$r.squared`
+While the overall variance explained in this model is not high at `r round(summary(linear_model_simple)$r.sq,2)`, it clearly indicates the hypothesised relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.5\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 32\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.32)*0.5\%$, while a the percentage forest cover decrease will increase flow by 0.5\%.
 
+It is however clear from lack of explaining power, that there could be confounding factors, as alluded to in the methods. The obvious ones being catchment dryness and area (following @zhang2017). 
+
+
+<!-- At the moment using catchment rainfall, we probably want to straight away use P/E0, and explain that rainfall itself might not be a good predictor. Alternatively we can first show that Latitude is a predictor -->
 
 ```{r model2, echo = F}
 
@@ -254,15 +272,14 @@ linear_model2 <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + Area_km2 + P
 summary(linear_model2)
 gam.check(linear_model2)
 ```
-Area is not a significant predictor of the change in flow.
-But decreases in forestry definitely have a different effect from increases in flow.
 
-<!-- This shows that Area is not significant -->
+Including area and annual precipitation does not really improve the overall explaining power of the model, in fact, annual precipitation appears to be only a very small confounding factor, representing only a -0.01/% partial effect in the change in streamflow, holding all other factors constant. The catchment area does not appear to have an effect at all in contrast to earlier reported studies [@zhang2017; @filoso2017]. The main effects remain the change in forest cover and whether this is an increase or decrease
 
+#### The effect of location on the globe
 <!-- include Lat and Long (later E0) -->
 
 ```{r model2a, echo = F}
-linear_model_all_log <- gam(log10(DeltaQf_perc/100+1) ~ DeltaF_perc + Area_km2 + Pa_mm + Latitude + Longitude, data = Zhang_all)
+linear_model_all_log <- gam(DeltaQf_perc ~ DeltaF_perc + Forest_Sign + Area_km2 + Pa_mm + Latitude + Longitude, data = Zhang_all2)
 summary(linear_model_all_log)
 gam.check(linear_model_all_log)
 ```
