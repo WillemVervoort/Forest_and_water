@@ -126,6 +126,9 @@ The starting point consists of the two tables in the supplementary data from Zha
 require(tidyverse)
 require(lubridate)
 require(mgcv)
+suppressWarnings(require(knitr))
+suppressWarnings(require(bookdown))
+suppressWarnings(require(pander))
 
 Zhang_small <- read_csv("../../data/TablesZhangetal2017_small.csv")
 Zhang_large <- read_csv("../../data/TablesZhangetal2017_large.csv")
@@ -146,7 +149,7 @@ names(Zhang_large)[9:10] <- c("Precip_data_type", "Assessment_technique")
 
 <!-- combine both tables -->
 
-```{r, echo = F}
+```{r, echo = F, warning = F}
 Zhang_small$From <- as.numeric(Zhang_small$From)
 Zhang_small$To <- as.numeric(Zhang_small$To)
 Zhang_all <- bind_rows(Zhang_large,Zhang_small)
@@ -221,11 +224,11 @@ Results
 ===========
 
 <!-- analysis -->
-#### description of the data
+## description of the data
 
 The overall dataset contains `r nrow(Zhang_all)` observations of changes in flow. The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. 
 
-```{r}
+```{r, echo = F}
 Zhang_all %>%
   pivot_longer(c(DeltaF_perc, DeltaQf_perc, Area_km2, Pa_mm), 
                names_to = "variable", values_to = "value") %>%
@@ -233,10 +236,10 @@ Zhang_all %>%
 ```
 
 
-The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang 2017, these changes were analysed jointly, which assumes that the effect on the change in flow is linear and non-hysteretic. However, it is a reasonable hypothesis that this is not the case, and that the impact of an increase in forest cover is different from the same fractional decrease in forest cover. To be able to analyse this difference, all the change in forest cover is converted to positive values, but an additional column is added that indicates whether it was a forest cover increase or decrease. 
+The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang2017, these changes were analysed jointly, which assumes that the effect on the change in flow is linear and non-hysteretic. However, it is a reasonable hypothesis that this is not the case, and that the impact of an increase in forest cover is different from the same fractional decrease in forest cover. To be able to analyse this difference, all the change in forest cover is converted to positive values, but an additional column is added that indicates whether it was a forest cover increase or decrease. 
 
 
-```{r}
+```{r, echo = F}
 Zhang_all2 <- Zhang_all %>%
   mutate(Forest_Sign = ifelse(DeltaF_perc < 0,
                               "decrease", "increase"),
@@ -247,9 +250,9 @@ Zhang_all2 <- Zhang_all %>%
 ```
 
 
-#### The initial relationship between change in forest cover and streamflow
+## The initial relationship between change in forest cover and streamflow
 
-We start of with a simple linear regression (i.e. following @zhang2017) just looking at the change in flow as a result in the percent change forestry and including the direction of the change, increase in forest cover, or decrease in forest cover.
+We start of with a simple linear regression (i.e. following @zhang2017) to investigate the percent change in flow as a result in the percent change forestry and modulated by the direction of the change, either an increase in forest cover, or decrease in forest cover.
 
 ```{r model1, echo = F}
 linear_model_simple <- gam(DeltaQf_perc ~ DeltaF_perc_pos +
@@ -259,7 +262,7 @@ summary(linear_model_simple)
 gam.check(linear_model_simple)
 
 ```
-While the overall variance explained in this model is not high at `r round(summary(linear_model_simple)$r.sq,2)`, it clearly indicates the hypothesised relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.5\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 32\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.32)*0.5\%$, while a the percentage forest cover decrease will increase flow by 0.5\%.
+While the overall variance explained in this model is not high at `r round(summary(linear_model_simple)$r.sq,2)`, it clearly supports the hypothesised relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.5\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 32\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.32)*0.5\%$, while a the percentage forest cover decrease will increase flow by 0.5\%.
 
 It is however clear from lack of explaining power, that there could be confounding factors, as alluded to in the methods. The obvious ones being catchment dryness and area (following @zhang2017). 
 
@@ -273,55 +276,58 @@ summary(linear_model2)
 gam.check(linear_model2)
 ```
 
-Including area and annual precipitation does not really improve the overall explaining power of the model, in fact, annual precipitation appears to be only a very small confounding factor, representing only a -0.01/% partial effect in the change in streamflow, holding all other factors constant. The catchment area does not appear to have an effect at all in contrast to earlier reported studies [@zhang2017; @filoso2017]. The main effects remain the change in forest cover and whether this is an increase or decrease
+Including area and annual precipitation does not really improve the overall explaining power of the model, in fact, annual precipitation appears to be only a very small confounding factor, representing only a -0.01/% partial effect in the change in streamflow, holding all other factors constant. The catchment area does not appear to have an effect at all in contrast to earlier reported studies [@zhang2017; @filoso2017]. The main effects remain the change in forest cover and whether this is an increase or decrease.
 
-#### The effect of location on the globe
+## The effect of location on the globe
 <!-- include Lat and Long (later E0) -->
 
-```{r model2a, echo = F}
-linear_model_all_log <- gam(DeltaQf_perc ~ DeltaF_perc + Forest_Sign + Area_km2 + Pa_mm + Latitude + Longitude, data = Zhang_all2)
-summary(linear_model_all_log)
-gam.check(linear_model_all_log)
+```{r global_map, fig.cap="Distribution of included catchments across the globe based on reported or estimated latitude and longitude", out.width="90%", echo=F}  
+
+include_graphics("draft_map.png")
+```
+
+As indicated, a second hypothesis relates to whether there is a strong spatial global gradient as captured by latitude and longitude. As the global map (\@ref(fig:global_map)) shows, the distribution of case study catchments covers multiple continents and shows some distinct clustering in parts of the world. Of interest is whether the spatial clustering also indicates a difference in reponse to forest cover change.
+
+
+```{r model3, echo = F}
+model3_includeLatLong <- gam(DeltaQf_perc ~ DeltaF_perc + Forest_Sign + Area_km2 + Pa_mm + Latitude + Longitude, data = Zhang_all2)
+summary(model3_includeLatLong)
+gam.check(model3_includeLatLong)
 ```
 
 <!-- include all the other numerical variables -->
 
-```{r model2a1, echo = F}
-Zhang_all <- Zhang_all %>%
+```{r model4, echo = F}
+Zhang_all2 <- Zhang_all2 %>%
   mutate(length = To - From)
-linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + Pa_mm +  Latitude + Longitude + From + length, data = Zhang_all)
-summary(linear_model_all_log)
-gam.check(linear_model_all_log)
+model4_all_num <- gam(DeltaQf_perc ~ DeltaF_perc+ Forest_Sign + Area_km2 + Pa_mm +  Latitude + Longitude + From + length, data = Zhang_all2)
+summary(model4_all_num)
+gam.check(model4_all_num)
 ```
 
 <!-- model 2b also include categorical variables -->
-```{r model2b, echo = F}
+```{r model5, echo = F}
 
 
-linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + s(Area_km2, k=3) + s(Pa_mm, k=3) + s(From,k = 3) + s(length, k=3) + Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime, data = Zhang_all)
-summary(linear_model_all_log)
-gam.check(linear_model_all_log)
+model5_all <- gam(DeltaQf_perc ~ DeltaF_perc + Forest_Sign + s(Area_km2) + s(Pa_mm) + s(From) + s(length) +  Assessment_technique + s(Latitude) + Longitude,  data = Zhang_all2)
+summary(model5_all)
+gam.check(model5_all)
+plot(model5_all)
 ```
 <!-- model 2c include smooth variables -->
 
 ```{r model2c, echo = F}
 
 
-linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + s(Area_km2, k=3) + s(Pa_mm, k=3) + s(From,k = 3) + s(length, k=3) + Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime, data = Zhang_all)
-summary(linear_model_all_log)
-gam.check(linear_model_all_log)
+model6_all <- gam(DeltaQf_perc ~ DeltaF_perc + Forest_Sign + te(Longitude,Latitude, k =5) + Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime, data = Zhang_all2)
+summary(model6_all)
+gam.check(model6_all)
+plot(model6_all)
 ```
 
 No evidence of effect of area
 
-<!-- Should area be log transformed? model 2d -->
 
-```{r model2d, echo = F}
-
-linear_model_all_log <- gam(log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + s(Pa_mm, k=3) + From + length + Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime + Latitude + Longitude, data = Zhang_all)
-summary(linear_model_all_log)
-gam.check(linear_model_all_log)
-```
 ```{r}
 Zhang_all %>%
   ggplot(aes(Assessment_technique,log10(Area_km2))) + geom_boxplot()
@@ -347,8 +353,8 @@ dev.off()
 ```
 
 ```{r}
-Zhang_all %>%
-  ggplot(aes(Latitude, log10(DeltaQf_perc/100 + 1), colour = DeltaF_perc,size = log10(Area_km2))) + geom_point()
+Zhang_all2 %>%
+  ggplot(aes(Longitude, Latitude, colour = DeltaF_perc, size = DeltaQf_perc )) + geom_point(alpha = 0.5)
 ```
 
 Check the size distribition of the catchments
