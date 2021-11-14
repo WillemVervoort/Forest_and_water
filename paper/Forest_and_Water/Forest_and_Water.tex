@@ -124,9 +124,7 @@ de Montevideo, Uruguay}
     \cortext[2]{Equal contribution}
   
   \begin{abstract}
-  This is the abstract.
-  
-  It consists of two paragraphs.
+  This is the abstract. It consists of two paragraphs.
   \end{abstract}
   
  \end{frontmatter}
@@ -318,17 +316,12 @@ quantitative analysis in Filoso et al. (2017).
 
 In addition, additional variables added were the latitude and longitude
 for the center of the watershed as an approximation of its spatial
-location. Using this information annual average potential
-evapotranspiration (E\_\{pot\}) was extracted from the MODIS16 ET
-product, if a value of E0 was not available from the original papers.
-This involved downloading the MODIS product for PET at 500 m scale for
-the approximate catchment centroid using the package MODISTools via the
-\href{https://modis.ornl.gov/data/modis_webservice.html}{MODIS/VIIRS
-subsets} for the period 1 January 2000 - 31 December 2020. The average
-annual PET calculated from this series was used as the an approximation
-of average annual E0. For large watersheds, this value, similar to
-annual average rainfall, is only an approximation of the climate at the
-location.
+location. Using this information reference evapotranspiration (E\_\{0\})
+was extracted from the Global Aridity Index and Potential
+Evapo-Transpiration (ET0) Climate Databasev2 (Trabucco and Zomer, 2018),
+if a value of E0 was not available from the original papers. For large
+watersheds, this value, similar to annual average rainfall, is only an
+approximation of the climate at the location.
 
 The length of the study can be a variable influencing the change in flow
 (e.g.~Jackson et al., 2005), as for example, more mature plantations are
@@ -353,103 +346,87 @@ data for future research and highlights some of the discrepancies that
 we found between the original papers and the data in the tables from
 Zhang et al. (2017).
 
+Similar to Zhang et al. (2017), the ``dryness index'' was calculated as:
+\[\tag{1}
+\begin{aligned}
+D = \frac{E0}{Pa}
+\end{aligned}\]
+
 \hypertarget{statistical-modelling}{%
 \subsection{Statistical modelling}\label{statistical-modelling}}
 
 \begin{verbatim}
-## Warning: NAs introduced by coercion
-
-## Warning: NAs introduced by coercion
+## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   Watershed = col_double(),
+##   Latitiude = col_double(),
+##   Longitude = col_double(),
+##   rvalue_1 = col_double()
+## )
 \end{verbatim}
+
+\begin{verbatim}
+## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   site_name = col_double(),
+##   lat = col_double(),
+##   long = col_double(),
+##   `Area(km2)` = col_double(),
+##   `Forest typ` = col_character(),
+##   C = col_character(),
+##   rvalue_1 = col_double()
+## )
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing missing values (position_stack).
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-4-1.pdf}
 
 To estimate how the change in streamflow is affected by the change in
 forest cover while considering the effects of the other variables, we
 applied generalised additive modelling (GAM) (Wood, 2006).
 
-\textbf{This methods section is no longer correct and needs rewriting}
-
-The first model applied in this analysis is based on the main hypothesis
-outlined above, can the change in streamflow be predicted from the
-change in forest cover, modulated by area, the length of the study and
-the climate.
-
-\[\tag{1}
-\begin{aligned}
-\Delta \%Q \sim ~&\Delta \%forest + Pa + Area + Latitude + Longitude + \varepsilon
-\end{aligned}\]
-
-However, the overall skewed distribution of the predictant
-(\(\Delta \%Q\)) is problematic, and this results in a skewed
-distribution of the GAM model residuals, which violates the linear model
-assumptions. As a result we transformed \(\Delta \%Q\) back to fractions
-(0 - 1) and log transformed using \(log10(x + 1)\), where \(x\) is
-\(\Delta Q\). After transformation the model residuals approximate
-\(\sim N(0,\sigma^2)\) and this results in the following equation:
+The general model tested is
 
 \[\tag{2}
 \begin{aligned}
-log10(\frac{\Delta \% Q}{100} + 1) \sim ~ &\Delta \%{forest~cover}
-+ Pa + Area + Latitude + 
-\\ &Longitude + \varepsilon
+\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & \sum{X_i} + \sum{s(Z_i)} + \varepsilon
 \end{aligned}\]
 
-A second model included all the variables in the analysis from Zhang et
-al. (2017) in one model:
+In this model, no direct interactions are assumed. The changes in forest
+cover contain both positive (forestation) and negative values
+(deforestation). In Zhang et al. (2017), these changes were jointly
+analysed, assuming the effect on the change in flow was linear and
+non-hysteretic. However, the impact of an increase in forest cover can
+be different from the same fractional decrease in forest cover.
+Therefore all the change in forest cover data is converted to positive
+values, and an additional column (\emph{sign\_\{forest cover\}}) is
+added that indicates whether it was a forest cover increase or decrease.
+A further assumption in the model is that all continuous variables
+\(Z_i\) (such as annual precipitation (Pa)) can have a linear or
+non-linear relationship with \(\Delta Q \%\). This means that a smooth
+function \(s()\) is applied to the \(Z_i\) variables.
 
-\[\tag{3}
-\begin{aligned}
-log10(\frac{\Delta \% Q}{100} + 1) \sim ~ &\Delta \% forest~cover + s(Pa, k = 3) + s(Area, k = 3) +  \\
-& {forest~type} + {climate~type} + {assessment~type} + \\  
-& {hydrologic~regime} + \varepsilon
-\end{aligned}\]
+For the model in equation 2, we initially only used the data from Zhang
+et al. (2017) to make sure that the additional watersheds added to the
+data set did not influence the results. Subsequently the analysis was
+repeated and the additionally identified watersheds were added.
 
-In this model, no direct interactions are assumed, and the assumption is
-that all continuous variables (such as Pa) can have a linear or
-non-linear relationship with \(log10(\Delta Q)\). This means that a
-smooth function \(s()\) is applied to the variable. To restrict the
-smoothness of the fit, the smoothness factor \(k\) is restricted to a
-value of 3 (Wood, 2006). This restriction was applied to smooth
-variables throughout this paper and we have dropped this from the
-notation in subsequent equations.
-
-For the model in equation 3, we only used the data from Zhang et al.
-(2017) to make sure that the additional watersheds added to the data set
-did not influence the analysis. Given that in Zhang et al. (2017),
-dryness (\(\frac{E0}{Pa}\)) is used to look at variations in the change
-in flow, we also fitted the following model:
-
-\[\tag{4}
-\begin{aligned}
-log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover + s(\frac{E0}{Pa}) + s(Area) +  {forest~type} + 
-\\  &{climate~type} + {assessment~type} + \\  &{hydrologic~regime} + \varepsilon
-\end{aligned}\]
-
-Subsequently, using the full data set, including the additional
-watersheds and the additional variables the following two models were
-fitted:
-
-\[\tag{5}
-\begin{aligned}
-log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover + s(Pa) + s(Area) + s(Latitude) + \\
-& s(Longitude) + s(begin_{year}) + s(length_{study}) +\\
-&{forest~type} + {climate~type} + {assessment~type} +\\
-& {hydrologic~regime} + \varepsilon
-\end{aligned}\]
-
-\[\tag{6}
-\begin{aligned}
-log10(\frac{\Delta \% Q}{100} + 1) \sim ~&\Delta \% forest~cover +
-s(\frac{E0}{Pa}) + s(Area) + \\ 
-& s(Latitude) + s(Longitude) + s(begin_{year}) + \\ 
-& s(length_{study}) + {forest~type} + {climate~type} + \\ 
-& {assessment~type} + {hydrologic~regime} + \varepsilon
-\end{aligned}\]
+More generally the results were analysed to identify:\\
+1. the significance of the different variables\\
+2. the direction of the categorical or shape of the smooth variables
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
 \hypertarget{description-of-the-data}{%
-\paragraph{description of the data}\label{description-of-the-data}}
+\subsection{description of the data}\label{description-of-the-data}}
 
 The overall dataset contains 312 observations of changes in flow. The
 overall distribution of changes in flow is highly skewed as is the
@@ -458,46 +435,29 @@ in flow greater than 100\% and smaller than -100\% clearly create long
 tails on the change in flow distribution. Note also the large number of
 studies with 100\% forest cover reduction.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Zhang_all }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\KeywordTok{c}\NormalTok{(DeltaF_perc, DeltaQf_perc, Area_km2, Pa_mm), }
-               \DataTypeTok{names_to =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{values_to =} \StringTok{"value"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(value)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"steelblue"}\NormalTok{, }\DataTypeTok{bins=}\DecValTok{50}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{variable, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_bin).
+\end{verbatim}
 
-\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-4-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-8-1.pdf}
 
-The changes in forest cover contain both positive (forestation) and
-negative values (deforestation). In ({\textbf{???}}) 2017, these changes
-were analysed jointly, which assumes that the effect on the change in
-flow is linear and non-hysteretic. However, it is a reasonable
-hypothesis that this is not the case, and that the impact of an increase
-in forest cover is different from the same fractional decrease in forest
-cover. To be able to analyse this difference, all the change in forest
-cover is converted to positive values, but an additional column is added
-that indicates whether it was a forest cover increase or decrease.
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-9-1.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Zhang_all2 <-}\StringTok{ }\NormalTok{Zhang_all }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Forest_Sign =} \KeywordTok{ifelse}\NormalTok{(DeltaF_perc }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{,}
-                              \StringTok{"decrease"}\NormalTok{, }\StringTok{"increase"}\NormalTok{),}
-         \DataTypeTok{DeltaF_perc_pos =} \KeywordTok{ifelse}\NormalTok{(DeltaF_perc }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{,}
-                                  \DecValTok{-1}\OperatorTok{*}\NormalTok{DeltaF_perc,}
-\NormalTok{                                  DeltaF_perc))}
-\end{Highlighting}
-\end{Shaded}
+This immediately shows that for the data related to forest decreases,
+there is almost always a positive flow change. In other words, flow
+almost always increased. However, for increases in forest cover, this is
+not the case, and flow can both increase and decrease. However in both
+cases the variability in the reported change in flow increases with the
+increase in forest cover change.
 
 \hypertarget{the-initial-relationship-between-change-in-forest-cover-and-streamflow}{%
-\paragraph{The initial relationship between change in forest cover and
+\subsection{The initial relationship between change in forest cover and
 streamflow}\label{the-initial-relationship-between-change-in-forest-cover-and-streamflow}}
 
-We start of with a simple linear regression (i.e.~following Zhang et al.
-(2017)) just looking at the change in flow as a result in the percent
-change forestry and including the direction of the change, increase in
-forest cover, or decrease in forest cover.
+Following Zhang et al. (2017), the first step is to use a linear
+regression to investigate the percent change in flow as a result in the
+percent change forestry and modulated by the direction of the change,
+either an increase in forest cover, or decrease in forest cover.
 
 \begin{verbatim}
 ## 
@@ -528,8 +488,29 @@ forest cover, or decrease in forest cover.
 ## Model required no smoothing parameter selectionModel rank =  3 / 3
 \end{verbatim}
 
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+\begin{minipage}[b]{0.11\columnwidth}\centering
+Length\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+Class\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+Mode\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.11\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+NULL\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+NULL\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
 While the overall variance explained in this model is not high at 0.16,
-it clearly indicates the hypothesised relationship between the change in
+it clearly supports the hypothesized relationship between the change in
 forest cover and the change in flow. The model suggests that for every
 1\% change in forest cover, on the average, the flow changes 0.5\%.
 However the change in flow is different for forest cover decreases
@@ -539,8 +520,8 @@ causes flow to increase. So roughly speaking, a 1\% forest cover
 increase on the average decreases flow by \((1 - 0.32)*0.5\%\), while a
 the percentage forest cover decrease will increase flow by 0.5\%.
 
-It is however clear from lack of explaining power, that there could be
-confounding factors, as alluded to in the methods. The obvious ones
+It is however clear from the lack of explaining power, that there could
+be confounding factors, as alluded to in the methods. The obvious ones
 being catchment dryness and area (following Zhang et al. (2017)).
 
 \begin{verbatim}
@@ -574,18 +555,105 @@ being catchment dryness and area (following Zhang et al. (2017)).
 ## Model required no smoothing parameter selectionModel rank =  5 / 5
 \end{verbatim}
 
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+23.23\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+9.189\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+2.528\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.01197\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.5424\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.103\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+5.265\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+2.64e-07\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-33.24\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+6.955\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-4.779\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+2.733e-06\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Area\_km2}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-1.867e-06\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+1.322e-05\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.1412\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.8878\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Pa\_mm}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-0.01067\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.004944\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-2.158\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.03169\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
 Including area and annual precipitation does not really improve the
 overall explaining power of the model, in fact, annual precipitation
 appears to be only a very small confounding factor, representing only a
 -0.01/\% partial effect in the change in streamflow, holding all other
-factors constant. The catchment area does not appear to have an effect
-at all in contrast to earlier reported studies (Filoso et al., 2017;
-Zhang et al., 2017). The main effects remain the change in forest cover
-and whether this is an increase or decrease
+factors constant. In contrast to earlier reported studies (Filoso et
+al., 2017; Zhang et al., 2017), watershed area has no effect on the
+change in stream flow. This supports our approach (in contrast to Zhang
+et al. (2017)) to consider watershed area as a continuous variable and
+making no separation between larger and smaller watersheds The main
+effects remain the change in forest cover and whether this is an
+increase or decrease.
 
 \hypertarget{the-effect-of-location-on-the-globe}{%
-\paragraph{The effect of location on the
+\subsection{The effect of location on the
 globe}\label{the-effect-of-location-on-the-globe}}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{../../data/FAOET0data} \caption{Distribution of included catchments across the globe based on reported or estimated latitude and longitude}\label{fig:global_map}
+\end{figure}
+
+As indicated, a second hypothesis relates to whether there is a strong
+spatial global gradient as captured by latitude and longitude. As the
+global map (@ref(fig:global\_map)) shows, the distribution of case study
+catchments covers multiple continents and shows some distinct clustering
+in parts of the world. Of interest is whether the spatial clustering
+also indicates a difference in response to forest cover change.
 
 \begin{verbatim}
 ## 
@@ -593,27 +661,27 @@ globe}\label{the-effect-of-location-on-the-globe}}
 ## Link function: identity 
 ## 
 ## Formula:
-## DeltaQf_perc ~ DeltaF_perc + Forest_Sign + Area_km2 + Pa_mm + 
+## DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + Area_km2 + Pa_mm + 
 ##     Latitude + Longitude
 ## 
 ## Parametric coefficients:
 ##                       Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)          3.474e+01  1.055e+01   3.295  0.00110 ** 
-## DeltaF_perc         -4.951e-01  1.064e-01  -4.652 4.95e-06 ***
-## Forest_Signincrease -3.222e+00  1.160e+01  -0.278  0.78140    
-## Area_km2            -9.488e-06  1.339e-05  -0.709  0.47903    
-## Pa_mm               -1.007e-02  5.309e-03  -1.897  0.05883 .  
-## Latitude            -3.806e-01  1.239e-01  -3.071  0.00233 ** 
-## Longitude            1.074e-03  3.955e-02   0.027  0.97834    
+## (Intercept)          3.504e+01  1.026e+01   3.415 0.000724 ***
+## DeltaF_perc_pos      5.147e-01  1.027e-01   5.014 9.07e-07 ***
+## Forest_Signincrease -3.793e+01  7.230e+00  -5.247 2.90e-07 ***
+## Area_km2            -6.282e-06  1.327e-05  -0.474 0.636137    
+## Pa_mm               -1.304e-02  5.055e-03  -2.580 0.010339 *  
+## Latitude            -3.119e-01  1.255e-01  -2.484 0.013520 *  
+## Longitude           -1.058e-02  3.965e-02  -0.267 0.789747    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## 
-## R-sq.(adj) =  0.172   Deviance explained = 18.8%
-## GCV = 3336.1  Scale est. = 3259.8    n = 306
+## R-sq.(adj) =  0.183   Deviance explained = 19.9%
+## GCV = 3230.5  Scale est. = 3158      n = 312
 \end{verbatim}
 
-\includegraphics{Forest_and_Water_files/figure-latex/model2a-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/model3-1.pdf}
 
 \begin{verbatim}
 ## 
@@ -621,11 +689,125 @@ globe}\label{the-effect-of-location-on-the-globe}}
 ## Model required no smoothing parameter selectionModel rank =  7 / 7
 \end{verbatim}
 
-\begin{verbatim}
-## Warning in eval(predvars, data, env): NaNs produced
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+35.04\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+10.26\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+3.415\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.0007243\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.5147\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.1027\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+5.014\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+9.071e-07\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-37.93\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+7.23\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-5.247\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+2.898e-07\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Area\_km2}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-6.282e-06\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+1.327e-05\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.4736\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.6361\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Pa\_mm}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-0.01304\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.005055\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-2.58\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.01034\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Latitude}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-0.3119\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.1255\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-2.484\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.01352\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Longitude}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-0.01058\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.03965\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.2669\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.7897\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
-## Warning in eval(predvars, data, env): NaNs produced
-\end{verbatim}
+This linear model shows that there is a significant gradient in the
+Latitude and with annual average rainfall, with watersheds closer to the
+equator having lower changes in the runoff compare to watersheds further
+away from the equator. This suggests an influence of radiation, which
+will be tested next. In addition, the model suggests an influence of the
+annual average rainfall, with wetter watersheds having slightly lower
+changes in runoff. The total explaining power of the model is still low
+at 0.18 suggesting further confounding factors currently not included in
+the model.
+
+There is no relationship with Longitude, suggesting that the different
+continents do not show a trend in the East-West direction.
+
+\hypertarget{impact-of-the-dryness-index}{%
+\subsection{Impact of the dryness
+index}\label{impact-of-the-dryness-index}}
+
+The previous analysis suggests an influence of radiation on
+evapotranspiration, and most likely related to the dryness index, as
+also indicated in Zhang et al. (2017). Increased evapotranspiration
+could lead to drier catchments, unless balanced by rainfall (such as
+possibly in the tropics). This model introduces the dryness index as a
+linear variable and drops the annual average precipitation as a
+variables.
 
 \begin{verbatim}
 ## 
@@ -633,40 +815,139 @@ globe}\label{the-effect-of-location-on-the-globe}}
 ## Link function: identity 
 ## 
 ## Formula:
-## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + 
-##     Pa_mm + Latitude + Longitude + From + length
+## DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + Area_km2 + Latitude + 
+##     Longitude + Dryness
 ## 
 ## Parametric coefficients:
-##                   Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)     -6.962e-01  1.110e+00  -0.627 0.531002    
-## DeltaF_perc     -1.253e-03  1.612e-04  -7.772  1.8e-13 ***
-## log10(Area_km2) -1.886e-02  5.186e-03  -3.637 0.000332 ***
-## Pa_mm           -7.362e-06  1.257e-05  -0.586 0.558457    
-## Latitude        -1.070e-03  2.823e-04  -3.791 0.000186 ***
-## Longitude        6.832e-05  9.635e-05   0.709 0.478879    
-## From             3.951e-04  5.604e-04   0.705 0.481473    
-## length          -3.424e-04  7.026e-04  -0.487 0.626447    
+##                       Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)          6.031e-01  8.582e+00   0.070 0.944022    
+## DeltaF_perc_pos      5.006e-01  1.036e-01   4.831 2.18e-06 ***
+## Forest_Signincrease -3.898e+01  7.253e+00  -5.375 1.55e-07 ***
+## Area_km2            -7.227e-06  1.317e-05  -0.549 0.583604    
+## Latitude            -3.121e-01  1.249e-01  -2.500 0.012974 *  
+## Longitude           -6.775e-03  3.958e-02  -0.171 0.864199    
+## Dryness              1.370e+01  3.628e+00   3.776 0.000193 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## 
-## R-sq.(adj) =  0.303   Deviance explained = 32.1%
-## GCV = 0.016004  Scale est. = 0.015526  n = 268
+## R-sq.(adj) =  0.204   Deviance explained = 21.9%
+## GCV = 3199.2  Scale est. = 3125.7    n = 305
 \end{verbatim}
 
-\includegraphics{Forest_and_Water_files/figure-latex/model2a1-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/model4-1.pdf}
 
 \begin{verbatim}
 ## 
 ## Method: GCV   Optimizer: magic
-## Model required no smoothing parameter selectionModel rank =  8 / 8
+## Model required no smoothing parameter selectionModel rank =  7 / 7
 \end{verbatim}
 
-\begin{verbatim}
-## Warning in eval(predvars, data, env): NaNs produced
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.6031\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+8.582\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.07027\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.944\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.5006\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.1036\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+4.831\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+2.178e-06\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-38.98\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+7.253\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-5.375\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.549e-07\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Area\_km2}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-7.227e-06\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+1.317e-05\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.5487\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.5836\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Latitude}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-0.3121\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.1249\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-2.5\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.01297\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Longitude}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-0.006775\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.03958\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.1712\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.8642\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{Dryness}\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+13.7\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+3.628\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+3.776\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.0001927\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
-## Warning in eval(predvars, data, env): NaNs produced
-\end{verbatim}
+The results from this model confirm that dryness is a significant
+confounding factor of the change in streamflow as function of the change
+in forest cover change. In fact if the dryness index doubles
+(remembering that Dryness = 1 when E0 = Pa, so in this case E0 = 2*Pa,
+which is very dry), the change in runoff is \textasciitilde14\% greater.
+However, more interesting, Latitude remains a significant predictor with
+each degree in latitude causing an -0.31\% change in runoff. This
+indicates that Dryness (i.e.~an increase in radiation) alone does not
+explain the trend in the Latitude and some other unknown confounding
+factor is captured by Latitude.
 
 \begin{verbatim}
 ## 
@@ -674,68 +955,56 @@ globe}\label{the-effect-of-location-on-the-globe}}
 ## Link function: identity 
 ## 
 ## Formula:
-## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + s(Area_km2, k = 3) + 
-##     s(Pa_mm, k = 3) + s(From, k = 3) + s(length, k = 3) + Precip_data_type + 
-##     Assessment_technique + Forest_type + Hydrological_regime
+## DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + s(Area_km2) + 
+##     s(Dryness) + length + Assessment_technique + Latitude
 ## 
 ## Parametric coefficients:
-##                               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                 -0.0962315  0.0558563  -1.723   0.0862 .  
-## DeltaF_perc                 -0.0008839  0.0001711  -5.165 4.98e-07 ***
-## Precip_data_typeOB          -0.0329926  0.0418383  -0.789   0.4311    
-## Precip_data_typeSG           0.0595846  0.0474089   1.257   0.2100    
-## Assessment_techniqueEA, HM   0.0143199  0.1329271   0.108   0.9143    
-## Assessment_techniqueHM       0.0910165  0.0445991   2.041   0.0423 *  
-## Assessment_techniquePWE      0.2041286  0.0457201   4.465 1.22e-05 ***
-## Assessment_techniquePWE, HM  0.0977846  0.1370941   0.713   0.4764    
-## Assessment_techniqueQPW      0.0850446  0.0731186   1.163   0.2459    
-## Assessment_techniqueSH       0.1066145  0.0473168   2.253   0.0251 *  
-## Forest_typeCF               -0.0029430  0.0268072  -0.110   0.9127    
-## Forest_typeMF               -0.0463517  0.0265852  -1.744   0.0825 .  
-## Hydrological_regimeSD        0.0111796  0.0319040   0.350   0.7263    
+##                              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                  19.80962   20.90807   0.947  0.34433    
+## DeltaF_perc_pos               0.34576    0.10727   3.223  0.00144 ** 
+## Forest_Signincrease         -33.34803    7.26563  -4.590 7.06e-06 ***
+## length                       -0.16503    0.26850  -0.615  0.53935    
+## Assessment_techniqueEA, HM    6.97930   47.05195   0.148  0.88220    
+## Assessment_techniqueHM        1.39799   16.63165   0.084  0.93308    
+## Assessment_techniquePWE       4.12984   19.29598   0.214  0.83070    
+## Assessment_techniquePWE, HM  -5.44499   49.38888  -0.110  0.91230    
+## Assessment_techniqueQPW      -9.50504   26.72374  -0.356  0.72239    
+## Assessment_techniqueSH        2.52746   18.97865   0.133  0.89416    
+## Latitude                     -0.30515    0.09629  -3.169  0.00172 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Approximate significance of smooth terms:
-##              edf Ref.df     F p-value  
-## s(Area_km2) 1.00  1.000 0.301  0.5839  
-## s(Pa_mm)    1.25  1.437 0.640  0.3574  
-## s(From)     1.00  1.000 3.194  0.0751 .
-## s(length)   1.00  1.000 0.540  0.4631  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##             edf Ref.df     F p-value
+## s(Area_km2)   1      1 0.513   0.474
+## s(Dryness)    1      1 0.002   0.964
 ## 
-## R-sq.(adj) =  0.274   Deviance explained = 31.9%
-## GCV = 0.017635  Scale est. = 0.016474  n = 262
+## R-sq.(adj) =  0.185   Deviance explained = 22.2%
+## GCV = 2181.8  Scale est. = 2072.8    n = 260
 \end{verbatim}
 
-\includegraphics{Forest_and_Water_files/figure-latex/model2b-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/model5-1.pdf}
 
 \begin{verbatim}
 ## 
 ## Method: GCV   Optimizer: magic
-## Smoothing parameter selection converged after 8 iterations.
-## The RMS GCV score gradient at convergence was 2.042593e-08 .
+## Smoothing parameter selection converged after 15 iterations.
+## The RMS GCV score gradient at convergence was 0.0001863276 .
 ## The Hessian was positive definite.
-## Model rank =  21 / 21 
+## Model rank =  29 / 29 
 ## 
 ## Basis dimension (k) checking results. Low p-value (k-index<1) may
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
-##               k'  edf k-index p-value    
-## s(Area_km2) 2.00 1.00    0.97   0.265    
-## s(Pa_mm)    2.00 1.25    0.78  <2e-16 ***
-## s(From)     2.00 1.00    0.85   0.005 ** 
-## s(length)   2.00 1.00    0.90   0.060 .  
+##             k' edf k-index p-value  
+## s(Area_km2)  9   1    1.06   0.825  
+## s(Dryness)   9   1    0.86   0.015 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-\begin{verbatim}
-## Warning in eval(predvars, data, env): NaNs produced
-
-## Warning in eval(predvars, data, env): NaNs produced
-\end{verbatim}
+\includegraphics{Forest_and_Water_files/figure-latex/model5-2.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/model5-3.pdf}
 
 \begin{verbatim}
 ## 
@@ -743,39 +1012,38 @@ globe}\label{the-effect-of-location-on-the-globe}}
 ## Link function: identity 
 ## 
 ## Formula:
-## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + s(Area_km2, k = 3) + 
-##     s(Pa_mm, k = 3) + s(From, k = 3) + s(length, k = 3) + Precip_data_type + 
-##     Assessment_technique + Forest_type + Hydrological_regime
+## DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + te(Dryness, Latitude, 
+##     k = 5) + Precip_data_type + Assessment_technique + Forest_type + 
+##     Hydrological_regime
 ## 
 ## Parametric coefficients:
-##                               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                 -0.0962315  0.0558563  -1.723   0.0862 .  
-## DeltaF_perc                 -0.0008839  0.0001711  -5.165 4.98e-07 ***
-## Precip_data_typeOB          -0.0329926  0.0418383  -0.789   0.4311    
-## Precip_data_typeSG           0.0595846  0.0474089   1.257   0.2100    
-## Assessment_techniqueEA, HM   0.0143199  0.1329271   0.108   0.9143    
-## Assessment_techniqueHM       0.0910165  0.0445991   2.041   0.0423 *  
-## Assessment_techniquePWE      0.2041286  0.0457201   4.465 1.22e-05 ***
-## Assessment_techniquePWE, HM  0.0977846  0.1370941   0.713   0.4764    
-## Assessment_techniqueQPW      0.0850446  0.0731186   1.163   0.2459    
-## Assessment_techniqueSH       0.1066145  0.0473168   2.253   0.0251 *  
-## Forest_typeCF               -0.0029430  0.0268072  -0.110   0.9127    
-## Forest_typeMF               -0.0463517  0.0265852  -1.744   0.0825 .  
-## Hydrological_regimeSD        0.0111796  0.0319040   0.350   0.7263    
+##                             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                 -15.0968    26.7857  -0.564 0.573480    
+## DeltaF_perc_pos               0.4516     0.1187   3.805 0.000175 ***
+## Forest_Signincrease         -27.5255     9.0389  -3.045 0.002552 ** 
+## Precip_data_typeOB           -5.2815    18.9655  -0.278 0.780856    
+## Precip_data_typeSG           11.3166    21.3449   0.530 0.596417    
+## Assessment_techniqueEA, HM   45.5460    57.7615   0.789 0.431077    
+## Assessment_techniqueHM       21.7074    19.8327   1.095 0.274689    
+## Assessment_techniquePWE      29.7823    20.4186   1.459 0.145827    
+## Assessment_techniquePWE, HM  51.4437    62.8574   0.818 0.413831    
+## Assessment_techniqueQPW      19.1277    31.5696   0.606 0.545090    
+## Assessment_techniqueQPW, EA  29.9396    35.2621   0.849 0.396591    
+## Assessment_techniqueSH       28.3985    22.2674   1.275 0.203273    
+## Forest_typeCF                 5.0733    11.4701   0.442 0.658619    
+## Forest_typeMF               -13.2933    10.8133  -1.229 0.219997    
+## Hydrological_regimeSD        13.3327    13.2135   1.009 0.313855    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Approximate significance of smooth terms:
-##              edf Ref.df     F p-value  
-## s(Area_km2) 1.00  1.000 0.301  0.5839  
-## s(Pa_mm)    1.25  1.437 0.640  0.3574  
-## s(From)     1.00  1.000 3.194  0.0751 .
-## s(length)   1.00  1.000 0.540  0.4631  
+##                       edf Ref.df     F  p-value    
+## te(Dryness,Latitude) 10.7  12.97 3.432 6.26e-05 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## R-sq.(adj) =  0.274   Deviance explained = 31.9%
-## GCV = 0.017635  Scale est. = 0.016474  n = 262
+## R-sq.(adj) =  0.249   Deviance explained = 31.1%
+## GCV = 3281.3  Scale est. = 2999.2    n = 299
 \end{verbatim}
 
 \includegraphics{Forest_and_Water_files/figure-latex/model2c-1.pdf}
@@ -783,90 +1051,68 @@ globe}\label{the-effect-of-location-on-the-globe}}
 \begin{verbatim}
 ## 
 ## Method: GCV   Optimizer: magic
-## Smoothing parameter selection converged after 8 iterations.
-## The RMS GCV score gradient at convergence was 2.042593e-08 .
+## Smoothing parameter selection converged after 7 iterations.
+## The RMS GCV score gradient at convergence was 0.002397792 .
 ## The Hessian was positive definite.
-## Model rank =  21 / 21 
+## Model rank =  39 / 39 
 ## 
 ## Basis dimension (k) checking results. Low p-value (k-index<1) may
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
-##               k'  edf k-index p-value    
-## s(Area_km2) 2.00 1.00    0.97   0.280    
-## s(Pa_mm)    2.00 1.25    0.78  <2e-16 ***
-## s(From)     2.00 1.00    0.85   0.015 *  
-## s(length)   2.00 1.00    0.90   0.040 *  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##                        k'  edf k-index p-value
+## te(Dryness,Latitude) 24.0 10.7       1    0.52
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/model2c-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Zhang_all2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(DeltaF_perc_pos, DeltaQf_perc, }\DataTypeTok{colour =}\NormalTok{ Dryness)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Zhang_all2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(Assessment_technique,Dryness)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_boxplot).
+\end{verbatim}
+
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Zhang_all2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Dryness }\OperatorTok{>}\StringTok{ }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 25
+##   `Watershed #` `Watershed name`     Area_km2 Pa_mm Forest_type Hydrological_re~
+##           <dbl> <chr>                   <dbl> <dbl> <chr>       <chr>           
+## 1            76 Beaver  Creek,  AZ ~     1.47   426 CF          SD              
+## 2            90 Cantua                 119      442 MF          RD              
+## 3           295 White Spar, Ariz., ~     1      549 BF          RD              
+## 4           225 Natural DRDages, Ar~     0.05   452 BF          RD              
+## # ... with 19 more variables: DeltaF_perc <dbl>, DeltaQf_perc <dbl>,
+## #   Precip_data_type <chr>, Assessment_technique <chr>, Source of info <chr>,
+## #   Length of study (years) <dbl>, Notes <chr>, From <dbl>, To <dbl>,
+## #   Location Details AL=aprox location given by author, PL=point location given by author, GE= coordinates guessed from google maps <chr>,
+## #   notes <chr>,
+## #   Location Details AL=aprox location given by author, PL=point location given by author, GM= coordinates guessed from google maps <chr>,
+## #   Latitude <dbl>, Longitude <dbl>, E0 <dbl>, Dryness <dbl>,
+## #   Forest_Sign <chr>, DeltaF_perc_pos <dbl>, length <dbl>
 \end{verbatim}
 
 No evidence of effect of area
-
-\begin{verbatim}
-## Warning in eval(predvars, data, env): NaNs produced
-
-## Warning in eval(predvars, data, env): NaNs produced
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Family: gaussian 
-## Link function: identity 
-## 
-## Formula:
-## log10(DeltaQf_perc/100 + 1) ~ DeltaF_perc + log10(Area_km2) + 
-##     s(Pa_mm, k = 3) + From + length + Precip_data_type + Assessment_technique + 
-##     Forest_type + Hydrological_regime + Latitude + Longitude
-## 
-## Parametric coefficients:
-##                               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                 -1.2633792  1.1731739  -1.077  0.28260    
-## DeltaF_perc                 -0.0010709  0.0001693  -6.324 1.21e-09 ***
-## log10(Area_km2)             -0.0106973  0.0079411  -1.347  0.17921    
-## From                         0.0006320  0.0005902   1.071  0.28528    
-## length                       0.0002020  0.0007979   0.253  0.80032    
-## Precip_data_typeOB          -0.0496200  0.0405500  -1.224  0.22226    
-## Precip_data_typeSG           0.0379293  0.0474175   0.800  0.42455    
-## Assessment_techniqueEA, HM   0.0190552  0.1279391   0.149  0.88173    
-## Assessment_techniqueHM       0.0665563  0.0447830   1.486  0.13852    
-## Assessment_techniquePWE      0.1335480  0.0529257   2.523  0.01226 *  
-## Assessment_techniquePWE, HM  0.0724841  0.1341116   0.540  0.58936    
-## Assessment_techniqueQPW      0.0585720  0.0713099   0.821  0.41224    
-## Assessment_techniqueSH       0.0649925  0.0482180   1.348  0.17895    
-## Forest_typeCF                0.0129954  0.0267350   0.486  0.62735    
-## Forest_typeMF               -0.0171200  0.0262238  -0.653  0.51448    
-## Hydrological_regimeSD        0.0425574  0.0316727   1.344  0.18031    
-## Latitude                    -0.0010038  0.0003307  -3.035  0.00267 ** 
-## Longitude                    0.0001756  0.0001025   1.713  0.08803 .  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Approximate significance of smooth terms:
-##            edf Ref.df     F p-value
-## s(Pa_mm) 1.004  1.008 1.285   0.256
-## 
-## R-sq.(adj) =  0.328   Deviance explained = 37.5%
-## GCV = 0.016441  Scale est. = 0.015249  n = 262
-\end{verbatim}
-
-\includegraphics{Forest_and_Water_files/figure-latex/model2d-1.pdf}
-
-\begin{verbatim}
-## 
-## Method: GCV   Optimizer: magic
-## Smoothing parameter selection converged after 5 iterations.
-## The RMS GCV score gradient at convergence was 2.648312e-07 .
-## The Hessian was positive definite.
-## Model rank =  20 / 20 
-## 
-## Basis dimension (k) checking results. Low p-value (k-index<1) may
-## indicate that k is too low, especially if edf is close to k'.
-## 
-##          k' edf k-index p-value   
-## s(Pa_mm)  2   1     0.8   0.005 **
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -875,7 +1121,7 @@ No evidence of effect of area
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-6-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -884,7 +1130,7 @@ No evidence of effect of area
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-7-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -910,22 +1156,12 @@ No evidence of effect of area
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Zhang_all }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(Latitude, }\KeywordTok{log10}\NormalTok{(DeltaQf_perc}\OperatorTok{/}\DecValTok{100} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{), }\DataTypeTok{colour =}\NormalTok{ DeltaF_perc,}\DataTypeTok{size =} \KeywordTok{log10}\NormalTok{(Area_km2))) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{Zhang_all2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(Longitude, Latitude, }\DataTypeTok{colour =}\NormalTok{ DeltaF_perc, }\DataTypeTok{size =}\NormalTok{ DeltaQf_perc}\OperatorTok{/}\DecValTok{100}\NormalTok{ )) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning in FUN(X[[i]], ...): NaNs produced
-
-## Warning in FUN(X[[i]], ...): NaNs produced
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 8 rows containing missing values (geom_point).
-\end{verbatim}
-
-\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 Check the size distribition of the catchments
 
@@ -937,7 +1173,7 @@ Check the size distribition of the catchments
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-10-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -952,7 +1188,7 @@ Check the size distribition of the catchments
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Zhang_all }\OperatorTok{%>%}
+\NormalTok{Zhang_all2 }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(length)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{bins =}\DecValTok{50}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
@@ -961,24 +1197,9 @@ Check the size distribition of the catchments
 ## Warning: Removed 42 rows containing non-finite values (stat_bin).
 \end{verbatim}
 
-\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-11-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#windows()}
-\NormalTok{Zhang_all }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\KeywordTok{log10}\NormalTok{(length), (DeltaQf_perc}\OperatorTok{/}\DecValTok{100} \OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{), }\DataTypeTok{colour =}\NormalTok{ DeltaF_perc}\OperatorTok{/}\DecValTok{100}\NormalTok{, }\DataTypeTok{size =} \KeywordTok{log10}\NormalTok{(Area_km2))) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"log10 (fractional change in flow + 1)"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Length of study"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_size_continuous}\NormalTok{(}\DataTypeTok{name =} \StringTok{"log10 Area in km2"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_colour_continuous}\NormalTok{(}\DataTypeTok{name =} \StringTok{"change in forest cover"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: Removed 42 rows containing missing values (geom_point).
-\end{verbatim}
-
-\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-12-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-22-1.pdf}
+Essentially, the analysis shows at the moment that their is no evidence
+that the size of the catchment influences the
 
 \hypertarget{references}{%
 \section*{References}\label{references}}
@@ -1059,6 +1280,11 @@ brigalow catchment study: II*. Clearing brigalow (acacia harpophylla)
 for cropping or pasture increases runoff. Australian Journal of Soil
 Research 45, 496--511.
 doi:\href{https://doi.org/doi:10.1071/SR07064}{doi:10.1071/SR07064}
+
+\leavevmode\hypertarget{ref-trabucco2018}{}%
+Trabucco, A., Zomer, R.J., 2018. Global aridity index and potential
+evapo-transpiration (et0) climate database v2. CGIAR consortium for
+spatial information(CGIAR-csi).
 
 \leavevmode\hypertarget{ref-wood2006}{}%
 Wood, S., 2006. Generalized additive models: An introduction with r. CRC
