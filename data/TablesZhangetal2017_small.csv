@@ -16,7 +16,7 @@ Baker, Jr., M.B., 1986. Effects of ponderosa pine treatments on water yield in A
 256,Santa Paula,104,680,MF,RD,-71,0,OB,PWE,"Bart and Hope,2010",,34.41333333,-119.0730556,5,usgs coordinates,1986,1990,PL
 257,Sespe,130,707,MF,RD,-40,0,OB,PWE,"Bart and Hope,2010",,34.56944444,-119.2563889,5,usgs coordinates,1986,1990,PL
 292,"Wagon  Wheel Gap,  CO-2",0.81,536,CF,SD,-100,29.9,OB,PWE,"Bates  and  Henry ,1928 ",,37.773441,-106.830938,7,,1919,1926,GM
-73,Bauta,43.5,2038,BF,RD,10.2,-14.7,MD,HM,"Beck et al.,2013",,18.236,-66.455,28,"catc B, in Beck 2013 time was calculated considering landuse maps and data availability, USGS ID 034000",1970,2000,PL
+73,Bauta,43.5,2038,BF,RD,10.2,-14.7,MD,HM,"Beck et al.,2013",,18.236,-66.455,28,"catc B, in Beck 2013 time was calculated considering landuse maps and data availability, USGS ID 034000, (1996–1998 were excluded)",1970,2000,PL
 89,Canovanas ´,26.5,3422,BF,RD,26.9,-12.8,MD,HM,"Beck et al.,2013",,18.318,-65.889,32,"catch G,USGS ID  061800",1968,2000,PL
 97,Cibuco,39.8,1827,BF,RD,31.4,11.1,MD,HM,"Beck et al.,2013",,18.352,-66.336,30,"catch D, USGS ID 038320",1970,2000,PL
 123,Culebrinas,177.1,2178,BF ,RD,29.5,9.5,MD,HM,"Beck et al.,2013",,18.36,-67.089,32,"catch L, USGS ID 147800",1968,2000,PL
@@ -229,10 +229,10 @@ doi:10.1016/j.jhydrol.2004.12.010",1970,1977,GM
 232,"Ouachita, OK WS  #10",0.0574,1317,CF,RD,-50,30.9,OB,PWE,"Rothacher, 1970 ",,34.431286,-94.552682,4,"Rothacher, 1970 study is in Cascade Range of Oregon, Data from Miller 1988",1979,1983,GM
 238,"Ouachita, OK WS #18 ",0.0408,1317,CF,RD,-100,18.5,OB,PWE,"Rowe,1963 ",,34.431286,-94.552682,4,Data from Miller et al 1988,1979,1983,GM
 67,April Rd.,2.48,1070,BF,RD,100,167.7,OB,PWE,"Ruprecht and Schofield,1991",,-33.32047,115.788243,3,This is Ruprecht and Schofield (1989),1982,1985,AL
-167,Hansen,0.8,1200,BF,RD,-75,71.6,OB,PWE,"Ruprecht et al.,1991",-32.63,-33.117401,115.922311,3,,1986,1988,AL
+167,Hansen,0.8,1200,BF,RD,-75,71.6,OB,PWE,"Ruprecht et al.,1991",,-33.117401,115.922311,3,,1986,1988,AL
 228,Nilgiri,0.318,1535,BF,RD,59,-15.8,OB,PWE,"Samraj et al. ,1988",,11.373234,76.760133,13,,1968,1981,AL
 95,"Central New York, U.S.A.: Sage Brook",1.81,974,MF,RD,47,19.8,OB,PWE,"Schneider and Ayer, 1961",,42.53111111,-75.42527778,26,Data from https://waterdata.usgs.gov/,1932,1958,
-269,Swartbos.,1.8,2270,BF,RD,-100,7.5,OB,PWE,"Scott ,1993",,-33.95,-18.25,1,"Swartboskloof is the name in the paper, increase in flow is 15.3%? Table 4 in paper",1987,1987,PL
+269,Swartbos.,1.8,2270,BF,RD,-100,7.5,OB,PWE,"Scott ,1993",,-33.95,-18.25,1,"Swartboskloof is the name in the paper, increase in flow is 15.3%? Table 4 in paper from Scott, 1993. Based on this flow variation data changed from 7.5 to 15.3%",1987,1987,PL
 194,Lambreehtaboa B,0.65,1473,BF,RD,84,0,OB,PWE,"Scott, 1993",,-33.96805556,18.94138889,,"Should be Lambrechtsbos B, see Slingsby et al. 2021 DOI: 10.1002/hyp.14101  The Scott paper only analyses 1 year after fire",1986,1987,AL
 85,Bosbouk.,2.009,1296,BF,RD,80,23.6,OB,PWE,"Scott,1993",,-33.96222222,18.93111111,,"Bosboukloof, see also notes on 184 and Slingsby e al. 2021 DOI: 10.1002/hyp.14101  The Scott paper only analyses 1 year after fire",1986,1987,AL
 286,VI H020,1.32,838,BF,RD,27,-22.1,OB,PWE,"Scott,1993",,-29.83333333,29.83333333,,,1986,1987,AL
@@ -281,4 +281,4 @@ Reforestation and Erosion Control Influences Upon the Hydrology of the Pine Tree
 195,Latrobe River,292.91,394,BF ,RD,-18.5,26.4,OB,PWE,"Zhou et al., 2015",1103,-37.91,146.02,25,Not found in Zhou table,,,
 267,Starvation Creek,31.47,1604,BF,RD,-84.1,32.6,OB,PWE,"Zhou et al., 2015",1113,-37.78,145.62,17,Not found in Zhou table,,,
 311,Yarra River,149.43,1497,BF ,RD,-45.6,9.9,OB,PWE,"Zhou et al., 2015",,-34.17383383,116.3793598,5,,1971,1985,GM
-312,Yerrami.  S,2.7,850,BF,RD,60,83.3,OB,PWE,"Zhou et al., 2015",1075,-37.76,145.85,22,"Correct name is Yerraminnup S..There is no Yerrami S in Zhou et al. This is originally from Ruprecht and Schofield (1989), but they are citing a WA water resources report",1982,1985,AL
+312,Yerrami.  S,2.7,850,BF,RD,60,83.3,OB,PWE,"Zhou et al., 2015",1075,-37.76,145.85,4,"Correct name is Yerraminnup S..There is no Yerrami S in Zhou et al. This is originally from Ruprecht and Schofield (1989), but they are citing a WA water resources report",1982,1985,AL
