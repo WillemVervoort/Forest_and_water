@@ -17,9 +17,9 @@ address:
   - code: The University of Sydney
     address: School of Life and Environmental Sciences, The University of Sydney, Sydney, NSW 2006, Australia
   - code: INIA
-    address: INIA, Uruguay
+    address: Instituto Nacional de Investigación Agropecuaria, INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100 Canelones, Uruguay
   - code: IMFIA
-    address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la República, 11200 Montevideo, Departamento de Montevideo, Uruguay
+    address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la República, 11200 Montevideo, Uruguay
 footnote:
   - code: 1
     text: "Corresponding Author"
@@ -44,7 +44,7 @@ Introduction
 
 ## Introduction
 
-There has been an long and on-going discussion in the hydrologcal literature around the impact of forests on streamflow [@andreassian2004; @jackson2005; @zhang2017; @brown2005; @brown2013; @filoso2017]. The historic work highlights a general consensus that if forest areas increase, streamflow decreases and vice-versa. The most dramatic result in relation to this, is Figure 5 in @zhang2011 indicating (for Australian watersheds) a 100% decrease in stream flow for watersheds with 100% forest cover. However, on the other end of the spectrum, in a series of French watersheds [@cosandey2005], there was no change in streamflow characteristics in 2 of the three watersheds studied in relation to deforestation.
+There has been an long and on-going discussion in the hydrologcal literature around the impact of forests on streamflow [@andreassian2004; @jackson2005; @zhang2017; @brown2005; @brown2013; @filoso2017]. The historic work highlights a general consensus that if forest areas increase, streamflow decreases and vice-versa. The most dramatic result in relation to this, is Figure 5 in @zhang2011 indicating (for Australian watersheds) a 100% decrease in streamflow for watersheds with 100% forest cover. However, on the other end of the spectrum, in a series of French watersheds [@cosandey2005], there was no change in streamflow characteristics in 2 of the three watersheds studied in relation to deforestation.
 
 <!-- Include Filoso paper -->
 
@@ -352,7 +352,7 @@ Including area and annual precipitation does not really improve the overall expl
 
 ```{r global_map, fig.cap="Distribution of included watersheds across the globe based on reported or estimated latitude and longitude", out.width="90%", echo=F}  
 
-include_graphics("../../data/FAOET0data.png")
+include_graphics("../../data/FAOET0data2.png")
 ```
 
 As indicated, a second hypothesis relates to whether there is a strong spatial global gradient as captured by latitude and longitude. As the global map (\@ref(fig:global_map)) shows, the distribution of case study watersheds covers multiple continents and shows some distinct clustering in parts of the world. Of interest is whether the spatial clustering also indicates a difference in response to forest cover change. 
