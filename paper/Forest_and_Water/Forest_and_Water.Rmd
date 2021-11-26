@@ -1,5 +1,5 @@
 ---
-title: Do larger catchments respond different to forest cover change? Re-analysing a global data set.
+title: Do larger watersheds respond different to forest cover change? Re-analysing a global data set.
 author:
   - name: R. Willem Vervoort
     email: willem.vervoort@sydney.edu.au
@@ -52,7 +52,7 @@ Several review papers have summarized different studies across the globe, in rel
 
 The conclusions of the first paper [@zhang2017] suggest that there is a distinct difference in the change in flow as a result of forestation or deforestation between small watersheds, defined as < 1000 km^2^ and large watersheds > 1000 km^2^. While for small watersheds there was no real change in runoff with changes in cover, for large watersheds there was a clear trend showing a decrease in runoff with and increase in forest cover. Their main conclusion was that the response in annual runoff to forest cover was scale dependent and appeared to be more sensitive to forest cover change in water limited watersheds relative to energy limited watershed [@zhang2017].
 
-The second study [@filoso2017] was a systematic review which classified the historical research and highlighted gaps in the spatial distribution, the types of studies and the types of analysis. Their main conclusion was also that reforestation decreases streamflow, but that there were many interacting factors. For a subset of quantitative data (37) they showed a relationship between catchment size and decline in streamflow.
+The second study [@filoso2017] was a systematic review which classified the historical research and highlighted gaps in the spatial distribution, the types of studies and the types of analysis. Their main conclusion was also that reforestation decreases streamflow, but that there were many interacting factors. For a subset of quantitative data (37) they showed a relationship between watershed size and decline in streamflow.
 
 A final summary paper that includes much of the same data as @zhang2017 and @filoso2017 is @zhou2015, which has one author in common with @zhang2017. However, this paper aims to explain the variation in the data using the Fuh model, and in particular aims to link the variation in the observed data to variations in the exponent *m* in the model. A key observation is that in drier environments, the effects of deforestation are much greater than in wetter environments, which is also suggested by Figure 4 in @zhang2017. 
 
@@ -66,7 +66,7 @@ Building on the analyses by @zhang2017 and @filoso2017, and combining their conc
 
 However, there could be further confounding factors, which are eluded to by @filoso2017:  
 
-* the type of analysis, i.e. paired catchment studies, modelling, time series analysis etc.
+* the type of analysis, i.e. paired watershed studies, modelling, time series analysis etc.
 
 * the age of the study, assuming that historical studies might not have had the ability to measure at the accuracy that currently is available to researchers, or that more careful historical attention to detail in field studies might have been lost more recently due to reductions in research investment.  
 
@@ -221,6 +221,14 @@ Zhang_all <- Zhang_all %>%
   filter(`Watershed #` > 1)
 ```
 
+<!-- correct watershed #76 (Baker1984) to be 157 for DeltaQf_perc -->
+
+```{r}
+Zhang_all <- Zhang_all %>%
+  mutate(DeltaQf_perc = ifelse(`Watershed #` == 76,157,DeltaQf_perc))
+```
+
+
 
 To estimate how the change in streamflow is affected by the change in forest cover while considering the effects of the other variables, we applied generalised additive modelling (GAM) [@wood2006]. 
 
@@ -319,12 +327,12 @@ linear_model_simple <- gam(DeltaQf_perc ~ DeltaF_perc_pos +
 pander(round(summary(linear_model_simple)$p.table,2))
 ```
 
-While the overall variance explained in this model is not high at `r round(summary(linear_model_simple)$r.sq,2)`, it clearly supports the hypothesized relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.5\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 32\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.32)*0.5\%$, while a the percentage forest cover decrease will increase flow by 0.5\%.
+While the overall variance explained in this model is not high at `r round(summary(linear_model_simple)$r.sq,2)`, it clearly supports the hypothesized relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.5\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 31\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.31)*0.5\%$, while a the percentage forest cover decrease will increase flow by 0.5\%.
 
-It is however clear from the lack of explaining power, that there could be confounding factors, as alluded to in the methods. The obvious ones being catchment dryness and area (following @zhang2017). 
+It is however clear from the lack of explaining power, that there could be confounding factors, as alluded to in the methods. The obvious ones being watershed dryness and area (following @zhang2017). 
 
 
-<!-- At the moment using catchment rainfall, we probably want to straight away use P/E0, and explain that rainfall itself might not be a good predictor. Alternatively we can first show that Latitude is a predictor -->
+<!-- At the moment using watershed rainfall, we probably want to straight away use P/E0, and explain that rainfall itself might not be a good predictor. Alternatively we can first show that Latitude is a predictor -->
 
 ```{r model2, echo = F}
 
@@ -342,12 +350,12 @@ Including area and annual precipitation does not really improve the overall expl
 ## The effect of location on the globe
 <!-- include Lat and Long (later E0) -->
 
-```{r global_map, fig.cap="Distribution of included catchments across the globe based on reported or estimated latitude and longitude", out.width="90%", echo=F}  
+```{r global_map, fig.cap="Distribution of included watersheds across the globe based on reported or estimated latitude and longitude", out.width="90%", echo=F}  
 
 include_graphics("../../data/FAOET0data.png")
 ```
 
-As indicated, a second hypothesis relates to whether there is a strong spatial global gradient as captured by latitude and longitude. As the global map (\@ref(fig:global_map)) shows, the distribution of case study catchments covers multiple continents and shows some distinct clustering in parts of the world. Of interest is whether the spatial clustering also indicates a difference in response to forest cover change. 
+As indicated, a second hypothesis relates to whether there is a strong spatial global gradient as captured by latitude and longitude. As the global map (\@ref(fig:global_map)) shows, the distribution of case study watersheds covers multiple continents and shows some distinct clustering in parts of the world. Of interest is whether the spatial clustering also indicates a difference in response to forest cover change. 
 
 
 ```{r model3, echo = F}
@@ -367,7 +375,7 @@ There is no relationship with Longitude, suggesting that the different continent
 
 ## Impact of the dryness index
 
-The previous analysis suggests an influence of radiation on evapotranspiration, and most likely related to the dryness index, as also indicated in @zhang2017. Increased evapotranspiration could lead to drier catchments, unless balanced by rainfall (such as possibly in the tropics). This model introduces the dryness index as a linear variable and drops the annual average precipitation as a variable.
+The previous analysis suggests an influence of radiation on evapotranspiration, and most likely related to the dryness index, as also indicated in @zhang2017. Increased evapotranspiration could lead to drier watersheds, unless balanced by rainfall (such as possibly in the tropics). This model introduces the dryness index as a linear variable and drops the annual average precipitation as a variable.
 
 
 <!-- include Dryness index -->
@@ -387,7 +395,7 @@ pander(round(summary(model4_dryness)$p.table,2))
 
 The results from this model confirm that dryness is a significant confounding factor of the change in streamflow as function of the change in forest cover change. In fact if the dryness index doubles (remembering that Dryness = 1 when E0 = Pa, so in this case E0 = 2*Pa, which is very dry), the change in runoff is ~14\% greater. However, more interesting, Latitude remains a significant predictor with each degree in latitude causing an -0.31\% change in runoff. This indicates that Dryness (i.e. an increase in radiation) alone does not explain the trend in the Latitude and some other unknown confounding factor is captured by Latitude.  
 
-However, the result also indicates possible issues with the data, some of the Dryness values are very large (> 4) and these values have high leverage in the data. These catchment are listed in Table XX:
+However, the result also indicates possible issues with the data, some of the Dryness values are very large (> 4) and these values have high leverage in the data. These watershed are listed in Table XX:
 
 
 ```{r, echo = F}
@@ -400,10 +408,13 @@ pander(Zhang_all2 %>% filter(Dryness > 4) %>% select(Latitude, Longitude,`Waters
 Zhang_all2 <- Zhang_all2 %>%
   mutate(length = To - From)
 
-model5_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + s(Area_km2) + s(Dryness) + length +  Assessment_technique + Latitude ,  data = Zhang_all2 %>% filter(Dryness < 4))
-#summary(model5_all)
+model5_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
+                    s(Area_km2, bs="ts") + s(Dryness, bs="ts") + s(length, bs="ts") + 
+                    Latitude ,  data = Zhang_all2)
+summary(model5_all)
 #gam.check(model5_all)
 #plot(model5_all)
+#pander(round(summary(model5_all)$p.table,2))
 ```
 <!-- model 2c include smooth variables -->
 
@@ -411,9 +422,11 @@ model5_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + s(Area_km2) + s
 
 
 model6_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
-                    s(Dryness, bs="ts" ) + s(Latitude, bs="ts" ) + 
-                    Precip_data_type + Assessment_technique + Forest_type +
-                    Hydrological_regime, data = Zhang_all2)
+                    s(Area_km2, bs="ts") + s(Dryness, bs="ts" ) + 
+                    s(Latitude, bs="ts" ) +  s(length, bs="ts") +
+                    Precip_data_type +  Assessment_technique + Forest_type +
+                    Hydrological_regime
+                    , data = Zhang_all2)
 summary(model6_all)
 #gam.check(model6_all)
 #plot(model6_all)
@@ -421,38 +434,95 @@ summary(model6_all)
 
 ```{r model6_reduc}
 model6_reduc <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
-                    s(Dryness, bs="ts" ) + s(Latitude, bs="ts" ) + 
+                    s(Dryness, bs="ts" ) + s(Latitude, bs="ts") + 
+                      s(Area_km2, bs="ts") +  s(length, bs="ts") +
                     Assessment_technique +
                     Hydrological_regime, data = Zhang_all2)
 summary(model6_reduc)
 
 ```
 
+Clearly Latitude is masking other factors including the assessment technique and the forest type
 
-```{r, echo = F}
+<!-- Show boxplots of relationships with latitude-->
+```{r, eval =T, echo =F}
+Zhang_all2 %>%
+  ggplot(aes(Assessment_technique, Latitude)) + 
+  geom_boxplot(colour = "blue") + theme_bw()
+```
+
+```{r, eval =T, echo =F}
+Zhang_all2 %>%
+  ggplot(aes(Forest_type, Latitude)) + 
+  geom_boxplot(colour = "blue") + theme_bw()
+```
+
+```{r, eval =T, echo =F}
+Zhang_all2 %>%
+  ggplot(aes(Hydrological_regime, Latitude)) + 
+  geom_boxplot(colour = "blue") + theme_bw()
+```
+
+
+Clearly all have at least some relationship with Latitude, therefore are being masked if Latitude is included in the model.
+
+<!-- Take out Latitude -->
+```{r model7_noLat}
+model7_noLat <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
+                    s(Dryness, bs="ts" ) + 
+                      s(Area_km2, bs="ts")  +
+                    Precip_data_type +  Assessment_technique + Forest_type +
+                    Hydrological_regime, data = Zhang_all2)
+summary(model7_noLat)
+plot(model7_noLat)
+```
+
+```{r, eval =T, echo =F}
+Zhang_all2 %>%
+  ggplot(aes(DeltaQf_perc, length)) + 
+  geom_point(colour = "blue") + theme_bw()
+```
+
+In drier watersheds, changes in forest cover have greater impact on flow, which is similar to @zhang2017. This is most likely because in these watersheds the overall flow is surface flow dominated and therefore the buffering that is afforded by the groundwater inputs is not as great. As we don't have a separate variable for groundwater inputs (although this effect is estimated in many studies), we cannot analyse this effect separately.
+
+In contrast to @filoso2017, we also did not identify an effect of the 
+
+Given how skewed Dryness is due tot he few watersheds that have very high dryness values, it is worth investigating what excluding these 4 watersheds from the data means for the relationships. 
+
+<!--reduce drynes < 4 -->
+```{r model7_noLatb}
+model7_noLatb <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
+                    s(Dryness, bs="ts" ) + #s(Latitude, bs="ts") + 
+                      s(Area_km2, bs="ts") +
+                    Precip_data_type +  Assessment_technique + Forest_type +
+                    Hydrological_regime, data = Zhang_all2 %>% filter(Dryness < 4))
+summary(model7_noLatb)
+plot(model7_noLatb)
+```
+
+
+
+
+
+```{r, echo = F, eval =F}
 Zhang_all2 %>%
   ggplot(aes(DeltaF_perc_pos, DeltaQf_perc, colour = Dryness)) + geom_point()
 ```
 
+
 ```{r, echo = F}
 Zhang_all2 %>%
-  ggplot(aes(Assessment_technique,Area_km2)) + geom_boxplot()
+  ggplot(aes(Hydrological_regime,Forest_type)) + geom_count() + theme_bw()
 ```
 
-```{r, eval =F}
+
+
+
+```{r, eval =T, echo =F}
 Zhang_all2 %>%
-  filter(Area_km2 > 3e+06)
-
-```
-
-
-
-No evidence of effect of area
-
-
-```{r, eval =F}
-Zhang_all %>%
-  ggplot(aes(Assessment_technique,log10(Area_km2))) + geom_boxplot()
+  ggplot(aes(Assessment_technique,log10(Area_km2))) + 
+  geom_boxplot(colour = "blue") +
+  theme_bw() + xlab("assessment technique") + ylab("log10(Area in km2)")
 ```
 
 ```{r, echo = F}
@@ -479,7 +549,7 @@ Zhang_all2 %>%
   ggplot(aes(Longitude, Latitude, colour = DeltaF_perc, size = DeltaQf_perc/100 )) + geom_point(alpha = 0.5)
 ```
 
-<!--Check the size distribution of the catchments -->
+<!--Check the size distribution of the watersheds -->
 
 ```{r, eval =F}
 Zhang_all %>%
@@ -492,7 +562,40 @@ length(Zhang_all$Area_km2[Zhang_all$Area_km2<10])/total
 Zhang_all2 %>%
   ggplot(aes(length)) + geom_histogram(fill="blue", bins =50) 
 ```
-Essentially, the analysis shows at the moment that their is no evidence that the size of the catchment influences the 
+
+```{r, eval =F, echo =F}
+Zhang_all2 %>%
+  ggplot(aes(log10(Area_km2), DeltaQf_perc, colour = DeltaF_perc)) + 
+  geom_point(alpha = 0.5) + theme_bw()
+```
+
+```{r, eval =F, echo =F}
+Zhang_all2 %>%
+  mutate(size_class = round(log10(Area_km2),0)) %>%
+  ggplot(aes(log10(Area_km2), DeltaQf_perc, group = size_class)) + 
+  geom_boxplot(colour = "blue") + theme_bw()
+```
+
+<!--- Analysis of Methods by dryness -->
+
+```{r, eval =F, echo =F}
+Zhang_all2 %>%
+  ggplot(aes(Assessment_technique, Dryness)) + 
+  geom_boxplot(colour = "blue") + theme_bw()
+```
+
+
+Discussion
+======================
+
+Essentially, the analysis shows at the moment that in contrast to @zhang2017 there is no evidence that the size of a watershed influences the change in the streamflow as a result of changes in forestry. If anything the scatter in the data (in the change in flow) is greater for the smaller watersheds then for the larger watersheds. In other words, the response to changes in forest cover is more consistent for larger watersheds than it is for smaller watersheds.
+
+As shown earlier, most of the smaller watersheds are "real observed data" using paired watershed studies, while for larger watersheds, the analysis are mostly based on modelling approximations using either elasticity analysis (EA), Hydrological modelling (HM) or a combined use of statistical methods (SH) or quasi paired watershed analsysi (QPW), thus all providing an approximation of the effect of forestry on streamflow rather than a direct comparison of watersheds. This is a confounding factor that is not easily addressed in the regression modelling attempted here. Furthermore, the catchments analysed using EA, are concentrated in the drier end of the Dryness index scale compared to the other methods, with only the paired watershed experiment (PWE) assessment technique covering the full range of dryness indices.
+
+There are further confouding factors in the data, which were also classified by @filoso2017 and thesse create biases in the data set that can impact the overall assessment. For example, snow dominated hydrological regimes (SD), which are weakly significant, are dominated by Coniferous Forests (CF), while the majority of the rain dominated regimes are all broadleaf forests (BF). However, the forest type classification is very coarse and does not fully capture possible physiological differences that could affect evapotranspiration and therefore changes in streamflow.
+
+Apart from a difficulty of analysing complex confounding factors in the data, a general limitation of the type of analysis presented is that this work does not consider the spatial arrangement of the forest clearing in the catchments. While for fully or almost fully cleared smaller catchments this might not be an issue, it is perceivable that for larger catchments being partially cleared, a interaction between spatial location and clearing could be a factor in determining the change in streamflow. Clearing head water catchments on shallower soils might have a larger impact than clearing in downstream areas on deeper soils.    
+
 
 
 References {#references .unnumbered}
