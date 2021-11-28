@@ -142,7 +142,7 @@ literature around the impact of forests on streamflow (Andréassian,
 consensus that if forest areas increase, streamflow decreases and
 vice-versa. The most dramatic result in relation to this, is Figure 5 in
 Zhang et al. (2011) indicating (for Australian watersheds) a 100\%
-decrease in stream flow for watersheds with 100\% forest cover. However,
+decrease in streamflow for watersheds with 100\% forest cover. However,
 on the other end of the spectrum, in a series of French watersheds
 (Cosandey et al., 2005), there was no change in streamflow
 characteristics in 2 of the three watersheds studied in relation to
@@ -447,7 +447,12 @@ streamflow}\label{the-initial-relationship-between-change-in-forest-cover-and-st
 Following Zhang et al. (2017), the first step is to use a linear
 regression to investigate the percent change in flow as a result in the
 percent change forestry and modulated by the direction of the change,
-either an increase in forest cover, or decrease in forest cover.
+either an increase in forest cover, or decrease in forest cover:
+
+\[\tag{3}
+\begin{aligned}
+\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \varepsilon
+\end{aligned}\]
 
 \begin{longtable}[]{@{}ccccc@{}}
 \toprule
@@ -500,22 +505,44 @@ Pr(\textgreater\textbar t\textbar)\strut
 \bottomrule
 \end{longtable}
 
-While the overall variance explained in this model is not high at 0.19,
-it clearly supports the hypothesized relationship between the change in
-forest cover and the change in flow. The model suggests that for every
-1\% change in forest cover, on the average, the flow changes 0.5\%.
-However the change in flow is different for forest cover decreases
-compared to forest cover increases. In fact, forest cover increases
-decrease flow by 31\% less than a similar decrease in forest cover
-causes flow to increase. So roughly speaking, a 1\% forest cover
-increase on the average decreases flow by \((1 - 0.31)*0.5\%\), while a
-the percentage forest cover decrease will increase flow by 0.5\%.
+While the overall variance explained in this model is not high with an
+adjusted \emph{r\textsuperscript{2}} of 0.19, it clearly supports the
+hypothesized relationship between the change in forest cover and the
+change in flow. The model suggests that for every 1\% change in forest
+cover, on the average, the flow changes 0.5\%. However the change in
+flow is different for forest cover decreases compared to forest cover
+increases. In fact, forest cover increases decrease flow by 31\% less
+than a similar decrease in forest cover causes flow to increase. So
+roughly speaking, a 1\% forest cover increase on the average decreases
+flow by \((1 - 0.31)*0.5\%\), while a the percentage forest cover
+decrease will increase flow by 0.5\%.
 
-It is however clear from the lack of explaining power, that there could
-be confounding factors, as alluded to in the methods. The obvious ones
-being watershed dryness and area (following Zhang et al. (2017)).
+It is however it is clear from the lack of explaining power, that there
+could be confounding factors, as alluded to in the methods. The obvious
+ones being watershed dryness and area (following Zhang et al. (2017)):
+
+\[\tag{4}
+\begin{aligned}
+\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + Area_{km^2} + \varepsilon
+\end{aligned}\] Where \(Pa_mm\) is the annual average rainfall in mm.
 
 \begin{longtable}[]{@{}ccccc@{}}
+\caption{Summary of the second model, taking into account the annual
+rainfall and the area of the watershed}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
 \toprule
 \begin{minipage}[b]{0.31\columnwidth}\centering
 ~\strut
@@ -605,17 +632,38 @@ increase or decrease.
 globe}\label{the-effect-of-location-on-the-globe}}
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{../../data/FAOET0data2} \caption{Distribution of included catchments across the globe based on reported or estimated latitude and longitude}\label{fig:global_map}
+\includegraphics[width=0.9\linewidth]{../../data/FAOET0data2} \caption{Distribution of included watersheds across the globe based on reported or estimated latitude and longitude}\label{fig:global_map}
 \end{figure}
 
-As indicated, a second hypothesis relates to whether there is a strong
+As indicated, a further hypothesis relates to whether there is a strong
 spatial global gradient as captured by latitude and longitude. As the
 global map (@ref(fig:global\_map)) shows, the distribution of case study
 watersheds covers multiple continents and shows some distinct clustering
 in parts of the world. Of interest is whether the spatial clustering
-also indicates a difference in response to forest cover change.
+also indicates a difference in response to forest cover change:
+
+\[\tag{5}
+\begin{aligned}
+\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + Area_{km^2} + Latitude + Longitude + \varepsilon
+\end{aligned}\]
 
 \begin{longtable}[]{@{}ccccc@{}}
+\caption{Results of the model including Latitude and
+Longitude}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
 \toprule
 \begin{minipage}[b]{0.31\columnwidth}\centering
 ~\strut
@@ -717,23 +765,24 @@ away from the equator. This suggests an influence of radiation, which
 will be tested next. In addition, the model suggests an influence of the
 annual average rainfall, with wetter watersheds having slightly lower
 changes in runoff. The total explaining power of the model is still low
-at 0.22 suggesting further confounding factors currently not included in
-the model.
+with an adjusted \emph{r\textsuperscript{2}} of 0.22 suggesting further
+factors that are currently not included in the model.
 
-There is no relationship with Longitude, suggesting that the different
-continents do not show a trend in the East-West direction.
+There is no relationship with Longitude, suggesting that the watersheds
+across different continents do not show an East-West direction trend.
 
 \hypertarget{impact-of-the-dryness-index}{%
 \subsection{Impact of the dryness
 index}\label{impact-of-the-dryness-index}}
 
-The previous analysis suggests an influence of radiation on
+Latitude might be indicating an influence of radiation on
 evapotranspiration, and most likely related to the dryness index, as
 also indicated in Zhang et al. (2017). Increased evapotranspiration
 could lead to drier watersheds, unless balanced by rainfall (such as
-possibly in the tropics). This model introduces the dryness index as a
-linear variable and drops the annual average precipitation as a
-variable.
+possibly in the tropics). The North-South trend in dryness would be
+related to Latitude. This model introduces the dryness index as a linear
+variable and drops the annual average precipitation as a variable, as
+dryness is calculated from.
 
 \begin{longtable}[]{@{}ccccc@{}}
 \toprule
@@ -843,7 +892,7 @@ factor is captured by Latitude.
 
 However, the result also indicates possible issues with the data, some
 of the Dryness values are very large (\textgreater{} 4) and these values
-have high leverage in the data. These watershed are listed in Table XX:
+have high leverage in the data. These watersheds are listed in Table XX:
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
@@ -1372,4 +1421,5 @@ doi:\href{https://doi.org/https://doi.org/10.1029/2009WR008829}{https://doi.org/
 
 
 \end{document}
+
 
