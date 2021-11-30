@@ -1,0 +1,28 @@
+﻿Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,DeltaF_perc,DeltaQf_perc,data type,Assessment technique,Source of info,Latitude,Longitude,E0,Length of study (years),notes,From,To,"Location Details AL=aprox location given by author, PL=point location given by author, GM= coordinates guessed from google maps",Complete,Possible duplicate
+313,Adjungbilly Creek,391,1011,CF,RD,30.08,-60,OB,EA,Zhang et al. 2011,-32.02,148.25,930,14,,1995,2008,PL,1,
+314,Battaling Ck,16.64,629,CF,RD,19,-52,OB,EA,Zhang et al. 2011,-33.32,116.57,1089,9,,2000,2008,PL,1,
+315,Bombala River,559,783,CF,RD,26.8,-29,OB,EA,Zhang et al. 2011,-37,149.38,779,14,,1990,2000,PL,1,
+316,Burnt Out Ck,0.6,806,CF,RD,67,-100,OB,EA,Zhang et al. 2011,-35.13,138.7,1117,5,,2003,2007,PL,1,
+317,Crawford River,606,728,MF,RD,24.18,-66,OB,EA,Zhang et al. 2011,-37.98,141.46,996,5,,2004,2009,PL,1,
+318,Darlot Ck,760,688,MF,RD,13.3,-28,OB,EA,Zhang et al. 2011,-38.15,141.77,995,5,,2004,2009,PL,1,
+319,Delegate River,1135.7,859,CF,RD,14,-52,OB,EA,Zhang et al. 2011,-36.98,149.05,726,11,,1990,2000,PL,1,
+320,Eumeralla River,502,725,BF,RD,19.84,-57,OB,EA,Zhang et al. 2011,-38.26,141.94,987,8,,2001,2008,PL,1,
+321,Goobarragandra Ck,673,1009,CF,RD,8.32,-35,OB,EA,Zhang et al. 2011,-35.19,148.2,952,19,,1990,2008,PL,1,
+322,Jingellic Ck,390,838,CF,RD,27.5,-37,OB,EA,Zhang et al. 2011,-35.53,147.41,1018,10,,1996,2005,PL,1,
+323,Pine Ck,3.2,629,CF,RD,88,-106,OB,EA,Zhang et al. 2011,-37.29,145.05,953,12,,1996,2005,PL,1,
+324,Red Hill,1.95,760,CF,RD,78,-66,OB,EA,Zhang et al. 2011,-35.12,149.35,900,6,"Repeat of Webb and Kathuria, 2012 # 248",2001,2005,PL,1,1
+325,Traralgon Ck,89,959,BF,RD,58,-78,OB,EA,Zhang et al. 2011,-38.32,146.53,827,7,,1993,1999,PL,1,
+326,Upper Denmark River,243,742,BF,RD,15.17,-93,OB,EA,Zhang et al. 2011,-34.7,117.22,1006,5,,2004,2008,PL,1,
+327,Yate Flat Ck,26.35,742,BF,RD,33.57,-91,OB,EA,Zhang et al. 2011,-33.7,117.29,1006,5,,2004,2008,PL,1,
+328,Padbury reservoir catchment,1.964,880,MF,RD,60.9,-92,OB,EA,Borg et al. 1988,-33.8101414,116.0039231,,5,,1978,1983,PL,1,1
+329,Pasak River (North Thailand),14500,1208,MF,RD,-50,0,OB,EA,"cited in Pena-Arancibia et al. 2012, original paper inaccessible",16.433,101.18,1643,25,"Lat long for Petchaboon, data also via: http://www.bom.gov.au/water/about/waterResearch/document/10_Thailand-12.pdf",,,GM,0,
+330,Pearl River,179752,1770,MF,RD,37,0,OB,SH,Zhou et al. 2010,22.88,113.5,1200,50,"Area is for the whole Guangdong province, from Pena-Arancibia et al. 2012",1993,2006,GM,1,
+331,Lemon,3.44,702.6,MF,RD,-53,100,OB,EA,Zhao et al. 2010,-33.296,116.41,1436.4,24,data from table 6 Zhao et al. 2010 rather than original paper,1974,1997,PL,1,
+332,GH2/Glendhu,3.1,1282.4,CF,RD,67,-78,OB,EA,Zhao et al. 2010,-45.713,169.75,615.5,22,data from table 6 Zhao et al. 2010 rather than original paper,1980,2000,PL,1,
+333,Burdekin,17299,690,BF,RD,-25,1,OB,SH,Pena-Arancibia et al. 2012,-19,145,1930,80,,1979,2007,GM,1,
+334,Comet,16440,650,BF,RD,-45,1,OB,SH,Pena-Arancibia et al. 2012,-24.5,148.5,1680,80,follow-up study on watershed #8 with different results,1979,2007,GM,1,1
+335,Ji-Parana,33000,1875,BF,RD,-50,0,OB,SH,Rodriguez et al. 2010,-10.87,61.94,1200,22,precipitation varies between 1250 and 2500 mm,1991,2004,AL,1,
+336,Brigalow C2,0.117,720,BF,RD,-100,100,OB,PWE,Thornton et al. 2007,-24.81,149.8,2133,25,"Cropping catchment, grassland catchment is C3, runoff % change estimate based on Table 4 in Thorton et al. 2007",1982,2003,GM,1,
+337,San Antonio,104,680,MF,RD,-32,0,OB,PWE,"Bart and Hope,2010",35.89666667,-121.0872222,,5,Another catchment in Bart and Hope that was for some reason not added originally. Coordinates from usgs,1972,1988,AL,1,
+204,"M1, Canada",1140,895,CF,SD,18.9,0,OB,QPW,"Buttle and Metcalfe, 2000. Andréassian et al 2004 doi:10.1016/j.jhydrol.2003.12.015 (Review)",49.68,-83.65,,5,Mattawishkwia River at Hearst Point location from  https://www.r-arcticnet.sr.unh.edu/Points/Des4371.txt,1985,1990,PL,1,
+205,Duqueco,1545,1700,BF,RD,15.19,-19.5,OB,SH,"Iroumé and Palacios,2013",-37.552613,-72.010281,,43,added,1962,2005,GM,1,

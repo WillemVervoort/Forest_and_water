@@ -140,8 +140,10 @@ suppressWarnings(require(bookdown))
 suppressWarnings(require(pander))
 
 Zhang_small <- read_csv("../../data/TablesZhangetal2017_small.csv")
-Zhang_large <- read_csv("../../data/TablesZhangetal2017_large.csv")
-
+Zhang_large <- read_csv("../../data/TablesZhangetal2017_large.csv") %>%
+  mutate(Complete = 1,
+         `Possible duplicate` = 0)
+new_data <- read_csv("../../data/TableNewData.csv")
 ```
 
 <!-- read in the ET data -->
@@ -191,10 +193,14 @@ the package`mgcv` does not seem to be happy with complex names, so probably bett
 ```{r, echo = F}
 names(Zhang_small)[3:4] <- c("Area_km2", "Pa_mm")
 names(Zhang_large)[3:4] <- c("Area_km2", "Pa_mm")
+names(new_data)[3:4] <- c("Area_km2", "Pa_mm")
 names(Zhang_small)[5:6] <- c("Forest_type", "Hydrological_regime")
 names(Zhang_large)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(new_data)[5:6] <- c("Forest_type", "Hydrological_regime")
 names(Zhang_small)[9:10] <- c("Precip_data_type", "Assessment_technique")
 names(Zhang_large)[9:10] <- c("Precip_data_type", "Assessment_technique")
+names(new_data)[9:10] <- c("Precip_data_type", "Assessment_technique")
+
 ```
 
 <!-- combine both tables -->
@@ -202,29 +208,50 @@ names(Zhang_large)[9:10] <- c("Precip_data_type", "Assessment_technique")
 ```{r, echo = F, warning = F}
 Zhang_small$From <- as.numeric(Zhang_small$From)
 Zhang_small$To <- as.numeric(Zhang_small$To)
-Zhang_all <- bind_rows(Zhang_large,Zhang_small)
-
+Zhang_all <- bind_rows(Zhang_large,Zhang_small) %>%
+  mutate(dataset = "original Zhang et al data")
+new_data <- new_data %>%
+  mutate(dataset = "new data")
+All_data <- bind_rows(Zhang_all, new_data)
 ```
+
+<!--filter duplicates -->
+```{r, echo = F}
+All_data <- All_data %>%
+  mutate(`Possible duplicate` = 
+           ifelse(is.na(`Possible duplicate`)==T,0,`Possible duplicate`),
+         `Possible duplicate` = as.numeric(`Possible duplicate`)) %>%
+  filter(`Possible duplicate` != 1)
+```
+Removing possible duplicates removes 29 watersheds from the overall data set
+
+
 
 
 <!--now combine with E0 values -->
 ```{r, echo = F}
-Zhang_all <- left_join(Zhang_all %>% select(-c(E0, Longitude, Latitude)),PET_all, by = "Watershed #")
+All_data <- left_join(All_data ,PET_all %>% select(-c(Longitude, Latitude)), by = "Watershed #")
+All_data <- All_data %>%
+  mutate(E0 = ifelse(is.na(E0.x)==T, E0.y, E0.x)) %>%
+  select(-c(E0.x,E0.y)) #%>%
+  #rename(Latitude = Latitude.x,
+#         Longitude = Longitude.x)
+
 # calculate dryness index
-Zhang_all <- Zhang_all %>%
+All_data <- All_data %>%
   mutate(Dryness = E0/Pa_mm)
 ```
 
 <!--remove the Amazon from the analysis -->
 ```{r, echo = F}
-Zhang_all <- Zhang_all %>%
-  filter(`Watershed #` > 1)
+All_data <- All_data %>%
+  filter(`Watershed #` != 1)
 ```
 
 <!-- correct watershed #76 (Baker1984) to be 157 for DeltaQf_perc -->
 
 ```{r,echo = F}
-Zhang_all <- Zhang_all %>%
+All_data <- All_data %>%
   mutate(DeltaQf_perc = ifelse(`Watershed #` == 76,157,DeltaQf_perc))
 ```
 
@@ -260,7 +287,7 @@ The overall dataset contains `r nrow(Zhang_all)` observations of changes in flow
 
 ```{r, echo = F, warning = F, message=F, eval =F}
 png("DataExploration.png", width = 2500, height = 1800, res = 300)
-Zhang_all %>%
+All_data %>%
   pivot_longer(c(DeltaF_perc, DeltaQf_perc, Area_km2, Pa_mm, E0), 
                names_to = "variable", values_to = "value") %>%
   ggplot(aes(value)) + geom_histogram(fill = "steelblue", bins=50) + theme_bw() +
@@ -282,7 +309,7 @@ include_graphics("DataExploration.png")
 
 
 ```{r, echo = F}
-Zhang_all2 <- Zhang_all %>%
+All_data2 <- All_data %>%
   mutate(Forest_Sign = ifelse(DeltaF_perc < 0,
                               "decrease", "increase"),
          DeltaF_perc_pos = ifelse(DeltaF_perc < 0,
@@ -293,7 +320,7 @@ Zhang_all2 <- Zhang_all %>%
 ```{r, echo = F, warning = F, message=F, eval =F}
 # plot to show the difference
 png("Increase_decrease.png", width = 2500, height = 1800, res = 300)
-Zhang_all2 %>%
+All_data2 %>%
   ggplot(aes(DeltaF_perc_pos,DeltaQf_perc, colour = Forest_Sign)) + 
   geom_point() +  
   facet_wrap(~Forest_Sign, ncol=1, scales = "free") + 
@@ -322,31 +349,48 @@ $$\tag{3}
 ```{r model1, echo = F}
 linear_model_simple <- gam(DeltaQf_perc ~ DeltaF_perc_pos +
                              Forest_Sign, 
-                           data = Zhang_all2)
+                           data = All_data2 %>% filter(dataset == "original Zhang et al data"))
 #summary(linear_model_simple)
 #gam.check(linear_model_simple)
 
 ```
 
+```{r model1b, echo = F}
+linear_model_simple_b <- gam(DeltaQf_perc ~ DeltaF_perc_pos +
+                             Forest_Sign, 
+                           data = All_data2)
+#summary(linear_model_simple)
+#gam.check(linear_model_simple)
+
+```
+
+
 ```{r, echo =F}
 pander(round(summary(linear_model_simple)$p.table,2), caption="Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change")
 ```
+```{r, echo =F}
+pander(round(summary(linear_model_simple_b)$p.table,2), caption="Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change including the new data sets")
+```
 
-While the overall variance explained in this model is not high with an adjusted *r^2^* of `r round(summary(linear_model_simple)$r.sq,2)`, it clearly supports the hypothesized relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.5\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 31\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.31)*0.5\%$, while a the percentage forest cover decrease will increase flow by 0.5\%.
+While the overall variance explained in this model is not high with an adjusted *r^2^* of `r round(summary(linear_model_simple)$r.sq,2)`, it clearly supports the hypothesized relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.45\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 29\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.29)*0.45\%$, while a the percentage forest cover decrease will increase flow by 0.45\%.
 
-It is however it is clear from the lack of explaining power, that there could be confounding factors, as alluded to in the methods. The obvious ones being watershed dryness and area (following @zhang2017): 
+Checking this result against including the new data indicates that this mainly strengthens the difference between the forest cover increases and decreases, and decreases the mean decrease in flow as a result of forest cover change
+
+
+It is however it is clear from the lack of explaining power for the model, that there could be confounding factors, as alluded to in the methods. The obvious ones being watershed dryness and area (following @zhang2017): 
 
 $$\tag{4}
 \begin{aligned}
-\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + Area_{km^2} + \varepsilon
+\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + log10(Area_{km^2}) + \varepsilon
 \end{aligned}$$
-Where $Pa_mm$ is the annual average rainfall in mm.
+
+Where $Pa_mm$ is the annual average rainfall in mm, and a log base 10 transformation is applied to the area variable given that the distribution of Area is higly skewed (Figure 1)
 
 <!-- At the moment using watershed rainfall, we probably want to straight away use P/E0, and explain that rainfall itself might not be a good predictor. Alternatively we can first show that Latitude is a predictor -->
 
 ```{r model2, echo = F}
 
-linear_model2 <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + Area_km2 + Pa_mm, data = Zhang_all2)
+linear_model2 <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + log10(Area_km2) + Pa_mm, data = All_data2)
 #summary(linear_model2)
 #gam.check(linear_model2)
 ```
@@ -355,7 +399,7 @@ linear_model2 <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + Area_km2 + P
 pander(round(summary(linear_model2)$p.table,2), caption="Summary of the second model, taking into account the annual rainfall and the area of the watershed")
 ```
 
-Including area and annual precipitation does not really improve the overall explaining power of the model, in fact, annual precipitation appears to be only a very small confounding factor, representing only a -0.01/% partial effect in the change in streamflow, holding all other factors constant. In contrast to earlier reported studies [@zhang2017; @filoso2017], watershed area has no effect on the change in stream flow. This supports our approach (in contrast to @zhang2017) to consider watershed area as a continuous variable and making no separation between larger and smaller watersheds The main effects remain the change in forest cover and whether this is an increase or decrease.
+Including area and annual precipitation slightly improves the overall explaining power of the model. Annual precipitation is in fact not significant. Relative to earlier reported studies [@zhang2017; @filoso2017], the log base 10 transformed watershed area indicates a p-value of only `r round(summary(linear_model2)$p.table[4,4],2)`, suggesting a marginal impact on the change in stream flow. This supports our approach (in contrast to @zhang2017) to consider watershed area as a continuous variable and making no separation between larger and smaller watersheds The main effects remain the change in forest cover and whether this is an increase or decrease.
 
 ## The effect of location on the globe
 <!-- include Lat and Long (later E0) -->
@@ -369,28 +413,28 @@ As indicated, a further hypothesis relates to whether there is a strong spatial 
 
 $$\tag{5}
 \begin{aligned}
-\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + Area_{km^2} + Latitude + Longitude + \varepsilon
+\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + log10(Area_{km^2}) + Latitude + Longitude + \varepsilon
 \end{aligned}$$
 
 
 ```{r model3, echo = F}
-model3_includeLatLong <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + Area_km2 + Pa_mm + Latitude + Longitude, data = Zhang_all2)
+model3_includeLatLong <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + log10(Area_km2) + Pa_mm + Latitude + Longitude, data = All_data2)
 #summary(model3_includeLatLong)
 #gam.check(model3_includeLatLong)
 ```
 
 ```{r, echo =F}
-pander(round(summary(model3_includeLatLong)$p.table,2), caption= "Results of the model including Latitude and Longitude")
+pander(round(summary(model3_includeLatLong)$p.table,2), caption= "Results of the model including Latitude and Longitude including new data")
 ```
 
 
-This linear model shows that there is a significant gradient in the Latitude and with annual average rainfall, with watersheds closer to the equator having lower changes in the runoff compare to watersheds further away from the equator. This suggests an influence of radiation, which will be tested next. In addition, the model suggests an influence of the annual average rainfall, with wetter watersheds having slightly lower changes in runoff. The total explaining power of the model is still low with an adjusted *r^2^* of `r round(summary(model3_includeLatLong)$r.sq,2)` suggesting further factors that are currently not included in the model.
+There appears to be no significant latitudinal gradient. The total explaining power of the model is still low with an adjusted *r^2^* of `r round(summary(model3_includeLatLong)$r.sq,2)` suggesting further factors that are currently not included in the model.
 
-There is no relationship with Longitude, suggesting that the watersheds across different continents do not show an East-West direction trend.
+Note that in this case the significance of the Area variable increases, and generally indicates that larger watersheds would be expected to have a lower change in streamflow as also indicated in @zhang2017.
 
 ## Impact of the dryness index
 
-Latitude might be indicating an influence of radiation on evapotranspiration, and most likely related to the dryness index, as also indicated in @zhang2017. Increased evapotranspiration could lead to drier watersheds, unless balanced by rainfall (such as possibly in the tropics). The North-South trend in dryness would be related to Latitude. This model introduces the dryness index as a linear variable and drops the annual average precipitation as a variable, as dryness is calculated from.
+Climate, and in particular evapotranspiration would be expected to have a significant effect on the streamflow change as represented by the dryness index, which is also indicated in @zhang2017. Increased evapotranspiration could lead to drier watersheds, unless balanced by rainfall (such as possibly in the tropics). This model introduces the dryness index as a linear variable and drops the annual average precipitation as a variable, as dryness is calculated from the precipitation. It also drops the Latitude and Longitude as these are indicated not to be significant.
 
 
 <!-- include Dryness index -->
@@ -398,8 +442,8 @@ Latitude might be indicating an influence of radiation on evapotranspiration, an
 ```{r model4, echo = F}
 #Zhang_all2 <- Zhang_all2 %>%
 #  mutate(length = To - From)
-model4_dryness <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + Area_km2 +  
-                        Latitude + Longitude + Dryness, data = Zhang_all2)
+model4_dryness <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + log10(Area_km2) +  
+                        Dryness, data = All_data2)
 #summary(model4_dryness)
 #gam.check(model4_dryness)
 ```
@@ -422,13 +466,13 @@ pander(Zhang_all2 %>% filter(Dryness > 4) %>% select(Latitude, Longitude,`Waters
 The work by @filoso2017 and earlier by @jackson2005 has indicated that the length of the study might influence the response. This links to the idea from @kuczera1987 that the effect of logging or deforestation or reforestation reduces with the length of time post intervention (see also @jackon2005). In addition to adding the length as a variable, all continuous variables (Dryness, Area, length and Latitude) were considered non-linear in this model and as indicated a shrinkage smoothing spline [@wood2006] was applied to these variables. 
 
 ```{r model5, echo = F}
-Zhang_all2 <- Zhang_all2 %>%
+All_data2 <- All_data2 %>%
   mutate(length = To - From)
 
 model5_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
-                    s(Area_km2, bs="ts") + s(Dryness, bs="ts") + 
-                    s(length, bs="ts") + s(Latitude, bs = "ts") ,
-                  data = Zhang_all2)
+                    s(log10(Area_km2), bs="ts") + s(Dryness, bs="ts") + 
+                    s(length, bs="ts") ,
+                  data = All_data2)
 summary(model5_all)
 #gam.check(model5_all)
 #plot(model5_all)
@@ -437,28 +481,31 @@ pander(round(summary(model5_all)$s.table,2))
 ```
 <!-- model 2c include smooth variables -->
 
-The overall explaining power of the model increases with an adjusted *r^2^* of `r round(summary(model5_all)$r.sq,2)`, but little changes in the significance of the variables.
+Including non-linearity increases the overall explaining power of the model to an adjusted *r^2^* of `r round(summary(model5_all)$r.sq,2)`, but creates few changes in the significance of the variables. However, it also can create a chance of overfitting, as the smoothing splines allow significant flexibility, which will be investigated below.
 
-A final full model
+However, first a final full model which includes the remaining categorical variables (Precipitation data type, Assessment technique, Forest type and Hydrological regime) are included in the model
 
 ```{r model6_all, echo = F}
 
 
 model6_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
-                    s(Area_km2, bs="ts") + s(Dryness, bs="ts" ) + 
-                    s(Latitude, bs="ts" ) +  s(length, bs="ts") +
+                    s(log10(Area_km2), bs="ts") + s(Dryness, bs="ts" ) + 
+                     s(length, bs="ts") +
                     Precip_data_type +  Assessment_technique + Forest_type +
                     Hydrological_regime
-                    , data = Zhang_all2)
-summary(model6_all)
+                    , data = All_data2)
+#summary(model6_all)
 #gam.check(model6_all)
 #plot(model6_all)
+pander(round(summary(model6_all)$p.table,2))
+pander(round(summary(model6_all)$s.table,2))
+plot(model6_all, select = 3)
 ```
 
-```{r model6_reduc, eval = F}
+```{r model6_reduc, eval = F, echo = F}
 model6_reduc <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
-                    s(Dryness, bs="ts" ) + s(Latitude, bs="ts") + 
-                      s(Area_km2, bs="ts") +  s(length, bs="ts") +
+                    s(Dryness, bs="ts" )  + 
+                      s(log10(Area_km2), bs="ts") +  length +
                     Assessment_technique +
                     Hydrological_regime, data = Zhang_all2)
 summary(model6_reduc)
@@ -469,18 +516,18 @@ Clearly Latitude is masking other factors including the assessment technique and
 
 <!-- Show boxplots of relationships with latitude-->
 ```{r, eval =T, echo =F}
-Zhang_all2 %>%
-  ggplot(aes(Assessment_technique, Latitude)) + 
+All_data2 %>%
+  ggplot(aes(Assessment_technique, length)) + 
   geom_boxplot(colour = "blue") + theme_bw()
 ```
 
-```{r, eval =T, echo =F}
+```{r, eval =F, echo =F}
 Zhang_all2 %>%
   ggplot(aes(Forest_type, Latitude)) + 
   geom_boxplot(colour = "blue") + theme_bw()
 ```
 
-```{r, eval =T, echo =F}
+```{r, eval =F, echo =F}
 Zhang_all2 %>%
   ggplot(aes(Hydrological_regime, Latitude)) + 
   geom_boxplot(colour = "blue") + theme_bw()
@@ -488,28 +535,6 @@ Zhang_all2 %>%
 
 
 Clearly all have at least some relationship with Latitude, therefore are being masked if Latitude is included in the model.
-
-<!-- Take out Latitude -->
-```{r model7_noLat}
-model7_noLat <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
-                    s(Dryness, bs="ts" ) + 
-                      s(Area_km2, bs="ts")  + s(length, bs = "ts") +
-                    Precip_data_type +  Assessment_technique + Forest_type +
-                    Hydrological_regime, data = Zhang_all2)
-summary(model7_noLat)
-plot(model7_noLat)
-```
-
-```{r model7_noLat_intLength}
-model7_noLat_intlength <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
-                    s(Dryness, bs="tp" ) + 
-                      s(Area_km2, bs="tp")  + s(length, bs = "tp") +
-                    Precip_data_type +  Assessment_technique + Forest_type +
-                    Hydrological_regime, 
-                    data = Zhang_all2)
-summary(model7_noLat_intlength)
-plot(model7_noLat_intlength)
-```
 
 The flexible nature of the splines and the shrinkage applied to the splines means that the length variable can capture variation in the data, but it is unclear what exactly is captured. The shape of the resulting conditional response does not reflect the reponses highlighted in @filoso2017 and @jackson2005. Reducing the flexibility of the splines, or fitting a linear term results in "length" not being significant, which suggests that this variable is not helpful in explaining the variation in the data.
 
@@ -530,9 +555,9 @@ Given how skewed Dryness is due tot he few watersheds that have very high drynes
 ```{r model7_noLatb}
 model7_noLatb <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
                     s(Dryness, bs="ts" ) + #s(Latitude, bs="ts") + 
-                      s(Area_km2, bs="ts") +
+                      s(log10(Area_km2), bs="ts") + s(length,bs="ts") +
                     Precip_data_type +  Assessment_technique + Forest_type +
-                    Hydrological_regime, data = Zhang_all2 %>% filter(Dryness < 4))
+                    Hydrological_regime, data = All_data2 %>% filter(length< 60))
 summary(model7_noLatb)
 plot(model7_noLatb)
 ```
