@@ -3,7 +3,7 @@ title: Do larger watersheds respond different to forest cover change? Re-analysi
 author:
   - name: R. Willem Vervoort
     email: willem.vervoort@sydney.edu.au
-    affiliation: The University of Sydney, INIA
+    affiliation: DARE, The University of Sydney
     footnote: 1
   - name: Eliana Nervi
     email: eliananervi@gmail.com
@@ -14,10 +14,12 @@ author:
     affiliation: IMFIA
     footnote: 2
 address:
+  - code: DARE
+    address: ARC Training Centre Data Analytics for Resources and the Environment
   - code: The University of Sydney
     address: School of Life and Environmental Sciences, The University of Sydney, Sydney, NSW 2006, Australia
   - code: INIA
-    address: Instituto Nacional de Investigación Agropecuaria, INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100 Canelones, Uruguay
+    address: Project Manager, FPTA 357 Instituto Nacional de Investigación Agropecuaria, INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100 Canelones, Uruguay
   - code: IMFIA
     address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la República, 11200 Montevideo, Uruguay
 footnote:
@@ -297,8 +299,9 @@ All_data %>%
       "DeltaQf_perc" = "Delta Flow (%)",
       "E0" = "Annual Potential E (mm)",
       "Pa_mm" = "Annual Rainfall (mm)"))) +   
-  theme(axis.title = element_text(size = rel(2)),
-        axis.text = element_text(size = rel(1.5)),
+  theme(axis.title = element_text(size = rel(1.5)),
+        axis.text = element_text(size = rel(1.2)),
+        strip.text = element_text(size = rel(1.5)),
         axis.text.x = element_text(angle = 45, hjust = 1))
 dev.off()
 ```
@@ -324,7 +327,14 @@ All_data2 %>%
   ggplot(aes(DeltaF_perc_pos,DeltaQf_perc, colour = Forest_Sign)) + 
   geom_point() +  
   facet_wrap(~Forest_Sign, ncol=1, scales = "free") + 
-  theme_bw() + scale_colour_manual(name = "direction of forest change", values = c("increase" = "blue", "decrease" = "red")) +
+  theme_bw() + 
+    theme(axis.title = element_text(size = rel(1.5)),
+        axis.text = element_text(size = rel(1.2)),
+        legend.text = element_text(size = rel(1.2)),
+        legend.title = element_text(size = rel(1.2)),
+        strip.text = element_text(size = rel(1.5))) + 
+  scale_colour_manual(name = "Forest change direction", 
+                      values = c("increase" = "blue", "decrease" = "red")) +
   xlab("Change in forest cover %") + ylab("Change in flow %")
 dev.off()
 
@@ -458,7 +468,7 @@ However, the result also indicates possible issues with the data, some of the Dr
 
 
 ```{r, echo = F}
-pander(Zhang_all2 %>% filter(Dryness > 4) %>% select(Latitude, Longitude,`Watershed name`), caption = "Watersheds for which the dryness inddex > 4")
+pander(Zhang_all2 %>% filter(Dryness > 4) %>% select(Latitude, Longitude,`Watershed name`), caption = "Watersheds for which the dryness index > 4")
 ```
 
 ### Are some of the variables possibly non-linear?
@@ -499,7 +509,7 @@ model6_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign +
 #plot(model6_all)
 pander(round(summary(model6_all)$p.table,2))
 pander(round(summary(model6_all)$s.table,2))
-plot(model6_all, select = 3)
+plot(model6_all, select = 2)
 ```
 
 ```{r model6_reduc, eval = F, echo = F}
@@ -529,12 +539,21 @@ All_data2 %>%
 
 Maybe remove data for low numbers of assessment techniques and rerun the analysis (<10)
 
-```{r, eval =T, echo =F}
+```{r, eval =F, echo =F}
+png("AssessmentTechnique_byArea.png", width = 2500, height = 1800, res = 300)
 All_data2 %>%
   ggplot(aes(Assessment_technique, log10(Area_km2))) + 
-  geom_boxplot(colour = "blue") + theme_bw()
+  geom_boxplot(colour = "blue") + theme_bw() +
+    theme(axis.title = element_text(size = rel(2)),
+        axis.text = element_text(size = rel(1.5)))
+dev.off()
 ```
 
+
+```{r assessment, fig.cap="Boxplot of the log base 10 of the watershed area (in km2) for the different assessment techniques, showing the dominance of small watersheds in the paired watershed experiments", out.width="90%", echo=F}  
+
+include_graphics("AssessmentTechnique_byArea.png")
+```
 
 
 
@@ -568,15 +587,41 @@ In contrast to @filoso2017, we also did not identify an effect of the
 
 Given how skewed Dryness is due tot he few watersheds that have very high dryness values, it is worth investigating what excluding these 4 watersheds from the data means for the relationships. 
 
+\newpage
+
 <!--reduce drynes < 4 -->
-```{r model7_noLatb}
+```{r model7_noLatb, echo = F}
 model7_noLatb <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
                     s(Dryness, bs="ts" ) + #s(Latitude, bs="ts") + 
                       s(log10(Area_km2), bs="ts") + s(length,bs="ts") +
                     Precip_data_type +  Assessment_technique + Forest_type +
                     Hydrological_regime, data = All_data2 %>% filter(length< 60))
-summary(model7_noLatb)
+#summary(model7_noLatb)
+#plot(model7_noLatb)
+pander(round(summary(model7_noLatb)$p.table,2))
+pander(round(summary(model7_noLatb)$s.table,2))
 plot(model7_noLatb)
+summary(model7_noLatb)
+```
+
+### remove the assessment techniques with very small numbers
+
+```{r model8_reduc_assess, echo = F}
+All_data3 <- All_data2 %>%
+  filter(Assessment_technique != "EA, HM" & Assessment_technique != "PWE, HM" & Assessment_technique != "QPW, EA" )
+
+model8_assess <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
+                    s(Dryness, bs="ts" ) + #s(Latitude, bs="ts") + 
+                      s(log10(Area_km2), bs="ts") + s(length,bs="ts") +
+                    Precip_data_type +  Assessment_technique + Forest_type +
+                    Hydrological_regime, data = All_data3 %>% filter(length< 60))
+#summary(model7_noLatb)
+#plot(model7_noLatb)
+pander(round(summary(model8_assess)$p.table,2))
+pander(round(summary(model8_assess)$s.table,2))
+plot(model8_assess)
+summary(model8_assess)
+
 ```
 
 
@@ -591,7 +636,7 @@ All_data2 %>%
   theme_bw() + ylab("% change in flow") +
   theme(axis.title = element_text(size = rel(2)),
         axis.text = element_text(size = rel(1.5))) +
-  xlab("% change in forestry") + #scale_y_log10() +
+  xlab("% change in forest cover") + #scale_y_log10() +
   scale_size_continuous(name = "log10(Area in km2)") +
   scale_colour_discrete(name = "Assessment Technique") +
   scale_shape_discrete(name = "Forest cover direction")
@@ -646,7 +691,7 @@ Essentially, the analysis shows at the moment that in contrast to @zhang2017 the
 
 As shown earlier, most of the smaller watersheds are "real observed data" using paired watershed studies, while for larger watersheds, the analysis are mostly based on modelling approximations using either elasticity analysis (EA), Hydrological modelling (HM) or a combined use of statistical methods (SH) or quasi paired watershed analysis (QPW), thus all providing an approximation of the effect of forestry on streamflow rather than a direct comparison of watersheds. This is a confounding factor that is not easily addressed in the regression modelling attempted here. Furthermore, the catchments analysed using EA, are concentrated in the drier end of the Dryness index scale compared to the other methods, with only the paired watershed experiment (PWE) assessment technique covering the full range of dryness indices.
 
-There are further confouding factors in the data, which were also classified by @filoso2017 and these create biases in the data set that can impact the overall assessment. For example, snow dominated hydrological regimes (SD), which are weakly significant, are dominated by Coniferous Forests (CF), while the majority of the rain dominated regimes are all broadleaf forests (BF). However, the forest type classification is very coarse and does not fully capture possible physiological differences that could affect evapotranspiration and therefore changes in streamflow.
+There are further confounding factors in the data, which were also classified by @filoso2017 and these create biases in the data set that can impact the overall assessment. For example, snow dominated hydrological regimes (SD), which are weakly significant, are dominated by Coniferous Forests (CF), while the majority of the rain dominated regimes are all broadleaf forests (BF). However, the forest type classification is very coarse and does not fully capture possible physiological differences that could affect evapotranspiration and therefore changes in streamflow.
 
 Apart from a difficulty of analysing complex confounding factors in the data, a general limitation of the type of analysis presented is that this work does not consider the spatial arrangement of the forest clearing in the catchments. While for fully or almost fully cleared smaller catchments this might not be an issue, it is perceivable that for larger catchments being partially cleared, a interaction between spatial location and clearing could be a factor in determining the change in streamflow. Clearing head water catchments on shallower soils might have a larger impact than clearing in downstream areas on deeper soils.    
 

@@ -108,16 +108,18 @@
 
   \title{Do larger watersheds respond different to forest cover change?
 Re-analysing a global data set.}
-    \author[The University of Sydney, INIA]{R. Willem Vervoort\corref{1}}
+    \author[DARE, The University of Sydney]{R. Willem Vervoort\corref{1}}
    \ead{willem.vervoort@sydney.edu.au} 
     \author[INIA]{Eliana Nervi\corref{2}}
    \ead{eliananervi@gmail.com} 
     \author[IMFIA]{Jimena Alonso\corref{2}}
    \ead{jalonso@fing.edu.uy} 
-      \address[The University of Sydney]{School of Life and Environmental Sciences, The University of Sydney,
+      \address[DARE]{ARC Training Centre Data Analytics for Resources and the Environment}
+    \address[The University of Sydney]{School of Life and Environmental Sciences, The University of Sydney,
 Sydney, NSW 2006, Australia}
-    \address[INIA]{Instituto Nacional de Investigación Agropecuaria, INIA-Uruguay, Ruta 48
-km 10, Rincon del Colorado, 90100 Canelones, Uruguay}
+    \address[INIA]{Project Manager, FPTA 357 Instituto Nacional de Investigación
+Agropecuaria, INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100
+Canelones, Uruguay}
     \address[IMFIA]{Institute of Fluid Mechanics and Environmental Engineering, School of
 Engineering, Universidad de la República, 11200 Montevideo, Uruguay}
       \cortext[1]{Corresponding Author}
@@ -972,7 +974,7 @@ However, the result also indicates possible issues with the data, some
 of the Dryness values are very large (\textgreater{} 4) and these values
 have high leverage in the data. These watersheds are listed in Table 5:
 
-Quitting from lines 461-462 (Forest\_and\_Water.Rmd) Error in filter(.,
+Quitting from lines 471-472 (Forest\_and\_Water.Rmd) Error in filter(.,
 Dryness \textgreater{} 4) : object `Zhang\_all2' not found Calls:
 \ldots{} withVisible -\textgreater{} eval -\textgreater{} eval
 -\textgreater{} pander -\textgreater{} \%\textgreater\% -\textgreater{}
@@ -1397,7 +1399,9 @@ technique and the forest type
 Maybe remove data for low numbers of assessment techniques and rerun the
 analysis (\textless10)
 
-\includegraphics{Forest_and_Water_files/figure-latex/unnamed-chunk-22-1.pdf}
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{AssessmentTechnique_byArea} \caption{Boxplot of the log base 10 of the watershed area (in km2) for the different assessment techniques, showing the dominance of small watersheds in the paired watershed experiments}\label{fig:assessment}
+\end{figure}
 
 Clearly all have at least some relationship with Latitude, therefore are
 being masked if Latitude is included in the model.
@@ -1432,69 +1436,454 @@ Given how skewed Dryness is due tot he few watersheds that have very
 high dryness values, it is worth investigating what excluding these 4
 watersheds from the data means for the relationships.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model7_noLatb <-}\StringTok{ }\KeywordTok{gam}\NormalTok{(DeltaQf_perc }\OperatorTok{~}\StringTok{ }\NormalTok{DeltaF_perc_pos }\OperatorTok{+}\StringTok{ }\NormalTok{Forest_Sign }\OperatorTok{+}\StringTok{ }
-\StringTok{                    }\KeywordTok{s}\NormalTok{(Dryness, }\DataTypeTok{bs=}\StringTok{"ts"}\NormalTok{ ) }\OperatorTok{+}\StringTok{ }\CommentTok{#s(Latitude, bs="ts") + }
-\StringTok{                      }\KeywordTok{s}\NormalTok{(}\KeywordTok{log10}\NormalTok{(Area_km2), }\DataTypeTok{bs=}\StringTok{"ts"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{s}\NormalTok{(length,}\DataTypeTok{bs=}\StringTok{"ts"}\NormalTok{) }\OperatorTok{+}
-\StringTok{                    }\NormalTok{Precip_data_type }\OperatorTok{+}\StringTok{  }\NormalTok{Assessment_technique }\OperatorTok{+}\StringTok{ }\NormalTok{Forest_type }\OperatorTok{+}
-\StringTok{                    }\NormalTok{Hydrological_regime, }\DataTypeTok{data =}\NormalTok{ All_data2 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(length}\OperatorTok{<}\StringTok{ }\DecValTok{60}\NormalTok{))}
-\KeywordTok{summary}\NormalTok{(model7_noLatb)}
-\end{Highlighting}
-\end{Shaded}
+\newpage
 
-\begin{verbatim}
-## 
-## Family: gaussian 
-## Link function: identity 
-## 
-## Formula:
-## DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + s(Dryness, bs = "ts") + 
-##     s(log10(Area_km2), bs = "ts") + s(length, bs = "ts") + Precip_data_type + 
-##     Assessment_technique + Forest_type + Hydrological_regime
-## 
-## Parametric coefficients:
-##                             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                 -12.5901    18.2493  -0.690 0.490850    
-## DeltaF_perc_pos               0.2764     0.1021   2.708 0.007197 ** 
-## Forest_Signincrease         -23.5034     6.9108  -3.401 0.000772 ***
-## Precip_data_typeOB          -11.8739    14.1588  -0.839 0.402419    
-## Precip_data_typeSG           16.9396    16.3313   1.037 0.300543    
-## Assessment_techniqueEA, HM   -8.2703     3.5091  -2.357 0.019143 *  
-## Assessment_techniqueHM       28.0181    12.3042   2.277 0.023557 *  
-## Assessment_techniquePWE      39.2429    12.0840   3.247 0.001310 ** 
-## Assessment_techniquePWE, HM -14.4779     5.5623  -2.603 0.009753 ** 
-## Assessment_techniqueQPW      33.8032    20.7827   1.627 0.105002    
-## Assessment_techniqueQPW, EA  35.5789    25.2225   1.411 0.159506    
-## Assessment_techniqueSH       42.8100    12.7078   3.369 0.000864 ***
-## Forest_typeCF                -3.8554     8.1687  -0.472 0.637324    
-## Forest_typeMF                -4.0151     8.6538  -0.464 0.643047    
-## Hydrological_regimeSD         6.4841    10.0569   0.645 0.519641    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Approximate significance of smooth terms:
-##                          edf Ref.df     F p-value  
-## s(Dryness)         3.586e+00      9 1.665  0.0132 *
-## s(log10(Area_km2)) 7.053e-01      9 0.293  0.0510 .
-## s(length)          2.302e-10      9 0.000  0.9953  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Rank: 39/42
-## R-sq.(adj) =  0.273   Deviance explained = 31.4%
-## GCV = 2119.6  Scale est. = 1992.7    n = 289
-\end{verbatim}
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.36\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-12.59\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+18.25\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.69\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.49\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.28\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.1\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+2.71\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.01\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-23.5\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+6.91\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-3.4\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Precip\_data\_typeOB}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-11.87\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+14.16\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.84\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Precip\_data\_typeSG}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+16.94\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+16.33\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.04\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.3\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueEA, HM}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-8.27\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+3.51\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-2.36\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.02\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueHM}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+28.02\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+12.3\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+2.28\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.02\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniquePWE}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+39.24\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+12.08\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+3.25\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniquePWE, HM}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-14.48\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+5.56\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-2.6\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.01\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueQPW}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+33.8\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+20.78\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.63\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.11\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueQPW, EA}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+35.58\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+25.22\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.41\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.16\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueSH}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+42.81\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+12.71\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+3.37\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Forest\_typeCF}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-3.86\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+8.17\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.47\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.64\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Forest\_typeMF}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-4.02\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+8.65\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.46\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.64\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Hydrological\_regimeSD}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+6.48\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+10.06\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+0.64\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.52\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(model7_noLatb)}
-\end{Highlighting}
-\end{Shaded}
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(Dryness)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+3.59\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+1.67\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.01\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(log10(Area\_km2))}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.71\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.29\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.05\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(length)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+1\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
 \includegraphics{Forest_and_Water_files/figure-latex/model7_noLatb-1.pdf}
 \includegraphics{Forest_and_Water_files/figure-latex/model7_noLatb-2.pdf}
 \includegraphics{Forest_and_Water_files/figure-latex/model7_noLatb-3.pdf}
+
+\hypertarget{remove-the-assessment-techniques-with-very-small-numbers}{%
+\subsubsection{remove the assessment techniques with very small
+numbers}\label{remove-the-assessment-techniques-with-very-small-numbers}}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.34\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-18.71\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+19.02\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.98\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.33\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.29\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.1\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+2.83\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-23.26\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+7.15\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-3.25\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Precip\_data\_typeOB}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-11.25\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+14.19\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.79\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.43\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Precip\_data\_typeSG}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+18.43\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+16.43\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.12\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.26\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Assessment\_techniqueHM}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+32.02\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+12.76\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+2.51\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.01\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Assessment\_techniquePWE}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+44.48\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+12.97\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+3.43\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Assessment\_techniqueQPW}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+38.12\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+21.21\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.8\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.07\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Assessment\_techniqueSH}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+46.79\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+13.17\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+3.55\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Forest\_typeCF}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-3.3\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+8.23\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.4\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.69\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Forest\_typeMF}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-3.88\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+8.69\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.45\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.66\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Hydrological\_regimeSD}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+5.73\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+10.11\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+0.57\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.57\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(Dryness)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+3.51\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+1.96\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(log10(Area\_km2))}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.7\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.24\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.08\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(length)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.99\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\includegraphics{Forest_and_Water_files/figure-latex/model8_reduc_assess-1.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/model8_reduc_assess-2.pdf}
+\includegraphics{Forest_and_Water_files/figure-latex/model8_reduc_assess-3.pdf}
 
 \begin{verbatim}
 ## pdf 
@@ -1549,7 +1938,7 @@ are concentrated in the drier end of the Dryness index scale compared to
 the other methods, with only the paired watershed experiment (PWE)
 assessment technique covering the full range of dryness indices.
 
-There are further confouding factors in the data, which were also
+There are further confounding factors in the data, which were also
 classified by Filoso et al. (2017) and these create biases in the data
 set that can impact the overall assessment. For example, snow dominated
 hydrological regimes (SD), which are weakly significant, are dominated
