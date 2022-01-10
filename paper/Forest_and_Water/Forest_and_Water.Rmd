@@ -8,11 +8,9 @@ author:
   - name: Eliana Nervi
     email: eliananervi@gmail.com
     affiliation: INIA
-    footnote: 2
   - name: Jimena Alonso
     email: jalonso@fing.edu.uy
     affiliation: IMFIA
-    footnote: 2
 address:
   - code: DARE
     address: ARC Training Centre Data Analytics for Resources and the Environment
@@ -25,8 +23,6 @@ address:
 footnote:
   - code: 1
     text: "Corresponding Author"
-  - code: 2
-    text: "Equal contribution"
 abstract: |
   This is the abstract.
   It consists of two paragraphs.
@@ -36,15 +32,15 @@ bibliography: forest_and_water.bib
 linenumbers: true
 #numbersections: true
 csl: elsevier-harvard.csl
-output: rticles::elsevier_article
+output:   
+  bookdown::pdf_book:
+    base_format: rticles::elsevier_article
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 Introduction
 ==========================
-
-## Introduction
 
 There has been an long and on-going discussion in the hydrologcal literature around the impact of forests on streamflow [@andreassian2004; @jackson2005; @zhang2017; @brown2005; @brown2013; @filoso2017]. The historic work highlights a general consensus that if forest areas increase, streamflow decreases and vice-versa. The most dramatic result in relation to this, is Figure 5 in @zhang2011 indicating (for Australian watersheds) a 100% decrease in streamflow for watersheds with 100% forest cover. However, on the other end of the spectrum, in a series of French watersheds [@cosandey2005], there was no change in streamflow characteristics in 2 of the three watersheds studied in relation to deforestation.
 
@@ -79,9 +75,8 @@ Methods
 
 ## The original data sets
 
-The starting point of this paper is the data base of studies which were included in @zhang2017 as supplementary material. The columns in this data set are the watershed number, the	watershed name, the	Area in km^2^, the annual average precipitation	(Pa) in mm, the	forest type, hydrological regime, and climate type, the change in forest cover	in % ($\Delta$F%) and the change in streamflow in % ($\Delta$Qf(%), based on equation 1 in @zhang2017), the precipitation data type, the assessment technique, and the	source of the info, which is a citation. 
-Several of these columns contain abbreviations to describe the different variables, which are summarised in Table 1.
-
+The starting point of this paper is the data base of studies which were included in @zhang2017 as supplementary material. The columns in this data set are the watershed number, the	watershed name, the	Area in km^2^, the annual average precipitation	(Pa) in mm, the	forest type, hydrological regime, and climate type, the change in forest cover	in \% ($\Delta F\%$) and the change in streamflow in \% $(\Delta Qf\%)$, based on equation 1 in @zhang2017), the precipitation data type, the assessment technique, and the	source of the info, which is a citation. 
+Several of these columns contain abbreviations to describe the different variables, which are summarised in Table 1.  
 
 Table 1  Summary of abbreviations of factors used in the @zhang2017 data set
 
@@ -117,7 +112,7 @@ In addition, additional variables added were the latitude and longitude for the 
 The length of the study can be a variable influencing the change in flow [e.g. @jackson2005], as for example, more mature plantations are thought to have smaller impacts on flow. Therefore, the length of the study calculate as the difference between the starting data and completion date of the different studies was extracted from the references provided by @zhang2017.
 
 Several additional data points from watershed studies were extracted from @zhang2011, @zhao2010, @borg1988, @thornton2007, @zhou2010, @rodriguez2010, @ruprechtetal1991 and @pena-arancibia2012, and these were checked against the existing studies to prevent overlap. In the citation column in the data set, in general the main reference for the calculated change in streamflow  was used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e. Table 6 in @zhang2011).
-We also removed one data point from the analysis, which corresponds to Watershed #1 (Amazon) in @zhang2017. This is because the cited reference [@roche1981] only relates to 1  and 1.5 ha paired watershed studies in French Guyana, and in which the actual change in forest cover is not recorded. 
+We also removed one data point from the analysis, which corresponds to Watershed #1 (Amazon) in @zhang2017. This is because the cited reference [@roche1981] only relates to 1  and 1.5 ha paired watershed studies in French Guyana, and in which the actual change in forest cover is not recorded. Furthermore, the change in flow for watershed #76 was corrected to 157% based on the original publication [@baker1984]. Finally, on review of all the data in @zhang2017, 29 potential duplicates were identified and flagged in the data.  
 
 The final column in the improved data set is a "notes" column, which is not further used in the analysis, but gives context to some of the data for future research and highlights some of the discrepancies that we found between the original papers and the data in the tables from @zhang2017. 
 
@@ -137,6 +132,8 @@ The starting point consists of the two tables in the supplementary data from Zha
 require(tidyverse)
 require(lubridate)
 require(mgcv)
+require(visreg)
+require(patchwork)
 suppressWarnings(require(knitr))
 suppressWarnings(require(bookdown))
 suppressWarnings(require(pander))
@@ -176,20 +173,7 @@ PET_all <- bind_rows(PET_large, PET_small)
 ```
 
 
-
-```{r, echo =F, eval = F}
-PET_all %>%
-  ggplot(aes(`Watershed #`,E0)) + geom_bar(stat="identity", fill= "steelblue")
-```
-
-```{r, echo =F, eval = F}
-PET_all %>%
-  ggplot(aes(Longitude,Latitude, colour = E0)) + geom_point() + coord_equal()
-
-```
-
 <!--- ### change names of columns
-
 the package`mgcv` does not seem to be happy with complex names, so probably better to make all names simple --->
 
 ```{r, echo = F}
@@ -225,10 +209,6 @@ All_data <- All_data %>%
          `Possible duplicate` = as.numeric(`Possible duplicate`)) %>%
   filter(`Possible duplicate` != 1)
 ```
-Removing possible duplicates removes 29 watersheds from the overall data set
-
-
-
 
 <!--now combine with E0 values -->
 ```{r, echo = F}
@@ -265,12 +245,12 @@ The general model tested is:
 
 $$\tag{2}
 \begin{aligned}
-\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & \sum{X_i} + \sum{s(Z_i)} + \varepsilon
+\Delta \% Qf \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & \sum{X_i} + \sum{s(Z_i)} + \varepsilon
 \end{aligned}$$
 
 
-Here $X_i$ are factorial variables, while $Z_i$ are continuous variables. The model assumes no direct interactions and all variables are additive. The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang2017, these changes were jointly analysed, assuming the effect on the change in flow was linear and the effect if removing forest cover was the same as an equivalent reforestation. However, the impact of an increase in forest cover can be different from the same fractional decrease in forest cover. Therefore all the change in forest cover data is converted to positive values, and an additional column (*sign_{forest cover}*) is added that indicates whether it was a forest cover increase or decrease. 
-A further assumption in the model is that all continuous variables $Z_i$ (such as annual precipitation (Pa)) can have a linear or non-linear relationship with $\Delta Q \%$. This means that a smooth function $s()$ is applied to the $Z_i$ variables. For the smoothing function we applied thin plate regression splines with an additional shrinkage penalty which means the terms can be shrunk to 0 if not significant [@wood2006].
+Here $X_i$ are factorial variables, while $Z_i$ are continuous variables. The model assumes no direct interactions and all variables are additive. The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang2017, these changes were jointly analysed, assuming the effect on the change in flow was linear and the effect if removing forest cover was the same as an equivalent reforestation. However, the impact of an increase in forest cover can be different from the same fractional decrease in forest cover. Therefore all the change in forest cover data is converted to positive values, and an additional column ($sign_{forest cover}$) is added that indicates whether it was a forest cover increase or decrease. 
+A further assumption in the model is that all continuous variables $Z_i$ (such as annual precipitation (Pa)) can have a linear or non-linear relationship with $\Delta Qf \%$. This means that a smooth function $s()$ is applied to the $Z_i$ variables. For the smoothing function we applied thin plate regression splines with an additional shrinkage penalty which means the terms can be shrunk to 0 if not significant [@wood2006].
 
 For the model in equation 2, we initially only used the data from @zhang2017 to make sure that the additional watersheds added to the data set did not influence the results. Subsequently the analysis was repeated and the additionally identified watersheds were added. 
 
@@ -285,7 +265,7 @@ Results
 <!-- analysis -->
 ## description of the data
 
-The overall dataset contains `r nrow(Zhang_all)` observations of changes in flow. The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Smaller watersheds dominate the database with 42% of the data from watersheds < 1 km^2^ and 65% of the data for watersheds < 10 km^2^.
+The overall dataset contains `r nrow(All_data)` observations of changes in flow, which includes the newly identified data sets and after removing identified duplicate data and lines with missing data. In contrast, the original dataset from @zhang2017 contained `r nrow(Zhang_all)` observations. The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Smaller watersheds dominate the database with 42\% of the data from watersheds < 1 km^2^ and 65\% of the data for watersheds < 10 km^2^.
 
 ```{r, echo = F, warning = F, message=F, eval =F}
 png("DataExploration.png", width = 2500, height = 1800, res = 300)
@@ -306,9 +286,13 @@ All_data %>%
 dev.off()
 ```
 
-```{r data_graphs, echo =F, fig.cap = "Overview of the distributions of some of the variables in the data set", out.width= "90%"}
-include_graphics("DataExploration.png")
+(ref:datagraphscaption) foo
+
+```{r datagraphs, echo=F, out.width="90%", fig.cap="(ref:datagraphscaption)"}
+
+include_graphics("./DataExploration.png")
 ```
+
 
 
 ```{r, echo = F}
@@ -340,20 +324,22 @@ dev.off()
 
 ```
 
-```{r increase_decrease, echo =F, fig.cap = "Changes in flow as a function of increases and decreases in forest cover", out.width= "90%"}
+
+```{r increasedecrease, echo =F, fig.cap="Changes in flow as a function of increases and decreases in forest cover", out.width="90%"}
 include_graphics("Increase_decrease.png")
 ```
+
 
 This shows that for the data related to forest decreases, there is almost always a positive flow change. In other words, flow almost always increased. However, for increases in forest cover, this is not the case, and flow can both increase and decrease. However in both cases the variability in the reported change in flow increases with the increase in forest cover change.
 
 
-## The initial relationship between change in forest cover and streamflow
+## The general relationship between change in forest cover and streamflow
 
-Following @zhang2017, the first step is to use a linear regression to investigate the percent change in flow as a result in the percent change forestry and modulated by the direction of the change, either an increase in forest cover, or decrease in forest cover:
+Following @zhang2017, the first step is to investigate the percent change in flow as a linear effect of the percent change forestry and modulated by the direction of the change, either an increase in forest cover, or decrease in forest cover:
 
 $$\tag{3}
 \begin{aligned}
-\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \varepsilon
+\Delta \% Qf \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \varepsilon
 \end{aligned}$$
 
 ```{r model1, echo = F}
@@ -370,28 +356,41 @@ linear_model_simple_b <- gam(DeltaQf_perc ~ DeltaF_perc_pos +
                              Forest_Sign, 
                            data = All_data2)
 #summary(linear_model_simple)
-#gam.check(linear_model_simple)
-
+r_sq <- round(summary(linear_model_simple_b)$r.sq,2)
 ```
 
 
 ```{r, echo =F}
-pander(round(summary(linear_model_simple)$p.table,2), caption="Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change")
+pander(round(summary(linear_model_simple)$p.table,2), caption="(\\#tab:tabmodel1) Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change")
 ```
+
 ```{r, echo =F}
-pander(round(summary(linear_model_simple_b)$p.table,2), caption="Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change including the new data sets")
+pander(round(summary(linear_model_simple_b)$p.table,2), caption="(\\#tab:tabmodel1b) Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change including the new data sets")
 ```
 
-While the overall variance explained in this model is not high with an adjusted *r^2^* of `r round(summary(linear_model_simple)$r.sq,2)`, it clearly supports the hypothesized relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.45\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 29\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.29)*0.45\%$, while a the percentage forest cover decrease will increase flow by 0.45\%.
+The overall variance explained in this model is not high with an adjusted *r^2^* of `r r_sq`, it generally supports the hypothesized relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.45\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 29\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.29)*0.45\%$, while a the percentage forest cover decrease will increase flow by 0.45\%.
 
-Checking this result against including the new data indicates that this mainly strengthens the difference between the forest cover increases and decreases, and decreases the mean decrease in flow as a result of forest cover change
+```{r, eval = F, echo = F}
+png("residual_plot_model1.png", width = 2500, height = 1800, res = 300)
+par(mfrow=c(2,2))
+gam.check(linear_model_simple)
+par(mfrow=c(1,1))
+dev.off()
+```
+```{r gamcheck, echo =F, fig.cap="Residual plots for the first simple regression model indicating a slightly fat-tailed residual distribution", out.width="90%"}
+include_graphics("residual_plot_model1.png")
+```
+
+Of importance here is to highlight the residuals of this regression. These are approximately normal, although there is still significant skew on the upper and lower parts of the distribution (Figure \@ref(fig:gamcheck)). In other words, the distribution of the residuals is somewhat fat-tailed. We will discuss this later.
+
+Including the data from some of the newly identified studies indicates that this mainly strengthens the difference between the forest cover increases and decreases (Table \@ref(tab:tabmodel1) and Table \@ref(tab:tabmodel1b)), and the result indication a reduction in the mean decrease in flow as a result of forest cover change if the new data is included.
 
 
 It is however it is clear from the lack of explaining power for the model, that there could be confounding factors, as alluded to in the methods. The obvious ones being watershed dryness and area (following @zhang2017): 
 
 $$\tag{4}
 \begin{aligned}
-\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + log10(Area_{km^2}) + \varepsilon
+\Delta \% Qf \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + log10(Area_{km^2}) + \varepsilon
 \end{aligned}$$
 
 Where $Pa_mm$ is the annual average rainfall in mm, and a log base 10 transformation is applied to the area variable given that the distribution of Area is higly skewed (Figure 1)
@@ -406,24 +405,24 @@ linear_model2 <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + log10(Area_k
 ```
 
 ```{r, echo = F}
-pander(round(summary(linear_model2)$p.table,2), caption="Summary of the second model, taking into account the annual rainfall and the area of the watershed")
+pander(round(summary(linear_model2)$p.table,2), caption="(\\#tab:out-model2) Summary of the second model, taking into account the annual rainfall and the area of the watershed")
 ```
 
-Including area and annual precipitation slightly improves the overall explaining power of the model. Annual precipitation is in fact not significant. Relative to earlier reported studies [@zhang2017; @filoso2017], the log base 10 transformed watershed area indicates a p-value of only `r round(summary(linear_model2)$p.table[4,4],2)`, suggesting a marginal impact on the change in stream flow. This supports our approach (in contrast to @zhang2017) to consider watershed area as a continuous variable and making no separation between larger and smaller watersheds The main effects remain the change in forest cover and whether this is an increase or decrease.
+Including area and annual precipitation slightly improves the overall explaining power of the model (Table \@ref(tab:out-model2)). Annual precipitation is in fact not significant. Relative to earlier reported studies [@zhang2017; @filoso2017], the log base 10 transformed watershed area indicates a p-value of only `r round(summary(linear_model2)$p.table[4,4],2)`, suggesting a marginal impact on the change in stream flow. This supports our approach (in contrast to @zhang2017) to consider watershed area as a continuous variable and making no separation between larger and smaller watersheds. The main effects in the model remain the change in forest cover and whether this is an increase or decrease.
 
 ## The effect of location on the globe
 <!-- include Lat and Long (later E0) -->
 
-```{r global_map, fig.cap="Distribution of included watersheds across the globe based on reported or estimated latitude and longitude", out.width="90%", echo=F}  
+```{r globalmap, fig.cap="Distribution of included watersheds across the globe based on reported or estimated latitude and longitude", out.width="90%", echo=F}  
 
 include_graphics("../../data/FAOET0data2.png")
 ```
 
-As indicated, a further hypothesis relates to whether there is a strong spatial global gradient as captured by latitude and longitude. As the global map (\@ref(fig:global_map)) shows, the distribution of case study watersheds covers multiple continents and shows some distinct clustering in parts of the world. Of interest is whether the spatial clustering also indicates a difference in response to forest cover change:
+As indicated, a further hypothesis relates to whether there is a strong spatial global gradient as captured by latitude and longitude. As the global map (Figure \@ref(fig:globalmap)) shows, the distribution of case study watersheds covers multiple continents and shows some distinct clustering in parts of the world. Of interest is whether the spatial clustering also indicates a difference in response to forest cover change:
 
 $$\tag{5}
 \begin{aligned}
-\Delta \% Q \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + log10(Area_{km^2}) + Latitude + Longitude + \varepsilon
+\Delta \% Qf \sim ~ &\Delta \% forest~cover_{positive} + sign_{forest~cover} + \\ & Pa_{mm} + log10(Area_{km^2}) + Latitude + Longitude + \varepsilon
 \end{aligned}$$
 
 
@@ -434,17 +433,17 @@ model3_includeLatLong <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + log1
 ```
 
 ```{r, echo =F}
-pander(round(summary(model3_includeLatLong)$p.table,2), caption= "Results of the model including Latitude and Longitude including new data")
+pander(round(summary(model3_includeLatLong)$p.table,2), caption= "(\\#tab:out-model3) Results of the model including Latitude and Longitude including new data")
 ```
 
 
-There appears to be no significant latitudinal gradient. The total explaining power of the model is still low with an adjusted *r^2^* of `r round(summary(model3_includeLatLong)$r.sq,2)` suggesting further factors that are currently not included in the model.
+There appears to be no significant gradient in either latitude or longitude (Table \@ref(tab:out-model3)), suggesting that the distribution of the watersheds across the globe has little influence on the overall result. The total explaining power of the model is still low with an adjusted *r^2^* of `r round(summary(model3_includeLatLong)$r.sq,2)` suggesting further factors influencing the change in streamflow that are currently not included in the model.
 
-Note that in this case the significance of the Area variable increases, and generally indicates that larger watersheds would be expected to have a lower change in streamflow as also indicated in @zhang2017.
+Note that in this case the significance of the Area variable increases, and generally indicates that larger watersheds would be expected to have a lower change in streamflow, as also indicated in @zhang2017.
 
 ## Impact of the dryness index
 
-Climate, and in particular evapotranspiration would be expected to have a significant effect on the streamflow change as represented by the dryness index, which is also indicated in @zhang2017. Increased evapotranspiration could lead to drier watersheds, unless balanced by rainfall (such as possibly in the tropics). This model introduces the dryness index as a linear variable and drops the annual average precipitation as a variable, as dryness is calculated from the precipitation. It also drops the Latitude and Longitude as these are indicated not to be significant.
+Climate, and in particular evapotranspiration can have a significant effect on the streamflow change as represented by the dryness index, which is also highlghted by both @zhang2017 and @jackson2005. Increased evapotranspiration could lead to drier watersheds, unless balanced by rainfall (such as possibly in the tropics). This model introduces the dryness index as a linear variable and drops the annual average precipitation as a variable, as dryness is calculated from the precipitation. It also drops the Latitude and Longitude as these are indicated not to be significant.
 
 
 <!-- include Dryness index -->
@@ -459,17 +458,18 @@ model4_dryness <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + log10(Area_
 ```
 
 ```{r, echo =F}
-pander(round(summary(model4_dryness)$p.table,2), caption = "Results of the model replacing the annual precipitation with the dryness index")
+pander(round(summary(model4_dryness)$p.table,2), caption = "(\\#tab:out-model4) Results of the model replacing the annual precipitation with the dryness index")
 ```
 
-The results from this model confirm that dryness is a significant confounding factor of the change in streamflow as function of the change in forest cover change. In fact if the dryness index doubles (remembering that Dryness = 1 when E0 = Pa, so in this case E0 = 2*Pa, which is very dry), the change in runoff is ~14\% greater. However, more interesting, Latitude remains a significant predictor with each degree in latitude causing an -0.31\% change in runoff. This indicates that Dryness (i.e. an increase in radiation) alone does not explain the trend in the Latitude and some other unknown confounding factor is captured by Latitude.  
-
-However, the result also indicates possible issues with the data, some of the Dryness values are very large (> 4) and these values have high leverage in the data. These watersheds are listed in Table 5:
-
+The results from this model (Table \@ref(tab:out-model4)) confirm that dryness is a significant confounding factor related to the change in streamflow as a function of the change in forest cover change. In fact if the dryness index doubles (remembering that Dryness = 1 when E0 = Pa, so in this case E0 = 2*Pa, which is very dry), the change in runoff is ~14\% greater. However, more interesting, Latitude remains a significant predictor with each degree in latitude causing an -0.31\% change in runoff. This indicates that Dryness (i.e. an increase in radiation) alone does not explain the trend in the Latitude and some other unknown confounding factor is captured by Latitude.  
 
 ```{r, echo = F}
-pander(Zhang_all2 %>% filter(Dryness > 4) %>% select(Latitude, Longitude,`Watershed name`), caption = "Watersheds for which the dryness index > 4")
+pander(All_data2 %>% filter(Dryness > 4) %>% select(Latitude, Longitude,`Watershed name`), caption = "(\\#tab:drytable) Watersheds for which the dryness index > 4")
 ```
+
+
+However, the result also indicates possible issues with the data, some of the Dryness values are very large (> 4) and these values have high leverage in the data. These watersheds are listed in Table \@ref(tab:drytable).
+
 
 ### Are some of the variables possibly non-linear?
 
@@ -483,17 +483,26 @@ model5_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign +
                     s(log10(Area_km2), bs="ts") + s(Dryness, bs="ts") + 
                     s(length, bs="ts") ,
                   data = All_data2)
-summary(model5_all)
+#summary(model5_all)
 #gam.check(model5_all)
 #plot(model5_all)
-pander(round(summary(model5_all)$p.table,2))
-pander(round(summary(model5_all)$s.table,2))
 ```
+
+```{r mfive-linear, echo = F}
+pander(round(summary(model5_all)$p.table,2), caption = "Statistical summary for the linear terms in the model with non-linear terms")
+```
+
+```{r mfive-smooth, echo = F}
+pander(round(summary(model5_all)$s.table,2), caption = "Statistical summary for the smooth terms in the model with non-linear terms")
+
+```
+
+
 <!-- model 2c include smooth variables -->
 
-Including non-linearity increases the overall explaining power of the model to an adjusted *r^2^* of `r round(summary(model5_all)$r.sq,2)`, but creates few changes in the significance of the variables. However, it also can create a chance of overfitting, as the smoothing splines allow significant flexibility, which will be investigated below.
+Including non-linearity increases the overall explaining power of the model to an adjusted *r^2^* of `r round(summary(model5_all)$r.sq,2)` and deviance explained of `r round(summary(model5_all)$dev.expl,2)`, but creates few changes in the significance of the variables (Table \@ref(tab:mfive-smooth)). However, it also increases the chance of over fitting, as the smoothing splines allow significant flexibility, which will be investigated later.
 
-However, first a final full model which includes the remaining categorical variables (Precipitation data type, Assessment technique, Forest type and Hydrological regime) are included in the model
+A final full model which includes the remaining categorical variables (Precipitation data type, Assessment technique, Forest type and Hydrological regime) is tested.
 
 ```{r model6_all, echo = F}
 
@@ -507,11 +516,46 @@ model6_all <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign +
 #summary(model6_all)
 #gam.check(model6_all)
 #plot(model6_all)
-pander(round(summary(model6_all)$p.table,2))
-pander(round(summary(model6_all)$s.table,2))
-plot(model6_all, select = 2)
 ```
 
+```{r msix-linear, echo = F}
+pander(round(summary(model6_all)$p.table,2), caption = "Statistical summary for the linear terms the full model")
+#plot(model6_all)
+```
+
+```{r msix-smooth}
+pander(round(summary(model6_all)$s.table,2), caption = "Statistical summary for the smooth terms for the full model")
+#plot(model6_all)
+```
+
+This model explains more of the variance, but the improvement is marginal compared to the previous model with a deviance explained of `r round(summary(model6_all)$dev.expl,2)`. This indicates that the categorical variables explain a limited amount of the variance. However, interesting to note from Table \@ref(tab:msix-linear) that several of the assessment methods are significant. In particular Paired Watersheds experiments (PWE), Hydrological modelling (HM) and Statistical techniques (SH) are strongly significant ($p < 0.05$).
+
+
+```{r visualisesmooths,echo =F, eval = F}
+#require(visreg)
+png("model6_smooths.png", width = 2500, height = 1800, res = 300)
+#par(mfrow=c(2,2))
+D <- visreg(model6_all, "Dryness", gg = T, plot = T) + theme_bw()
+L <- visreg(model6_all, "length", gg = T, plot = T) + theme_bw()
+A <- visreg(model6_all, "Area_km2", gg = T, plot = T) + theme_bw() + scale_x_log10()
+D / (L + A) 
+# visreg(model6_all,"Dryness",gg=T) + theme_bw()
+# visreg(model6_all,"length",gg=T, add=T) + theme_bw()
+# visreg(model6_all,"Area_km2",gg=T, add=T) + theme_bw() + scale_x_log10()
+#par(mfrow=c(1,1))
+dev.off()
+```
+
+
+
+```{r smoothsmodel6, fig.cap="Visualisation of the smooth variables in the model", out.width="90%", echo=F}  
+
+include_graphics("model6_smooths.png")
+```
+
+Figure \@ref(fig:smoothsmodel6) highlights that the relationship between log10(Area) and the change in flow is essentially linear and does not need to be smoothed (this is the value of using penalized smooths following @wood2006). It is still a negative slope, indicating that in larger watersheds the impact of changes in forest cover on streamflow is less than for smaller watersheds. In addition, both the length and Dryness variables show non-linearity, but this does not show a clear trend.
+
+<!--
 ```{r model6_reduc, eval = F, echo = F}
 model6_reduc <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
                     s(Dryness, bs="ts" )  + 
@@ -522,38 +566,18 @@ summary(model6_reduc)
 
 ```
 
-Clearly Latitude is masking other factors including the assessment technique and the forest type
 
-<!-- Show boxplots of relationships with latitude-->
-```{r, eval =T, echo =F}
+
+```{r, eval =F, echo =F}
 All_data2 %>%
   ggplot(aes(Assessment_technique, length)) + 
   geom_boxplot(colour = "blue") + theme_bw()
 ```
 
-```{r, eval =T, echo =F}
-All_data2 %>%
-  group_by(Assessment_technique) %>%
-  summarise(n = n())
-```
+
+
 
 Maybe remove data for low numbers of assessment techniques and rerun the analysis (<10)
-
-```{r, eval =F, echo =F}
-png("AssessmentTechnique_byArea.png", width = 2500, height = 1800, res = 300)
-All_data2 %>%
-  ggplot(aes(Assessment_technique, log10(Area_km2))) + 
-  geom_boxplot(colour = "blue") + theme_bw() +
-    theme(axis.title = element_text(size = rel(2)),
-        axis.text = element_text(size = rel(1.5)))
-dev.off()
-```
-
-
-```{r assessment, fig.cap="Boxplot of the log base 10 of the watershed area (in km2) for the different assessment techniques, showing the dominance of small watersheds in the paired watershed experiments", out.width="90%", echo=F}  
-
-include_graphics("AssessmentTechnique_byArea.png")
-```
 
 
 
@@ -568,67 +592,41 @@ Zhang_all2 %>%
   ggplot(aes(Hydrological_regime, Latitude)) + 
   geom_boxplot(colour = "blue") + theme_bw()
 ```
-
-
-Clearly all have at least some relationship with Latitude, therefore are being masked if Latitude is included in the model.
-
-The flexible nature of the splines and the shrinkage applied to the splines means that the length variable can capture variation in the data, but it is unclear what exactly is captured. The shape of the resulting conditional response does not reflect the reponses highlighted in @filoso2017 and @jackson2005. Reducing the flexibility of the splines, or fitting a linear term results in "length" not being significant, which suggests that this variable is not helpful in explaining the variation in the data.
-
-
-```{r, eval =T, echo =F}
+ -->
+ 
+<!--
+```{r, eval =F, echo =F}
 All_data2 %>%
   ggplot(aes(DeltaQf_perc, length)) + 
   geom_point(colour = "blue") + theme_bw()
 ```
+-->
 
-In drier watersheds, changes in forest cover have greater impact on flow, which is similar to @zhang2017. This is most likely because in these watersheds the overall flow is surface flow dominated and therefore the buffering that is afforded by the groundwater inputs is not as great. As we don't have a separate variable for groundwater inputs (although this effect is estimated in many studies), we cannot analyse this effect separately.
 
-In contrast to @filoso2017, we also did not identify an effect of the 
 
-Given how skewed Dryness is due tot he few watersheds that have very high dryness values, it is worth investigating what excluding these 4 watersheds from the data means for the relationships. 
-
-\newpage
-
-<!--reduce drynes < 4 -->
-```{r model7_noLatb, echo = F}
-model7_noLatb <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
+<!--filter lenght < 60 -->
+```{r model7_noLatb, echo = F, eval = F}
+model7_nolongLength <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
                     s(Dryness, bs="ts" ) + #s(Latitude, bs="ts") + 
                       s(log10(Area_km2), bs="ts") + s(length,bs="ts") +
                     Precip_data_type +  Assessment_technique + Forest_type +
                     Hydrological_regime, data = All_data2 %>% filter(length< 60))
 #summary(model7_noLatb)
 #plot(model7_noLatb)
-pander(round(summary(model7_noLatb)$p.table,2))
-pander(round(summary(model7_noLatb)$s.table,2))
-plot(model7_noLatb)
-summary(model7_noLatb)
-```
-
-### remove the assessment techniques with very small numbers
-
-```{r model8_reduc_assess, echo = F}
-All_data3 <- All_data2 %>%
-  filter(Assessment_technique != "EA, HM" & Assessment_technique != "PWE, HM" & Assessment_technique != "QPW, EA" )
-
-model8_assess <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
-                    s(Dryness, bs="ts" ) + #s(Latitude, bs="ts") + 
-                      s(log10(Area_km2), bs="ts") + s(length,bs="ts") +
-                    Precip_data_type +  Assessment_technique + Forest_type +
-                    Hydrological_regime, data = All_data3 %>% filter(length< 60))
-#summary(model7_noLatb)
+#pander(round(summary(model7_nolongLength)$p.table,2))
 #plot(model7_noLatb)
-pander(round(summary(model8_assess)$p.table,2))
-pander(round(summary(model8_assess)$s.table,2))
-plot(model8_assess)
-summary(model8_assess)
-
+#summary(model7_nolongLength)
+```
+```{r restrictlength, echo = F}
+pander(round(summary(model7_nolongLength)$s.table,2), caption = "Statistical summary of the smooth terms reducing dataset to studies with the study length shorter than 60 years")
 ```
 
 
+The flexible nature of the splines means that the length variable captures some substantial variation in the data, but it is unclear what exactly is captured. The shape of the conditional response (Figure \@ref(fig:smoothsmodel6)) also does not reflect the type of response highlighted in @filoso2017 and @jackson2005. One reason could be the few data points with very long data series, but highly variable responses (Figure \@ref(fig:smoothsmodel6)). Reducing the flexibility of the splines, removing any studies longer than 60 years (Table \@ref(tab:restrictlength)), or fitting a linear term results in "length" not being significant, suggesting that this variable is not helpful in explaining the variation in the data.
 
 
 
-```{r, echo = F}
+```{r, echo = F, eval =F}
 png("flow_forest_byArea.png", width = 2500, height = 1800, res = 300)
 All_data2 %>%
   ggplot(aes(DeltaF_perc_pos, DeltaQf_perc, colour = Assessment_technique,size = log10(Area_km2), 
@@ -643,14 +641,14 @@ All_data2 %>%
 dev.off()
 ```
 
-```{r, eval =F}
+```{r, eval =F, echo =F}
 Zhang_all2 %>%
   ggplot(aes(Longitude, Latitude, colour = DeltaF_perc, size = DeltaQf_perc/100 )) + geom_point(alpha = 0.5)
 ```
 
 <!--Check the size distribution of the watersheds -->
 
-```{r, eval =F}
+```{r, eval =F, echo =F}
 Zhang_all %>%
   ggplot(aes(Area_km2)) + geom_histogram(fill="blue", bins =50) +
   scale_x_log10()
@@ -690,6 +688,67 @@ Discussion
 Essentially, the analysis shows at the moment that in contrast to @zhang2017 there is no evidence that the size of a watershed influences the change in the streamflow as a result of changes in forestry. If anything the scatter in the data (in the change in flow) is greater for the smaller watersheds then for the larger watersheds. In other words, the response to changes in forest cover is more consistent for larger watersheds than it is for smaller watersheds.
 
 As shown earlier, most of the smaller watersheds are "real observed data" using paired watershed studies, while for larger watersheds, the analysis are mostly based on modelling approximations using either elasticity analysis (EA), Hydrological modelling (HM) or a combined use of statistical methods (SH) or quasi paired watershed analysis (QPW), thus all providing an approximation of the effect of forestry on streamflow rather than a direct comparison of watersheds. This is a confounding factor that is not easily addressed in the regression modelling attempted here. Furthermore, the catchments analysed using EA, are concentrated in the drier end of the Dryness index scale compared to the other methods, with only the paired watershed experiment (PWE) assessment technique covering the full range of dryness indices.
+
+
+### remove the assessment techniques with very small numbers
+
+
+One concern is that there are a few Assessment techniques in the original dataset with a very low number of observations and this might skew the results of the analysis. This includes the category of Quasi paired watersheds and combinations of elasticity analysis and hydrological modelling (EA,HM) and paired watersheds and hydrological modelling (PWE,HM). 
+
+```{r tableassess, eval =T, echo =F}
+Table_assessment <- All_data2 %>%
+  group_by(Assessment_technique) %>%
+  summarise(n = n()) %>%
+  arrange(desc(n))
+
+pander(Table_assessment)
+```
+
+
+```{r, eval = T, echo =F}
+png("AssessmentTechnique_byArea.png", width = 2500, height = 1800, res = 300)
+All_data2 %>%
+  ggplot(aes(Assessment_technique, log10(Area_km2))) + 
+  geom_boxplot(colour = "blue") + theme_bw() +
+    theme(axis.title = element_text(size = rel(2)),
+        axis.text = element_text(size = rel(1.5)))
+dev.off()
+```
+
+
+```{r assessment, fig.cap="Boxplot of the log base 10 of the watershed area (in km2) for the different assessment techniques, showing the dominance of small watersheds in the paired watershed experiments", out.width="90%", echo=F}  
+
+include_graphics("AssessmentTechnique_byArea.png")
+```
+
+
+```{r model8_reduc_assess, echo = F}
+All_data3 <- All_data2 %>%
+  filter(Assessment_technique != "EA, HM" & Assessment_technique != "PWE, HM" & Assessment_technique != "QPW, EA" )
+
+model8_assess <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
+                    s(Dryness, bs="ts" ) + #s(Latitude, bs="ts") + 
+                      s(log10(Area_km2), bs="ts") + s(length,bs="ts") +
+                    Precip_data_type +  Assessment_technique + Forest_type +
+                    Hydrological_regime, data = All_data3 %>% filter(length< 60))
+#summary(model7_noLatb)
+#plot(model7_noLatb)
+pander(round(summary(model8_assess)$p.table,2))
+pander(round(summary(model8_assess)$s.table,2))
+#plot(model8_assess)
+#summary(model8_assess)
+
+```
+
+
+
+In drier watersheds, changes in forest cover have greater impact on flow, which is similar to @zhang2017. This is most likely because in these watersheds the overall flow is surface flow dominated and therefore the buffering that is afforded by the groundwater inputs is not as great. As we don't have a separate variable for groundwater inputs (although this effect is estimated in many studies), we cannot analyse this effect separately.
+
+In contrast to @filoso2017, we also did not identify an effect of the 
+
+Given how skewed Dryness is due to the few watersheds that have very high dryness values, it is worth investigating what excluding these 4 watersheds from the data means for the relationships. 
+
+### Other possible bias in the data
 
 There are further confounding factors in the data, which were also classified by @filoso2017 and these create biases in the data set that can impact the overall assessment. For example, snow dominated hydrological regimes (SD), which are weakly significant, are dominated by Coniferous Forests (CF), while the majority of the rain dominated regimes are all broadleaf forests (BF). However, the forest type classification is very coarse and does not fully capture possible physiological differences that could affect evapotranspiration and therefore changes in streamflow.
 
