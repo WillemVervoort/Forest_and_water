@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.1.8)  9 JAN 2022 20:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.1.8)  11 JAN 2022 22:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -324,131 +324,110 @@ Package hyperref Warning: Option `bookmarks' has already been used,
 (hyperref)                setting the option has no effect on input line 48.
 
 Package hyperref Info: Option `colorlinks' set `false' on input line 48.
-(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
-(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package color Info: Driver file: pdftex.def on input line 149.
-) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2021/12/21 4.1b verbatim text (tvz,hv)
-\FV@CodeLineNo=\count293
-\FV@InFile=\read2
-\FV@TabBox=\box57
-\c@FancyVerbLine=\count294
-\FV@StepNumber=\count295
-\FV@OutFile=\write4
-) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip57
-\fb@frw=\dimen163
-\fb@frh=\dimen164
-\FrameRule=\dimen165
-\FrameSep=\dimen166
-) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
-\LTleft=\skip58
-\LTright=\skip59
-\LTpre=\skip60
-\LTpost=\skip61
-\LTchunksize=\count296
-\LTcapwidth=\dimen167
-\LT@head=\box58
-\LT@firsthead=\box59
-\LT@foot=\box60
-\LT@lastfoot=\box61
-\LT@gbox=\box62
-\LT@cols=\count297
-\LT@rows=\count298
-\c@LT@tables=\count299
-\c@LT@chunks=\count300
+\LTleft=\skip57
+\LTright=\skip58
+\LTpre=\skip59
+\LTpost=\skip60
+\LTchunksize=\count293
+\LTcapwidth=\dimen163
+\LT@head=\box57
+\LT@firsthead=\box58
+\LT@foot=\box59
+\LT@lastfoot=\box60
+\LT@gbox=\box61
+\LT@cols=\count294
+\LT@rows=\count295
+\c@LT@tables=\count296
+\c@LT@chunks=\count297
 \LT@p@ftn=\toks28
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen168
-\lightrulewidth=\dimen169
-\cmidrulewidth=\dimen170
-\belowrulesep=\dimen171
-\belowbottomsep=\dimen172
-\aboverulesep=\dimen173
-\abovetopsep=\dimen174
-\cmidrulesep=\dimen175
-\cmidrulekern=\dimen176
-\defaultaddspace=\dimen177
-\@cmidla=\count301
-\@cmidlb=\count302
-\@aboverulesep=\dimen178
-\@belowrulesep=\dimen179
-\@thisruleclass=\count303
-\@lastruleclass=\count304
-\@thisrulewidth=\dimen180
+\heavyrulewidth=\dimen164
+\lightrulewidth=\dimen165
+\cmidrulewidth=\dimen166
+\belowrulesep=\dimen167
+\belowbottomsep=\dimen168
+\aboverulesep=\dimen169
+\abovetopsep=\dimen170
+\cmidrulesep=\dimen171
+\cmidrulekern=\dimen172
+\defaultaddspace=\dimen173
+\@cmidla=\count298
+\@cmidlb=\count299
+\@aboverulesep=\dimen174
+\@belowrulesep=\dimen175
+\@thisruleclass=\count300
+\@lastruleclass=\count301
+\@thisrulewidth=\dimen176
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen181
-\ar@mcellbox=\box63
-\extrarowheight=\dimen182
+\col@sep=\dimen177
+\ar@mcellbox=\box62
+\extrarowheight=\dimen178
 \NC@list=\toks29
-\extratabsurround=\skip62
-\backup@length=\skip63
-\ar@cellbox=\box64
+\extratabsurround=\skip61
+\backup@length=\skip62
+\ar@cellbox=\box63
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count305
-\calc@Bcount=\count306
-\calc@Adimen=\dimen183
-\calc@Bdimen=\dimen184
-\calc@Askip=\skip64
-\calc@Bskip=\skip65
+\calc@Acount=\count302
+\calc@Bcount=\count303
+\calc@Adimen=\dimen179
+\calc@Bdimen=\dimen180
+\calc@Askip=\skip63
+\calc@Bskip=\skip64
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count307
-\calc@Cskip=\skip66
+\calc@Ccount=\count304
+\calc@Cskip=\skip65
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count308
+\etb@tempcnta=\count305
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box65
-\fn@width=\dimen185
+\fn@notes=\box64
+\fn@width=\dimen181
 )
-\cslhangindent=\skip67
-\csllabelwidth=\skip68
-\cslentryspacingunit=\skip69
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 145.
+\cslhangindent=\skip66
+\csllabelwidth=\skip67
+\cslentryspacingunit=\skip68
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 104.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count309
-\l__pdf_internal_box=\box66
+\l__color_backend_stack_int=\count306
+\l__pdf_internal_box=\box65
 ) (./Forest_and_Water.aux)
 \openout1 = `Forest_and_Water.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 104.
+LaTeX Font Info:    ... okay on input line 104.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 145.
+Package hyperref Info: Link coloring OFF on input line 104.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -456,201 +435,196 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count310
+\c@section@level=\count307
 )
-LaTeX Info: Redefining \ref on input line 145.
-LaTeX Info: Redefining \pageref on input line 145.
-LaTeX Info: Redefining \nameref on input line 145.
+LaTeX Info: Redefining \ref on input line 104.
+LaTeX Info: Redefining \pageref on input line 104.
+LaTeX Info: Redefining \nameref on input line 104.
 (./Forest_and_Water.out) (./Forest_and_Water.out)
-\@outlinefile=\write5
-\openout5 = `Forest_and_Water.out'.
+\@outlinefile=\write4
+\openout4 = `Forest_and_Water.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 169.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 127.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 169.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 127.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 169.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 127.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 169.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 127.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 169.
+(Font)              <8> on input line 127.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 169.
+(Font)              <6> on input line 127.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 169.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 169.
+(Font)              <5> on input line 127.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 127.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 169.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 127.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 169.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 127.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 169.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 127.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 169.
+(Font)              <10> on input line 127.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 169.
+(Font)              <7> on input line 127.
 
-Overfull \vbox (39.52936pt too high) has occurred while \output is active []
+Overfull \vbox (42.02934pt too high) has occurred while \output is active []
 
 [1
 
 
 {c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 199.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 154.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [3] [4] [5]
-<./DataExploration.png, id=124, 602.25pt x 433.62pt>
+<./DataExploration.png, id=117, 602.25pt x 433.62pt>
 File: ./DataExploration.png Graphic file (type png)
 <use ./DataExploration.png>
-Package pdftex.def Info: ./DataExploration.png  used on input line 299.
+Package pdftex.def Info: ./DataExploration.png  used on input line 252.
 (pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-<Increase_decrease.png, id=125, 602.25pt x 433.62pt>
+<Increase_decrease.png, id=118, 602.25pt x 433.62pt>
 File: Increase_decrease.png Graphic file (type png)
 <use Increase_decrease.png>
-Package pdftex.def Info: Increase_decrease.png  used on input line 303.
+Package pdftex.def Info: Increase_decrease.png  used on input line 256.
 (pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-[6 <./DataExploration.png>] [7 <./Increase_decrease.png>]
-<residual_plot_model1.png, id=144, 602.25pt x 433.62pt>
+[6] [7 <./DataExploration.png> <./Increase_decrease.png>]
+<residual_plot_model1.png, id=135, 602.25pt x 433.62pt>
 File: residual_plot_model1.png Graphic file (type png)
 <use residual_plot_model1.png>
-Package pdftex.def Info: residual_plot_model1.png  used on input line 403.
+Package pdftex.def Info: residual_plot_model1.png  used on input line 356.
 (pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-[8 <./residual_plot_model1.png>]
-<../../data/FAOET0data2.png, id=155, 910.3611pt x 395.3169pt>
+[8] [9 <./residual_plot_model1.png>]
+<../../data/FAOET0data2.png, id=156, 910.3611pt x 395.3169pt>
 File: ../../data/FAOET0data2.png Graphic file (type png)
 <use ../../data/FAOET0data2.png>
-Package pdftex.def Info: ../../data/FAOET0data2.png  used on input line 468.
+Package pdftex.def Info: ../../data/FAOET0data2.png  used on input line 421.
 (pdftex.def)             Requested size: 310.4979pt x 134.8282pt.
-[9 <../../data/FAOET0data2.png>] [10] [11]
-
-LaTeX Warning: Reference `tab:mfive-smooth' on page 12 undefined on input line 699.
-
-
-Overfull \hbox (9.13959pt too wide) in paragraph at lines 743--743
+[10 <../../data/FAOET0data2.png>] [11] [12]
+Overfull \hbox (9.13959pt too wide) in paragraph at lines 702--702
  []|\T1/lmr/bx/n/10 Assessment_techniqueEA, 
  []
 
 
-Overfull \hbox (9.61258pt too wide) in paragraph at lines 744--744
+Overfull \hbox (9.61258pt too wide) in paragraph at lines 703--703
  []|\T1/lmr/bx/n/10 Assessment_techniqueHM| 
  []
 
 
-Overfull \hbox (17.00108pt too wide) in paragraph at lines 745--745
+Overfull \hbox (17.00108pt too wide) in paragraph at lines 704--704
  []|\T1/lmr/bx/n/10 Assessment_techniquePWE| 
  []
 
 
-Overfull \hbox (20.19559pt too wide) in paragraph at lines 746--747
+Overfull \hbox (20.19559pt too wide) in paragraph at lines 705--706
  []|\T1/lmr/bx/n/10 Assessment_techniquePWE, 
  []
 
 
-Overfull \hbox (18.1135pt too wide) in paragraph at lines 748--748
+Overfull \hbox (18.1135pt too wide) in paragraph at lines 707--707
  []|\T1/lmr/bx/n/10 Assessment_techniqueQPW| 
  []
 
 
-Overfull \hbox (21.27911pt too wide) in paragraph at lines 749--750
+Overfull \hbox (21.27911pt too wide) in paragraph at lines 708--709
  []|\T1/lmr/bx/n/10 Assessment_techniqueQPW, 
  []
 
 
-Overfull \hbox (5.0846pt too wide) in paragraph at lines 751--751
+Overfull \hbox (5.0846pt too wide) in paragraph at lines 710--710
  []|\T1/lmr/bx/n/10 Assessment_techniqueSH| 
  []
 
-[12]
-
-LaTeX Warning: Reference `tab:msix-linear' on page 13 undefined on input line 811.
-
-<model6_smooths.png, id=193, 602.25pt x 433.62pt>
+[13]
+<model6_smooths.png, id=196, 602.25pt x 433.62pt>
 File: model6_smooths.png Graphic file (type png)
 <use model6_smooths.png>
-Package pdftex.def Info: model6_smooths.png  used on input line 814.
+Package pdftex.def Info: model6_smooths.png  used on input line 762.
 (pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-
-Overfull \hbox (90.91606pt too wide) in paragraph at lines 819--826
-[]\T1/lmr/m/n/10 Quitting from lines 645-646 (For-est_and_Water.Rmd) Er-ror in sum-mary(model7_nolongLength)
- []
-
-
-LaTeX Warning: Reference `tab:restrictlength' on page 13 undefined on input line 827.
-
-[13] [14 <./model6_smooths.png>]
+[14 <./model6_smooths.png>]
+<model7_smooths.png, id=204, 602.25pt x 433.62pt>
+File: model7_smooths.png Graphic file (type png)
+<use model7_smooths.png>
+Package pdftex.def Info: model7_smooths.png  used on input line 810.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+<flow_forest_byArea.png, id=209, 602.25pt x 433.62pt>
+File: flow_forest_byArea.png Graphic file (type png)
+<use flow_forest_byArea.png>
+Package pdftex.def Info: flow_forest_byArea.png  used on input line 816.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+[15 <./model7_smooths.png>]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 844.
+(hyperref)                than one, level fixed on input line 827.
 
-<AssessmentTechnique_byArea.png, id=212, 602.25pt x 433.62pt>
-File: AssessmentTechnique_byArea.png Graphic file (type png)
-<use AssessmentTechnique_byArea.png>
-Package pdftex.def Info: AssessmentTechnique_byArea.png  used on input line 876.
-(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-
-Overfull \hbox (15.55385pt too wide) in paragraph at lines 904--904
+[16 <./flow_forest_byArea.png (PNG copy)>]
+Overfull \hbox (15.55385pt too wide) in paragraph at lines 902--902
  []|\T1/lmr/bx/n/10 Assessment_techniqueHM| 
  []
 
 
-Overfull \hbox (22.94235pt too wide) in paragraph at lines 905--905
+Overfull \hbox (22.94235pt too wide) in paragraph at lines 903--903
  []|\T1/lmr/bx/n/10 Assessment_techniquePWE| 
  []
 
 
-Overfull \hbox (24.05476pt too wide) in paragraph at lines 906--906
+Overfull \hbox (24.05476pt too wide) in paragraph at lines 904--904
  []|\T1/lmr/bx/n/10 Assessment_techniqueQPW| 
  []
 
 
-Overfull \hbox (11.02586pt too wide) in paragraph at lines 907--907
+Overfull \hbox (11.02586pt too wide) in paragraph at lines 905--905
  []|\T1/lmr/bx/n/10 Assessment_techniqueSH| 
  []
 
 
-Overfull \hbox (2.6382pt too wide) in paragraph at lines 910--910
+Overfull \hbox (2.6382pt too wide) in paragraph at lines 908--908
  []|\T1/lmr/bx/n/10 Hydrological_regimeSD| 
  []
 
-[15] [16 <./AssessmentTechnique_byArea.png>] [17] [18] (./Forest_and_Water.aux)
+[17]
+
+LaTeX Warning: Reference `tab:modl8-linear' on page 18 undefined on input line 954.
+
+[18] [19] [20] (./Forest_and_Water.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Forest_and_Water.out' has not changed.
-(rerunfilecheck)             Checksum: 476ED9A4A9F5D69672CE9A5509C4AF41;3093.
+(rerunfilecheck)             Checksum: 05CE707CFA71A6C8A899EBA75122A006;3079.
  ) 
 Here is how much of TeX's memory you used:
- 11945 strings out of 480313
- 189476 string characters out of 5895529
- 494611 words of memory out of 5000000
- 29482 multiletter control sequences out of 15000+600000
- 467252 words of font info for 72 fonts, out of 8000000 for 9000
+ 11400 strings out of 480313
+ 180337 string characters out of 5895529
+ 484401 words of memory out of 5000000
+ 28947 multiletter control sequences out of 15000+600000
+ 466614 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 70i,9n,76p,1254b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Forest_and_Water.pdf (18 pages, 2632523 bytes).
+ 70i,9n,76p,1392b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
+Output written on Forest_and_Water.pdf (20 pages, 2750264 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
- 329 compressed objects within 4 object streams
- 104 named destinations out of 1000 (max. 500000)
- 159 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 416 PDF objects out of 1000 (max. 8388607)
+ 340 compressed objects within 4 object streams
+ 108 named destinations out of 1000 (max. 500000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 
