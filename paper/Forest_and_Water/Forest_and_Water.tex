@@ -7,8 +7,11 @@
 
 \usepackage{lineno} % add
   \linenumbers % turns line numbering on
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \usepackage{graphicx}
+\usepackage{booktabs} % book-quality tables
 %%%%%%%%%%%%%%%% end my additions to header
 
 \usepackage[T1]{fontenc}
@@ -31,6 +34,7 @@
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \bibliographystyle{elsarticle-harv}
+\usepackage{longtable}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -51,59 +55,13 @@
 \setcounter{secnumdepth}{5}
 % Pandoc toggle for numbering sections (defaults to be off)
 
-
-% tightlist command for lists without linebreak
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-% From pandoc table feature
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
-
 % Pandoc citation processing
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacingunit} % times entry-spacing
-\setlength{\cslentryspacingunit}{\parskip}
-% for Pandoc 2.8 to 2.10.1
-\newenvironment{cslreferences}%
-  {}%
-  {\par}
-% For Pandoc 2.11+
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1
-  \let\oldpar\par
-  \def\par{\hangindent=\cslhangindent\oldpar}
-  \fi
-  % set entry spacing
-  \setlength{\parskip}{#2\cslentryspacingunit}
- }%
- {}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
+% Pandoc header
 
 
 
 \begin{document}
-
-
 \begin{frontmatter}
 
   \title{Factors determining how catchments respond to forest cover change. Re-analysing global data sets.}
@@ -120,8 +78,8 @@
       \cortext[1]{Corresponding Author}
   
   \begin{abstract}
-  Three recent papers review and analyse large global datasets related to impacts of forest cover on streamflow. Using three different approaches, they all find a strong relationship between forestation/de-forestation and streamflow. However, the past approaches in the literature are variable and can be substantially improved in statistical rigour, and indicate different confounding factors on the impact of forestation. The data for these three papers were reviewed, combined and re-analysed to answer the following new and older questions: 1) How is streamflow impacted by the change in forest cover as a function of catchment area; 2) how is this relationship conditioned by the length of the study, and climate; and 3) are there other possible variables that impact the observed change in streamflow? Generalised additive models were used to run flexible regressions including multiple variables.
   Changes in forest cover cause changes in streamflow, however this change is different between deforestation and reforestation, and strongly affected by climate, with drier climates indicating larger changes in streamflow. Deforestation causes a 32\% greater change in flow compared to reforestation. Area of the catchment only affects the change in streamflow after log transformation, given the wide variety in the data from small scale paired watershed studies. Smaller studies dominate the database with 42\% of the data \textless{} 1 km2 and 65\% of the data \textless{} 10 km2. Length of the study and initial year of the study did not affect the change in flow, in contrast to other reported studies. Despite these findings, overall explained variance (38\%) is low due the quality of the inputs and additional unknown confounding factors.
+  Three recent papers review and analyse large global datasets related to impacts of forest cover on streamflow. Using three different approaches, they all find a strong relationship between forestation/de-forestation and streamflow. However, the past approaches in the literature are variable and can be substantially improved in statistical rigour, and indicate different confounding factors on the impact of forestation. The data for these three papers were reviewed, combined and re-analysed to answer the following new and older questions: 1) How is streamflow impacted by the change in forest cover as a function of catchment area; 2) how is this relationship conditioned by the length of the study, and climate; and 3) are there other possible variables that impact the observed change in streamflow? Generalised additive models were used to run flexible regressions including multiple variables.
   \end{abstract}
   
  \end{frontmatter}
@@ -173,26 +131,26 @@ Table 1 Summary of abbreviations of factors used in the Zhang et al. (2017) data
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
-Factor & Abbreviation & Definition \\
+Factor & Abbreviation & Definition\tabularnewline
 \midrule
 \endhead
-forest type & CF & coniferous forest \\
-& BF & broadleaf forest \\
-& MF & mixed forest \\
-hydrological regime & RD & rain dominated \\
-& SD & snow dominated \\
-climate type & EL & energy limited \\
-& WL & water limited \\
-& EQ & equitant \\
-precipitation data type & OB & observed \\
-& SG & spatial gridded \\
-& MD & modelled \\
-assessment technique & PWE & paired watershed experiment \\
-& QPW & quasi-paired watershed experiment \\
-& HM & hydrological modelling \\
-& EA & elastictity analysis \\
-& SH & combined use of statistical methods \\
-& & and hydrographs \\
+forest type & CF & coniferous forest\tabularnewline
+& BF & broadleaf forest\tabularnewline
+& MF & mixed forest\tabularnewline
+hydrological regime & RD & rain dominated\tabularnewline
+& SD & snow dominated\tabularnewline
+climate type & EL & energy limited\tabularnewline
+& WL & water limited\tabularnewline
+& EQ & equitant\tabularnewline
+precipitation data type & OB & observed\tabularnewline
+& SG & spatial gridded\tabularnewline
+& MD & modelled\tabularnewline
+assessment technique & PWE & paired watershed experiment\tabularnewline
+& QPW & quasi-paired watershed experiment\tabularnewline
+& HM & hydrological modelling\tabularnewline
+& EA & elastictity analysis\tabularnewline
+& SH & combined use of statistical methods\tabularnewline
+& & and hydrographs\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -212,7 +170,7 @@ Similar to Zhang et al. (2017), the ``dryness index'' was calculated from the re
 D = \frac{E_{0}}{Pa} \label{eq:eq1}
 \end{equation}
 
-The length of the study can be a variable influencing the change in flow (Filoso et al., 2017; e.g. Jackson et al., 2005), as for example, more mature plantations are thought to have smaller impacts on flow or regrowth might follow a ``Kuczera curve'' (Kuczera, 1987). Therefore, the length of the study calculate as the difference between the starting data and completion date of the different studies was extracted from the references provided by Zhang et al. (2017). The length of the study was already included in the data from Filoso et al. (2017), but these were checked against the original publications.
+The length of the study can be a variable influencing the change in flow (e.g.~Jackson et al., 2005; Filoso et al., 2017), as for example, more mature plantations are thought to have smaller impacts on flow or regrowth might follow a ``Kuczera curve'' (Kuczera, 1987). Therefore, the length of the study calculate as the difference between the starting data and completion date of the different studies was extracted from the references provided by Zhang et al. (2017). The length of the study was already included in the data from Filoso et al. (2017), but these were checked against the original publications.
 
 Several additional data points from catchment studies were extracted from Zhang et al. (2011), Zhao et al. (2010), Borg et al. (1988), Thornton et al. (2007), Zhou et al. (2010), Rodriguez et al. (2010), Ruprecht et al. (1991) and Peña-Arancibia et al. (2012), and these were checked against the existing studies to prevent overlap. In the citation column in the data set, in general the main reference for the calculated change in streamflow was used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e.~Table 6 in Zhang et al. (2011)).
 We also removed one data point from the analysis, which corresponds to catchment \#1 (Amazon) in Zhang et al. (2017). This is because the cited reference (Roche, 1981) only relates to 1 and 1.5 ha paired catchment studies in French Guyana, and in which the actual change in forest cover is not recorded. Furthermore, the change in flow for catchment \#76 was corrected from 600\% to 157\% after review of the original publication (Baker Jr., 1984). Finally, on review of all the data in Zhang et al. (2017) and Filoso et al. (2017), 29 potential duplicates were identified and flagged in the data.
@@ -244,9 +202,9 @@ More generally the results were analysed to identify:\\
 \section{Results}\label{results}}
 
 \hypertarget{description-of-the-data}{%
-\subsection{description of the data}\label{description-of-the-data}}
+\subsection{Description of the data}\label{description-of-the-data}}
 
-The overall dataset contains 309 observations of changes in flow, which includes the newly identified data sets and after removing identified duplicate data and lines with missing data. In contrast, the original dataset from Zhang et al. (2017) contained 312 catchments and the Filoso et al. (2017) study used 37 catchments (Table S2 in Filoso et al. (2017)). The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Smaller catchments dominate the database with 42\% of the data from catchments \textless{} 1 km\textsuperscript{2} and 65\% of the data for catchments \textless{} 10 km\textsuperscript{2}.
+The overall dataset contains 309 observations of changes in flow, which includes the newly identified data sets and after removing identified duplicate data and lines with missing data. In contrast, the original dataset from Zhang et al. (2017) contained 312 catchments and the Filoso et al. (2017) study used 37 catchments (Table S2 in Filoso et al. (2017)). The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Smaller catchments dominate the database with 42\% of the data from catchments \textless{} 1 km\textsuperscript{2} and 65\% of the data for catchments \textless{} 10 km\textsuperscript{2} (Figure 1).
 
 
 
@@ -254,11 +212,11 @@ The overall dataset contains 309 observations of changes in flow, which includes
 \includegraphics[width=0.9\linewidth]{./DataExploration} \caption{Overview of the distribution of the data set for five of the included variables.}\label{fig:datagraphs}
 \end{figure}
 
+In addition, this shows that for the data related to forest decreases, there is almost always a positive flow change (Figure 2). In other words, flow almost always increased. However, for increases in forest cover, this is not the case, and flow can both increase and decrease. However in both cases the variability in the reported change in flow increases with the increase in forest cover change.
+
 \begin{figure}
 \includegraphics[width=0.9\linewidth]{Increase_decrease} \caption{Changes in flow as a function of increases and decreases in forest cover}\label{fig:increasedecrease}
 \end{figure}
-
-This shows that for the data related to forest decreases, there is almost always a positive flow change. In other words, flow almost always increased. However, for increases in forest cover, this is not the case, and flow can both increase and decrease. However in both cases the variability in the reported change in flow increases with the increase in forest cover change.
 
 \hypertarget{the-general-relationship-between-change-in-forest-cover-and-streamflow}{%
 \subsection{The general relationship between change in forest cover and streamflow}\label{the-general-relationship-between-change-in-forest-cover-and-streamflow}}
@@ -269,47 +227,102 @@ Following Zhang et al. (2017), the first step is to investigate the percent chan
 \Delta Qf \% \sim ~ \Delta \% forest~cover_{positive} + sign_{forest~cover} + \varepsilon \label{eq:eq3}
 \end{equation}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.36}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.18}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}@{}}
-\caption{\label{tab:tabmodel1} Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change. The first three rows relate to the model using the original data base from Zhang et al.~(2017). The bottom three rows are the results of the model including the new data}\tabularnewline
+\begin{longtable}[]{@{}ccccc@{}}
+\caption{\label{tab:tabmodel1} Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change. The first three rows relate to the model using the original data base from Zhang et al.~(2017). The bottom three rows are the results of the model including the new data.}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{(Intercept)} & 8.65 & 5.56 & 1.56 & 0.12 \\
-\textbf{DeltaF\_perc\_pos} & 0.45 & 0.09 & 5.26 & 0 \\
-\textbf{Forest\_Signincrease} & -29.17 & 5.79 & -5.04 & 0 \\
-\textbf{(Intercept)} & 9.43 & 5.54 & 1.7 & 0.09 \\
-\textbf{DeltaF\_perc\_pos} & 0.44 & 0.09 & 5.12 & 0 \\
-\textbf{Forest\_Signincrease} & -36.54 & 5.59 & -6.53 & 0 \\
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+8.65\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.56\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+1.56\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.12\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.45\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+0.09\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+5.26\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-29.17\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.79\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-5.04\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+9.43\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.54\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+1.7\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.09\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.44\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+0.09\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+5.12\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-36.54\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.59\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-6.53\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -338,46 +351,91 @@ As indicated, an initial hypothesis relates to whether there is a strong spatial
 \Delta Qf \% \sim ~ & \Delta \% forest~cover_{positive} + sign_{forest~cover} + \notag \\ &  Latitude + Longitude + \varepsilon \label{eq:eq4}
 \end{align}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.36}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.18}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:out-model3} Results of the model including Latitude and Longitude including new data}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{(Intercept)} & 10.13 & 6.01 & 1.69 & 0.09 \\
-\textbf{DeltaF\_perc\_pos} & 0.45 & 0.09 & 5.22 & 0 \\
-\textbf{Forest\_Signincrease} & -38.15 & 5.95 & -6.41 & 0 \\
-\textbf{Latitude} & -0.04 & 0.09 & -0.4 & 0.69 \\
-\textbf{Longitude} & 0.01 & 0.03 & 0.26 & 0.79 \\
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+10.13\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+6.01\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+1.69\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.09\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.45\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+0.09\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+5.22\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-38.15\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.95\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-6.41\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Latitude}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-0.04\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+0.09\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-0.4\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.69\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Longitude}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.01\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+0.03\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.26\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.79\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -392,80 +450,136 @@ Climate, and in particular evapotranspiration can have a significant effect on t
 \Delta Qf \% \sim ~ & \Delta \% forest~cover_{positive} + sign_{forest~cover} + \notag \\ & Dryness + \varepsilon \label{eq:eq5}
 \end{align}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.36}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.18}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:out-model4} Results of the model including the dryness index}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{(Intercept)} & 3.18 & 6.77 & 0.47 & 0.64 \\
-\textbf{DeltaF\_perc\_pos} & 0.43 & 0.09 & 4.91 & 0 \\
-\textbf{Forest\_Signincrease} & -37.43 & 5.68 & -6.59 & 0 \\
-\textbf{Dryness} & 5.56 & 3.06 & 1.82 & 0.07 \\
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+3.18\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+6.77\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.47\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.64\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.43\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+0.09\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+4.91\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-37.43\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.68\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-6.59\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Dryness}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+5.56\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+3.06\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+1.82\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.07\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
 The results from this model (equation \eqref{eq:eq5} and Table \ref{tab:out-model4}) confirm that dryness is a clear confounding factor related to the change in streamflow as a function of the change in forest cover change. In this case the evidence is not very strong (p = 0.07. However, if the dryness index doubles (remembering that Dryness = 1 when E0 = Pa, so in this case E0 = 2×Pa, which is very dry), the change in runoff is \textasciitilde6\% greater. Again, overall variance explained is not very much, with an adjusted \emph{r\textsuperscript{2}} of 0.22.
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.15}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.17}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.46}}@{}}
+\begin{longtable}[]{@{}ccc@{}}
 \caption{\label{tab:drytable} catchments for which the dryness index \textgreater{} 4}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-Latitude
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Longitude
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Watershed name
-\end{minipage} \\
+\begin{minipage}[b]{0.14\columnwidth}\centering
+Latitude\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Longitude\strut
+\end{minipage} & \begin{minipage}[b]{0.42\columnwidth}\centering
+Watershed name\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-Latitude
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Longitude
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Watershed name
-\end{minipage} \\
+\begin{minipage}[b]{0.14\columnwidth}\centering
+Latitude\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Longitude\strut
+\end{minipage} & \begin{minipage}[b]{0.42\columnwidth}\centering
+Watershed name\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-34.67 & -111.7 & Beaver Creek, AZ \#3-2 \\
-36.4 & -120.4 & Cantua \\
-34.43 & -112.3 & White Spar, Ariz., U.S.A, B \\
-32.74 & -111.5 & Natural DRDages, Ariz., U.S.A,
-A \\
+\begin{minipage}[t]{0.14\columnwidth}\centering
+34.67\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-111.7\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\centering
+Beaver Creek, AZ \#3-2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+36.4\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-120.4\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\centering
+Cantua\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+34.43\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-112.3\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\centering
+White Spar, Ariz., U.S.A, B\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\centering
+32.74\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+-111.5\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\centering
+Natural DRDages, Ariz., U.S.A,
+A\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -480,46 +594,91 @@ The major hypothesis to test is the effect of area on the change in flow, follow
 \Delta Qf \% \sim ~ & \Delta \% forest~cover_{positive} + sign_{forest~cover} + \notag \\ & log10(Area ~(km^2)) + Dryness + \varepsilon \label{eq:eq6}
 \end{align}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.36}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.18}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:out-modelArea} Results of the model including Area and the dryness index}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{(Intercept)} & 10.46 & 7.66 & 1.36 & 0.17 \\
-\textbf{DeltaF\_perc\_pos} & 0.31 & 0.11 & 2.93 & 0 \\
-\textbf{Forest\_Signincrease} & -35.67 & 5.73 & -6.23 & 0 \\
-\textbf{Dryness} & 6.54 & 3.08 & 2.12 & 0.03 \\
-\textbf{log10(Area\_km2)} & -3.5 & 1.76 & -1.99 & 0.05 \\
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+10.46\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+7.66\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+1.36\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.17\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.31\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+0.11\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+2.93\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-35.67\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.73\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-6.23\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Dryness}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+6.54\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+3.08\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+2.12\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.03\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{log10(Area\_km2)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-3.5\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+1.76\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-1.99\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.05\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -534,86 +693,146 @@ The work by Filoso et al. (2017) and earlier by Jackson et al. (2005) has indica
 \Delta Qf \% \sim &~ \Delta \% forest~cover_{positive} + sign_{forest~cover} + \notag \\ & s(log10(Area ~(km^2)) + s(length) + s(Dryness) + \\ & s(From) + \varepsilon \label{eq:eq7}
 \end{align}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.36}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.18}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:mfive-linear} Statistical summary for the linear terms in the model with non-linear terms}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.31\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{(Intercept)} & 17.37 & 5.91 & 2.94 & 0 \\
-\textbf{DeltaF\_perc\_pos} & 0.26 & 0.11 & 2.44 & 0.02 \\
-\textbf{Forest\_Signincrease} & -34.93 & 5.84 & -5.98 & 0 \\
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+17.37\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.91\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+2.94\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.26\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+0.11\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+2.44\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.02\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-34.93\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering
+5.84\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-5.98\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.35}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.10}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.12}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.10}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:mfive-smooth} Statistical summary for the smooth terms in the model with non-linear terms}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{s(log10(Area\_km2))} & 2.48 & 9 & 0.55 & 0.1 \\
-\textbf{s(Dryness)} & 0.89 & 9 & 0.62 & 0.01 \\
-\textbf{s(length)} & 0 & 9 & 0 & 0.66 \\
-\textbf{s(From)} & 8.1 & 9 & 3.97 & 0 \\
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(log10(Area\_km2))}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+2.48\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.55\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(Dryness)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.89\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.62\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.01\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(length)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.66\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(From)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+8.1\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+3.97\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -622,100 +841,280 @@ However, it also increases the chance of over fitting, as the smoothing splines 
 
 A final model includes the remaining categorical variables (Precipitation data type, Assessment technique, Forest type and Hydrological regime).
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.42}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.17}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.13}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:msix-linear} Statistical summary for the linear terms the full model}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.36\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.36\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{(Intercept)} & -21.06 & 19.16 & -1.1 & 0.27 \\
-\textbf{DeltaF\_perc\_pos} & 0.31 & 0.1 & 2.99 & 0 \\
-\textbf{Forest\_Signincrease} & -23.11 & 7.13 & -3.24 & 0 \\
-\textbf{Precip\_data\_typeOB} & -7.65 & 14.51 & -0.53 & 0.6 \\
-\textbf{Precip\_data\_typeSG} & 18.92 & 16.17 & 1.17 & 0.24 \\
-\textbf{Assessment\_techniqueEA, HM} & 17.73 & 45.71 & 0.39 & 0.7 \\
-\textbf{Assessment\_techniqueHM} & 29.82 & 12.66 & 2.36 & 0.02 \\
-\textbf{Assessment\_techniquePWE} & 44.69 & 12.68 & 3.53 & 0 \\
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-21.06\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+19.16\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-1.1\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.27\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.31\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+0.1\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+2.99\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-23.11\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+7.13\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-3.24\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Precip\_data\_typeOB}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-7.65\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+14.51\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.53\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.6\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Precip\_data\_typeSG}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+18.92\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+16.17\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.17\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.24\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueEA, HM}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+17.73\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+45.71\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+0.39\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.7\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueHM}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+29.82\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+12.66\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+2.36\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.02\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniquePWE}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+44.69\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+12.68\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+3.53\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
 \textbf{Assessment\_techniquePWE,
-HM} & 39.72 & 46.79 & 0.85 & 0.4 \\
-\textbf{Assessment\_techniqueQPW} & 37.54 & 21.54 & 1.74 & 0.08 \\
+HM}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+39.72\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+46.79\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+0.85\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueQPW}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+37.54\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+21.54\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.74\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.08\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
 \textbf{Assessment\_techniqueQPW,
-EA} & 24.9 & 27.45 & 0.91 & 0.37 \\
-\textbf{Assessment\_techniqueSH} & 43.68 & 13.27 & 3.29 & 0 \\
-\textbf{Forest\_typeCF} & -4.06 & 8.71 & -0.47 & 0.64 \\
-\textbf{Forest\_typeMF} & -8.33 & 8.7 & -0.96 & 0.34 \\
-\textbf{Hydrological\_regimeSD} & 9.41 & 10.57 & 0.89 & 0.37 \\
+EA}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+24.9\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+27.45\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+0.91\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.37\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Assessment\_techniqueSH}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+43.68\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+13.27\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+3.29\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Forest\_typeCF}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-4.06\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+8.71\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.47\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.64\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Forest\_typeMF}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+-8.33\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+8.7\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.96\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.34\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\centering
+\textbf{Hydrological\_regimeSD}\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+9.41\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+10.57\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+0.89\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.37\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.35}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.10}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.12}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.10}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:msix-smooth} Statistical summary for the smooth terms for the full model}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{s(log10(Area\_km2))} & 0.44 & 9 & 0.08 & 0.21 \\
-\textbf{s(Dryness)} & 3.5 & 9 & 1.76 & 0 \\
-\textbf{s(length)} & 0 & 9 & 0 & 0.45 \\
-\textbf{s(From)} & 8.17 & 9 & 4.13 & 0 \\
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(log10(Area\_km2))}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.44\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.08\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.21\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(Dryness)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+3.5\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+1.76\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(length)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.45\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(From)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+8.17\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+4.13\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -728,45 +1127,80 @@ In this case, \emph{Area (km\^{}2)} is no longer a significant predictor.
 
 Figure \ref{fig:smoothsmodel6} highlights that the relationship between log10(Area km\textsuperscript{2}) and the change in flow is essentially linear, not significant, and does not need to be smoothed (this is the value of using penalized smooths following Wood (2006)). It still has a negative slope, indicating that in larger catchments the impact of changes in forest cover on streamflow is less than for smaller catchments. Similarly, the length variable is not significant. However, both the length and Dryness variables show non-linearity, but this does not show a clear trend due to the scatter and the distributions of the data.
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.35}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.10}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.12}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.10}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:restrictlength} Statistical summary of the smooth terms reducing dataset to studies with the study length shorter than 60 years}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{s(Dryness)} & 2.62 & 9 & 3.4 & 0 \\
-\textbf{s(log10(Area\_km2))} & 0.76 & 9 & 0.35 & 0.04 \\
-\textbf{s(length)} & 0 & 9 & 0 & 0.4 \\
-\textbf{s(From)} & 0.99 & 9 & 0.46 & 0.04 \\
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(Dryness)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+2.62\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+3.4\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(log10(Area\_km2))}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.76\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.35\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.04\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(length)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(From)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.99\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.46\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.04\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -811,34 +1245,64 @@ The reason why the regression model is better able to resolve the variance in th
 \hypertarget{the-effect-of-assessment-techniques-with-very-small-numbers-of-observations}{%
 \subsection{The effect of assessment techniques with very small numbers of observations}\label{the-effect-of-assessment-techniques-with-very-small-numbers-of-observations}}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.32}}
-  >{\centering\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.08}}@{}}
+\begin{longtable}[]{@{}cc@{}}
 \caption{\label{tab:tableassess} Distribution of assessment techniques in the data set}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-Assessment\_technique
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-n
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+Assessment\_technique\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+n\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-Assessment\_technique
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-n
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+Assessment\_technique\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+n\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-PWE & 185 \\
-HM & 53 \\
-EA & 32 \\
-SH & 26 \\
-QPW & 7 \\
-QPW, EA & 4 \\
-EA, HM & 1 \\
-PWE, HM & 1 \\
+\begin{minipage}[t]{0.30\columnwidth}\centering
+PWE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+185\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+HM\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+53\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+EA\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+32\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+SH\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+26\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+QPW\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+7\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+QPW, EA\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+EA, HM\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+PWE, HM\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+1\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -848,95 +1312,245 @@ PWE, HM & 1 \\
 
 One concern is that there are a few assessment techniques in the original dataset with a very low number of observations and this might skew the results of the analysis. This includes the category of Quasi paired watersheds and combinations of elasticity analysis and hydrological modelling (EA,HM) and paired watersheds and hydrological modelling (PWE,HM) (Table \ref{tab:tableassess} and Figure \ref{fig:assessment}).
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.40}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.17}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.13}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:model8-linear} Statistical overview of the linear components of the model removing studies with limited observations in the assessment techniques}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.34\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
+\begin{minipage}[b]{0.34\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\centering
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{(Intercept)} & -16.88 & 19.02 & -0.89 & 0.38 \\
-\textbf{DeltaF\_perc\_pos} & 0.29 & 0.1 & 2.85 & 0 \\
-\textbf{Forest\_Signincrease} & -22.24 & 7.15 & -3.11 & 0 \\
-\textbf{Precip\_data\_typeOB} & -13.73 & 14.27 & -0.96 & 0.34 \\
-\textbf{Precip\_data\_typeSG} & 17.94 & 16.44 & 1.09 & 0.28 \\
-\textbf{Assessment\_techniqueHM} & 31.06 & 12.73 & 2.44 & 0.02 \\
-\textbf{Assessment\_techniquePWE} & 44.97 & 13.06 & 3.44 & 0 \\
-\textbf{Assessment\_techniqueQPW} & 34.75 & 21.26 & 1.63 & 0.1 \\
-\textbf{Assessment\_techniqueSH} & 48.06 & 13.16 & 3.65 & 0 \\
-\textbf{Forest\_typeCF} & -6.9 & 8.5 & -0.81 & 0.42 \\
-\textbf{Forest\_typeMF} & -4.53 & 8.68 & -0.52 & 0.6 \\
-\textbf{Hydrological\_regimeSD} & 10.3 & 10.46 & 0.99 & 0.33 \\
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-16.88\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+19.02\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.89\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.38\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{DeltaF\_perc\_pos}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.29\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+0.1\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+2.85\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Forest\_Signincrease}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-22.24\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+7.15\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-3.11\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Precip\_data\_typeOB}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-13.73\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+14.27\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.96\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.34\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Precip\_data\_typeSG}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+17.94\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+16.44\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.09\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.28\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Assessment\_techniqueHM}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+31.06\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+12.73\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+2.44\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.02\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Assessment\_techniquePWE}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+44.97\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+13.06\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+3.44\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Assessment\_techniqueQPW}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+34.75\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+21.26\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+1.63\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Assessment\_techniqueSH}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+48.06\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+13.16\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+3.65\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Forest\_typeCF}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-6.9\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+8.5\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.81\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.42\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Forest\_typeMF}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-4.53\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+8.68\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+-0.52\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.6\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.34\columnwidth}\centering
+\textbf{Hydrological\_regimeSD}\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+10.3\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\centering
+10.46\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+0.99\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+0.33\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.35}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.10}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.12}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.10}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}@{}}
+\begin{longtable}[]{@{}ccccc@{}}
 \caption{\label{tab:model8-smooth} Statistical overview of the smooth components of the model removing studies with limited observations in the assessment techniques}\tabularnewline
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
+\begin{minipage}[b]{0.30\columnwidth}\centering
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+edf\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+Ref.df\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+F\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\centering
+p-value\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-\textbf{s(Dryness)} & 3.55 & 9 & 1.82 & 0 \\
-\textbf{s(log10(Area\_km2))} & 0.75 & 9 & 0.27 & 0.07 \\
-\textbf{s(length)} & 0 & 9 & 0 & 0.37 \\
-\textbf{s(From)} & 0.79 & 9 & 0.26 & 0.08 \\
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(Dryness)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+3.55\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+1.82\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(log10(Area\_km2))}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.75\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.27\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.07\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(length)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.37\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\centering
+\textbf{s(From)}\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.79\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+0.26\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\centering
+0.08\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -975,80 +1589,78 @@ Conditional on the data, the impact of forestry on streamflow is:\\
 \addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
-\begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-andreassian2004}{}}%
-Andréassian, V., 2004. Waters and forests: From historical controversy to scientific debate. Journal of Hydrology 291, 1--27. doi:\url{https://doi.org/10.1016/j.jhydrol.2003.12.015}
+\leavevmode\hypertarget{ref-andreassian2004}{}%
+Andréassian, V., 2004. Waters and forests: From historical controversy to scientific debate. Journal of Hydrology 291, 1--27. doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2003.12.015}{https://doi.org/10.1016/j.jhydrol.2003.12.015}
 
-\leavevmode\vadjust pre{\hypertarget{ref-baker1984}{}}%
-Baker Jr., M.B., 1984. Changes in streamflow in an herbicide-treated pinyon-juniper watershed in arizona. Water Resources Research 20, 1639--1642. doi:\url{https://doi.org/10.1029/WR020i011p01639}
+\leavevmode\hypertarget{ref-baker1984}{}%
+Baker Jr., M.B., 1984. Changes in streamflow in an herbicide-treated pinyon-juniper watershed in arizona. Water Resources Research 20, 1639--1642. doi:\href{https://doi.org/https://doi.org/10.1029/WR020i011p01639}{https://doi.org/10.1029/WR020i011p01639}
 
-\leavevmode\vadjust pre{\hypertarget{ref-borg1988}{}}%
-Borg, H., Bell, R.W., Loh, I.C., 1988. Streamflow and stream salinity in a small water supply catchment in southwest western australia after reforestation. Journal of Hydrology 103, 323--333. doi:\url{https://doi.org/10.1016/0022-1694(88)90141-2}
+\leavevmode\hypertarget{ref-borg1988}{}%
+Borg, H., Bell, R.W., Loh, I.C., 1988. Streamflow and stream salinity in a small water supply catchment in southwest western australia after reforestation. Journal of Hydrology 103, 323--333. doi:\href{https://doi.org/https://doi.org/10.1016/0022-1694(88)90141-2}{https://doi.org/10.1016/0022-1694(88)90141-2}
 
-\leavevmode\vadjust pre{\hypertarget{ref-hewlett1984}{}}%
+\leavevmode\hypertarget{ref-hewlett1984}{}%
 Bosch, J.M., Hewlett, J.D., 1982. A review of catchment experiments to determine the effect of vegetation changes on water yield and evapotranspiration. Journal of Hydrology 55, 3--23.
 
-\leavevmode\vadjust pre{\hypertarget{ref-brown2013}{}}%
-Brown, A.E., Western, A.W., McMahon, T.A., Zhang, L., 2013. Impact of forest cover changes on annual streamflow and flow duration curves. Journal of Hydrology 483, 39--50. doi:\url{http://dx.doi.org/10.1016/j.jhydrol.2012.12.031}
+\leavevmode\hypertarget{ref-brown2013}{}%
+Brown, A.E., Western, A.W., McMahon, T.A., Zhang, L., 2013. Impact of forest cover changes on annual streamflow and flow duration curves. Journal of Hydrology 483, 39--50. doi:\href{https://doi.org/http://dx.doi.org/10.1016/j.jhydrol.2012.12.031}{http://dx.doi.org/10.1016/j.jhydrol.2012.12.031}
 
-\leavevmode\vadjust pre{\hypertarget{ref-brown2005}{}}%
+\leavevmode\hypertarget{ref-brown2005}{}%
 Brown, A.E., Zhang, L., McMahon, T.A., Western, A.W., Vertessy, R.A., 2005. A review of paired catchment studies for determining changes in water yield resulting from alterations in vegetation. Journal of Hydrology 310, 28--61.
 
-\leavevmode\vadjust pre{\hypertarget{ref-cosandey2005}{}}%
-Cosandey, C., Andréassian, V., Martin, C., Didon-Lescot, J.F., Lavabre, J., Folton, N., Mathys, N., Richard, D., 2005. The hydrological impact of the mediterranean forest: A review of french research. Journal of Hydrology 301, 235--249. doi:\url{https://doi.org/10.1016/j.jhydrol.2004.06.040}
+\leavevmode\hypertarget{ref-cosandey2005}{}%
+Cosandey, C., Andréassian, V., Martin, C., Didon-Lescot, J.F., Lavabre, J., Folton, N., Mathys, N., Richard, D., 2005. The hydrological impact of the mediterranean forest: A review of french research. Journal of Hydrology 301, 235--249. doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2004.06.040}{https://doi.org/10.1016/j.jhydrol.2004.06.040}
 
-\leavevmode\vadjust pre{\hypertarget{ref-filoso2017}{}}%
+\leavevmode\hypertarget{ref-filoso2017}{}%
 Filoso, S., Bezerra, M.O., Weiss, K.C.B., Palmer, M.A., 2017. Impacts of forest restoration on water yield: A systematic review. PLOS ONE 12, e0183210. doi:\href{https://doi.org/10.1371/journal.pone.0183210}{10.1371/journal.pone.0183210}
 
-\leavevmode\vadjust pre{\hypertarget{ref-jackson2005}{}}%
+\leavevmode\hypertarget{ref-jackson2005}{}%
 Jackson, R.B., Jobbagy, E.G., Avissar, R., Roy, S.B., Barrett, D.J., Cook, C.W., Farley, K.A., Maitre, D.C. le, McCarl, B.A., Murray, B.C., 2005. Trading water for carbon with biological carbon sequestration. Science 310, 1944--1947. doi:\href{https://doi.org/10.1126/science.1119282}{10.1126/science.1119282}
 
-\leavevmode\vadjust pre{\hypertarget{ref-kuczera1987}{}}%
+\leavevmode\hypertarget{ref-kuczera1987}{}%
 Kuczera, G., 1987. Prediction of water yield reductions following a bushfire in ash-mixed species eucalypt forest. Journal of Hydrology 94, 215--236. doi:\href{https://doi.org/Doi:\%2010.1016/0022-1694(87)90054-0}{Doi: 10.1016/0022-1694(87)90054-0}
 
-\leavevmode\vadjust pre{\hypertarget{ref-navas2019}{}}%
+\leavevmode\hypertarget{ref-navas2019}{}%
 Navas, R., Alonso, J., Gorgoglione, A., Vervoort, R.W., 2019. Identifying climate and human impact trends in streamflow: A case study in uruguay. Water 11, 1433.
 
-\leavevmode\vadjust pre{\hypertarget{ref-pena-arancibia2012}{}}%
-Peña-Arancibia, J.L., Dijk, A.I.J.M. van, Guerschman, J.P., Mulligan, M., Bruijnzeel, L.A., McVicar, T.R., 2012. Detecting changes in streamflow after partial woodland clearing in two large catchments in the seasonal tropics. Journal of Hydrology 416-417, 60--71. doi:\url{https://doi.org/10.1016/j.jhydrol.2011.11.036}
+\leavevmode\hypertarget{ref-pena-arancibia2012}{}%
+Peña-Arancibia, J.L., Dijk, A.I.J.M. van, Guerschman, J.P., Mulligan, M., Bruijnzeel, L.A., McVicar, T.R., 2012. Detecting changes in streamflow after partial woodland clearing in two large catchments in the seasonal tropics. Journal of Hydrology 416-417, 60--71. doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2011.11.036}{https://doi.org/10.1016/j.jhydrol.2011.11.036}
 
-\leavevmode\vadjust pre{\hypertarget{ref-roche1981}{}}%
+\leavevmode\hypertarget{ref-roche1981}{}%
 Roche, M., 1981. Watershed investigations for development of forest resources of the amazon region in french guyana. Tropical Agricultural Hydrology. J 75--82.
 
-\leavevmode\vadjust pre{\hypertarget{ref-rodriguez2010}{}}%
-Rodriguez, D.A., Tomasella, J., Linhares, C., 2010. Is the forest conversion to pasture affecting the hydrological response of amazonian catchments? Signals in the ji-paraná basin. Hydrological Processes 24, 1254--1269. doi:\url{https://doi.org/10.1002/hyp.7586}
+\leavevmode\hypertarget{ref-rodriguez2010}{}%
+Rodriguez, D.A., Tomasella, J., Linhares, C., 2010. Is the forest conversion to pasture affecting the hydrological response of amazonian catchments? Signals in the ji-paraná basin. Hydrological Processes 24, 1254--1269. doi:\href{https://doi.org/https://doi.org/10.1002/hyp.7586}{https://doi.org/10.1002/hyp.7586}
 
-\leavevmode\vadjust pre{\hypertarget{ref-ruprechtetal1991}{}}%
-Ruprecht, J.K., Schofield, N.J., Crombie, D.S., Vertessy, R.A., Stoneman, G.L., 1991. Early hydrological response to intense forest thinning in southwestern australia. Journal of Hydrology 127, 261--277. doi:\url{https://doi.org/10.1016/0022-1694(91)90118-2}
+\leavevmode\hypertarget{ref-ruprechtetal1991}{}%
+Ruprecht, J.K., Schofield, N.J., Crombie, D.S., Vertessy, R.A., Stoneman, G.L., 1991. Early hydrological response to intense forest thinning in southwestern australia. Journal of Hydrology 127, 261--277. doi:\href{https://doi.org/https://doi.org/10.1016/0022-1694(91)90118-2}{https://doi.org/10.1016/0022-1694(91)90118-2}
 
-\leavevmode\vadjust pre{\hypertarget{ref-thornton2007}{}}%
+\leavevmode\hypertarget{ref-thornton2007}{}%
 Thornton, C.M., Cowie, B.A., Freebairn, D.M., Playford, C.L., 2007. The brigalow catchment study: II*. Clearing brigalow (acacia harpophylla) for cropping or pasture increases runoff. Australian Journal of Soil Research 45, 496--511. doi:\href{https://doi.org/doi:10.1071/SR07064}{doi:10.1071/SR07064}
 
-\leavevmode\vadjust pre{\hypertarget{ref-trabucco2018}{}}%
-Trabucco, A., Zomer, R.J., 2018. Global aridity index and potential evapo-transpiration (ET0) climate database v2. CGIAR consortium for spatial information(CGIAR-CSI).
+\leavevmode\hypertarget{ref-trabucco2018}{}%
+Trabucco, A., Zomer, R.J., 2018. Global aridity index and potential evapo-transpiration (et0) climate database v2. CGIAR consortium for spatial information(CGIAR-csi).
 
-\leavevmode\vadjust pre{\hypertarget{ref-vervoort2021}{}}%
-Vervoort, R.W., Dolk, M.M., Ogtrop, F.F. van, 2021. Climate change and other trends in streamflow observations in australian forested catchments since 1970. Hydrological Processes 35, e13999. doi:\url{https://doi.org/10.1002/hyp.13999}
+\leavevmode\hypertarget{ref-vervoort2021}{}%
+Vervoort, R.W., Dolk, M.M., Ogtrop, F.F. van, 2021. Climate change and other trends in streamflow observations in australian forested catchments since 1970. Hydrological Processes 35, e13999. doi:\href{https://doi.org/https://doi.org/10.1002/hyp.13999}{https://doi.org/10.1002/hyp.13999}
 
-\leavevmode\vadjust pre{\hypertarget{ref-wood2006}{}}%
+\leavevmode\hypertarget{ref-wood2006}{}%
 Wood, S., 2006. Generalized additive models: An introduction with r. CRC Press, Boca Raton, FL.
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhang2011}{}}%
+\leavevmode\hypertarget{ref-zhang2011}{}%
 Zhang, L., Zhao, F., Chen, Y., Dixon, R.N.M., 2011. Estimating effects of plantation expansion and climate variability on streamflow for catchments in australia. Water Resources Research 47, W12539. doi:\href{https://doi.org/10.1029/2011wr010711}{10.1029/2011wr010711}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhang2017}{}}%
-Zhang, M., Liu, N., Harper, R., Li, Q., Liu, K., Wei, X., Ning, D., Hou, Y., Liu, S., 2017. A global review on hydrological responses to forest change across multiple spatial scales: Importance of scale, climate, forest type and hydrological regime. Journal of Hydrology 546, 44--59. doi:\url{https://doi.org/10.1016/j.jhydrol.2016.12.040}
+\leavevmode\hypertarget{ref-zhang2017}{}%
+Zhang, M., Liu, N., Harper, R., Li, Q., Liu, K., Wei, X., Ning, D., Hou, Y., Liu, S., 2017. A global review on hydrological responses to forest change across multiple spatial scales: Importance of scale, climate, forest type and hydrological regime. Journal of Hydrology 546, 44--59. doi:\href{https://doi.org/https://doi.org/10.1016/j.jhydrol.2016.12.040}{https://doi.org/10.1016/j.jhydrol.2016.12.040}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhao2010}{}}%
+\leavevmode\hypertarget{ref-zhao2010}{}%
 Zhao, F., Zhang, L., Xu, Z., Scott, D.F., 2010. Evaluation of methods for estimating the effects of vegetation change and climate variability on streamflow. Water Resources Research 46, W03505. doi:\href{https://doi.org/10.1029/2009wr007702}{10.1029/2009wr007702}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhou2015}{}}%
+\leavevmode\hypertarget{ref-zhou2015}{}%
 Zhou, G., Wei, X., Chen, X., Zhou, P., Liu, X., Xiao, Y., Sun, G., Scott, D.F., Zhou, S., Han, L., Su, Y., 2015. Global pattern for the effect of climate and land cover on water yield. Nature Communications 6, 5918. doi:\href{https://doi.org/10.1038/ncomms6918}{10.1038/ncomms6918}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhou2010}{}}%
-Zhou, G., Wei, X., Luo, Y., Zhang, M., Li, Y., Qiao, Y., Liu, H., Wang, C., 2010. Forest recovery and river discharge at the regional scale of guangdong province, china. Water Resources Research 46. doi:\url{https://doi.org/10.1029/2009WR008829}
-
-\end{CSLReferences}
+\leavevmode\hypertarget{ref-zhou2010}{}%
+Zhou, G., Wei, X., Luo, Y., Zhang, M., Li, Y., Qiao, Y., Liu, H., Wang, C., 2010. Forest recovery and river discharge at the regional scale of guangdong province, china. Water Resources Research 46. doi:\href{https://doi.org/https://doi.org/10.1029/2009WR008829}{https://doi.org/10.1029/2009WR008829}
 
 
 \end{document}
+

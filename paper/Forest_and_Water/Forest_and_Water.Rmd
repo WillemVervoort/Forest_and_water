@@ -24,8 +24,8 @@ footnote:
   - code: 1
     text: "Corresponding Author"
 abstract: |
-  Three recent papers review and analyse large global datasets related to impacts of forest cover on streamflow. Using three different approaches, they all find a strong relationship between forestation/de-forestation and streamflow. However, the past approaches in the literature are variable and can be substantially improved in statistical rigour, and indicate different confounding factors on the impact of forestation. The data for these three papers were reviewed, combined and re-analysed to answer the following new and older questions: 1) How is streamflow impacted by the change in forest cover as a function of catchment area; 2) how is this relationship conditioned by the length of the study, and climate; and 3) are there other possible variables that impact the observed change in streamflow? Generalised additive models were used to run flexible regressions including multiple variables. 
   Changes in forest cover cause changes in streamflow, however this change is different between deforestation and reforestation, and strongly affected by climate, with drier climates indicating larger changes in streamflow. Deforestation causes a 32\% greater change in flow compared to reforestation. Area of the catchment only affects the change in streamflow after log transformation, given the wide variety in the data from small scale paired watershed studies. Smaller studies dominate the database with 42\% of the data < 1 km2 and 65\% of the data < 10 km2. Length of the study and initial year of the study did not affect the change in flow, in contrast to other reported studies. Despite these findings, overall explained variance (38\%) is low due the quality of the inputs and additional unknown confounding factors.
+  Three recent papers review and analyse large global datasets related to impacts of forest cover on streamflow. Using three different approaches, they all find a strong relationship between forestation/de-forestation and streamflow. However, the past approaches in the literature are variable and can be substantially improved in statistical rigour, and indicate different confounding factors on the impact of forestation. The data for these three papers were reviewed, combined and re-analysed to answer the following new and older questions: 1) How is streamflow impacted by the change in forest cover as a function of catchment area; 2) how is this relationship conditioned by the length of the study, and climate; and 3) are there other possible variables that impact the observed change in streamflow? Generalised additive models were used to run flexible regressions including multiple variables. 
 journal: "Journal of Hydrology"
 date: "`r Sys.Date()`"
 bibliography: forest_and_water.bib
@@ -261,9 +261,9 @@ Results
 ===========
 
 <!-- analysis -->
-## description of the data
+## Description of the data
 
-The overall dataset contains `r nrow(All_data)` observations of changes in flow, which includes the newly identified data sets and after removing identified duplicate data and lines with missing data. In contrast, the original dataset from @zhang2017 contained `r nrow(Zhang_all)` catchments and the @filoso2017 study used 37 catchments (Table S2 in @filoso2017). The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Smaller catchments dominate the database with 42\% of the data from catchments < 1 km^2^ and 65\% of the data for catchments < 10 km^2^.
+The overall dataset contains `r nrow(All_data)` observations of changes in flow, which includes the newly identified data sets and after removing identified duplicate data and lines with missing data. In contrast, the original dataset from @zhang2017 contained `r nrow(Zhang_all)` catchments and the @filoso2017 study used 37 catchments (Table S2 in @filoso2017). The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Smaller catchments dominate the database with 42\% of the data from catchments < 1 km^2^ and 65\% of the data for catchments < 10 km^2^ (Figure 1).
 
 ```{r, echo = F, warning = F, message=F, eval =F}
 png("DataExploration.png", width = 2500, height = 1800, res = 300)
@@ -292,7 +292,6 @@ include_graphics("./DataExploration.png")
 ```
 
 
-
 ```{r, echo = F}
 All_data2 <- All_data %>%
   mutate(Forest_Sign = ifelse(DeltaF_perc < 0,
@@ -301,6 +300,9 @@ All_data2 <- All_data %>%
                                   -1*DeltaF_perc,
                                   DeltaF_perc))
 ```
+
+In addition, this shows that for the data related to forest decreases, there is almost always a positive flow change (Figure 2). In other words, flow almost always increased. However, for increases in forest cover, this is not the case, and flow can both increase and decrease. However in both cases the variability in the reported change in flow increases with the increase in forest cover change.
+
 
 ```{r, echo = F, warning = F, message=F, eval =F}
 # plot to show the difference
@@ -316,19 +318,18 @@ All_data2 %>%
         legend.title = element_text(size = rel(1.2)),
         strip.text = element_text(size = rel(1.5))) + 
   scale_colour_manual(name = "Forest change direction", 
-                      values = c("increase" = "blue", "decrease" = "red")) +
+                      values = c("decrease" = "red","increase" = "blue")) +
   xlab("Change in forest cover %") + ylab("Change in flow (Qf) %")
 dev.off()
 
 ```
-
 
 ```{r increasedecrease, echo =F, fig.cap="Changes in flow as a function of increases and decreases in forest cover", out.width="90%"}
 include_graphics("Increase_decrease.png")
 ```
 
 
-This shows that for the data related to forest decreases, there is almost always a positive flow change. In other words, flow almost always increased. However, for increases in forest cover, this is not the case, and flow can both increase and decrease. However in both cases the variability in the reported change in flow increases with the increase in forest cover change.
+
 
 
 ## The general relationship between change in forest cover and streamflow
@@ -360,7 +361,7 @@ r_sq <- round(summary(linear_model_simple_b)$r.sq,2)
 
 ```{r, echo =F}
 pander(round(rbind(summary(linear_model_simple)$p.table,
-                       summary(linear_model_simple_b)$p.table),2), caption="(\\#tab:tabmodel1) Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change. The first three rows relate to the model using the original data base from Zhang et al. (2017). The bottom three rows are the results of the model including the new data")
+                       summary(linear_model_simple_b)$p.table),2), caption="(\\#tab:tabmodel1) Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change. The first three rows relate to the model using the original data base from Zhang et al. (2017). The bottom three rows are the results of the model including the new data.")
 ```
 
 The overall variance explained in this model (equation \@ref(eq:eq3)) is not high with an adjusted *r^2^* of `r r_sq`, it generally supports the hypothesized relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.45\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 29\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by $(1 - 0.29)*0.45\%$, while a the percentage forest cover decrease will increase flow by 0.45\%.
@@ -388,7 +389,7 @@ It is however it is clear from the lack of explaining power for the model, that 
 
 ```{r globalmap, fig.cap="Distribution of included catchments across the globe based on reported or estimated latitude and longitude", out.width="90%", echo=F}  
 
-include_graphics("../../data/FAOET0data2.png")
+include_graphics("../../data/FAOET0data_final_2022.png")
 ```
 
 As indicated, an initial hypothesis relates to whether there is a strong spatial global gradient as captured by latitude and longitude. These data were added for the different studies, mostly by using the data reported by the authors, but in some cases approximating the location of the centre of the catchment using Google Maps. In the dataset, an additional column is added to indicate the source of the location data.  As the global map (Figure \@ref(fig:globalmap)) shows, the distribution of case study catchments covers multiple continents and shows some distinct clustering in parts of the world. Of interest is whether the spatial clustering also indicates a difference in response to forest cover change:
