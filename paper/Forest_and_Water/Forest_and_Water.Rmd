@@ -318,7 +318,7 @@ All_data2 %>%
         legend.title = element_text(size = rel(1.2)),
         strip.text = element_text(size = rel(1.5))) + 
   scale_colour_manual(name = "Forest change direction", 
-                      values = c("decrease" = "red","increase" = "blue")) +
+                      values = c("Decrease" = "red","Increase" = "blue")) +
   xlab("Change in forest cover %") + ylab("Change in flow (Qf) %")
 dev.off()
 
