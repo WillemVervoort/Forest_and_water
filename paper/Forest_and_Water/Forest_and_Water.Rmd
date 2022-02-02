@@ -108,7 +108,7 @@ We combined the tables for small catchments (< 1000 km^2^) and large catchments 
 
 To enhance the existing data set, this study added additional variables and cross-checked the studies with the data set from @filoso2017. In particular, we focussed on the 37 data points included in the quantitative analysis in @filoso2017.
 
-In addition, additional variables added were the latitude and longitude for the center of the catchment as an approximation of its spatial location. Using this information  reference evapotranspiration (E~0~) was extracted from the Global Aridity Index and Potential Evapo-Transpiration (ET~0~) Climate Databasev2 [@trabucco2018], if a value of E~0~ was not available from the original papers. For large catchments, this value, similar to annual average rainfall, is only an approximation of the climate at the location. 
+In addition, additional variables added were the latitude and longitude for the centre of the catchment as an approximation of its spatial location. Using this information  reference evapotranspiration (E~0~) was extracted from the Global Aridity Index and Potential Evapo-Transpiration (ET~0~) Climate Databasev2 [@trabucco2018]. For large catchments, this value, similar to annual average rainfall, is only an approximation of the climate at the location. 
 
 Similar to @zhang2017, the "dryness index" was calculated from the reference evapotranspiration and the annual average rainfall (Pa) as:
 
@@ -119,7 +119,7 @@ D = \frac{E_{0}}{Pa} (\#eq:eq1)
 The length of the study can be a variable influencing the change in flow [e.g. @jackson2005; @filoso2017], as for example, more mature plantations are thought to have smaller impacts on flow or regrowth might follow a "Kuczera curve" [@kuczera1987]. Therefore, the length of the study calculate as the difference between the starting data and completion date of the different studies was extracted from the references provided by @zhang2017. The length of the study was already included in the data from @filoso2017, but these were checked against the original publications.
 
 Several additional data points from catchment studies were extracted from @zhang2011, @zhao2010, @borg1988, @thornton2007, @zhou2010, @rodriguez2010, @ruprechtetal1991 and @pena-arancibia2012, and these were checked against the existing studies to prevent overlap. In the citation column in the data set, in general the main reference for the calculated change in streamflow  was used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e. Table 6 in @zhang2011).
-We also removed one data point from the analysis, which corresponds to catchment #1 (Amazon) in @zhang2017. This is because the cited reference [@roche1981] only relates to 1  and 1.5 ha paired catchment studies in French Guyana, and in which the actual change in forest cover is not recorded. Furthermore, the change in flow for catchment #76 was corrected from 600% to 157% after review of the original publication [@baker1984]. Finally, on review of all the data in @zhang2017 and @filoso2017, 29 potential duplicates were identified and flagged in the data.  
+We also removed one data point from the analysis, which corresponds to catchment #1 (Amazon) in @zhang2017. This is because the cited reference [@roche1981] only relates to 1  and 1.5 ha paired catchment studies in French Guyana, and in which the actual change in forest cover is not recorded. Furthermore, the change in flow for catchment #76 was corrected from 600% to 157% after review of the original publication [@baker1984]. Finally, on review of all the data in @zhang2017 and @filoso2017 and the additional studies, 29 potential duplicates were identified and flagged in the data.  
 
 The final column in the improved data set is a "notes" column, which is not further used in the analysis, but gives context to some of the data for future research and highlights some of the discrepancies that we found between the original papers and the data in the tables from @zhang2017. 
 
@@ -146,7 +146,7 @@ new_data <- read_csv("../../data/TableNewData.csv")
 ```
 
 <!-- read in the ET data -->
-
+<!-- no longer needed as this is now included in the data
 ```{r, echo = F, warning = F, message=F}
 PET_large <- read_csv("../../data/largeET.csv")
 PET_small <- read_csv("../../data/smallET.csv")
@@ -171,7 +171,7 @@ PET_all <- bind_rows(PET_large, PET_small)
 # > PET_all$`Watershed #`[is.na(PET_all$E0)==T]
 # [1]  38 278 269 243 236 299 250
 ```
-
+--->
 
 <!--- ### change names of columns
 the package`mgcv` does not seem to be happy with complex names, so probably better to make all names simple --->
@@ -210,14 +210,23 @@ All_data <- All_data %>%
   filter(`Possible duplicate` != 1)
 ```
 
+```{r, eval = F, echo = F}
+# checking missing values
+summary(All_data)
+
+
+```
+
+
 <!--now combine with E0 values -->
+<!-- No longer needed as now included in the data -->
 ```{r, echo = F}
-All_data <- left_join(All_data ,PET_all %>% select(-c(Longitude, Latitude)), by = "Watershed #")
-All_data <- All_data %>%
-  mutate(E0 = ifelse(is.na(E0.x)==T, E0.y, E0.x)) %>%
-  select(-c(E0.x,E0.y)) #%>%
-  #rename(Latitude = Latitude.x,
-#         Longitude = Longitude.x)
+# All_data <- left_join(All_data ,PET_all %>% select(-c(Longitude, Latitude)), by = "Watershed #")
+# All_data <- All_data %>%
+#   mutate(E0 = ifelse(is.na(E0.x)==T, E0.y, E0.x)) %>%
+#   select(-c(E0.x,E0.y)) #%>%
+#   #rename(Latitude = Latitude.x,
+# #         Longitude = Longitude.x)
 
 # calculate dryness index
 All_data <- All_data %>%
@@ -275,7 +284,7 @@ All_data %>%
     c("Area_km2" = "Area (km2)",
       "DeltaF_perc" = "Delta Forest (%)",
       "DeltaQf_perc" = "Delta Qf (%)",
-      "E0" = "Annual Potential E (mm)",
+      "E0" = "Annual E0 (mm)",
       "Pa_mm" = "Annual Rainfall (mm)"))) +   
   theme(axis.title = element_text(size = rel(1.5)),
         axis.text = element_text(size = rel(1.2)),
@@ -296,7 +305,7 @@ include_graphics("./DataExploration.png")
 ```{r, echo = F}
 All_data2 <- All_data %>%
   mutate(Forest_Sign = ifelse(DeltaF_perc < 0,
-                              "decrease", "increase"),
+                              "Decrease", "Increase"),
          DeltaF_perc_pos = ifelse(DeltaF_perc < 0,
                                   -1*DeltaF_perc,
                                   DeltaF_perc))
@@ -306,6 +315,7 @@ All_data2 <- All_data %>%
 # plot to show the difference
 png("Increase_decrease.png", width = 2500, height = 1800, res = 300)
 All_data2 %>%
+  filter(is.na(DeltaF_perc_pos) == F) %>%
   ggplot(aes(DeltaF_perc_pos,DeltaQf_perc, colour = Forest_Sign)) + 
   geom_point() +  
   facet_wrap(~Forest_Sign, ncol=1, scales = "free") + 
@@ -316,7 +326,7 @@ All_data2 %>%
         legend.title = element_text(size = rel(1.2)),
         strip.text = element_text(size = rel(1.5))) + 
   scale_colour_manual(name = "Forest change direction", 
-                      values = c("increase" = "blue", "decrease" = "red")) +
+                      values = c("Decrease" = "red", "Increase" = "blue")) +
   xlab("Change in forest cover %") + ylab("Change in flow (Qf) %")
 dev.off()
 
@@ -388,7 +398,7 @@ It is however it is clear from the lack of explaining power for the model, that 
 
 ```{r globalmap, fig.cap="Distribution of included catchments across the globe based on reported or estimated latitude and longitude", out.width="90%", echo=F}  
 
-include_graphics("../../data/FAOET0data2.png")
+include_graphics("../../data/FAOET0data.png")
 ```
 
 As indicated, an initial hypothesis relates to whether there is a strong spatial global gradient as captured by latitude and longitude. These data were added for the different studies, mostly by using the data reported by the authors, but in some cases approximating the location of the centre of the catchment using Google Maps. In the dataset, an additional column is added to indicate the source of the location data.  As the global map (Figure \@ref(fig:globalmap)) shows, the distribution of case study catchments covers multiple continents and shows some distinct clustering in parts of the world. Of interest is whether the spatial clustering also indicates a difference in response to forest cover change:
@@ -435,18 +445,45 @@ model4_dryness <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign +
 ```{r, echo =F}
 pander(round(summary(model4_dryness)$p.table,2), caption = "(\\#tab:out-model4) Results of the model including the dryness index")
 ```
+```{r testing_dryness, echo = F, eval= F}
+All_data2 %>% ggplot(aes(Dryness,log10(Area_km2), colour = DeltaF_perc_pos)) + geom_point() + theme_bw()
+```
+```{r testing_PCA, eval = F, echo = F, warning = F}
+require(FactoMineR)
+require(factoextra)
+ res.pca <- PCA(All_data2 %>% mutate(length = To - From) %>% select(`Watershed #`, `Watershed name`, Area_km2, DeltaF_perc, DeltaQf_perc,  Dryness,  From, length), scale.unit = TRUE, ncp = 4, quali.sup = 1:2, graph=FALSE)
+ # scree.plot <- fviz_eig(res.pca, addlabels = TRUE, ylim = c(0, 41))
+ #  scree.plot
+ #  
+ #   var.plot <- fviz_pca_var(res.pca, axes = c(1, 2), col.var = "black")
+ #  var.plot
+ png("PCA_biplot_Alldata.png", width = 800, height = 800)
+  biplot_test <- fviz_pca_biplot(res.pca, axes = c(1, 2), repel = TRUE,
+                                                      col.var = "darkblue", # Variables color
+                            label="var", #"var" 
+                            col.ind = "red", # Individuals color
+                            title = "",labelsize = 8, pointsize = 4, arrowsize = 1) +
+        theme(text = element_text(size = 14, face = "bold"),
+              axis.title = element_text(size = rel(2), face = "bold"),
+        axis.text = element_text(size = rel(2), face = "bold"))
+ print(biplot_test)
+ dev.off()
 
-The results from this model (equation \@ref(eq:eq5) and Table \@ref(tab:out-model4)) confirm that dryness is a clear confounding factor related to the change in streamflow as a function of the change in forest cover change. In this case the evidence is not very strong (p = `r round(summary(model4_dryness)$p.table[4,4],2)`. However, if the dryness index doubles (remembering that Dryness = 1 when E0 = Pa, so in this case E0 = 2×Pa, which is very dry), the change in runoff is ~6\% greater. Again, overall variance explained is not very much, with an adjusted *r^2^* of `r round(summary(model4_dryness)$r.sq,2)`.
+```
+
+
+
+The results from this model (equation \@ref(eq:eq5) and Table \@ref(tab:out-model4)) indicate no impact of dryness on the change in streamflow as a function of the change in forest cover change, which is surprising in light of earlier reported results [@zhang2017; @filoso2017]. In this case the evidence is highly doubtful (p = `r round(summary(model4_dryness)$p.table[4,4],2)`). However, it is very well possible that there is a further interaction in the data that this simpler version of the model cannot identify. Again, overall variance explained is not very much, with an adjusted *r^2^* of `r round(summary(model4_dryness)$r.sq,2)`.
 
 ```{r, echo = F}
 pander(All_data2 %>% filter(Dryness > 4) %>% select(Latitude, Longitude,`Watershed name`), caption = "(\\#tab:drytable) catchments for which the dryness index > 4")
 ```
 
-There possible issues with the data, a few of the catchments have Dryness values that are very large (> 4) and these values have high leverage in the data, affecting the residual distribution. These catchments are listed in Table \@ref(tab:drytable).
+There are also possible issues with the data, a few of the catchments have Dryness values that are very large (> 4) and these values have high leverage in the data, affecting the residual distribution. These catchments are listed in Table \@ref(tab:drytable).
 
 ## Is there a distinct effect of area?
 
-The major hypothesis to test is the effect of area on the change in flow, following the analysis by @zhang2017 and @filoso2017. Given the highly skewed distribution of the catchment areas (Figure \@ref(fig:datagraphs)), a log base 10 transformation was applied to the variable *Area (km^2^)*. 
+The major hypothesis to test is the effect of area on the change in flow, following the analysis by @zhang2017 and @filoso2017. Given the highly skewed distribution of the catchment areas (Figure \@ref(fig:datagraphs)), a log base 10 transformation was applied to the variable *Area (km^2^)*. The effect of Dryness remains in the model, given that there could be interactions that are worth exploring. 
 
 \begin{align}
 \Delta Qf \% \sim ~ & \Delta \% forest~cover_{positive} + sign_{forest~cover} + \notag \\ & log10(Area ~(km^2)) + Dryness + \varepsilon (\#eq:eq6)
@@ -465,7 +502,7 @@ model_Area <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign +
 pander(round(summary(model_Area)$p.table,2), caption = "(\\#tab:out-modelArea) Results of the model including Area and the dryness index")
 ```
 
-The results of this model (Equation \@ref(eq:eq6)) clearly indicate a reduction in the effect of forest cover change with Area (km^2^) (Table \@ref(tab:out-modelArea)). In fact, the results suggests that for every additional 10 km^2^ in catchment size the mean change in flow reduces by 3.5\%. Another interesting fact to note is that with the inclusion of Area (km^2^) as a variable in the model, the effect of Dryness becomes more significant, possibly suggesting an interaction between Dryness and Area. Including this interaction suggest that the interaction term (log10(Area) by Dryness) would be significant, but this replaces the effect of Area (results not shown). 
+The results of this model (Equation \@ref(eq:eq6)) indicate a reduction in the effect of forest cover change with Area (km^2^) (Table \@ref(tab:out-modelArea)). In fact, the results suggests that for every additional 10 km^2^ in catchment size the mean change in flow reduces by 3.5\%. Another interesting fact to note is that with the inclusion of Area (km^2^) as a variable in the model, the effect of Dryness becomes more significant, possibly suggesting an interaction between Dryness and Area. Including this interaction suggest that the interaction term (log10(Area) by Dryness) would be significant, but this replaces the effect of Area (results not shown). 
 
 
 ```{r modelArea_b, echo = F, eval =F}
@@ -574,7 +611,7 @@ Figure \@ref(fig:smoothsmodel6) highlights that the relationship between log10(A
 
 <!--filter length < 60 -->
 ```{r model7_nolongLength, echo = F}
-NoLong_Data <- All_data2 %>% filter(length< 60, Dryness <= 4)
+NoLong_Data <- All_data2 %>% filter(length< 60, Dryness <= 4, From > 1930)
 model7 <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
                     s(Dryness, bs="ts" ) + #s(Latitude, bs="ts") + 
                       s(log10(Area_km2), bs = "ts") + s(length, bs = "ts") + s(From, bs = "ts") +
@@ -600,7 +637,7 @@ From <- visreg(model7, "From", gg = T, plot = T) + theme_bw()
 #par(mfrow=c(1,1))
 dev.off()
 ```
-```{r smoothsmodel7, fig.cap="Visualisation of the smooth variables in the model wiht reduced data for dryness and length", out.width="90%", echo=F}  
+```{r smoothsmodel7, fig.cap="Visualisation of the smooth variables in the model with reduced data for dryness and length", out.width="90%", echo=F}  
 
 include_graphics("model7_smooths.png")
 ```
@@ -832,4 +869,24 @@ model5_b <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign +
                   data = All_data2)
 summary(model5_b)
 plot(model5_b)
+```
+
+
+```{r model9_interact, echo = F, eval = F}
+All_data3 <- All_data2 %>%
+  filter(Assessment_technique != "EA, HM" & Assessment_technique != "PWE, HM" & Assessment_technique != "QPW, EA" )
+
+model9_interact <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
+                    s(log10(Area_km2), bs="ts") + s(Dryness, bs="ts") + 
+                      ti(Dryness,From, bs="ts" ) + #s(Latitude, bs="ts") + 
+                     # ti(log10(Area_km2),From, bs="ts" ) +
+                     # log10(Area_km2):Assessment_technique +
+                      s(length, bs = "ts") + 
+                      s(From, bs = "ts") +
+                    Precip_data_type + Forest_type + Assessment_technique +
+                    Hydrological_regime, data = All_data3 %>% filter(length < 60, Dryness <= 4))
+#gam.check(model9_interact)
+# plot(model9_interact)
+summary(model9_interact)
+
 ```

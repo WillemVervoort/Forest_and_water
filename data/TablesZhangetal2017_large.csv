@@ -1,64 +1,64 @@
-﻿Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,DeltaF_perc,DeltaQf_perc,Precipitation data type,Assessment technique,Source of info,E0,Latitude,Longitude,Length of study (years),notes,From,To,"Location Details AL=aprox location given by author, PL=point location given by author, GM= coordinates guessed from google maps"
-1,Amazon,3702481,2000,BF,RD,-7,2,OB,PWE,"Roche, 1981",,-14.9177,-51.1497,2,"Aproximate loction defined by Roche's map in Amazon Region in French Guyana. Is is Amazon region? WV: This is not for the whole Amazon, but just for some small paired watershed studies in French Guyana, it is also unclear how they defined the change in forest and change in flow. Data should be removed from the analysis.
+﻿Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,DeltaF_perc,DeltaQf_perc,Precipitation data type,Assessment technique,Source of info,E0,Latitude,Longitude,Length of study (years),notes,From,To,"Location Details AL=aprox location given by author, PL=point location given by author, GM= coordinates guessed from google maps, USGS = USGS location data"
+1,Amazon,3702481,2000,BF,RD,-7,2,OB,PWE,"Roche, 1981",1620,-14.9177,-51.1497,2,"Aproximate loction defined by Roche's map in Amazon Region in French Guyana. Is is Amazon region? WV: This is not for the whole Amazon, but just for some small paired watershed studies in French Guyana, it is also unclear how they defined the change in forest and change in flow. Data should be removed from the analysis.
 ",1976,1978,AL 
-2,Araguaia River ,82632,1730,MF,RD,-27,16.5,SG,HM,"Coe et al., 2011",,-15.0000,-35.0000,20,Did not find forest variation reported value,1970,1990,AL
-3,Baker Creek,1570,542,CF,SD,-42.2,201.2,SG,SH,"Zhang and Wei, 2012",,32.0000,103.0000,26,Did not find reported values,1970,1996,AL 
-4,Be River catchment,7500,2400,BF,RD,-16.3,0.4,SG,HM,"Nguyen Khoi and Suetsugi,2014",,11.0028,106.0100,19,"Calibration (1981–1990),Validation (1991–2000)",1981,2000,AL
-5,Bowron  River,3500,920,CF,SD,-27,0,OB,SH,"Wei and Davidson,1998",,53.6754,-121.7472,5,Data from plot 2,1950,1955,AL
-6,Chaohe,4854,500,BF,RD,13.9,-21.9,OB,"EA, HM","Wang et al., 2013",,116.0000,42.0000,44,,1963,2007,AL
-7,Columbia River ,567000,1200,CF,SD,-21,6.5,SG,HM,"Matheussen et al., 2000",,53.6766,-121.7838,10,,1969,1979,AL
-8,Comet river,16440,660,BF,RD,-44.8,40,SG,HM,"Siriwardena et al., 2006",,-37.3533,145.1454,30,,1970,2000,AL
-9,CSHC,129654,440.7,BF,RD,30,-21.6,OB,EA,"Zhang et al. , 2008a",,37.5000,110.0000,41,Whole catchment studied in Zhang 2008a (repetitive?),1959,2000,AL
-10,Delegate,1135.65,859,MF,RD,16,-12.2,SG,HM,"Tuteja et al. , 2007",,-37.0111,146.3876,40,,1960,2000,AL
-11,Duqueco,1545,1687,BF,RD,15.9,-19.5,OB,SH,"Iroumé and Palacios,2013",,-38.0000,-72.0000,43,,1962,2005,AL
-12,Galas,13100,2000,BF,RD,-3,0,OB,SH,"Adnan and Atkinson, 2011",,0.0000,102.0000,12,,1988,2000,AL
-13,Gushan ,1304,433.1,BF,RD,19,-29,OB,EA,"Zhang et al. , 2008a",,38.0000,112.0000,41,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006656,1959,2000,AL
-14,Hanjiang,159000,871,MF,RD,17.4,-4.4,OB,HM,"Wang et al., 2012",,30.7846,113.8237,11,,1997,2008,GE
-15,Huangfu ,3211,393.6,BF,RD,20,-35.8,OB,EA,"Zhang et al. , 2008a",,39.0000,111.0000,41,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006657,1959,2000,  
-16,Japurá River,217367,2700,BF,RD,-12,0,SG,HM,"Coe et al., 2009",,-2.0969,-67.1262,1,in Amazon,2000,2000,GE
-17,Jialu ,1279,407.4,BF,RD,23,-33.5,OB,EA,"Zhang et al. , 2008a",,37.5000,110.0000,43,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006657,1957,2000,AL
-18,Juruá River,156376,2300,BF,RD,-1,0,SG,HM,"Lima et al, 2014",,-6.5748,-69.4289,49,,1950,1999,AL
-19,Kejie watershed,1755,966,MF,RD,22.4,-3.7,OB,HM,"Ma et al., 2009",,25.0000,99.3333,32,,1974,2006,AL
-20,Kelantan,13100,2000,BF,RD,6,0,OB,SH,"Adnan and Atkinson, 2011",,5.0125,102.0000,31,,1975,2006,PL
-21,Kuye ,9289,399.9,BF,RD,20,-24,OB,EA,"Zhang et al. , 2008a",,40.0000,110.0000,43,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006658,1957,2000,AL
-22,"L1, Canada",8940,811,CF,SD,-25.2,0,OB,QPW,"Buttle and Metcalfe, 2000",,48.3100,74.5700,2,Median location ,1994,1996,PL
-23,"L2, Canada",6760,807,CF,SD,-12.4,0,OB,QPW,"Buttle and Metcalfe, 2000",,48.7100,64.4500,1,Median location ,1995,1996,PL
-24,"L3, Canada",11900,802,CF,SD,-10.8,0,OB,QPW,"Buttle and Metcalfe, 2000",,48.7100,-75.0000,1,Median location ,1996,1996,PL
-25,"L4, Canada",10000,813,CF,SD,-8.6,0,OB,QPW,"Buttle and Metcalfe, 2000",,48.8200,74.8600,1,Median location ,1996,1997,PL
-26,Lachlan River,8000,767,MF,RD,2.8,-2.8,,HM,"van Dijk et al., 2007",,-33.2361,146.4151,10,,1988,1998,GE
-27,"M1, Canada",1140,844,CF,SD,-18.9,0,OB,QPW,"Buttle and Metcalfe, 2000",,48.0500,47.9500,2,Median location ,1996,1998,PL
-28,Macquarie River,1400,764,MF,RD,2.6,-2.7,,HM,"van Dijk et al., 2007",,-31.5978,147.7858,11,,1988,1999,GE
-29,Madeira River,906552,2000,BF,RD,-13,7,SG,HM,"Lima et al, 2014",,-6.8399,-62.3101,50,,1950,2000,AL
-30,Meijiang-D,6983,1739,MF,RD,-11,13,MD,SH,"Liu et al.,2015",,26.5000,116.0000,16,,1968,1984,AL
-31,Meijiang-R,6983,1739,MF,RD,46,-6,MD,SH,"Liu et al.,2015",,26.5000,116.0000,21,,1985,2006,AL
-32,Miyun Reservoir catchment,15800,506.2,BF,RD,16,-9.7,SG,HM,"Ma et al., 2010",,41.0000,117.0000,27,"name not found, it is Kejie watershed
+2,Araguaia River ,82632,1730,MF,RD,-27,16.5,SG,HM,"Coe et al., 2011",1597,-11.8601,-50.7201,20,Did not find forest variation reported value,1970,1990,
+3,Baker Creek,1570,542,CF,SD,-42.2,201.2,SG,SH,"Zhang and Wei, 2012",872,32,103,26,Did not find reported values,1970,1996,AL 
+4,Be River catchment,7500,2400,BF,RD,-16.3,0.4,SG,HM,"Nguyen Khoi and Suetsugi,2014",1742,11.0028,106.01,19,"Calibration (1981–1990),Validation (1991–2000)",1981,2000,AL
+5,Bowron  River,3500,920,CF,SD,-27,0,OB,SH,"Wei and Davidson,1998",870,53.6754,-121.7472,5,Data from plot 2,1950,1955,AL
+6,Chaohe,4854,500,BF,RD,13.9,-21.9,OB,"EA, HM","Wang et al., 2013",1237,42,116,44,,1963,2007,AL
+7,Columbia River ,567000,1200,CF,SD,-21,6.5,SG,HM,"Matheussen et al., 2000",866,53.6766,-121.7838,10,,1969,1979,AL
+8,Comet river,16440,660,BF,RD,-44.8,40,SG,HM,"Siriwardena et al., 2006",1306,-37.3533,145.1454,30,,1970,2000,AL
+9,CSHC,129654,440.7,BF,RD,30,-21.6,OB,EA,"Zhang et al. , 2008a",1481,37.5,110,41,Whole catchment studied in Zhang 2008a (repetitive?),1959,2000,AL
+10,Delegate,1135.65,859,MF,RD,16,-12.2,SG,HM,"Tuteja et al. , 2007",1298,-37.0111,146.3876,40,,1960,2000,AL
+11,Duqueco,1545,1687,BF,RD,15.9,-19.5,OB,SH,"Iroumé and Palacios,2013",1196,-38,-72,43,,1962,2005,AL
+12,Galas,13100,2000,BF,RD,-3,0,OB,SH,"Adnan and Atkinson, 2011",1464,0,102,12,,1988,2000,AL
+13,Gushan ,1304,433.1,BF,RD,19,-29,OB,EA,"Zhang et al. , 2008a",1414,38,112,41,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006656,1959,2000,AL
+14,Hanjiang,159000,871,MF,RD,17.4,-4.4,OB,HM,"Wang et al., 2012",1213,30.7846,113.8237,11,,1997,2008,GE
+15,Huangfu ,3211,393.6,BF,RD,20,-35.8,OB,EA,"Zhang et al. , 2008a",1482,39,111,41,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006657,1959,2000,  
+16,Japurá River,217367,2700,BF,RD,-12,0,SG,HM,"Coe et al., 2009",1234,-2.0969,-67.1262,1,in Amazon,2000,2000,GE
+17,Jialu ,1279,407.4,BF,RD,23,-33.5,OB,EA,"Zhang et al. , 2008a",1481,37.5,110,43,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006657,1957,2000,AL
+18,Juruá River,156376,2300,BF,RD,-1,0,SG,HM,"Lima et al, 2014",1204,-6.5748,-69.4289,49,,1950,1999,AL
+19,Kejie watershed,1755,966,MF,RD,22.4,-3.7,OB,HM,"Ma et al., 2009",1433,25,99.3333,32,,1974,2006,AL
+20,Kelantan,13100,2000,BF,RD,6,0,OB,SH,"Adnan and Atkinson, 2011",1533,5.0125,102,31,,1975,2006,PL
+21,Kuye ,9289,399.9,BF,RD,20,-24,OB,EA,"Zhang et al. , 2008a",1444,40,110,43,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006658,1957,2000,AL
+22,"L1, Canada",8940,811,CF,SD,-25.2,0,OB,QPW,"Buttle and Metcalfe, 2000",1156,48.31,74.57,2,Median location ,1994,1996,PL
+23,"L2, Canada",6760,807,CF,SD,-12.4,0,OB,QPW,"Buttle and Metcalfe, 2000",1469,48.71,64.45,1,Median location ,1995,1996,PL
+24,"L3, Canada",11900,802,CF,SD,-10.8,0,OB,QPW,"Buttle and Metcalfe, 2000",726,48.71,-75,1,Median location ,1996,1996,PL
+25,"L4, Canada",10000,813,CF,SD,-8.6,0,OB,QPW,"Buttle and Metcalfe, 2000",1078,48.82,74.86,1,Median location ,1996,1997,PL
+26,Lachlan River,8000,767,MF,RD,2.8,-2.8,,HM,"van Dijk et al., 2007",1987,-33.2361,146.4151,10,,1988,1998,GE
+27,"M1, Canada",1140,844,CF,SD,-18.9,0,OB,QPW,"Buttle and Metcalfe, 2000",1367,48.05,47.95,2,Median location ,1996,1998,PL
+28,Macquarie River,1400,764,MF,RD,2.6,-2.7,,HM,"van Dijk et al., 2007",2021,-31.5978,147.7858,11,,1988,1999,GE
+29,Madeira River,906552,2000,BF,RD,-13,7,SG,HM,"Lima et al, 2014",1247,-6.8399,-62.3101,50,,1950,2000,AL
+30,Meijiang-D,6983,1739,MF,RD,-11,13,MD,SH,"Liu et al.,2015",1277,26.5,116,16,,1968,1984,AL
+31,Meijiang-R,6983,1739,MF,RD,46,-6,MD,SH,"Liu et al.,2015",1277,26.5,116,21,,1985,2006,AL
+32,Miyun Reservoir catchment,15800,506.2,BF,RD,16,-9.7,SG,HM,"Ma et al., 2010",1362,41,117,27,"name not found, it is Kejie watershed
 in the eastern Himalayas. Change citation to: https://doi.org/10.1016/j.jhydrol.2010.06.010",1956,1983,AL
-33,Mores Creek,1033,850,CF,SD,-12,6,OB,HM,"VanShaar et al., 2002",,43.0000,-115.0000,7,,1986,1993,GE
-34,Murray River,13000,1078,MF,RD,1.3,-0.9,,HM,"Van Dijk et al., 2007",,-35.8665,144.3150,12,,1988,2000,GE
-35,Murrumbidgee,15000,847,MF,RD,2.2,-2.2,,HM,"Van Dijk et al., 2007",,-34.8885,146.5892,13,,1988,2001,GE
-36,Nam Pong catchment,12100,1050,BF,RD,-53,0,OB,HM,"Wilk et al., 2001",,19.5545,105.0581,18,,1970,1988,GE
-37,Negro River,582064,2680,BF,RD,-3,0,SG,HM,"Coe et al., 2009",,-8.1158,-77.9843,1,,2000,2000,GE
-38,Puget Sound basin,30000,1800,MF,RD,-10,6.8,SG,HM,"Cuo et al., 2009",,47.5000,-122.5000,119,,1883,2002,AL
-39,Purus River,333480,2300,BF,RD,-3,1,SG,HM,"Lima et al, 2014",,-7.6457,-66.3585,51,,1950,2001,AL
-40,Roda de Ter,1386,938,BF,RD,5,-12,OB,HM,"Gallart et al., 2011",,42.0581,2.9997,14,,1979,1993,GE
-41,Sanchuan ,4123,462.8,BF,RD,33,-27,OB,EA,"Zhang et al. , 2008a",,37.0000,111.0000,43,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006659,1957,2000,AL
-42,Shiwang ,2327,536.6,BF,RD,42,-19.1,OB,EA,"Zhang et al. , 2008a",,35.0000,110.0000,41,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006660,1959,2000,AL
-43,Solimões #10,1858883,2200,BF,RD,-6,1,SG,HM,"Coe et al., 2009",,-2.6399,-66.3215,1,cound not find location differences btw #5,2000,2000,GE
-44,Solimões #5,867257,2200,BF,RD,-8,2,SG,HM,"Coe et al., 2009",,-2.6399,-66.3215,1,cound not find location differences btw #10,2000,2000,GE
-45,Suomo basin,2536,800,BF,SD,-9.5,20.8,OB,HM,"Chen et al., 2005",,32.1331,102.5254,1,,1995,1995,GE
-46,Talarn,1905,1003,MF,RD,12.6,-25.7,SG,EA,"Buendia et al., 2016a",,42.3992,1.1273,44,other rivers,1965,2009,GE
-47,Tapajet River,285072,2100,BF,RD,-20,4,SG,HM,"Coe et al., 2009",,-5.2928,-56.9257,1,"Wrong name, Tapajós river",2000,2000,GE
-48,The upper reach of the Weihe River  ,106500,591.46,BF,RD,16.9,-18,OB,EA,"Zhao et al., 2013",,34.8333,108.8333,50,"Wrong spelled name, it is Wei River basin",1958,2008,AL
-49,Tocantins River,189048,2000,BF,RD,-58,26,SG,SH,"Costa et al., 2003",,-13.0000,-48.0000,35,,1960,1995,AL
-50,Upper Tacuarembo,2097,1300,MF,RD,26,-22,OB,SH,"Silveira and Alonso,2009",,-31.5333,-55.6833,18,Manuel Diaz Basin,1975,1993,PL
-51,Upper Zagunao River ,2528,1072,CF,RD,-15.5,5,MD,SH,"Zhang et al., 2012",,32.0000,103.0000,26,Situated on the Upper Minjiang River of Yangtze River basin,1970,1996,AL
-52,Upstream Heihe river basin,11145,600,CF,RD,12,8.6,MD,HM,"Wu et al.,2015",,38.0000,100.0000,30,,1980,2010,AL 
-53,Victoria River,16000,829,MF,RD,0.7,-0.7,,HM,"van Dijk et al., 2007",,-37.1493,147.2999,14,,1988,2002,GE
-54,Weifen ,1548,491.6,BF,RD,27,-19.8,OB,EA,"Zhang et al. , 2008a",,37.5000,111.0000,44,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006661,1956,2000,AL
-55,Willow  River,2860,820,CF,SD,-31.9,9.8,OB,SH,"Wei and Zhang, 2010",,122.5000,54.2000,50,,1953,2003,PL
-56,Wuding River watershed ,30261,391,BF,RD,34,-26.5,OB,EA,"Li et al. , 2007",,37.9865,109.8497,40,,1960,2000,AL
-57,Xiangxi catchment,3200,1000,BF,RD,3.6,-0.7,,HM,"Bieger et al., 2015",,31.3333,110.6667,20,,1987,2007,AL
-58,Xinancha watershed,2582,631,CF,RD,20,-22,OB,SH,"Yao et al.,2015",,46.9667,128.7000,40,,1970,2010,PL
-59,Xingu River,377175,2100,BF,RD,-12,5,SG,HM,"Coe et al., 2009",,-7.4629,-52.6554,1,,2000,2000,GE
-60,Xinshui ,4069,524.3,BF,RD,15,-22.5,OB,EA,"Zhang et al. , 2008a",,38.0000,111.0000,43,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006662,1957,2000,AL
-61,Zhujia ,2956,450.4,BF,RD,27,-38.6,OB,EA,"Zhang et al. , 2008a",,36.0000,110.0000,41,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006663,1959,2000,AL
+33,Mores Creek,1033,850,CF,SD,-12,6,OB,HM,"VanShaar et al., 2002",1701,43,-115,7,,1986,1993,GE
+34,Murray River,13000,1078,MF,RD,1.3,-0.9,,HM,"Van Dijk et al., 2007",1727,-35.8665,144.315,12,,1988,2000,GE
+35,Murrumbidgee,15000,847,MF,RD,2.2,-2.2,,HM,"Van Dijk et al., 2007",1880,-34.8885,146.5892,13,,1988,2001,GE
+36,Nam Pong catchment,12100,1050,BF,RD,-53,0,OB,HM,"Wilk et al., 2001",1404,19.5545,105.0581,18,,1970,1988,GE
+37,Negro River,582064,2680,BF,RD,-3,0,SG,HM,"Coe et al., 2009",1275,-8.1158,-77.9843,1,,2000,2000,GE
+38,Puget Sound basin,30000,1800,MF,RD,-10,6.8,SG,HM,"Cuo et al., 2009",1003,47.694691,-122.064314,119,,1883,2002,AL
+39,Purus River,333480,2300,BF,RD,-3,1,SG,HM,"Lima et al, 2014",1221,-7.6457,-66.3585,51,,1950,2001,AL
+40,Roda de Ter,1386,938,BF,RD,5,-12,OB,HM,"Gallart et al., 2011",1336,42.0581,2.9997,14,,1979,1993,GE
+41,Sanchuan ,4123,462.8,BF,RD,33,-27,OB,EA,"Zhang et al. , 2008a",1386,37,111,43,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006659,1957,2000,AL
+42,Shiwang ,2327,536.6,BF,RD,42,-19.1,OB,EA,"Zhang et al. , 2008a",1396,35,110,41,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006660,1959,2000,AL
+43,Solimões #10,1858883,2200,BF,RD,-6,1,SG,HM,"Coe et al., 2009",1260,-2.6399,-66.3215,1,cound not find location differences btw #5,2000,2000,GE
+44,Solimões #5,867257,2200,BF,RD,-8,2,SG,HM,"Coe et al., 2009",1260,-2.6399,-66.3215,1,cound not find location differences btw #10,2000,2000,GE
+45,Suomo basin,2536,800,BF,SD,-9.5,20.8,OB,HM,"Chen et al., 2005",858,32.1331,102.5254,1,,1995,1995,GE
+46,Talarn,1905,1003,MF,RD,12.6,-25.7,SG,EA,"Buendia et al., 2016a",1310,42.3992,1.1273,44,other rivers,1965,2009,GE
+47,Tapajet River,285072,2100,BF,RD,-20,4,SG,HM,"Coe et al., 2009",1335,-5.2928,-56.9257,1,"Wrong name, Tapajós river",2000,2000,GE
+48,The upper reach of the Weihe River  ,106500,591.46,BF,RD,16.9,-18,OB,EA,"Zhao et al., 2013",1321,34.8333,108.8333,50,"Wrong spelled name, it is Wei River basin",1958,2008,AL
+49,Tocantins River,189048,2000,BF,RD,-58,26,SG,SH,"Costa et al., 2003",1601,-13,-48,35,,1960,1995,AL
+50,Upper Tacuarembo,2097,1300,MF,RD,26,-22,OB,SH,"Silveira and Alonso,2009",1602,-31.5333,-55.6833,18,Manuel Diaz Basin,1975,1993,PL
+51,Upper Zagunao River ,2528,1072,CF,RD,-15.5,5,MD,SH,"Zhang et al., 2012",872,32,103,26,Situated on the Upper Minjiang River of Yangtze River basin,1970,1996,AL
+52,Upstream Heihe river basin,11145,600,CF,RD,12,8.6,MD,HM,"Wu et al.,2015",832,38,100,30,,1980,2010,AL 
+53,Victoria River,16000,829,MF,RD,0.7,-0.7,,HM,"van Dijk et al., 2007",1258,-37.1493,147.2999,14,,1988,2002,GE
+54,Weifen ,1548,491.6,BF,RD,27,-19.8,OB,EA,"Zhang et al. , 2008a",1440,37.5,111,44,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006661,1956,2000,AL
+55,Willow  River,2860,820,CF,SD,-31.9,9.8,OB,SH,"Wei and Zhang, 2010",,-122.5,54.2,50,,1953,2003,PL
+56,Wuding River watershed ,30261,391,BF,RD,34,-26.5,OB,EA,"Li et al. , 2007",1493,37.9865,109.8497,40,,1960,2000,AL
+57,Xiangxi catchment,3200,1000,BF,RD,3.6,-0.7,,HM,"Bieger et al., 2015",1167,31.3333,110.6667,20,,1987,2007,AL
+58,Xinancha watershed,2582,631,CF,RD,20,-22,OB,SH,"Yao et al.,2015",968,46.9667,128.7,40,,1970,2010,PL
+59,Xingu River,377175,2100,BF,RD,-12,5,SG,HM,"Coe et al., 2009",1410,-7.4629,-52.6554,1,,2000,2000,GE
+60,Xinshui ,4069,524.3,BF,RD,15,-22.5,OB,EA,"Zhang et al. , 2008a",1433,38,111,43,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006662,1957,2000,AL
+61,Zhujia ,2956,450.4,BF,RD,27,-38.6,OB,EA,"Zhang et al. , 2008a",1306,36,110,41,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006663,1959,2000,AL
