@@ -232,6 +232,7 @@ The general model tested is:
 \end{align}
 
 Here \(X_i\) are factorial variables, while \(Z_i\) are continuous variables. The model assumes no direct interactions and all variables are additive. The changes in forest cover contain both positive (forestation) and negative values (deforestation). In Zhang et al. (2017), these changes were jointly analysed, assuming the effect on the change in flow was linear and the effect if removing forest cover was the same as an equivalent reforestation. However, the impact of an increase in forest cover can be different from the same fractional decrease in forest cover. Therefore all the change in forest cover data is converted to positive values, and an additional column (\(sign_{forest cover}\)) is added that indicates whether it was a forest cover increase or decrease.
+
 A further assumption in the model is that all continuous variables \(Z_i\) (such as annual precipitation (Pa)) can have a linear or non-linear relationship with \(\Delta Qf \%\). This means that a smooth function \(s()\) is applied to the \(Z_i\) variables. For the smoothing function we applied thin plate regression splines with an additional shrinkage penalty which means the terms can be shrunk to 0 if not significant (Wood, 2006).
 
 For the model in equation 2, we initially only used the data from Zhang et al. (2017) to make sure that the additional catchments added to the data set did not influence the results. Subsequently the analysis was repeated and the additionally identified catchments were added.
@@ -246,7 +247,7 @@ More generally the results were analysed to identify:\\
 \hypertarget{description-of-the-data}{%
 \subsection{Description of the data}\label{description-of-the-data}}
 
-The overall dataset contains 330 observations of changes in flow, which includes the newly identified data sets and after removing identified duplicate data and lines with missing data. In contrast, the original dataset from Zhang et al. (2017) contained 312 catchments and the Filoso et al. (2017) study used 37 catchments (Table S2 in Filoso et al. (2017)). The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and Area. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Smaller catchments dominate the database with 42\% of the data from catchments \textless{} 1 km\textsuperscript{2} and 65\% of the data for catchments \textless{} 10 km\textsuperscript{2} (Figure 1).
+The overall dataset contains 330 observations of changes in flow, which includes the newly identified data sets and after removing identified duplicate data and lines with missing data. In contrast, the original dataset from Zhang et al. (2017) contained 312 catchments and the Filoso et al. (2017) study used 37 catchments (Table S2 in Filoso et al. (2017)). The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and \emph{Area km\^{}2}. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Smaller catchments dominate the database with 42\% of the data from catchments \textless{} 1 km\textsuperscript{2} and 65\% of the data for catchments \textless{} 10 km\textsuperscript{2} (Figure 1).
 
 
 
@@ -398,9 +399,7 @@ Climate, and in particular evapotranspiration can have a significant effect on t
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.18}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.14}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.15}}@{}}
-\caption{\label{tab:out-model4} Results of the model including the dryness index
-\textless\textless\textless\textless\textless\textless\textless{} HEAD
-}\tabularnewline
+\caption{\label{tab:out-model4} Results of the model including the dryness index}\tabularnewline
 \toprule
 \begin{minipage}[b]{\linewidth}\centering
 ~
@@ -436,11 +435,7 @@ Pr(\textgreater\textbar t\textbar)
 \bottomrule
 \end{longtable}
 
-\hypertarget{the-results-from-this-model-equation-refeqeq5-and-table-reftabout-model4-interestingly-indicate-no-impact-of-dryness-modulating-the-change-in-streamflow-as-a-function-of-the-change-in-forest-cover-change-which-is-surprising-in-light-of-earlier-reported-results-zhang2017-filoso2017.-in-this-case-the-evidence-is-highly-doubtful-p-0.52.-however-it-is-very-well-possible-that-there-is-a-further-interaction-in-the-data-with-other-variables-or-unknown-variables-that-this-simpler-version-of-the-model-cannot-identify.-this-is-partly-evidenced-by-the-fact-that-the-overall-variance-explained-is-still-low-with-an-adjusted-r2-of-0.22.}{%
-\section{\texorpdfstring{The results from this model (equation \eqref{eq:eq5} and Table \ref{tab:out-model4}) interestingly indicate no impact of dryness modulating the change in streamflow as a function of the change in forest cover change, which is surprising in light of earlier reported results (Filoso et al., 2017; Zhang et al., 2017). In this case, the evidence is highly doubtful (p = 0.52). However, it is very well possible that there is a further interaction in the data with other variables or unknown variables that this simpler version of the model cannot identify. This is partly evidenced by the fact that the overall variance explained is still low, with an adjusted \emph{r\textsuperscript{2}} of 0.22.}{The results from this model (equation \eqref{eq:eq5} and Table \ref{tab:out-model4}) interestingly indicate no impact of dryness modulating the change in streamflow as a function of the change in forest cover change, which is surprising in light of earlier reported results (Filoso et al., 2017; Zhang et al., 2017). In this case, the evidence is highly doubtful (p = 0.52). However, it is very well possible that there is a further interaction in the data with other variables or unknown variables that this simpler version of the model cannot identify. This is partly evidenced by the fact that the overall variance explained is still low, with an adjusted r2 of 0.22.}}\label{the-results-from-this-model-equation-refeqeq5-and-table-reftabout-model4-interestingly-indicate-no-impact-of-dryness-modulating-the-change-in-streamflow-as-a-function-of-the-change-in-forest-cover-change-which-is-surprising-in-light-of-earlier-reported-results-zhang2017-filoso2017.-in-this-case-the-evidence-is-highly-doubtful-p-0.52.-however-it-is-very-well-possible-that-there-is-a-further-interaction-in-the-data-with-other-variables-or-unknown-variables-that-this-simpler-version-of-the-model-cannot-identify.-this-is-partly-evidenced-by-the-fact-that-the-overall-variance-explained-is-still-low-with-an-adjusted-r2-of-0.22.}}
-
-The results from this model (equation \eqref{eq:eq5} and Table \ref{tab:out-model4}) confirm that dryness is a clear confounding factor related to the change in streamflow as a function of the change in forest cover change. In this case the evidence is not very strong (p = 0.52. However, if the dryness index doubles (remembering that Dryness = 1 when E0 = Pa, so in this case E0 = 2×Pa, which is very dry), the change in runoff is \textasciitilde6\% greater. Again, overall variance explained is not very much, with an adjusted \emph{r\textsuperscript{2}} of 0.22.
-\textgreater\textgreater\textgreater\textgreater\textgreater\textgreater\textgreater{} 70692a2b708e51dd658780f5487e0fb00aaf13a7
+The results from this model (equation \eqref{eq:eq5} and Table \ref{tab:out-model4}) interestingly indicate no impact of dryness modulating the change in streamflow as a function of the change in forest cover change, which is surprising in light of earlier reported results (Filoso et al., 2017; Zhang et al., 2017). In this case, the evidence is highly doubtful (p = 0.52). However, it is very well possible that there is a further interaction in the data with other variables or unknown variables that this simpler version of the model cannot identify. This is partly evidenced by the fact that the overall variance explained is still low, with an adjusted \emph{r\textsuperscript{2}} of 0.22.
 
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.15}}
@@ -478,11 +473,7 @@ U.S.A, A \\
 \bottomrule
 \end{longtable}
 
-\textless\textless\textless\textless\textless\textless\textless{} HEAD
 There are also possible issues with the data, as a few of the catchments have Dryness values that are very large (\textgreater{} 4) and these values have high leverage in the data, affecting the residual distribution. These catchments are listed in Table \ref{tab:drytable}.
-=======
-There possible issues with the data, a few of the catchments have Dryness values that are very large (\textgreater{} 4) and these values have high leverage in the data, affecting the residual distribution. These catchments are listed in Table \ref{tab:drytable}.
-\textgreater\textgreater\textgreater\textgreater\textgreater\textgreater\textgreater{} 70692a2b708e51dd658780f5487e0fb00aaf13a7
 
 \hypertarget{is-there-a-distinct-effect-of-area}{%
 \subsection{Is there a distinct effect of area?}\label{is-there-a-distinct-effect-of-area}}
@@ -535,8 +526,6 @@ Pr(\textgreater\textbar t\textbar)
 \textbf{log10(Area\_km2)} & -3.03 & 1.67 & -1.81 & 0.07 \\
 \bottomrule
 \end{longtable}
-
-The results of this model (Equation \eqref{eq:eq6}) clearly indicate a reduction in the effect of forest cover change with Area (km\textsuperscript{2}) (Table \ref{tab:out-modelArea}). In fact, the results suggests that for every additional 10 km\textsuperscript{2} in catchment size the mean change in flow reduces by 3.5\%. Another interesting fact to note is that with the inclusion of Area (km\textsuperscript{2}) as a variable in the model, the effect of Dryness becomes more significant, possibly suggesting an interaction between Dryness and Area. Including this interaction suggest that the interaction term (log10(Area) by Dryness) would be significant, but this replaces the effect of Area (results not shown).
 
 The results of this model (Equation \eqref{eq:eq6}) indicate there is at least some evidence (p = 0.07) that there is a reduction in the effect of forest cover change on streamflow related to Area (km\textsuperscript{2}) (Table \ref{tab:out-modelArea}). In fact, the results suggests that for every additional 10 km\textsuperscript{2} in catchment size the mean change in flow reduces by 3\%. Another interesting fact to note is that with the inclusion of Area (km\textsuperscript{2}) as a variable in the model, the effect of Dryness becomes slightly more important, possibly suggesting an interaction between Dryness and Area. Including this interaction in the model (Table \ref{tab:out-modelArea-int}) results in the increased evidence (p = 0) that Dryness affects the change in flow caused by changes in forest cover and that the effect of Area is only important (p = 0.95)) as an interaction with Dryness.
 
@@ -779,7 +768,7 @@ p-value
 \end{longtable}
 
 This model explains more of the variance, but the improvement is marginal compared to the previous model with a adjusted \emph{r\textsuperscript{2}} of 0.34. This indicates that the categorical variables explain a limited amount of the variance. However, interesting to note from Table \ref{tab:msix-linear} that several of the assessment methods are significant. In particular Paired Watersheds experiments (PWE), Hydrological modelling (HM) and Statistical techniques (SH) are strongly significant (\(p < 0.05\)).
-In this case, \emph{Area (km\^{}2)} is no longer a significant predictor, the reasons for this will be discussed later.
+In this case, \emph{log10(Area (km\textsuperscript{2}))} is no longer a significant predictor, the reasons for this will be discussed later.
 
 \begin{figure}
 \includegraphics[width=0.9\linewidth]{model6_smooths} \caption{Visualisation of the smooth variables in the model}\label{fig:smoothsmodel6}
@@ -834,6 +823,7 @@ p-value
 \end{figure}
 
 The flexible nature of the splines means that the length variable captures some substantial variation in the data, but it is unclear what exactly is captured. The shape of the conditional response (Figure \ref{fig:smoothsmodel6}) also does not reflect the type of response highlighted in Filoso et al. (2017) and Jackson et al. (2005). One reason could be the few data points with very long data series, and very old studies (before 1920 essentially), and highly variable responses (Figure \ref{fig:smoothsmodel6}). Therefore it can be important to investigate what removing these factors has on the overall model and the significance of the variables. The next model therefore removes the following data: \emph{Dryness} \textgreater{} 4, \emph{length} \textgreater{} 60 years, \emph{From} \textgreater{} 1920. This result in a reduction of the data set from 330 to 304 catchments.
+
 The model has more explaining power with an adjusted \emph{r\textsuperscript{2}} of 0.34. This results in Dryness now shows a clear non-linear response with drier catchments having a greater impact of changes in forest cover on streamflow (Figure \ref{fig:smoothsmodel7}). However the other 3 variables are no longer significant due to the scatter in the data, but \emph{length} and \emph{From} show some strong local non-linear behaviour.
 
 \begin{figure}
