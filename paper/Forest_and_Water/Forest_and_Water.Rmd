@@ -17,7 +17,7 @@ address:
   - code: The University of Sydney
     address: School of Life and Environmental Sciences, The University of Sydney, Sydney, NSW 2006, Australia
   - code: INIA
-    address: Project Manager, FPTA 357, Instituto Nacional de Investigacion Agropecuaria, INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100 Canelones, Uruguay
+    address: Project Manager, FPTA 358, Instituto Nacional de Investigacion Agropecuaria, INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100 Canelones, Uruguay
   - code: IMFIA
     address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la República, 11200 Montevideo, Uruguay
 footnote:
@@ -304,7 +304,7 @@ All_data2 <- All_data %>%
                                   DeltaF_perc))
 ```
 
-In addition, this shows that for the data related to forest decreases, there is almost always a positive flow change (Figure 2). In other words, flow almost always increased. However, for increases in forest cover, this is not the case, and flow can both increase and decrease. However in both cases the variability in the reported change in flow increases with the increase in forest cover change.
+In addition, this shows that for the data related to forest decreases, there is almost always a positive flow change (Figure 2). In other words, flow almost always increased. However, for increases in forest cover, this is not the case, and flow can both increase and decrease. Otherwise, in both cases the variability in the reported change in flow increases with the increase in forest cover change.
 
 
 ```{r, echo = F, warning = F, message=F, eval =F}
@@ -383,7 +383,7 @@ Of importance here is to highlight the residuals of this regression (equation \@
 
 Including the data from some of the newly identified studies indicates that this mainly strengthens the difference between the forest cover increases and decreases (Table \@ref(tab:tabmodel1)), and the result indicate a reduction in the mean decrease in flow as a result of forest cover change if the new data is included.
 
-It is however it is clear from the lack of explaining power for the model, that there could be confounding factors, as alluded to in the methods. The obvious ones being catchment dryness and area (following @zhang2017), which we will analyse later. 
+However, it is clear from the lack of explaining power for the model, that there could be confounding factors, as alluded to in the methods. The obvious ones being catchment dryness and area (following @zhang2017), which we will analyse later. 
 
 ## The effect of location on the globe
 <!-- include Lat and Long (later E0) -->
@@ -415,7 +415,7 @@ There appears to be no significant gradient in either latitude or longitude (Tab
 
 ## Impact of climate
 
-Climate, and in particular evapotranspiration can have a significant effect on the streamflow change as represented by the dryness index, which is also highlighted by both @zhang2017 and @jackson2005. Increased evapotranspiration could lead to drier catchments, unless balanced by rainfall (such as possibly in the tropics). Initially, we tested models using annual average precipitation (*Pa (mm)*), but because of the interactions between precipitation, evapotranspiraton and the dryness index, we concentrated on the dryness index as the key variable. Given that Latitude and Longitude were not significant, we dropped these from the model. 
+Climate, and in particular evapotranspiration, can have a significant effect on the streamflow change as represented by the dryness index. This is also highlighted by both @zhang2017 and @jackson2005. Increased evapotranspiration could lead to drier catchments, unless balanced by rainfall (such as possibly in the tropics). Initially, we tested models using annual average precipitation (*Pa (mm)*), but because of the interactions between precipitation, evapotranspiraton and the dryness index, we concentrated on the dryness index as the key variable. Given that Latitude and Longitude were not significant, we dropped these from the model. 
 
 
 \begin{align}
