@@ -17,7 +17,7 @@ address:
   - code: The University of Sydney
     address: The University of Sydney, Sydney, NSW 2006, Australia
   - code: INIA
-    address: Project Manager, FPTA 357, Instituto Nacional de Investigacion Agropecuaria, INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100 Canelones, Uruguay
+    address: Project Manager, FPTA 358, Instituto Nacional de Investigacion Agropecuaria, INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100 Canelones, Uruguay
   - code: IMFIA
     address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la República, 11200 Montevideo, Uruguay
 footnote:
@@ -404,7 +404,7 @@ Of importance here is to highlight the residuals of this regression (equation \@
 
 Including the data from some of the newly identified studies indicates that this mainly strengthens the difference between the forest cover increases and decreases (Table \@ref(tab:tabmodel1)), and the result indicate a reduction in the mean decrease in flow as a result of forest cover change if the new data is included. Adding the new data does not change the outcome much (apart from the magnitudes of the coefficients), which is expected as the number of added catchments is small relative to the total @zhang2017 data set. But this also means that our re-analysis of the data can be directly compared to the original study.
 
-It is however it is clear from the lack of explaining power for the model, that there could be confounding factors, as alluded to in the methods. The obvious ones being catchment dryness and area (following @zhang2017), which we will analyse later. 
+However, it is clear from the lack of explaining power for the model, that there could be confounding factors, as alluded to in the methods. The obvious ones being catchment dryness and area (following @zhang2017), which we will analyse later. 
 
 ## The effect of location on the globe
 <!-- include Lat and Long (later E0) -->
