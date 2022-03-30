@@ -12,3 +12,5 @@ We are indebted to the work the authors of this paper put into collating a signi
 The data from Zhang et al. (2017) has been checked an compared to other summary work, such as Filoso et al. (2017) (see paper references).
 The final dataset of the paper is in the "data" folder and is called AllData_Catchments.xlsx. This same data (in three tabs in the excel sheet) is repeated in the csv files.
 A notes column is provided which indicates the changes and observations we made relative to the original data set from Zhang et al. (2017)
+
+This work was funded through project FPTA 358, Instituto Nacional de Investigacion Agropecuaria, INIA-Uruguay.
