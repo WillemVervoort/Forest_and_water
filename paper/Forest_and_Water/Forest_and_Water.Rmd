@@ -125,7 +125,7 @@ We also removed one data point from the analysis, which corresponds to catchment
 
 The final column in the improved data set is a "notes" column, which we added, but is not further used in the analysis. It gives context to some of the data for future research and highlights some of the discrepancies that we found between the original papers and the data in the tables from @zhang2017. This will allow future research to further sructinise our input for errors. 
 
-All the final data and analysis for this paper are located on github: [https://github.com/WillemVervoort/Forest_and_water](https://github.com/WillemVervoort/Forest_and_water) on the "publish" branch.
+All the final data and analysis for this paper are located on github: [https://github.com/WillemVervoort/Forest_and_water](https://github.com/WillemVervoort/Forest_and_water/tree/publish) on the "publish" branch.
 
 ## Statistical modelling
 ```{r, include=FALSE}
