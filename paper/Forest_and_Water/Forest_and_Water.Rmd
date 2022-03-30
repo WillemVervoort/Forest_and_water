@@ -37,7 +37,11 @@ output:
     base_format: rticles::elsevier_article
 editor_options: 
   chunk_output_type: inline
+header-includes:
+  - \usepackage{setspace}
 ---
+
+\doublespacing
 
 Introduction
 ==========================
