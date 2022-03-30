@@ -1,5 +1,14 @@
 # Forest_and_water
-Research to redo the analysis in the Zhang et al. 2017 paper with J Alonso and E Nervi
+This github repository contains the data and the analysis of the impacts of reforestation and deforestation on streamflow using generalised additive modelling.
+This work is submitted as a paper to Journal of Hydrology:
+R.W. Vervoort, E. Nervi, J. Alonso (2022) Factors determining how catchments respond to forest cover change. Re-analysing global data sets. Submitted to Journal of Hydrology 
 
+The final data and scripts are in the "publish" branch, please use this branch for any future work. 
+
+This work is originally inspired by:
 Zhang, M. et al., 2017. A global review on hydrological responses to forest change across multiple spatial scales: Importance of scale, climate, forest type and hydrological regime. Journal of Hydrology, 546: 44-59. DOI:https://doi.org/10.1016/j.jhydrol.2016.12.040
+We are indebted to the work the authors of this paper put into collating a significant data set in this area.
 
+The data from Zhang et al. (2017) has been checked an compared to other summary work, such as Filoso et al. (2017) (see paper references).
+The final dataset of the paper is in the "data" folder and is called AllData_Catchments.xlsx. This same data (in three tabs in the excel sheet) is repeated in the csv files.
+A notes column is provided which indicates the changes and observations we made relative to the original data set from Zhang et al. (2017)
