@@ -1,0 +1,10 @@
+---
+title: "Highlights"
+output: pdf_document
+---
+  
+  
+- Changes in forest cover impact streamflow  
+- Careful reanalysis of existing database highlights confounding factors  
+- Impact on streamflow depends on area of catchment and climate  
+- The type of original data impacts outcomes such as paired watershed studies  

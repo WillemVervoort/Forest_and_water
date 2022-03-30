@@ -6,7 +6,7 @@ author:
     affiliation: DARE
     footnote: 1
   - name: Eliana Nervi
-    email: eliananervi@gmail.com
+    email: eliananervif@gmail.com
     affiliation: INIA 
   - name: Jimena Alonso
     email: jalonso@fing.edu.uy
@@ -918,6 +918,10 @@ model9_interact <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign +
 summary(model9_interact)
 
 ```
+
+Acknowledgements
+================
+This work was funded through project FPTA 358, Instituto Nacional de Investigacion Agropecuaria, INIA-Uruguay.
 
 
 References {#references .unnumbered}
