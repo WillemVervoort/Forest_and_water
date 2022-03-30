@@ -125,6 +125,8 @@ We also removed one data point from the analysis, which corresponds to catchment
 
 The final column in the improved data set is a "notes" column, which we added, but is not further used in the analysis. It gives context to some of the data for future research and highlights some of the discrepancies that we found between the original papers and the data in the tables from @zhang2017. This will allow future research to further sructinise our input for errors. 
 
+All the final data and analysis for this paper are located on github: [https://github.com/WillemVervoort/Forest_and_water](https://github.com/WillemVervoort/Forest_and_water) on the "publish" branch.
+
 ## Statistical modelling
 ```{r, include=FALSE}
 options(tinytex.verbose = FALSE)
@@ -142,40 +144,10 @@ suppressWarnings(require(knitr))
 suppressWarnings(require(bookdown))
 suppressWarnings(require(pander))
 
-Zhang_small <- read_csv("../../data/TablesZhangetal2017_small.csv")
-Zhang_large <- read_csv("../../data/TablesZhangetal2017_large.csv") %>%
-  mutate(Complete = 1,
-         `Possible duplicate` = 0)
-new_data <- read_csv("../../data/TableNewData.csv")
+Zhang_small <- read_csv("../../data/SmallCatchments_T2.csv")
+Zhang_large <- read_csv("../../data/LargeCatchments_T1.csv")
+new_data <- read_csv("../../data/NewCatchments_T3.csv")
 ```
-
-<!-- read in the ET data -->
-
-```{r, echo = F, warning = F, message=F}
-PET_large <- read_csv("../../data/largeET.csv")
-PET_small <- read_csv("../../data/smallET.csv")
-
-
-# drop columns and make sure the titles are the same
-PET_large <- PET_large %>%
-  rename(Latitude = Latitiude,
-         E0 = rvalue_1,
-         `Watershed #` = Watershed)
-
-PET_small <- PET_small %>%
-  select(site_name, lat, long, rvalue_1) %>%
-  rename(Latitude = lat,
-         Longitude = long,
-         `Watershed #` = site_name,
-         E0 = rvalue_1)
-
-# 
-PET_all <- bind_rows(PET_large, PET_small)
-# There are 7 missing E0 values
-# > PET_all$`Watershed #`[is.na(PET_all$E0)==T]
-# [1]  38 278 269 243 236 299 250
-```
-
 
 <!--- ### change names of columns
 the package`mgcv` does not seem to be happy with complex names, so probably better to make all names simple --->
@@ -216,13 +188,6 @@ All_data <- All_data %>%
 
 <!--now combine with E0 values -->
 ```{r, echo = F}
-All_data <- left_join(All_data ,PET_all %>% select(-c(Longitude, Latitude)), by = "Watershed #")
-All_data <- All_data %>%
-  mutate(E0 = ifelse(is.na(E0.x)==T, E0.y, E0.x)) %>%
-  select(-c(E0.x,E0.y)) #%>%
-  #rename(Latitude = Latitude.x,
-#         Longitude = Longitude.x)
-
 # calculate dryness index
 All_data <- All_data %>%
   mutate(Dryness = E0/Pa_mm)
