@@ -1,0 +1,46 @@
+﻿Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,DeltaF_perc,DeltaQf_perc,Precipitation data type,Assessment technique,Source of info,E0,Latitude,Longitude,Length of study (years),From,To,Location Details,"Completed 1, Incomplete 0",Possible duplicate,Notes
+313,Adjungbilly Creek,391,1011,CF,RD,30.08,-60,OB,EA,Zhang et al. 2011,1939,-32.02,148.25,14,1995,2008,PL,1,,
+314,Battaling Ck,16.64,629,CF,RD,19,-52,OB,EA,Zhang et al. 2011,1835,-33.32,116.57,9,2000,2008,PL,1,,
+315,Bombala River,559,783,CF,RD,26.8,-29,OB,EA,Zhang et al. 2011,1180,-37,149.38,14,1990,2000,PL,1,,
+316,Burnt Out Ck,0.6,806,CF,RD,67,-100,OB,EA,Zhang et al. 2011,1647,-35.13,138.7,5,2003,2007,PL,1,,
+317,Crawford River,606,728,MF,RD,24.18,-66,OB,EA,Zhang et al. 2011,1340,-37.98,141.46,5,2004,2009,PL,1,,
+318,Darlot Ck,760,688,MF,RD,13.3,-28,OB,EA,Zhang et al. 2011,1315,-38.15,141.77,5,2004,2009,PL,1,,
+319,Delegate River,1135.7,859,CF,RD,14,-52,OB,EA,Zhang et al. 2011,1303,-36.98,149.05,11,1990,2000,PL,1,,
+320,Eumeralla River,502,725,BF,RD,19.84,-57,OB,EA,Zhang et al. 2011,1296,-38.26,141.94,8,2001,2008,PL,1,,
+321,Goobarragandra Ck,673,1009,CF,RD,8.32,-35,OB,EA,Zhang et al. 2011,1658,-35.19,148.2,19,1990,2008,PL,1,,
+322,Jingellic Ck,390,838,CF,RD,27.5,-37,OB,EA,Zhang et al. 2011,1659,-35.53,147.41,10,1996,2005,PL,1,,
+323,Pine Ck,3.2,629,CF,RD,88,-106,OB,EA,Zhang et al. 2011,1469,-37.29,145.05,12,1996,2005,PL,1,,
+324,Red Hill,1.95,760,CF,RD,78,-66,OB,EA,Zhang et al. 2011,1447,-35.12,149.35,6,2001,2005,PL,1,1,"Repeat of Webb and Kathuria, 2012 # 248"
+325,Traralgon Ck,89,959,BF,RD,58,-78,OB,EA,Zhang et al. 2011,1325,-38.32,146.53,7,1993,1999,PL,1,,
+326,Upper Denmark River,243,742,BF,RD,15.17,-93,OB,EA,Zhang et al. 2011,1502,-34.7,117.22,5,2004,2008,PL,1,,
+327,Yate Flat Ck,26.35,742,BF,RD,33.57,-91,OB,EA,Zhang et al. 2011,1833,-33.7,117.29,5,2004,2008,PL,1,,
+328,Padbury reservoir catchment,1.964,880,MF,RD,60.9,-92,OB,EA,Borg et al. 1988,1749,-33.81,116,5,1978,1983,PL,1,1,
+329,Pasak River (North Thailand),14500,1208,MF,RD,-50,0,OB,EA,Pena-Arancibia et al. 2012,1812,16.43,101.18,25,,,GM,0,,"Lat long for Petchaboon, data also via: http://www.bom.gov.au/water/about/waterResearch/document/10_Thailand-12.pdf  cited in Pena-Arancibia et al. 2012, original paper inaccessible"
+330,Pearl River,179752,1770,MF,RD,37,0,OB,SH,Zhou et al. 2010,1343,22.88,113.5,50,1993,2006,GM,1,,"Area is for the whole Guangdong province, from Pena-Arancibia et al. 2012"
+331,Lemon,3.44,702.6,MF,RD,-53,100,OB,EA,Zhao et al. 2010,1818,-33.3,116.41,24,1974,1997,PL,1,,data from table 6 Zhao et al. 2010 rather than original paper
+332,GH2/Glendhu,3.1,1282.4,CF,RD,67,-78,OB,EA,Zhao et al. 2010,1066,-45.71,169.75,22,1980,2000,PL,1,,data from table 6 Zhao et al. 2010 rather than original paper
+333,Burdekin,17299,690,BF,RD,-25,1,OB,SH,Pena-Arancibia et al. 2012,2216,-19,145,80,1979,2007,GM,1,,
+334,Comet,16440,650,BF,RD,-45,1,OB,SH,Pena-Arancibia et al. 2012,2166,-24.5,148.5,80,1979,2007,GM,1,1,follow-up study on watershed #8 with different results
+335,Ji-Parana,33000,1875,BF,RD,-50,0,OB,SH,Rodriguez et al. 2010,1289,-10.87,-61.94,22,1991,2004,AL,1,,precipitation varies between 1250 and 2500 mm
+336,Brigalow C2,0.117,720,BF,RD,-100,100,OB,PWE,Thornton et al. 2007,2083,-24.81,149.8,25,1982,2003,GM,1,,"Cropping catchment, grassland catchment is C3, runoff % change estimate based on Table 4 in Thorton et al. 2007"
+337,San Antonio,104,680,MF,RD,-32,0,OB,PWE,"Bart and Hope,2010",1695,35.9,-121.09,5,1972,1988,AL,1,,Another catchment in Bart and Hope that was for some reason not added originally. Coordinates from usgs
+338,"M1, Canada",1140,895,CF,SD,18.9,0,OB,QPW,"Buttle and Metcalfe, 2000",746,49.68,-83.65,5,1985,1990,PL,1,,Mattawishkwia River at Hearst Point location from  https://www.r-arcticnet.sr.unh.edu/Points/Des4371.txt
+339,Duqueco,1545,1700,BF,RD,15.19,-19.5,OB,SH,"Iroumé and Palacios,2013",1248,-37.55,-72.01,43,1962,2005,PL,1,,added
+340,"Ocmulgee Macon, USA",5800,1200.650024,MF,RD,27.5,-9,,SH,"Trimble and Weirich, 1987",1567,32.84,-83.62,75,1900,1975,USGS,1,,"Data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich. Rainfall data from https://prism.oregonstate.edu/normals/"
+341,"Oconee Milledgeville, USA",7640,1206.099976,MF,RD,27.5,-15,,SH,"Trimble and Weirich, 1987",1576,33.09,-83.21,71,1904,1975,USGS,1,,"data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich Rainfall data from https://prism.oregonstate.edu/normals/"
+342,"Flint, USA",4790,1265.689941,MF,RD,25.7,-12,,SH,"Trimble and Weirich, 1987",1566,32.72,-84.23,63,1912,1975,USGS,1,,"data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich, location using gauge 02347500 near Carsonville, the Flint does not go through Culloden.Rainfall data from https://prism.oregonstate.edu/normals/"
+343,"Oconee Greensboro, USA",2820,1250.229981,MF,RD,21.3,-21,,SH,"Trimble and Weirich, 1987",1535,33.72,-83.3,71,1904,1975,USGS,1,," data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich, for location used gauge 02218300 as original gauge location is probably now in Lake Oconee. Rainfall data from https://prism.oregonstate.edu/normals/"
+344,"Chattahoochee at West Point, USA, ",9195,1353.550049,MF,RD,20,-7,,SH,"Trimble and Weirich, 1987",1491,32.89,-85.18,75,1900,1975,USGS,1,,"data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich. Rainfall data from https://prism.oregonstate.edu/normals/"
+345,"Savannah at Augusta, USA",19450,1140.130005,MF,RD,15.4,-15,,SH,"Trimble and Weirich, 1987, ",1577,33.37,-81.94,75,1900,1975,USGS,1,,"data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich.Rainfall data from https://prism.oregonstate.edu/normals/"
+346,"Tallapoosa at Wadley AL, USA",4300,1390.76001,MF,RD,11.8,-5,,SH,"Trimble and Weirich, 1987",1467,33.12,-85.56,52,1923,1975,USGS,1,,"data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich.Rainfall data from https://prism.oregonstate.edu/normals/"
+347,"Chattahoochee at Norcross, USA",3030,1411.910034,MF,RD,11,-6,,SH,"Trimble and Weirich, 1987",1457,34,-84.2,73,1902,1975,USGS,1,,"data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich.Rainfall data from https://prism.oregonstate.edu/normals/"
+348,"Saluda at Columbia, USA",6500,1214.23999,MF,RD,10.5,-16,,SH,"Trimble and Weirich, 1987",1589,34.01,-81.09,46,1929,1975,USGS,1,," data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich.Rainfall data from https://prism.oregonstate.edu/normals/"
+349,"Saluda at Silverstreet, USA",4200,1179.349976,MF,RD,9.7,-16,,SH,"Trimble and Weirich, 1987",1543,34.18,-81.73,39,1927,1966,GM,1,,"data as extracted by Filoso et al. 2017, based on Table 1 in Trimble and Weirich. Gauge probably no longer exists.Rainfall data from https://prism.oregonstate.edu/normals/"
+350,Coalburn catchment,1.5,1400,CF,RD,90,0,OB,SH,Birkinshaw et al. 2014 ,640,55.1,-2.48,38,1973,2011,GM,1,,from Filoso et al. 2017. page 564: no statistically significant trends were found in the annual discharge totals
+351,Ganaraska River Basin,267,800,CF,RD,5.6,-21,OB,SH,Buttle 1994 ,919,44.04,-78.52,48,1945,1993,GM,1,,from Filoso et al. 2017. Change in runoff based on 100mm decline on 0.6 (runoff ratio)*800mm precip
+352,Jialuhe river,1117,422,,RD,NA,-32,,SH,Huang and Zhang 2004,1483,38.29,110.15,22,1967,1989,AL,0,," from Filoso et al. 2017. This paper actually describes more than just reforestation, there are also other conservation practices, so not really valid"
+353,Watershed 8 Tucker VA,0.19,1120,MF,RD,80,0,OB,SH,Lima et al. 1978,1060,39.13,-79.83,13,1958,1971,GM,1,,FOREST SERVICE RESEARCH PAPER NE-392 from Filoso et al. 2017
+354,Watershed 9 Tucker VA,0.12,1120,MF,RD,80,0,OB,SH,Lima et al. 1978 ,1060,39.13,-79.83,13,1958,1971,GM,1,, FOREST SERVICE RESEARCH PAPER NE-392 from Filoso et al. 2017
+355,Luchelemu catchment,13.3,1300,MF,RD,93,0,OB,SH,Mwendera 1994,2480,11.75,33.83,17,1961,1978,AL,1,, https://doi.org/10.1016/0378-1127(94)90159-7
+356,Queens river,200,300,MF,RD,55,-40,MD,HM,Pitman 1978 ,1973,-25.75,28.23,23,1948,1971,AL,1,,from Filoso et al. 2017
+357,Valtorto,0.097,1500.699559,MF,RD,-100,60,OB,PWE,Stoof et al. 2012 ,1350,40.1,8.57,2,2008,2010,AL,1,,https://hess.copernicus.org/articles/16/267/2012/. Rainfall and Et calculated as the average of the reported data in Table 3 in the paper
