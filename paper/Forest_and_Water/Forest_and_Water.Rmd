@@ -282,6 +282,14 @@ All_data2 %>%
   filter(is.na(Forest_Sign)==T)
 ```
 
+```{r, echo = F}
+# temporary write out of data files for review reply
+write_csv(All_data, "All_data.csv")
+write_csv(All_data2, "All_data2.csv")
+
+```
+
+
 
 Analysing this in more detail, the data related to forest decreases, indicate almost always a positive flow change (Figure 2). In other words, flow almost always increased. However, for increases in forest cover, this is not the case, and flow can both increase and decrease. However in both cases the variability in the reported change in flow increases with the increase in forest cover change.
 

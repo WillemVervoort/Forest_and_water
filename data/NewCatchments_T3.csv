@@ -1,4 +1,4 @@
-﻿Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,DeltaF_perc,DeltaQf_perc,Precipitation data type,Assessment technique,Source of info,E0,Latitude,Longitude,Length of study (years),From,To,Location Details,"Completed 1, Incompleted 0",Possible duplicate,Notes
+﻿Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,DeltaF_perc,DeltaQf_perc,Precipitation data type,Assessment technique,Source of info,E0,Latitude,Longitude,Length of study (years),From,To,Location Details,"Completed 1, Incomplete 0",Possible duplicate,Notes
 313,Adjungbilly Creek,391,1011,CF,RD,30.08,-60,OB,EA,Zhang et al. 2011,1939,-32.02,148.25,14,1995,2008,PL,1,,
 314,Battaling Ck,16.64,629,CF,RD,19,-52,OB,EA,Zhang et al. 2011,1835,-33.32,116.57,9,2000,2008,PL,1,,
 315,Bombala River,559,783,CF,RD,26.8,-29,OB,EA,Zhang et al. 2011,1180,-37,149.38,14,1990,2000,PL,1,,
