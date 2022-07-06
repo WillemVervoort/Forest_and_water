@@ -2,8 +2,7 @@ Watershed #,Watershed name,Area(km2),Pa(mm),Forest type,Hydrological regime,Delt
 1,Amazon,3702481,2000,BF,RD,-7,2,OB,PWE,"Roche, 1981",1620,-14.92,-51.15,2,1976,1978,AL ,1,,"Aproximate loction defined by Roche's map in Amazon Region in French Guyana. Is is Amazon region? WV: This is not for the whole Amazon, but just for some small paired watershed studies in French Guyana, it is also unclear how they defined the change in forest and change in flow. Data should be removed from the analysis.
 "
 2,Araguaia River ,82632,1730,MF,RD,-27,16.5,SG,HM,"Coe et al., 2011",1597,-11.86,-50.72,20,1970,1990,AL,1,,Did not find forest variation reported value
-3,Baker Creek,1570,542,CF,SD,-42.2,47.6,SG,SH,"Zhang and Wei, 2012",872,32,103,26,1970,1996,AL ,1,,"Did not find reported values, original value of flow change is incorrect: Original paper says on page 2031: Annual mean
-flow has been increased by 47.6 % corrected 201.1 to 47.6 "
+3,Baker Creek,1570,542,CF,SD,-42.2,47.6,SG,SH,"Zhang and Wei, 2012",872,32,103,26,1970,1996,AL ,1,,"Did not find reported values, original value of flow change is incorrect: Original paper says on page 2031: Annual mean flow has been increased by 47.6 % corrected 201.1 to 47.6 "
 4,Be River catchment,7500,2400,BF,RD,-16.3,0.4,SG,HM,"Nguyen Khoi and Suetsugi,2014",1742,11,106.01,19,1981,2000,AL,1,,"Calibration (1981–1990),Validation (1991–2000)"
 5,Bowron  River,3500,920,CF,SD,-27,0,OB,SH,"Wei and Davidson,1998",870,53.68,-121.75,5,1950,1955,AL,1,,Data from plot 2
 6,Chaohe,4854,500,BF,RD,13.9,-21.9,OB,"EA, HM","Wang et al., 2013",1237,42,116,44,1963,2007,AL,1,,
