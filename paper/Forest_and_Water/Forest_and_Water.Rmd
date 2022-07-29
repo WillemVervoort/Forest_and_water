@@ -60,15 +60,13 @@ A final summary paper that includes much of the same data as @zhang2017 and @fil
 
 In contrast to the basic linear regression in the earlier studies [@zhang2017; @filoso2017] and the top-down Budyko modelling [@zhou2015; @hoekvandijke2022], the regional Brazilian Cerrado study [@levy2018] provides a carefully designed statistical approach using mixed effects modelling and Differences-in-Differences modelling focusing specifically on the effect of deforestation. The analysis specifically accounted for differences between catchments and differences due to variations in climate
 
- 
-
 Encouraged by the work from @zhang2017, @filoso2017 and @zhou2015 and the large database of studies presented by these authors, we believe more can be done to add to this important discussion. In this paper, the aim is to extend the analysis of the collected data and to expand and combine the data sets. 
 
 In particular, the main method in the work by @zhang2017 is a single covariate linear regression, and in @filoso2017 the focus is mainly on classification and there is again some single covariate linear regression. As @zhang2017 points out, a main assumption in their work is that the catchment size threshold at 1000 km^2^ is a distinct separation between "small" and "large" catchments. However, the subset of 37 data points in @filoso2017 (their Figure 9) does not appear to support this, suggesting a continuum. And while the work @filoso2017 provides important insights in study types, analysis types, forest types and broad classification, there is limited quantification of actual impact, and focussed only on forest cover increase and did not deal with forest cover removal.    
 
 As a result the objective of this paper is to 1) enhance the data set from @zhang2017 with further catchments (such as from @filoso2017) and spatial coordinates and 2) to analyse the possibility of non-linear and confounding partial effects of the different factors and variables in the data using generalised linear (GLM) and generalised additive models (GAM @wood2006).
 
-Building on the analyses by @zhang2017 and @filoso2017, and combining their conclusions, the main hypothesis to test is that the change in streamflow is impacted by the change in forest cover. However, this change is is potentially modulated by the area under consideration (affecting the length of the flowpaths @zhou2015), the length of the study (c.f. @jackson2005; @filoso2017) and  the climate (as indicated by either E0/Pa or latitude and longitude @filoso2017; @zhou2015).
+Building on the analyses by @zhang2017 and @filoso2017, and combining their conclusions, the main hypothesis to test is that the change in streamflow is impacted by the change in forest cover. However, this change is is potentially modulated by the area under consideration (affecting the length of the flow paths @zhou2015), the length of the study (c.f. @jackson2005; @filoso2017) and  the climate (as indicated by either E0/Pa or latitude and longitude @filoso2017; @zhou2015).
 
 However, there could be further confounding factors, which are eluded to by @filoso2017:  
 
