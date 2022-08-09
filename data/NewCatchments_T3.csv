@@ -44,3 +44,7 @@
 355,Luchelemu catchment,13.3,1300,MF,RD,93,0,OB,SH,Mwendera 1994,2480,11.75,33.83,17,1961,1978,AL,1,, https://doi.org/10.1016/0378-1127(94)90159-7
 356,Queens river,200,300,MF,RD,55,-40,MD,HM,Pitman 1978 ,1973,-25.75,28.23,23,1948,1971,AL,1,,from Filoso et al. 2017
 357,Valtorto,0.097,1500.699559,MF,RD,-100,60,OB,PWE,Stoof et al. 2012 ,1350,40.1,8.57,2,2008,2010,AL,1,,https://hess.copernicus.org/articles/16/267/2012/. Rainfall and Et calculated as the average of the reported data in Table 3 in the paper
+358,PE30 = Old-EsW,0.83,1507,BF,RD,-18.3,119,OB,PWE,"Almeida et al., 2016",1293,-30.5101,-54.1657,4,2011,2015,,,,"Monitored from 34 month before harvest, to 14 month after harvest. Pa & DQf calculated fron discharge in Table II (mm) (433-483)/483=-10%. E0 from Table III. "
+359,PE100 = Young-EbW,0.8,1388,BF,RD,-65,348,OB,PWE,"Almeida et al., 2016",1293,-30.5069,-54.1679,4,2011,2015,,,,"Monitored from 34 month before harvest, to 14 month after harvest. Pa & DQf calculated fron discharge in Table II (mm) (459/424-248/1027)/(248/1027)=+85%. E0 from Table III. "
+360,PE30 = Old-EsW,0.83,2039,BF,RD,18.3,0.7,OB,PWE,"Ferreto et al., 2020",1179,-30.5101,-54.1657,4,2014,2018,,,,Monitored 4 years after harvest and replanting. Also correcting Almeida´s %for is 30% of the 61% of eucalyptus area. Pa & E0 from Table 2
+361,PE100 = Young-EbW,0.8,2039,BF,RD,65,-40,OB,PWE,"Ferreto et al., 2020",1179,-30.5069,-54.1679,4,2014,2018,,,,Monitored 4 years after harvest and replanting. Also correcting Almeida´s %for is 100% of the 65% of eucalyptus area. Pa & E0 from Table 2
