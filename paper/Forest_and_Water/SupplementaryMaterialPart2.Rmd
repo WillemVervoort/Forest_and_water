@@ -1,6 +1,16 @@
 ---
 title: 'Supplementary Information part 2: Testing the improved data sets'
-author: "Willem Vervoort/Eliana Nervi/Jimena Alonso"
+author:
+  - name: R. Willem Vervoort
+    email: willem.vervoort@sydney.edu.au
+    footnote: 1
+  - name: Eliana Nervi
+    email: eliananervif@gmail.com
+  - name: Jimena Alonso
+    email: jalonso@fing.edu.uy
+footnote:
+  - code: 1
+    text: "Corresponding Author"    
 date: "`r Sys.Date()`"
 linenumbers: true
 #numbersections: true
@@ -22,6 +32,8 @@ abstract: |
 
 In this document we tested whether the fundamental conclusions in the single variable regressions with the improved data base differed from the original conclusions in @zhang2017. This is to check how much influence the changes to the data set and the additional data might have changed the original conclusions.
 
+# Methods
+
 First we will read in the data
 
 ```{r setup, include=FALSE, echo =T}
@@ -37,7 +49,7 @@ Zhang_small <- read_csv("../../data/SmallCatchments_T2.csv") %>%
 Zhang_large <- read_csv("../../data/LargeCatchments_T1.csv") %>%
   mutate(table = "Large catchments")
 new_data <- read_csv("../../data/NewCatchments_T3.csv") %>%
-  mutate(table = "new catchments")
+  mutate(table = ifelse(`Area(km2)` > 1000, "Large catchments", "Small catchments"))
 
 # change some column names
 names(Zhang_small)[3:4] <- c("Area_km2", "Pa_mm")
@@ -66,7 +78,7 @@ new_data <- new_data %>%
 All_data <- bind_rows(Zhang_all, new_data)
 ```
 
-### Implementing the changes to the overall data
+## Implementing the changes to the overall data
 
 The following code implements the changes described in the Supplementary data part 1. However, many of the changes were implemented manually into the data set. These are simply the remaining changes not implemented manually.     
 
@@ -109,7 +121,7 @@ All_data <- All_data %>%
 
 
 
-# Methods
+## Approach and analyses
 
 The approach is similar to @zhang2017. We run single variable regressions separating large (> 1000 km^2^) and small catchments (<= 1000 km^2^). 
 
@@ -119,12 +131,12 @@ $\Delta Q_f = 100 \times \frac{\Delta Q_{f,mm}}{\bar{Q}}$
 
 This first equation is superfluous in this case as the data (as extracted from @zhang2017) is already defined in terms of $\Delta Q_f$.
 
-$S_f = \frac{\Delta Q_f}{\Delta F}$ 
+$S_f = |\frac{\Delta Q_f}{\Delta F}|$ 
 
 ```{r, echo = T}
 All_data <- All_data %>%
   filter(is.na(DeltaF_perc) == F) %>%
-  mutate(S_f = DeltaQf_perc/DeltaF_perc)
+  mutate(S_f = abs(DeltaQf_perc/DeltaF_perc))
 ```
 
 In sequence we analyse:
@@ -135,11 +147,13 @@ In sequence we analyse:
 
 # Results
 
-1. The change in flow as a function of change in forest cover
+## The change in stream flow as a function of change in forest cover
 
-First the results for the original (improved) dataset
+Figure \@ref(fig:Fig2Zhang) highlights that the overall relationship in the updated dataset is the same as in @zhang2017. This means that while the modifications have cleaned up the transcription errors in the data, they have not fundamentally changed the conclusions in the original paper.
 
-```{r, echo = F, message = F}
+The next figure (Figure \@ref(fig:Fig2Zhangnew)) is the same analysis, but this includes the new data that we identified in papers. Again, this figure highlights that the new datasets have not fundamentally changed the relationships found in @zhang2017.
+
+```{r, echo = F, message = F, warning = F}
 png("Fig2Zhang.png", width = 2500, height = 1800, res = 300)
 All_data %>%
   filter(dataset == "original Zhang et al data") %>%
@@ -161,8 +175,9 @@ dev.off()
 png("Fig2Zhang_all.png", width = 2500, height = 1800, res = 300)
 All_data %>%
 #  filter(dataset == "original Zhang et al data") %>%
-  ggplot(aes(DeltaF_perc,DeltaQf_perc, colour = forest_sign, shape = table)) + 
+  ggplot(aes(DeltaF_perc,DeltaQf_perc, colour = forest_sign)) + 
   geom_point() +  geom_smooth(method = "lm") +
+  facet_wrap(~table, ncol=1, scales = "free") + 
   theme_bw() + 
     theme(axis.title = element_text(size = rel(1.5)),
         axis.text = element_text(size = rel(1.2)),
@@ -182,11 +197,120 @@ dev.off()
 
 include_graphics("Fig2Zhang.png")
 ```
-And then the results for all the catchments including the new "added" catchments.
 
 ```{r Fig2Zhangnew, echo =F, fig.cap="Changes in flow based on the catchments from the extended data set", out.width="90%"}
 
 include_graphics("Fig2Zhang_all.png")
 ```
+## The relationship between the area of the catchment and the sensitivity of streamflow to the change in forest cover.
+
+This analysis replicates Figure 3 in @zhang2017, which investigates for large and small catchments the sensitivity to runoff change from change in forest cover as a function of area. Note that in the original figure, the x-axis is on a log scale. In the original paper, the analysis is presented for all catchments as well as for large and small catchments. Here we only analyse the small and large catchments.
+
+We can see from Figure \@ref(fig:Fig3Zhang) that again the updated database for the original dataset results in little change in the relationships for both large and small catchments. However, when the additional new catchments are added to the database (Figure \@ref(fig:Fig3Zhangnew)), the relationships clearly change. In particular, for small catchments gaining forest cover, the sensitivity appears positively correlated with the logarithm of the size of the catchments.
+
+```{r, echo = F, message = F, warning = F}
+png("Fig3Zhang.png", width = 2500, height = 1800, res = 300)
+All_data %>%
+  filter(dataset == "original Zhang et al data") %>%
+  ggplot(aes(Area_km2, S_f, colour = forest_sign)) + 
+  geom_point() +  geom_smooth(method = "lm") +
+  scale_x_continuous(trans='log10') +
+  facet_wrap(~table, ncol=1, scales = "free") + 
+  theme_bw() + 
+    theme(axis.title = element_text(size = rel(1.5)),
+        axis.text = element_text(size = rel(1.2)),
+        legend.text = element_text(size = rel(1.2)),
+        legend.title = element_text(size = rel(1.2)),
+        strip.text = element_text(size = rel(1.5))) + 
+  # scale_colour_manual(name = "Forest cover direction", 
+  #                     values = c("Decrease" = "red","Increase" = "blue")) +
+  xlab("log10(Area in km2)") + ylab("Sf (sensivity)")
+dev.off()
+
+# and for all data sets
+png("Fig3Zhang_all.png", width = 2500, height = 1800, res = 300)
+All_data %>%
+#  filter(dataset == "original Zhang et al data") %>%
+  ggplot(aes(Area_km2,S_f, colour = forest_sign)) + 
+  geom_point() +  geom_smooth(method = "lm") +
+  scale_x_continuous(trans='log10') +
+  facet_wrap(~table, ncol=1, scales = "free") + 
+  theme_bw() + 
+    theme(axis.title = element_text(size = rel(1.5)),
+        axis.text = element_text(size = rel(1.2)),
+        legend.text = element_text(size = rel(1.2)),
+        legend.title = element_text(size = rel(1.2)),
+        strip.text = element_text(size = rel(1.5))) + 
+  # scale_colour_manual(name = "Forest cover direction", 
+  #                     values = c("Decrease" = "red","Increase" = "blue")) +
+  xlab("log10(Area in km2)") + ylab("Sf (sensitivity")
+dev.off()
 
 
+```
+
+```{r Fig3Zhang, echo =F, fig.cap="Changes in flow based on the catchments from the original data set", out.width="90%"}
+
+include_graphics("Fig3Zhang.png")
+```
+
+```{r Fig3Zhangnew, echo =F, fig.cap="Changes in flow based on the catchments from the extended data set", out.width="90%"}
+
+include_graphics("Fig3Zhang_all.png")
+```
+## The sensitivity to forest loss as a function of dryness
+
+The final analysis that we retest here is the relationship in Figure 4 in the original @zhang2017 paper, which highlights the sensitivity to forest loss as a function of dryness. We are again showing just the for the small and large catchments, similar to the original paper.
+
+Similar to earlier analyses in this document Figure \@ref(fig:Fig4Zhang) show that the updated database for the original dataset results in little change in the relationships for both large and small catchments. However, when the additional new catchments are added to the database (Figure \@ref(fig:Fig4Zhangnew)), the relationships clearly change. In particular, for small catchments both for forest gains and losses the relationship changes and appears stronger.
+
+```{r, echo = F, message = F, warning = F}
+png("Fig4Zhang.png", width = 2500, height = 1800, res = 300)
+All_data %>%
+  filter(dataset == "original Zhang et al data") %>%
+  ggplot(aes(Dryness, S_f, colour = forest_sign)) + 
+  geom_point() +  geom_smooth(method = "lm") +
+  #scale_x_continuous(trans='log10') +
+  facet_wrap(~table, ncol=1, scales = "free") + 
+  theme_bw() + 
+    theme(axis.title = element_text(size = rel(1.5)),
+        axis.text = element_text(size = rel(1.2)),
+        legend.text = element_text(size = rel(1.2)),
+        legend.title = element_text(size = rel(1.2)),
+        strip.text = element_text(size = rel(1.5))) + 
+  # scale_colour_manual(name = "Forest cover direction", 
+  #                     values = c("Decrease" = "red","Increase" = "blue")) +
+  xlab("Dryness (E0/P)") + ylab("Sf (sensivity)")
+dev.off()
+
+# and for all data sets
+png("Fig4Zhang_all.png", width = 2500, height = 1800, res = 300)
+All_data %>%
+#  filter(dataset == "original Zhang et al data") %>%
+  ggplot(aes(Dryness,S_f, colour = forest_sign)) + 
+  geom_point() +  geom_smooth(method = "lm") +
+  #scale_x_continuous(trans='log10') +
+  facet_wrap(~table, ncol=1, scales = "free") + 
+  theme_bw() + 
+    theme(axis.title = element_text(size = rel(1.5)),
+        axis.text = element_text(size = rel(1.2)),
+        legend.text = element_text(size = rel(1.2)),
+        legend.title = element_text(size = rel(1.2)),
+        strip.text = element_text(size = rel(1.5))) + 
+  # scale_colour_manual(name = "Forest cover direction", 
+  #                     values = c("Decrease" = "red","Increase" = "blue")) +
+  xlab("Dryness (E0/P)") + ylab("Sf (sensitivity")
+dev.off()
+
+
+```
+
+```{r Fig4Zhang, echo =F, fig.cap="Changes in flow based on the catchments from the original data set", out.width="90%"}
+
+include_graphics("Fig4Zhang.png")
+```
+
+```{r Fig4Zhangnew, echo =F, fig.cap="Changes in flow based on the catchments from the extended data set", out.width="90%"}
+
+include_graphics("Fig4Zhang_all.png")
+```

@@ -1,6 +1,9 @@
 ---
 title: "Replies to editor and associate editor Journal of Hydrology"
-author: "Willem Vervoort/Eliana Nervi/Jimena Alonso"
+author:
+  - name: R. Willem Vervoort
+  - name: Eliana Nervi
+  - name: Jimena Alonso
 date: "`r Sys.Date()`"
 linenumbers: true
 #numbersections: true
