@@ -5,8 +5,6 @@ author:
     email: willem.vervoort@sydney.edu.au
     affiliation: a,b
     correspondingauthor: true
-  - name: R. Willem Vervoort
-    affiliation:
   - name: Eliana Nervi
     email: eliananervif@gmail.com
     affiliation: c
@@ -14,33 +12,31 @@ author:
     email: jalonso@fing.edu.uy
     affiliation: d
 address:
-  - code: b
-    address: The University of Sydney, Sydney, NSW 2006, Australia
   - code: a
+    address: The University of Sydney, Sydney, NSW 2006, Australia
+  - code: b
     address: ARC ITTC Data Analytics for Resources and Environments, Sydney Institute of  Agriculture, School of Life and Environmental Sciences.
   - code: c
     address: Project Manager, FPTA 358, Instituto Nacional de Investigacion Agropecuaria,  INIA-Uruguay, Ruta 48 km 10, Rincon del Colorado, 90100 Canelones, Uruguay
   - code: d
-    address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la República, 11200 Montevideo, Uruguay
+    address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la Republica, 11200 Montevideo, Uruguay
 abstract: |
   Three recent papers review and analyse large global datasets related to impacts of forest cover on streamflow. Using three different approaches, they all find a strong relationship between forestation, de-forestation and streamflow. However, the past approaches in the literature are variable and can be substantially improved in statistical rigour, and indicate different confounding factors on the impact of forestation. The data for the recent three papers were reviewed, combined and re-analysed highlight the following: 1) How is streamflow impacted by the change in forest cover as a function of catchment area; 2) how is this relationship conditioned by the length of the study, and climate; and 3) are there other possible variables that impact the observed change in streamflow? Generalised additive models were used to run flexible regressions including multiple variables. 
   Changes in forest cover cause changes in streamflow, however this change is different between deforestation and reforestation, and strongly affected by climate, with drier climates indicating larger changes in streamflow. Removal of forest cover causes a 32\% greater change in flow relative to increasing forest cover. Area of the catchment only affects the change in streamflow after log transformation, due to high skew in the data. Smaller catchment dominate the database with 42\% of the data < 1 km^2^ and 65\% of the data < 10 km^2^. Length of the study and initial year of the study did not affect the change in flow, in contrast to other reported studies. Despite these findings, overall explained variance (38\%) of the regression model is low due the quality of the inputs and additional unknown confounding factors. 
+keywords: 
+  - keyword1
+  - keyword2
 journal: "Journal of Hydrology"
 date: "`r Sys.Date()`"
-bibliography: forest_and_water.bib
+# classoption: preprint, 3p, authoryear
+bibliography: forestandwater.bib
 linenumbers: true
 #numbersections: true
 csl: elsevier-harvard.csl
 output:   
   bookdown::pdf_book:
     base_format: rticles::elsevier_article
-editor_options: 
-  chunk_output_type: inline
-header-includes:
-  - \usepackage{setspace}
 ---
-
-\doublespacing
 
 Introduction
 ==========================
@@ -57,7 +53,7 @@ The conclusions of the first mentioned major review paper [@zhang2017] indicates
 
 The second study [@filoso2017] is a systematic review of reforestation studies (only studies in which forest cover increased). This study classified the historical research and highlighted gaps in the spatial distribution, the types of studies and the types of analysis. Their main conclusion was also that reforestation decreases streamflow, but that there were many interacting factors. For a subset of the data (37 data points) they also indicated decreasing impacts of reforestation with increasing catchment size (agreeing with @zhang2017), but they did not identify a distinct threshold and fitted a log-linear relationship. In addition, they identified that studies with shorter periods of data collection resulted in larger declines in streamflow.
 
-A final earlier summary paper that includes much of the same data as @zhang2017 and @filoso2017 is @zhou2015, which has one author in common with @zhang2017. However, this paper aims to explain the variation in the data using the elasticity approach in the Fuh model. In particular, it aims to link the variation in the observed data to variations in the exponent *m* in the Fuh model. A key observation is that in drier environments, the effects of removing forest cover are much greater than in wetter environments, which is also suggested by Figure 4 in @zhang2017. The Fuh model and variations of the Budyko equilibrium modelling approach was also used by @hoekvandijke2002 to interpret the global impact of reforestation.
+A final earlier summary paper that includes much of the same data as @zhang2017 and @filoso2017 is @zhou2015, which has one author in common with @zhang2017. However, this paper aims to explain the variation in the data using the elasticity approach in the Fuh model. In particular, it aims to link the variation in the observed data to variations in the exponent *m* in the Fuh model. A key observation is that in drier environments, the effects of removing forest cover are much greater than in wetter environments, which is also suggested by Figure 4 in @zhang2017. The Fuh model and variations of the Budyko equilibrium modelling approach was also used by @hoekvandijke2022 to interpret the global impact of reforestation.
 
 There are some clear limitations in these studies. The main method in the work by @zhang2017 is a single covariate linear regression. In contrast, the systematic review from @filoso2017 emphasises the classification and distributions of the study. @zhang2017 points out that a main assumption in their work is that the catchment size threshold at 1000 km^2^ is a distinct separation between "small" and "large" catchments. However, a subset of 37 data points in @filoso2017 (their Figure 9) does not appear to support this, suggesting a continuum. And while the work @filoso2017 provides important insights in study types, analysis types, forest types and broad classification, there is limited quantification of actual impact.
 
@@ -113,7 +109,7 @@ To enhance the existing data set, this study added additional variables and cros
 
 In addition, a few additional variables were included to enhance the data set. We added latitude and longitude for the center of the catchment as an approximation of its spatial location. Mostly the  data reported by the authors was used, but in some cases the variables had to be approximated from the location of the centre of the catchment using Google Maps^TM^. In the dataset, an additional column has been added to indicate the source of the location data to indicate if this is directly from the paper or elsewhere.  
 
-As highlighted, @zhang2015 did not provide values for evapotranspiration in the data base. Using the location information  reference evapotranspiration (E~0~) was extracted from the Global Aridity Index and Potential Evapo-Transpiration (ET~0~) Climate Databasev2 [@trabucco2018], if a value of E~0~ was not available from the original papers. For large catchments, this value (and the associated coordinates), similar to annual average rainfall, is only an approximation of the climate at the location. 
+As highlighted, @zhang2017 did not provide values for evapotranspiration in the data base. Using the location information  reference evapotranspiration (E~0~) was extracted from the Global Aridity Index and Potential Evapo-Transpiration (ET~0~) Climate Databasev2 [@trabucco2018], if a value of E~0~ was not available from the original papers. For large catchments, this value (and the associated coordinates), similar to annual average rainfall, is only an approximation of the climate at the location. 
 
 Similar to @zhang2017, the "dryness index" was calculated from the reference evapotranspiration and the annual average rainfall (Pa) as:
 
@@ -123,14 +119,15 @@ D = \frac{E_{0}}{Pa} (\#eq:eq1)
 
 The length of the study can be a variable influencing the change in flow [e.g. @jackson2005; @filoso2017], as for example, more mature plantations are thought to have smaller impacts on flow or regrowth might follow a "Kuczera curve" [@kuczera1987]. It is not clear if this is an effect of increased water use in growth [@vertessy2001] or due to changes in interception [@stoof2012]. Therefore, the length of the study calculate as the difference between the starting data and completion date of the different studies was extracted from the references provided by @zhang2017. The length of the study was already included in the data from @filoso2017, but these were checked against the original publications.
 
-Several additional data points from catchment studies were extracted from @almeida2016, @ferreto2020, @zhang2011, @zhao2010, @borg1988, @thornton2007, @zhou2010, @rodriguez2010, @ruprechtetal1991 and @pena-arancibia2012, and these were checked against the existing studies to prevent overlap. In the citation column in the accompanying data set, the main reference for the calculated change in streamflow  was generally used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e. Table 6 in @zhang2011).
+Several additional data points from catchment studies were extracted from @almeida2016, @ferreto2020, @zhang2011, @zhao2010, @borg1988, @thornton2007, @zhou2010, @rodriguez2010, @ruprechtetal1991 and @penaarancibia2012, and these were checked against the existing studies to prevent overlap. In the citation column in the accompanying data set, the main reference for the calculated change in streamflow  was generally used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e. Table 6 in @zhang2011).
 
-We conducted a thorough review of all the studies mentioned in the data base of @zhang2015 and sourced all the original papers. As a result of this we made several changes to the data base, which are all recorded in Supplementary Data part 1.  Overall 36 data points were changed and the most common problem was a change in the sign for the change in forest cover or the change in flow. We assume that these were transcription errors.  
+We conducted a thorough review of all the studies mentioned in the data base of @zhang2017 and sourced all the original papers. As a result of this we made several changes to the data base, which are all recorded in Supplementary Data part 1.  Overall 36 data points were changed and the most common problem was a change in the sign for the change in forest cover or the change in flow. We assume that these were transcription errors.  
 We also removed one data point from the data set, which corresponds to catchment #1 (Amazon) in @zhang2017. This is because the cited reference [@roche1981] only relates to 1  and 1.5 ha paired catchment studies in French Guyana, and in which the actual change in forest cover is not recorded. Finally, on review of all the data in @zhang2017 and @filoso2017, 29 potential duplicates were identified and flagged in the data, and not used in the analysis.  
 
 The final column in the improved data base is a "notes" column, which we added, but is not further used in the analysis. It gives context to some of the data for future research and highlights some of the discrepancies that we found between the original papers and the data in the tables from @zhang2017. This will allow future research to scrutinise our input for errors. 
 
 ## Statistical modelling
+
 ```{r, include=FALSE}
 options(tinytex.verbose = FALSE)
 ```

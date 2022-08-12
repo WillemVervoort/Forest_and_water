@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.11)  11 AUG 2022 23:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.11)  12 AUG 2022 21:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,21 +6,33 @@ entering extended mode
 (./Forest_and_Water.tex
 LaTeX2e <2022-06-01> patch level 5
 L3 programming layer <2022-08-05> (./elsarticle.cls
-Document Class: elsarticle 2008/05/22, 1.0.1: Elsevier Science
+Document Class: elsarticle 2020/11/20, 3.3: Elsevier Ltd
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2022-08-05 L3 programming layer (loader) 
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-08-05 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count185
+\l__pdf_internal_box=\box51
+)) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2022-06-22 L3 Experimental document command parser
+) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count186
+)
 \@bls=\dimen138
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
+\c@part=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen139
@@ -42,29 +54,22 @@ File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen140
 \Gin@req@width=\dimen141
-) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/pifont.sty
-Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
-LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
-(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/upzd.fd
-File: upzd.fd 2001/06/04 font definitions for U/pzd.
 )
-LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
-(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/upsy.fd
-File: upsy.fd 2001/06/04 font definitions for U/psy.
-))
-\c@tnote=\count193
-\c@fnote=\count194
-\c@cnote=\count195
-\c@ead=\count196
-\c@author=\count197
+\c@tnote=\count195
+\c@fnote=\count196
+\c@cnote=\count197
+\c@ead=\count198
+\c@author=\count199
 \@eadauthor=\toks17
-\c@affn=\count198
-\absbox=\box51
-\keybox=\box52
+\c@affn=\count266
+\absbox=\box52
+\elsarticlehighlightsbox=\box53
+\elsarticlegrabsbox=\box54
+\keybox=\box55
 \Columnwidth=\dimen142
 \space@left=\dimen143
-\els@boxa=\box53
-\els@boxb=\box54
+\els@boxa=\box56
+\els@boxb=\box57
 \leftMargin=\dimen144
 \@enLab=\toks18
 \@sep=\skip49
@@ -74,30 +79,31 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip51
 \bibsep=\skip52
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count199
+\c@NAT@ctr=\count267
 )
 \splwrite=\write3
 \openout3 = `Forest_and_Water.spl'.
 
+\appnamewidth=\dimen145
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count266
+\linenopenalty=\count268
 \output=\toks19
-\linenoprevgraf=\count267
-\linenumbersep=\dimen145
-\linenumberwidth=\dimen146
-\c@linenumber=\count268
-\c@pagewiselinenumber=\count269
-\c@LN@truepage=\count270
-\c@internallinenumber=\count271
-\c@internallinenumbers=\count272
-\quotelinenumbersep=\dimen147
-\bframerule=\dimen148
-\bframesep=\dimen149
-\bframebox=\box55
+\linenoprevgraf=\count269
+\linenumbersep=\dimen146
+\linenumberwidth=\dimen147
+\c@linenumber=\count270
+\c@pagewiselinenumber=\count271
+\c@LN@truepage=\count272
+\c@internallinenumber=\count273
+\c@internallinenumbers=\count274
+\quotelinenumbersep=\dimen148
+\bframerule=\dimen149
+\bframesep=\dimen150
+\bframebox=\box58
 LaTeX Info: Redefining \\ on input line 3056.
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
@@ -154,54 +160,54 @@ Package: amstext 2021/08/26 v2.01 AMS text
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks21
-\ex@=\dimen150
+\ex@=\dimen151
 )) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen151
+\pmbraise@=\dimen152
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count273
+\inf@bad=\count275
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count274
-\leftroot@=\count275
+\uproot@=\count276
+\leftroot@=\count277
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count276
-\DOTSCASE@=\count277
+\classnum@=\count278
+\DOTSCASE@=\count279
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box56
-\strutbox@=\box57
+\Mathstrutbox@=\box59
+\strutbox@=\box60
 LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
 LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen152
+\big@size=\dimen153
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count278
+\macc@depth=\count280
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count279
+\c@MaxMatrixCols=\count281
 \dotsspace@=\muskip17
-\c@parentequation=\count280
-\dspbrk@lvl=\count281
+\c@parentequation=\count282
+\dspbrk@lvl=\count283
 \tag@help=\toks22
-\row@=\count282
-\column@=\count283
-\maxfields@=\count284
+\row@=\count284
+\column@=\count285
+\maxfields@=\count286
 \andhelp@=\toks23
-\eqnshift@=\dimen153
-\alignsep@=\dimen154
-\tagshift@=\dimen155
-\tagwidth@=\dimen156
-\totwidth@=\dimen157
-\lineht@=\dimen158
+\eqnshift@=\dimen154
+\alignsep@=\dimen155
+\tagshift@=\dimen156
+\tagwidth@=\dimen157
+\totwidth@=\dimen158
+\lineht@=\dimen159
 \@envbody=\toks24
 \multlinegap=\skip54
 \multlinetaggap=\skip55
@@ -260,11 +266,11 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count285
+\c@section@level=\count287
 )
-\@linkdim=\dimen159
-\Hy@linkcounter=\count286
-\Hy@pagecounter=\count287
+\@linkdim=\dimen160
+\Hy@linkcounter=\count288
+\Hy@pagecounter=\count289
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2022-06-20 v7.00s Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -274,7 +280,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count288
+\Hy@SavedSpaceFactor=\count290
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2022-06-20 v7.00s Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -288,17 +294,17 @@ Package hyperref Info: Plain pages OFF on input line 4177.
 Package hyperref Info: Backreferencing OFF on input line 4182.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4408.
-\c@Hy@tempcnt=\count289
+\c@Hy@tempcnt=\count291
 LaTeX Info: Redefining \url on input line 4746.
-\XeTeXLinkMargin=\dimen160
+\XeTeXLinkMargin=\dimen161
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count290
-\Field@Width=\dimen161
-\Fld@charsize=\dimen162
+\Fld@menulength=\count292
+\Field@Width=\dimen162
+\Fld@charsize=\dimen163
 Package hyperref Info: Hyper figures OFF on input line 6024.
 Package hyperref Info: Link nesting OFF on input line 6029.
 Package hyperref Info: Hyper index ON on input line 6032.
@@ -310,9 +316,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6054.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count291
-\c@Item=\count292
-\c@Hfootnote=\count293
+\Hy@abspage=\count293
+\c@Item=\count294
+\c@Hfootnote=\count295
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -321,8 +327,8 @@ File: hpdftex.def 2022-06-20 v7.00s Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count294
-\c@bookmark@seq@number=\count295
+\Fld@listcount=\count296
+\c@bookmark@seq@number=\count297
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -344,117 +350,378 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTright=\skip58
 \LTpre=\skip59
 \LTpost=\skip60
-\LTchunksize=\count296
-\LTcapwidth=\dimen163
-\LT@head=\box58
-\LT@firsthead=\box59
-\LT@foot=\box60
-\LT@lastfoot=\box61
-\LT@gbox=\box62
-\LT@cols=\count297
-\LT@rows=\count298
-\c@LT@tables=\count299
-\c@LT@chunks=\count300
+\LTchunksize=\count298
+\LTcapwidth=\dimen164
+\LT@head=\box61
+\LT@firsthead=\box62
+\LT@foot=\box63
+\LT@lastfoot=\box64
+\LT@gbox=\box65
+\LT@cols=\count299
+\LT@rows=\count300
+\c@LT@tables=\count301
+\c@LT@chunks=\count302
 \LT@p@ftn=\toks28
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen164
-\lightrulewidth=\dimen165
-\cmidrulewidth=\dimen166
-\belowrulesep=\dimen167
-\belowbottomsep=\dimen168
-\aboverulesep=\dimen169
-\abovetopsep=\dimen170
-\cmidrulesep=\dimen171
-\cmidrulekern=\dimen172
-\defaultaddspace=\dimen173
-\@cmidla=\count301
-\@cmidlb=\count302
-\@aboverulesep=\dimen174
-\@belowrulesep=\dimen175
-\@thisruleclass=\count303
-\@lastruleclass=\count304
-\@thisrulewidth=\dimen176
+\heavyrulewidth=\dimen165
+\lightrulewidth=\dimen166
+\cmidrulewidth=\dimen167
+\belowrulesep=\dimen168
+\belowbottomsep=\dimen169
+\aboverulesep=\dimen170
+\abovetopsep=\dimen171
+\cmidrulesep=\dimen172
+\cmidrulekern=\dimen173
+\defaultaddspace=\dimen174
+\@cmidla=\count303
+\@cmidlb=\count304
+\@aboverulesep=\dimen175
+\@belowrulesep=\dimen176
+\@thisruleclass=\count305
+\@lastruleclass=\count306
+\@thisrulewidth=\dimen177
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2022/03/10 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen177
-\ar@mcellbox=\box63
-\extrarowheight=\dimen178
+\col@sep=\dimen178
+\ar@mcellbox=\box66
+\extrarowheight=\dimen179
 \NC@list=\toks29
 \extratabsurround=\skip61
 \backup@length=\skip62
-\ar@cellbox=\box64
+\ar@cellbox=\box67
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count305
-\calc@Bcount=\count306
-\calc@Adimen=\dimen179
-\calc@Bdimen=\dimen180
+\calc@Acount=\count307
+\calc@Bcount=\count308
+\calc@Adimen=\dimen180
+\calc@Bdimen=\dimen181
 \calc@Askip=\skip63
 \calc@Bskip=\skip64
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count307
+\calc@Ccount=\count309
 \calc@Cskip=\skip65
-) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count308
 ) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box65
-\fn@width=\dimen181
-) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
-Package: setspace 2011/12/19 v6.7a set line spacing
+\fn@notes=\box68
+\fn@width=\dimen182
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 77.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 76.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-08-05 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count309
-\l__pdf_internal_box=\box66
-)
-No file Forest_and_Water.aux.
+) (./Forest_and_Water.aux)
 \openout1 = `Forest_and_Water.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 77.
+Package hyperref Info: Link coloring OFF on input line 76.
+(./Forest_and_Water.out) (./Forest_and_Water.out)
 \@outlinefile=\write4
 \openout4 = `Forest_and_Water.out'.
 
-! Undefined control sequence.
-l.91       \affiliation
-                       [b]{The University of Sydney, Sydney, NSW 2006, Austr... 
-Here is how much of TeX's memory you used:
- 10931 strings out of 479638
- 172205 string characters out of 5876700
- 454231 words of memory out of 5000000
- 29329 multiletter control sequences out of 15000+600000
- 473702 words of font info for 32 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 72i,1n,77p,379b,382s stack positions out of 10000i,1000n,20000p,200000b,200000s
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 96.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 96.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 96.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 96.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 96.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 96.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 96.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 96.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 96.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 103.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 103.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 103.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 103.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
+File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Overfull \vbox (44.76411pt too high) has occurred while \output is active []
 
-!  ==> Fatal error occurred, no output PDF file produced!
+
+Overfull \hbox (2.22221pt too wide) has occurred while \output is active
+[] 
+ []
+
+[1
+
+
+{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (0.9443pt too wide) in paragraph at lines 112--113
+[]\T1/lmr/m/n/10 As men-tioned, sev-eral re-view pa-pers have sum-ma-rized the plethora of foresta-
+ []
+
+[2] [3]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 133.
+(c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 133--135
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
+
+ []
+
+[4] [5]
+
+Package natbib Warning: Citation `zhang2015' on page 6 undefined on input line 201.
+
+[6] [7]
+Overfull \hbox (6.82877pt too wide) in paragraph at lines 234--236
+[]\T1/lmr/m/n/10 https://github.com/WillemVervoort/Forest_and_water[] on the ``pub-lish'' branch. 
+ []
+
+<./DataExploration.png, id=276, 602.25pt x 433.62pt>
+File: ./DataExploration.png Graphic file (type png)
+<use ./DataExploration.png>
+Package pdftex.def Info: ./DataExploration.png  used on input line 248.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+<FAOET0data_final_2022.png, id=277, 910.3611pt x 395.3169pt>
+File: FAOET0data_final_2022.png Graphic file (type png)
+<use FAOET0data_final_2022.png>
+Package pdftex.def Info: FAOET0data_final_2022.png  used on input line 255.
+(pdftex.def)             Requested size: 310.4979pt x 134.8282pt.
+[8] [9 <./DataExploration.png> <./FAOET0data_final_2022.png>]
+<variable_corr_plot.png, id=298, 963.6pt x 963.6pt>
+File: variable_corr_plot.png Graphic file (type png)
+<use variable_corr_plot.png>
+Package pdftex.def Info: variable_corr_plot.png  used on input line 271.
+(pdftex.def)             Requested size: 310.4979pt x 310.49028pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--281
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 281--283
+
+ []
+
+[10 <./variable_corr_plot.png (PNG copy)>]
+<residual_plot_model1.png, id=309, 602.25pt x 433.62pt>
+File: residual_plot_model1.png Graphic file (type png)
+<use residual_plot_model1.png>
+Package pdftex.def Info: residual_plot_model1.png  used on input line 342.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+[11] [12 <./residual_plot_model1.png>] [13] [14]
+Overfull \hbox (14.27867pt too wide) in paragraph at lines 587--587
+ []|\T1/lmr/bx/n/10 Dryness:log10(Area_km2)| 
+ []
+
+[15]
+Overfull \hbox (8.21962pt too wide) in paragraph at lines 728--728
+ []|\T1/lmr/bx/n/10 Assessment_techniqueEA, 
+ []
+
+
+Overfull \hbox (8.69261pt too wide) in paragraph at lines 729--729
+ []|\T1/lmr/bx/n/10 Assessment_techniqueHM| 
+ []
+
+
+Overfull \hbox (16.08112pt too wide) in paragraph at lines 730--730
+ []|\T1/lmr/bx/n/10 Assessment_techniquePWE| 
+ []
+
+
+Overfull \hbox (19.27562pt too wide) in paragraph at lines 731--732
+ []|\T1/lmr/bx/n/10 Assessment_techniquePWE, 
+ []
+
+
+Overfull \hbox (17.19353pt too wide) in paragraph at lines 733--733
+ []|\T1/lmr/bx/n/10 Assessment_techniqueQPW| 
+ []
+
+
+Overfull \hbox (20.35915pt too wide) in paragraph at lines 734--735
+ []|\T1/lmr/bx/n/10 Assessment_techniqueQPW, 
+ []
+
+
+Overfull \hbox (4.16463pt too wide) in paragraph at lines 736--736
+ []|\T1/lmr/bx/n/10 Assessment_techniqueSH| 
+ []
+
+[16]
+<model6_smooths.png, id=385, 602.25pt x 433.62pt>
+File: model6_smooths.png Graphic file (type png)
+<use model6_smooths.png>
+Package pdftex.def Info: model6_smooths.png  used on input line 788.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+[17 <./model6_smooths.png>]
+<model7_smooths.png, id=393, 602.25pt x 433.62pt>
+File: model7_smooths.png Graphic file (type png)
+<use model7_smooths.png>
+Package pdftex.def Info: model7_smooths.png  used on input line 837.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+[18 <./model7_smooths.png>]
+<flow_forest_byArea.png, id=407, 602.25pt x 433.62pt>
+File: flow_forest_byArea.png Graphic file (type png)
+<use flow_forest_byArea.png>
+Package pdftex.def Info: flow_forest_byArea.png  used on input line 845.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+[19 <./flow_forest_byArea.png (PNG copy)>] [20]
+<residual_plot_model7.png, id=430, 602.25pt x 433.62pt>
+File: residual_plot_model7.png Graphic file (type png)
+<use residual_plot_model7.png>
+Package pdftex.def Info: residual_plot_model7.png  used on input line 872.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+
+LaTeX Warning: Reference `fig:increasedecrease' on page 21 undefined on input line 875.
+
+[21 <./residual_plot_model7.png>]
+<AssessmentTechnique_byArea.png, id=439, 602.25pt x 433.62pt>
+File: AssessmentTechnique_byArea.png Graphic file (type png)
+<use AssessmentTechnique_byArea.png>
+Package pdftex.def Info: AssessmentTechnique_byArea.png  used on input line 912.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+
+Overfull \hbox (15.55385pt too wide) in paragraph at lines 957--957
+ []|\T1/lmr/bx/n/10 Assessment_techniqueHM| 
+ []
+
+
+Overfull \hbox (22.94235pt too wide) in paragraph at lines 958--958
+ []|\T1/lmr/bx/n/10 Assessment_techniquePWE| 
+ []
+
+
+Overfull \hbox (24.05476pt too wide) in paragraph at lines 959--959
+ []|\T1/lmr/bx/n/10 Assessment_techniqueQPW| 
+ []
+
+
+Overfull \hbox (11.02586pt too wide) in paragraph at lines 960--960
+ []|\T1/lmr/bx/n/10 Assessment_techniqueSH| 
+ []
+
+
+Overfull \hbox (2.6382pt too wide) in paragraph at lines 963--963
+ []|\T1/lmr/bx/n/10 Hydrological_regimeSD| 
+ []
+
+[22] [23 <./AssessmentTechnique_byArea.png>]
+<PCA_biplot_Alldata.png, id=462, 803.0pt x 803.0pt>
+File: PCA_biplot_Alldata.png Graphic file (type png)
+<use PCA_biplot_Alldata.png>
+Package pdftex.def Info: PCA_biplot_Alldata.png  used on input line 1025.
+(pdftex.def)             Requested size: 310.4979pt x 310.49763pt.
+[24 <./PCA_biplot_Alldata.png>] [25] (./Forest_and_Water.bbl
+Underfull \hbox (badness 3009) in paragraph at lines 61--69
+[]\T1/lmr/m/n/10 Alice E. Brown, Lu Zhang, Thomas A. McMa-hon, An-drew W.
+ []
+
+
+Underfull \hbox (badness 3690) in paragraph at lines 61--69
+\T1/lmr/m/n/10 West-ern, and Robert A. Vertessy.  A re-view of paired catch-
+ []
+
+
+Underfull \hbox (badness 1057) in paragraph at lines 61--69
+\T1/lmr/m/n/10 ment stud-ies for de-ter-min-ing changes in wa-ter yield re-sult-ing from
+ []
+
+
+Underfull \hbox (badness 4217) in paragraph at lines 61--69
+\T1/lmr/m/n/10 al-ter-ations in veg-e-ta-tion.  \T1/lmr/m/it/10 Jour-nal of Hy-drol-ogy\T1/lmr/m/n/10 , 310(1-4):28--61,
+ []
+
+[26]
+Underfull \hbox (badness 2556) in paragraph at lines 138--147
+\T1/lmr/m/n/10 0$.  URL []$\T1/lmtt/m/n/10 http : / / www . sciencedirect . com / science / article / B6V6C -[]
+ []
+
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 222--233
+[]$\T1/lmtt/m/n/10 http : / / www . hydrol -[] earth -[] syst -[] sci . net / 16 / 267 / 2012 / http : / / www .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--233
+\T1/lmtt/m/n/10 hydrol -[] earth -[] syst -[] sci . net / 16 / 267 / 2012 / hess -[] 16 -[] 267 -[] 2012 . pdf$[]\T1/lmr/m/n/10 .
+ []
+
+[28]
+Underfull \hbox (badness 1092) in paragraph at lines 266--275
+\T1/lmr/m/n/10 ter bal-ance in moun-tain ash forests.  \T1/lmr/m/it/10 For-est Ecol-ogy and Man-age-
+ []
+
+[29])
+
+Package natbib Warning: There were undefined citations.
+
+[30] (./Forest_and_Water.aux)
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `Forest_and_Water.out' has not changed.
+(rerunfilecheck)             Checksum: 73CE787CED89EADD871C79F5AFA26730;4209.
+ ) 
+Here is how much of TeX's memory you used:
+ 11778 strings out of 479638
+ 188790 string characters out of 5876700
+ 497785 words of memory out of 5000000
+ 29965 multiletter control sequences out of 15000+600000
+ 532072 words of font info for 70 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 72i,9n,77p,1445b,626s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
+Output written on Forest_and_Water.pdf (30 pages, 2752861 bytes).
+PDF statistics:
+ 688 PDF objects out of 1000 (max. 8388607)
+ 595 compressed objects within 6 object streams
+ 144 named destinations out of 1000 (max. 500000)
+ 227 words of extra memory for PDF output out of 10000 (max. 10000000)
+
