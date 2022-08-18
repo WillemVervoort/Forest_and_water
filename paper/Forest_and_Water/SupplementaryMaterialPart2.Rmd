@@ -24,11 +24,16 @@ editor_options:
 header-includes:
   - \usepackage{setspace}
   - \usepackage{color}
+  - \newcommand{\beginsupplement}{  \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
 abstract: |
   This supplementary material file compares whether the inclusion of additional catchments generates fundamentally different results as the original (but improved) data. Single variable regressions on the smaller (original) dataset are compared with the extended data set.
+
 ---
+\beginsupplement
 
 # Introduction
+
+This supplementary material is related to 'Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
 
 In this document we tested whether the fundamental conclusions in the single variable regressions with the improved data base differed from the original conclusions in @zhang2017. This is to check how much influence the changes to the data set and the additional data might have changed the original conclusions.
 
@@ -78,7 +83,7 @@ new_data <- new_data %>%
 All_data <- bind_rows(Zhang_all, new_data)
 ```
 
-## Implementing the changes to the overall data
+# Implementing the changes to the overall data
 
 The following code implements the changes described in the Supplementary data part 1. However, many of the changes were implemented manually into the data set. These are simply the remaining changes not implemented manually.     
 

@@ -33,6 +33,7 @@
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
+\usepackage{graphicx}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -130,7 +131,9 @@ However, there is also a real danger in this process, which is what we will high
 \begin{itemize}
 \tightlist
 \item
-  Latent variables that are not included in the typical single covariate analysis;\\
+  Latent variables that are not included in the typical single covariate analysis;
+\item
+  Interpretation errors due to incomplete descriptions of the experiments in the original papers;\\
 \item
   Aggregation of data that originates from different experiments with different objectives across a wide time period; and, finally\\
 \item
@@ -198,7 +201,7 @@ The length of the study can be a variable influencing the change in flow \citep[
 
 Several additional data points from catchment studies were extracted from \citet{almeida2016}, \citet{ferreto2020}, \citet{zhang2011}, \citet{zhao2010}, \citet{borg1988}, \citet{thornton2007}, \citet{zhou2010}, \citet{rodriguez2010}, \citet{ruprechtetal1991} and \citet{penaarancibia2012}, and these were checked against the existing studies to prevent overlap. In the citation column in the accompanying data set, the main reference for the calculated change in streamflow was generally used, because sometimes the original study did not provide the quantification of the change in streamflow (i.e.~Table 6 in \citet{zhang2011}).
 
-We conducted a thorough review of all the studies mentioned in the data base of \citet{zhang2015} and sourced all the original papers. As a result of this we made several changes to the data base, which are all recorded in Supplementary Data part 1. Overall 36 data points were changed and the most common problem was a change in the sign for the change in forest cover or the change in flow. We assume that these were transcription errors.\\
+We conducted a thorough review of all the studies mentioned in the data base of \citet{zhang2017} and sourced all the original papers. As a result of this we made several changes to the data base, which are all recorded in Supplementary Data part 1. Overall 36 data points were changed and the most common problem was a change in the sign for the change in forest cover or the change in flow. We assume that these were transcription errors.\\
 We also removed one data point from the data set, which corresponds to catchment \#1 (Amazon) in \citet{zhang2017}. This is because the cited reference \citep{roche1981} only relates to 1 and 1.5 ha paired catchment studies in French Guyana, and in which the actual change in forest cover is not recorded. Finally, on review of all the data in \citet{zhang2017} and \citet{filoso2017}, 29 potential duplicates were identified and flagged in the data, and not used in the analysis.
 
 The final column in the improved data base is a ``notes'' column, which we added, but is not further used in the analysis. It gives context to some of the data for future research and highlights some of the discrepancies that we found between the original papers and the data in the tables from \citet{zhang2017}. This will allow future research to scrutinise our input for errors.
@@ -283,22 +286,61 @@ The correlation plot (Figure \ref{fig:corgraphs}) highlights several correlation
   A strong inverse relationship between log10(Area) and the paired watershed assessment method, which is simply the inverse from the last point, as also indicated by the negative relationship between the two assessment methods. This is further visible in the relationship between the change in forest cover and the paired watershed assessment method, showing the impact of the latent variable (log10(Area)). Smaller catchments used in paired watershed assessments are easier to fully clear or fully replant.
 \end{itemize}
 
-\hypertarget{the-general-relationship-between-change-in-forest-cover-and-streamflow}{%
-\subsection{The general relationship between change in forest cover and streamflow}\label{the-general-relationship-between-change-in-forest-cover-and-streamflow}}
+\hypertarget{statistical-analysis}{%
+\subsection{Statistical analysis}\label{statistical-analysis}}
 
-Following \citet{zhang2017}, the first step is to investigate the percent change in flow as a linear effect of the percent change forestry and modulated by the direction of the change, either an increase in forest cover, or decrease in forest cover:
+The results of the overall statistical model that includes all the variables (but no interactions) reinforces some of the results from the correlation analysis.
 
-\begin{equation}
-\Delta Qf \% \sim ~ \Delta \% forest~cover_{positive} + sign_{forest~cover} + \varepsilon \label{eq:eq3}
-\end{equation}
+This includes introducing non-linearity (Equation \eqref{eq:eq7}) for the numerical variables in the model. While increasing non-linearity in the model can increase the flexibility if the model, the shrinkage splines assist with limiting overfitting. The number of knots in the non-linear variables was based on assessment of the edf and k' \textbf{check wood 2006 and explain well}
+
+\begin{verbatim}
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## DeltaQf_perc ~ DeltaF_perc + s(log10(Area_km2), k = 5, bs = "ts") + 
+##     s(Dryness, k = 10, bs = "ts") + s(length, k = 35, bs = "ts") + 
+##     Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime
+## 
+## Parametric coefficients:
+##                              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                  -7.47200   15.87043  -0.471  0.63814    
+## DeltaF_perc                  -0.59422    0.05459 -10.885  < 2e-16 ***
+## Precip_data_typeOB          -17.87257   12.90741  -1.385  0.16724    
+## Precip_data_typeSG            0.19950   14.82105   0.013  0.98927    
+## Assessment_techniqueEA, HM   18.66830   41.70211   0.448  0.65474    
+## Assessment_techniqueHM       26.60929   11.43273   2.327  0.02065 *  
+## Assessment_techniquePWE      30.77146   11.68272   2.634  0.00890 ** 
+## Assessment_techniquePWE, HM  15.79891   42.22036   0.374  0.70853    
+## Assessment_techniqueQPW      41.34637   19.66208   2.103  0.03636 *  
+## Assessment_techniqueQPW, EA  26.04728   23.83570   1.093  0.27542    
+## Assessment_techniqueSH       39.31195   11.53645   3.408  0.00075 ***
+## Forest_typeCF                -9.28294    7.41227  -1.252  0.21147    
+## Forest_typeMF                -6.34249    7.37916  -0.860  0.39078    
+## Hydrological_regimeSD         0.13379    8.93522   0.015  0.98806    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##                       edf Ref.df     F  p-value    
+## s(log10(Area_km2)) 0.7738      4 0.846 0.032280 *  
+## s(Dryness)         4.7084      9 2.183 0.000615 ***
+## s(length)          4.4431     34 0.242 0.089106 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.455   Deviance explained = 49.6%
+## GCV = 1766.8  Scale est. = 1629.1    n = 307
+\end{verbatim}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3611}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1806}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}@{}}
-\caption{\label{tab:tabmodel1} Summary results of the first regression model predicting change in streamflow from change in forest cover and accounting for the direction of the change. The first three rows relate to the model using the original data base from Zhang et al.~(2017). The bottom three rows are the results of the model including the new data. Clearly there is no major change arising from the additional data.}\tabularnewline
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4231}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1410}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1282}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1410}}@{}}
+\caption{(\#tab:m\_all-linear) Statistical summary for the linear terms the full model}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\centering
 ~
@@ -327,132 +369,103 @@ Pr(\textgreater\textbar t\textbar)
 \end{minipage} \\
 \midrule()
 \endhead
-\textbf{(Intercept)} & 13.65 & 5.04 & 2.71 & 0.01 \\
-\textbf{DeltaF\_perc\_pos} & 0.36 & 0.08 & 4.52 & 0 \\
-\textbf{Forest\_SignIncrease} & -43.21 & 5.53 & -7.82 & 0 \\
-\textbf{(Intercept)} & 17.39 & 5.2 & 3.34 & 0 \\
-\textbf{DeltaF\_perc\_pos} & 0.32 & 0.08 & 4.04 & 0 \\
-\textbf{Forest\_SignIncrease} & -50.63 & 5.29 & -9.57 & 0 \\
+\textbf{(Intercept)} & -7.47 & 15.87 & -0.47 & 0.64 \\
+\textbf{DeltaF\_perc} & -0.59 & 0.05 & -10.89 & 0 \\
+\textbf{Precip\_data\_typeOB} & -17.87 & 12.91 & -1.38 & 0.17 \\
+\textbf{Precip\_data\_typeSG} & 0.2 & 14.82 & 0.01 & 0.99 \\
+\textbf{Assessment\_techniqueEA, HM} & 18.67 & 41.7 & 0.45 & 0.65 \\
+\textbf{Assessment\_techniqueHM} & 26.61 & 11.43 & 2.33 & 0.02 \\
+\textbf{Assessment\_techniquePWE} & 30.77 & 11.68 & 2.63 & 0.01 \\
+\textbf{Assessment\_techniquePWE,
+HM} & 15.8 & 42.22 & 0.37 & 0.71 \\
+\textbf{Assessment\_techniqueQPW} & 41.35 & 19.66 & 2.1 & 0.04 \\
+\textbf{Assessment\_techniqueQPW,
+EA} & 26.05 & 23.84 & 1.09 & 0.28 \\
+\textbf{Assessment\_techniqueSH} & 39.31 & 11.54 & 3.41 & 0 \\
+\textbf{Forest\_typeCF} & -9.28 & 7.41 & -1.25 & 0.21 \\
+\textbf{Forest\_typeMF} & -6.34 & 7.38 & -0.86 & 0.39 \\
+\textbf{Hydrological\_regimeSD} & 0.13 & 8.94 & 0.01 & 0.99 \\
 \bottomrule()
 \end{longtable}
 
-The overall variance explained in this model (equation \eqref{eq:eq3}) is not high with an adjusted \emph{r\textsuperscript{2}} of 0.3, it generally supports the hypothesized relationship between the change in forest cover and the change in flow. The model suggests that for every 1\% change in forest cover, on the average, the flow changes 0.45\%. However the change in flow is different for forest cover decreases compared to forest cover increases. In fact, forest cover increases decrease flow by 29\% less than a similar decrease in forest cover causes flow to increase. So roughly speaking, a 1\% forest cover increase on the average decreases flow by \((1 - 0.29)*0.45\%\), while a the percentage forest cover decrease will increase flow by 0.45\%.
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3472}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1250}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}@{}}
+\caption{(\#tab:m\_all-smooth) Statistical summary for the smooth terms for the full model}\tabularnewline
+\toprule()
+\begin{minipage}[b]{\linewidth}\centering
+~
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+edf
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Ref.df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+p-value
+\end{minipage} \\
+\midrule()
+\endfirsthead
+\toprule()
+\begin{minipage}[b]{\linewidth}\centering
+~
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+edf
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Ref.df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+p-value
+\end{minipage} \\
+\midrule()
+\endhead
+\textbf{s(log10(Area\_km2))} & 0.77 & 4 & 0.85 & 0.03 \\
+\textbf{s(Dryness)} & 4.71 & 9 & 2.18 & 0 \\
+\textbf{s(length)} & 4.44 & 34 & 0.24 & 0.09 \\
+\bottomrule()
+\end{longtable}
+
+The overall explaining power of the model can be interpreted from the adjusted \emph{r\textsuperscript{2}} (which is penalised for the number of parameters). This indicates an \emph{r\textsuperscript{2}} of 0.46 and deviance explained is 0.5, suggesting the model only explains about 50\% of the variance in the data.
+
+Inspecting the significance of the variables (Table @ref(tab:m\_all-linear) and Table @ref(tab:m\_all-smooth)) indicates some interesting features.
+
+The overall partial slope of the change in forest cover is -0.59, if all other variables are kept constant. This suggest quite strong change in streamflow, moving from fully forested to fully cleared. Over the whole forest cover range, this is a change of -118 mm, with other variables held constant. This change is highly significant, as indicated by the low p-value.
+
+In addition, all the smoothed variables \emph{log10(Area (km\textsuperscript{2}))} (p = 0.03)), \emph{Dryness} (p = 0)) and \emph{length} (p = 0.09)) explain variation in the data. For \emph{length}, the p-value is not strictly smaller, than 0.05, but still indicates some reasonable evidence that the variable explains some of the variation in the change in streamflow.
+
+Furthermore Table @ref(tab:m\_six\_all-linear) indicates that several of the assessment methods are significant, which was also indicated in the correlation analysis. In particular, the assessment methods Paired Watersheds experiments (PWE), Hydrological modelling (HM) and Statistical techniques (SH) are important explaining variables (\(p < 0.05\)).
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{residual_plot_model1} \caption{Residual plots for the first simple regression model indicating a slightly fat-tailed residual distribution}\label{fig:gamcheck}
+\includegraphics[width=0.9\linewidth]{Forest_model_allsmooths} \caption{Visualisation of the smooth variables in the model, the shaded areas are the 95\% confidence intervals associated with the fit of the smooth, the blue line is the mean smoothed relationship, with data plotted as individual points}\label{fig:smoothsmodelall}
 \end{figure}
 
-Of importance here is to highlight the residuals of this regression (equation \eqref{eq:eq3} and Figure \ref{fig:gamcheck}). These are approximately normal, although there is still significant skew on the upper and lower parts of the distribution (Figure \ref{fig:gamcheck}). In other words, the distribution of the residuals is somewhat fat-tailed. We will discuss this later.
+Figure \ref{fig:smoothsmodelall} highlights that the relationship between \emph{log10(Area km\textsuperscript{2})} and the change in flow is essentially linear. It indicates the negative slope that was also clear from \citet{zhang2017}, indicating that in larger catchments changes in forest cover have less impact on streamflow than for smaller catchments.
 
-Including the data from some of the newly identified studies indicates that this mainly strengthens the difference between the forest cover increases and decreases (Table \ref{tab:tabmodel1}), and the result indicate a reduction in the mean decrease in flow as a result of forest cover change if the new data is included. Adding the new data does not change the outcome much (apart from the magnitudes of the coefficients), which is expected as the number of added catchments is small relative to the total \citet{zhang2017} data set. But this also means that our re-analysis of the data can be directly compared to the original study.
+Both the \emph{length} and \emph{Dryness} variables show strong non-linearity, but the relationships do not show a clear trend due to the scatter and the distribution of the data. A further problem appears to be that \emph{length} and \emph{Dryness} have several points with very high leverage that determine much of the non-linearity in the relationship.
 
-However, it is clear from the lack of explaining power for the model, that there could be confounding factors, as alluded to in the methods. The obvious ones being catchment dryness and area (following \citet{zhang2017}), which we will analyse later.
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{residual_plot_model_all} \caption{Residual plots for the regression model indicating a slightly fat-tailed residual distribution}\label{fig:gamcheckmodelkall}
+\end{figure}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3611}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1806}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}@{}}
-\caption{\label{tab:out-model3} Results of the model based on the complete dataset and including Latitude and Longitude}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endhead
-\textbf{(Intercept)} & 20.28 & 5.45 & 3.72 & 0 \\
-\textbf{DeltaF\_perc\_pos} & 0.33 & 0.08 & 4.1 & 0 \\
-\textbf{Forest\_SignIncrease} & -50.75 & 5.34 & -9.51 & 0 \\
-\textbf{Latitude} & -0.17 & 0.09 & -1.96 & 0.05 \\
-\textbf{Longitude} & -0.05 & 0.03 & -1.71 & 0.09 \\
-\bottomrule()
-\end{longtable}
+As is not always shown, here we show the residual distribution of the model (Figure \ref{fig:gamcheckmodelall}. These are approximately normal, although there is a a skew in the upper part of the distribution (Figure \ref{fig:gamcheckmodelall}). This is related to a limited number catchments that have very high changes in streamflow in the data set.In other words, the distribution of the residuals is somewhat fat-tailed.
 
-There appears to be no significant gradient in either latitude or longitude (Table \ref{tab:out-model3}), suggesting that the distribution of the catchments across the globe has little influence. The total explaining power of the model is still low with an adjusted \emph{r\textsuperscript{2}} of 0.31 suggesting further factors influencing the change in streamflow that are currently not included in the model.
+One solution could be to transform the data, however this is not that simple. As the data for the change in flow cover the domain \(\mathbb{R}\) we can not use a simple log or Gamma transformation and more complex transformations make the results of the regression difficult to interpret.
 
-\hypertarget{impact-of-climate}{%
-\subsection{Impact of climate}\label{impact-of-climate}}
+Given the majority of the residuals indicate a relatively well behaved distribution, we simply note the behaviour at the extremes and will discuss this later in the paper, and explain how this relates to the characteristics of the dataset.
 
-While latitude and longitude might hint at climatic gradients (for example a change in response related to tropical or sub tropical belts), annual rainfall and potential evapotranspiration might give a better indication.
-Potential evapotranspiration (\emph{E0}) by itself was not significant in the. Initially, we also tested models using only the annual average precipitation (\emph{Pa (mm)}), but interactions between precipitation and evapotranspiraton might be captured by the dryness index. Both dryness index and \emph{Pa (mm)} were initially analysed as a key variables, but these indicated that these two variables were essentially interchangeable. As a result only the dryness index was retained as a climate indicator to align with the earlier work by \citet{zhang2017}. Given that Latitude and Longitude were not significant, we dropped these from the model.
-
-\begin{align}
-\Delta Qf \% \sim ~ & \Delta \% forest~cover_{positive} + sign_{forest~cover} + \notag \\ & Dryness  + \varepsilon \label{eq:eq5}
-\end{align}
-
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3611}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1806}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}@{}}
-\caption{\label{tab:out-model4} Results of the model including the dryness index}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endhead
-\textbf{(Intercept)} & 12.33 & 5.98 & 2.06 & 0.04 \\
-\textbf{DeltaF\_perc\_pos} & 0.33 & 0.08 & 4.03 & 0 \\
-\textbf{Forest\_SignIncrease} & -51.91 & 5.33 & -9.75 & 0 \\
-\textbf{Dryness} & 4.17 & 2.58 & 1.61 & 0.11 \\
-\bottomrule()
-\end{longtable}
-
-Similar to \emph{E0} or \emph{Pa\_mm}, the results from this model (equation \eqref{eq:eq5} and Table \ref{tab:out-model4}) interestingly indicate no impact of dryness on the change in streamflow as a function of the change in forest cover change. This might seem suprising in light of earlier reported results \citep{zhang2017, filoso2017}. In this case, the evidence is highly doubtful (p = 0.11). However, it is very well possible that there is a further interaction in the data with other variables or unknown variables that this simpler version of the model cannot identify. This is partly evidenced by the fact that the overall variance explained is still low, with an adjusted \emph{r\textsuperscript{2}} of 0.31. As indicated in the methods, we retain Dryness in further models as an indicator of climate for the catchments.
+\hypertarget{test-removal-of-studies-of-great-lenght-and-very-dry-catchments}{%
+\subsubsection{Test Removal of studies of great lenght and very dry catchments}\label{test-removal-of-studies-of-great-lenght-and-very-dry-catchments}}
 
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1250}}
   >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1528}}
   >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1667}}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4167}}@{}}
-\caption{\label{tab:drytable} catchments for which the dryness index \textgreater{} 4}\tabularnewline
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3889}}@{}}
+\caption{\label{tab:drytable} catchments for which the dryness index \textgreater{} 5}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\centering
 Number
@@ -478,212 +491,81 @@ Catchment name
 \midrule()
 \endhead
 76 & 34.67 & -111.7 & Beaver Creek, AZ \#3-2 \\
-90 & 36.4 & -120.4 & Cantua \\
 225 & 32.74 & -111.5 & Natural Drainages, Ariz.,
 U.S.A, A \\
 226 & 32.74 & -111.5 & Natural Drainages, Ariz.,
 U.S.A, C \\
-295 & 34.43 & -112.3 & White Spar, Ariz., U.S.A, B \\
 356 & -25.75 & 28.23 & Queens river \\
 \bottomrule()
 \end{longtable}
 
-There are also possible issues with the data, as a few of the catchments have Dryness values that are very large (\textgreater{} 4) and these values have high leverage in the data, affecting the residual distribution. These catchments are listed in Table \ref{tab:drytable}.
+The flexible nature of the splines means that the length variable highlights substantial non-linearity in the data, but it is unclear what exactly is captured. The shape of the conditional response (Figure \ref{fig:smoothsmodelall}) does not reflect a similar response to \citet{filoso2017} and \citet{jackson2005}. One reason could be that the relationship is dominated by the few data points with very long data series, which show highly variable responses (Figure \ref{fig:smoothsmodelall}).
 
-\hypertarget{is-there-a-distinct-effect-of-area}{%
-\subsection{Is there a distinct effect of area?}\label{is-there-a-distinct-effect-of-area}}
+The points related to catchments with very long studies (\textgreater{} 60 years) might be questionable, as changes other than forest cover change could affect streamflow. In addition, a few of the catchments have Dryness values that are very large (\textgreater{} 5) and these values have high leverage in the data, affecting the residual distribution. These catchments are listed in Table \ref{tab:drytable}, and are three catchments in Arizona and 1 catchment in South Africa.
 
-The second major variable is the effect of area on the change in flow, following the analysis by \citet{zhang2017} and \citet{filoso2017}. Given the highly skewed distribution of the catchment areas (Figure \ref{fig:datagraphs}), a log base 10 transformation was applied to the variable \emph{Area (km\textsuperscript{2})}.
+\begin{verbatim}
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## DeltaQf_perc ~ DeltaF_perc + Forest_Sign + s(Dryness, k = 10, 
+##     bs = "ts") + s(log10(Area_km2), k = 5, bs = "ts") + s(length, 
+##     k = 10, bs = "ts") + Precip_data_type + Assessment_technique + 
+##     Forest_type + Hydrological_regime
+## 
+## Parametric coefficients:
+##                              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                 -10.27984   17.60496  -0.584 0.559747    
+## DeltaF_perc                  -0.58628    0.07722  -7.592 4.73e-13 ***
+## Forest_SignIncrease           0.92751    9.57534   0.097 0.922903    
+## Precip_data_typeOB          -12.54417   12.19935  -1.028 0.304714    
+## Precip_data_typeSG            5.90459   15.05545   0.392 0.695217    
+## Assessment_techniqueEA, HM   18.85724   39.89593   0.473 0.636824    
+## Assessment_techniqueHM       29.54406   11.08107   2.666 0.008119 ** 
+## Assessment_techniquePWE      24.55910   12.28800   1.999 0.046618 *  
+## Assessment_techniquePWE, HM  13.22185   40.95225   0.323 0.747043    
+## Assessment_techniqueQPW      44.21273   18.99855   2.327 0.020671 *  
+## Assessment_techniqueQPW, EA  25.53696   22.81154   1.119 0.263899    
+## Assessment_techniqueSH       40.88820   11.15628   3.665 0.000296 ***
+## Forest_typeCF               -10.21893    7.12542  -1.434 0.152648    
+## Forest_typeMF                -3.90403    7.14361  -0.547 0.585153    
+## Hydrological_regimeSD        -0.02434    8.65352  -0.003 0.997757    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##                          edf Ref.df     F  p-value    
+## s(Dryness)         4.070e+00      9 2.127 0.000407 ***
+## s(log10(Area_km2)) 1.574e+00      4 1.865 0.009339 ** 
+## s(length)          6.223e-07      9 0.000 0.857556    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.455   Deviance explained = 49.1%
+## GCV = 1612.2  Scale est. = 1501.2    n = 300
+\end{verbatim}
 
-\begin{align}
-\Delta Qf \% \sim ~ & \Delta \% forest~cover_{positive} + sign_{forest~cover} + \notag \\ & log10(Area ~(km^2)) + Dryness + \varepsilon \label{eq:eq6}
-\end{align}
+\includegraphics{Forest_and_Water_files/figure-latex/model_all_red_Length-1.pdf}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3611}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1806}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}@{}}
-\caption{\label{tab:out-modelArea} Results of the model including Area and the dryness index}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endhead
-\textbf{(Intercept)} & 16.51 & 6.82 & 2.42 & 0.02 \\
-\textbf{DeltaF\_perc\_pos} & 0.26 & 0.1 & 2.68 & 0.01 \\
-\textbf{Forest\_SignIncrease} & -50.38 & 5.46 & -9.23 & 0 \\
-\textbf{Dryness} & 4.62 & 2.61 & 1.77 & 0.08 \\
-\textbf{log10(Area\_km2)} & -2.04 & 1.62 & -1.26 & 0.21 \\
-\bottomrule()
-\end{longtable}
-
-The results of this model (Equation \eqref{eq:eq6}) indicate there is at least some evidence (p = 0.21) that there is a reduction in the effect of forest cover change on streamflow related to log10 (Area (km\textsuperscript{2})) (Table \ref{tab:out-modelArea}). In fact, the results suggests that for every additional 10 km\textsuperscript{2} in catchment size the mean change in flow reduces by 2\%. Another interesting fact to note is that with the inclusion of Area (km\textsuperscript{2}) as a variable in the model, the effect of Dryness becomes slightly more important, possibly suggesting an interaction between Dryness and Area. Including the interaction Dryness*log10(Area (km\textsuperscript{2})) in the model (Table \ref{tab:out-modelArea-int}) results in the increased evidence (p = 0) that Dryness affects the change in flow caused by changes in forest cover and that the effect of Area is only important (p = 0.73)) as an interaction with Dryness.
-
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1467}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1733}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1333}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1467}}@{}}
-\caption{\label{tab:out-modelArea-int} Results of the model including an interaction between Area and the dryness index}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endhead
-\textbf{(Intercept)} & 13.7 & 6.98 & 1.96 & 0.05 \\
-\textbf{DeltaF\_perc\_pos} & 0.25 & 0.1 & 2.56 & 0.01 \\
-\textbf{Forest\_SignIncrease} & -48.35 & 5.56 & -8.7 & 0 \\
-\textbf{Dryness} & 7.19 & 2.97 & 2.42 & 0.02 \\
-\textbf{log10(Area\_km2)} & 0.79 & 2.26 & 0.35 & 0.73 \\
-\textbf{Dryness:log10(Area\_km2)} & -2.39 & 1.34 & -1.78 & 0.08 \\
-\bottomrule()
-\end{longtable}
-
-\hypertarget{are-some-of-the-variables-possibly-non-linear}{%
-\subsection{Are some of the variables possibly non-linear?}\label{are-some-of-the-variables-possibly-non-linear}}
-
-The work by \citet{filoso2017} and earlier by \citet{jackson2005} has indicated that the length of the study might influence the response. This links to the idea from \citet{kuczera1987} that the effect of logging or deforestation or reforestation reduces with the length of time post intervention (see also \citet{jackson2005}). In addition to adding \emph{length} (being the difference between the reported start date and end date of data collection in the specific study) as a variable, two other continuous variables (\emph{Dryness} and \emph{Area}) were considered non-linear. As a result a shrinkage smoothing spline \citep{wood2006} was applied to these variables.
-
-\begin{align}
-\Delta Qf \% \sim &~ \Delta \% forest~cover_{positive} + sign_{forest~cover} + \notag \\ & s(log10(Area ~(km^2)) + s(length) + s(Dryness) + \varepsilon \label{eq:eq7}
-\end{align}
-
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3611}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1806}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}@{}}
-\caption{\label{tab:mfive-linear} Statistical summary for the linear terms in the model with non-linear terms}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Estimate
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Std. Error
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-t value
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Pr(\textgreater\textbar t\textbar)
-\end{minipage} \\
-\midrule()
-\endhead
-\textbf{(Intercept)} & 18.87 & 5.37 & 3.52 & 0 \\
-\textbf{DeltaF\_perc\_pos} & 0.32 & 0.09 & 3.77 & 0 \\
-\textbf{Forest\_SignIncrease} & -53.75 & 6.15 & -8.74 & 0 \\
-\bottomrule()
-\end{longtable}
-
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3472}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1250}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}@{}}
-\caption{\label{tab:mfive-smooth} Statistical summary for the smooth terms in the model with non-linear terms}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
-\midrule()
-\endhead
-\textbf{s(log10(Area\_km2))} & 0.22 & 5 & 0.08 & 0.18 \\
-\textbf{s(Dryness)} & 4.94 & 9 & 1.63 & 0.01 \\
-\textbf{s(length)} & 9.9 & 49 & 0.3 & 0.12 \\
-\bottomrule()
-\end{longtable}
-
-Including non-linearity (Equation \eqref{eq:eq7}) increases the overall explaining power of the model to an adjusted \emph{r\textsuperscript{2}} of 0.35 and deviance explained of 0.39, but creates a few changes in the significance of the variables (Table \ref{tab:mfive-smooth}). For example, all the smoothed variables \emph{log10(Area (km\textsuperscript{2}))} (p = 0.18)), \emph{Dryness} (p = 0.01)) and \emph{length} (p = 0.12)) explain significant variation in the data.
-
-However, including the non-linearity also increases the chance of over fitting, as the smoothing splines allow significant flexibility. Including interactions between the smooth variables is also possible, but the results are difficult to interpret given the high flexibility of the two-dimensional smooth. Given the overall variability in the data we did not attempt this.
-
-Finally the remaining categorical variables (Precipitation data type, Assessment technique, Forest type and Hydrological regime) are included i.e.~Equation \eqref{eq:eq2}.
+\begin{verbatim}
+## 
+## Method: GCV   Optimizer: magic
+## Smoothing parameter selection converged after 19 iterations.
+## The RMS GCV score gradient at convergence was 7.893755e-05 .
+## The Hessian was positive definite.
+## Model rank =  37 / 37 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index<1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##                          k'      edf k-index p-value  
+## s(Dryness)         9.00e+00 4.07e+00    0.93   0.130  
+## s(log10(Area_km2)) 4.00e+00 1.57e+00    0.98   0.330  
+## s(length)          9.00e+00 6.22e-07    0.89   0.045 *
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
 
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4231}}
@@ -691,7 +573,7 @@ Finally the remaining categorical variables (Precipitation data type, Assessment
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1667}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1282}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1410}}@{}}
-\caption{\label{tab:msix-linear} Statistical summary for the linear terms the full model}\tabularnewline
+\caption{(\#tab:m\_red-linear) Statistical summary for the linear terms the restricted model}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\centering
 ~
@@ -720,33 +602,33 @@ Pr(\textgreater\textbar t\textbar)
 \end{minipage} \\
 \midrule()
 \endhead
-\textbf{(Intercept)} & 10.91 & 19.47 & 0.56 & 0.58 \\
-\textbf{DeltaF\_perc\_pos} & 0.29 & 0.1 & 2.97 & 0 \\
-\textbf{Forest\_SignIncrease} & -52.26 & 7.62 & -6.86 & 0 \\
-\textbf{Precip\_data\_typeOB} & -15.75 & 14.22 & -1.11 & 0.27 \\
-\textbf{Precip\_data\_typeSG} & -5.2 & 16.81 & -0.31 & 0.76 \\
-\textbf{Assessment\_techniqueEA, HM} & 14.21 & 45.49 & 0.31 & 0.76 \\
-\textbf{Assessment\_techniqueHM} & 27 & 13.31 & 2.03 & 0.04 \\
-\textbf{Assessment\_techniquePWE} & 28.19 & 13.57 & 2.08 & 0.04 \\
+\textbf{(Intercept)} & -10.28 & 17.6 & -0.58 & 0.56 \\
+\textbf{DeltaF\_perc} & -0.59 & 0.08 & -7.59 & 0 \\
+\textbf{Forest\_SignIncrease} & 0.93 & 9.58 & 0.1 & 0.92 \\
+\textbf{Precip\_data\_typeOB} & -12.54 & 12.2 & -1.03 & 0.3 \\
+\textbf{Precip\_data\_typeSG} & 5.9 & 15.06 & 0.39 & 0.7 \\
+\textbf{Assessment\_techniqueEA, HM} & 18.86 & 39.9 & 0.47 & 0.64 \\
+\textbf{Assessment\_techniqueHM} & 29.54 & 11.08 & 2.67 & 0.01 \\
+\textbf{Assessment\_techniquePWE} & 24.56 & 12.29 & 2 & 0.05 \\
 \textbf{Assessment\_techniquePWE,
-HM} & 16.36 & 45.51 & 0.36 & 0.72 \\
-\textbf{Assessment\_techniqueQPW} & 28.63 & 21.65 & 1.32 & 0.19 \\
+HM} & 13.22 & 40.95 & 0.32 & 0.75 \\
+\textbf{Assessment\_techniqueQPW} & 44.21 & 19 & 2.33 & 0.02 \\
 \textbf{Assessment\_techniqueQPW,
-EA} & 35.76 & 25.74 & 1.39 & 0.17 \\
-\textbf{Assessment\_techniqueSH} & 33.52 & 12.94 & 2.59 & 0.01 \\
-\textbf{Forest\_typeCF} & -12.47 & 8.06 & -1.55 & 0.12 \\
-\textbf{Forest\_typeMF} & -5.1 & 8.18 & -0.62 & 0.53 \\
-\textbf{Hydrological\_regimeSD} & 3.45 & 9.76 & 0.35 & 0.72 \\
+EA} & 25.54 & 22.81 & 1.12 & 0.26 \\
+\textbf{Assessment\_techniqueSH} & 40.89 & 11.16 & 3.67 & 0 \\
+\textbf{Forest\_typeCF} & -10.22 & 7.13 & -1.43 & 0.15 \\
+\textbf{Forest\_typeMF} & -3.9 & 7.14 & -0.55 & 0.59 \\
+\textbf{Hydrological\_regimeSD} & -0.02 & 8.65 & 0 & 1 \\
 \bottomrule()
 \end{longtable}
 
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3472}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1250}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}@{}}
-\caption{\label{tab:msix-smooth} Statistical summary for the smooth terms for the full model}\tabularnewline
+\caption{\label{tab:restrictlength} Statistical summary of the smooth terms reducing dataset to studies with the study length shorter than 60 years and Dryness \textless= 5.}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\centering
 ~
@@ -775,71 +657,32 @@ p-value
 \end{minipage} \\
 \midrule()
 \endhead
-\textbf{s(log10(Area\_km2))} & 0.7 & 4 & 0.4 & 0.12 \\
-\textbf{s(Dryness)} & 4.26 & 9 & 1.75 & 0 \\
-\textbf{s(length)} & 16.71 & 34 & 0.92 & 0.01 \\
-\bottomrule()
-\end{longtable}
-
-This model (Tables \ref{tab:msix-linear} and \ref{tab:msix-smooth}) explains more of the variance, but the improvement is marginal compared to the previous model with a adjusted \emph{r\textsuperscript{2}} of 0.39. This indicates that the categorical variables explain a limited amount of the overall variance in the change in flow data. However, it is interesting to note from Table \ref{tab:msix-linear} that several of the assessment methods are significant. In particular Paired Watersheds experiments (PWE), Hydrological modelling (HM) and Statistical techniques (SH) are strongly significant (\(p < 0.05\)).
-In this case, \emph{log10(Area (km\textsuperscript{2}))} is no longer a significant predictor, the reasons for this will be discussed later.
-
-\begin{figure}
-\includegraphics[width=0.9\linewidth]{model6_smooths} \caption{Visualisation of the smooth variables in the model, the shaded areas are the 95\% confidence intervals associated with the fit of the smooth, the blue line is the mean smoothed relationship, with data plotted as individual points}\label{fig:smoothsmodel6}
-\end{figure}
-
-\newpage
-
-Figure \ref{fig:smoothsmodel6} highlights that the relationship between \emph{log10(Area km\textsuperscript{2})} and the change in flow is essentially linear, but, given all the data, not significant at p = 0.12, likely due to the high variance in the data. It still has a negative slope, indicating that in larger catchments changes in forest cover have less impact on streamflow than for smaller catchments. Both the \emph{length} and \emph{Dryness} variables are significant and show strong non-linearity, but this does not show a clear trend due to the scatter and the distributions of the data. For example, \emph{length} and \emph{Dryness} have several points with very high leverage that determine much of the non-linearity in the data.
-
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3472}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1250}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}@{}}
-\caption{\label{tab:restrictlength} Statistical summary of the smooth terms reducing dataset to studies with the study length shorter than 60 years and Dryness \textless{} 4.}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\centering
-~
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-edf
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Ref.df
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-p-value
-\end{minipage} \\
-\midrule()
-\endhead
-\textbf{s(Dryness)} & 3.54 & 9 & 3.13 & 0 \\
-\textbf{s(log10(Area\_km2))} & 0.73 & 4 & 0.58 & 0.07 \\
-\textbf{s(length)} & 0 & 9 & 0 & 0.7 \\
+\textbf{s(Dryness)} & 4.07 & 9 & 2.13 & 0 \\
+\textbf{s(log10(Area\_km2))} & 1.57 & 4 & 1.86 & 0.01 \\
+\textbf{s(length)} & 0 & 9 & 0 & 0.86 \\
 \bottomrule()
 \end{longtable}
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{model7_smooths} \caption{Visualisation of the smooth variables in the model wiht reduced data for dryness and length}\label{fig:smoothsmodel7}
+\includegraphics[width=0.9\linewidth]{model_redLength_smooths} \caption{Visualisation of the smooth variables in the model with reduced data for dryness and length}\label{fig:smoothsmodelredLength}
 \end{figure}
 
-The flexible nature of the splines means that the length variable captures some substantial variation in the data, but it is unclear what exactly is captured. The shape of the conditional response (Figure \ref{fig:smoothsmodel6}) does not reflect a similar response to \citet{filoso2017} and \citet{jackson2005}. One reason could be that the relationship is dominated by the few data points with very long data series, which show highly variable responses (Figure \ref{fig:smoothsmodel6}). Therefore it can be important to investigate what removing these few data points has on the overall model and the significance of the variables. The next model therefore removes the following data: \emph{Dryness} \textgreater{} 4 and \emph{length} \textgreater{} 60 years. This result in a reduction of the data set from 329 to 308 catchments.
+Therefore it is worth investigating what removing these few data points has on the overall model and the significance of the variables. A model testing data that have \emph{Dryness} \textless= 5 and \emph{length} \textless= 60 years is therefore based on a reduction of the data set from 329 to 310 catchments.
 
-This last model has more explaining power with an adjusted \emph{r\textsuperscript{2}} of 0.37. The results indicate that \emph{Dryness} indicates a clear signifcant non-linear response where changes in forest cover in drier catchments having a greater impact on streamflow (Figure \ref{fig:smoothsmodel7} and Table \ref{tab:restrictlength}). Catchment area (\emph{log10(Area (km\textsuperscript{2}))}) also shows reasonable evidence of having an impact on flow with p = 0.07, and suggesting once again that changes in forest cover in larger catchments have less impact on streamflow. The variable \emph{length} no longer is significant, after removal of the two studies with very long lengths.
+This last model explains only slightly less of the variation with an adjusted \emph{r\textsuperscript{2}} of 0.46 and a deviance explained of 0.49.
+
+Investigating the non-linear responses suggest that \emph{Dryness} has a non-linear response, which is significant, where changes in forest cover in drier catchments having a greater impact on streamflow (Figure \ref{fig:smoothsmodelredLength} and Table \ref{tab:restrictlength}). Catchment area (\emph{log10(Area (km\textsuperscript{2}))}) still has an impact on flow with p = 0.01, and the relationship visually looks almost linear. The variable \emph{length} no longer is significant, after removal of the two studies with very long lengths.
+
+\hypertarget{so-far-the-same-as-zhang-et-al.-2017-but-is-there-a-problem}{%
+\subsection{So far the same as zhang et al.~(2017), but is there a problem?}\label{so-far-the-same-as-zhang-et-al.-2017-but-is-there-a-problem}}
+
+At this point it seems like we are confirming the \citet{zhang2017} and other results. But is there a problem hidden in the analysis?
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{AssessmentTechnique_byArea} \caption{Boxplot of the log base 10 of the catchment area (in km2) for the different assessment techniques, showing the dominance of small catchments in the paired watershed experiments}\label{fig:assessment}
+\end{figure}
+
+One concern with the result presented here, is that there are a few assessment techniques in the original dataset with a very low number of observations and this might skew the results of the analysis. This includes the category of Quasi paired watersheds and combinations of elasticity analysis and hydrological modelling (EA,HM) and paired watersheds and hydrological modelling (PWE,HM) (Table \ref{tab:tableassess} and Figure \ref{fig:assessment}).
 
 \begin{figure}
 \includegraphics[width=0.9\linewidth]{flow_forest_byArea} \caption{Overview of the data highlighting the dominance of small catchment studies which are fully forested or cleared and the scatter in the data}\label{fig:overview}
@@ -861,15 +704,15 @@ This is also reflected in the second caveat. Most of the data from the smaller c
 
 In other words, the current data sets cannot resolve whether there actually is a non-linear catchment size × forest cover effect, which then feeds into the buffering in larger catchments.
 
-Apart from a difficulty of analysing complex confounding factors in the data, a general limitation of the type of analysis presented is that this work does not consider the spatial arrangement of the forest clearing in the catchments. While for fully or almost fully cleared smaller catchments this might not be an issue, it is perceivable that for larger catchments being partially cleared, a interaction between spatial location and clearing could be a factor in determining the change in streamflow. Clearing head water catchments on shallower soils might have a larger impact than clearing in downstream areas on deeper soils. As a result there is still a need for catchment scale studies related to the impact of changes in forest cover on streamdlow.
+Apart from a difficulty of analysing complex confounding factors in the data, a general limitation of the type of analysis presented is that this work does not consider the spatial arrangement of the forest clearing in the catchments. While for fully or almost fully cleared smaller catchments this might not be an issue, it is perceivable that for larger catchments being partially cleared, a interaction between spatial location and clearing could be a factor in determining the change in streamflow. Clearing head water catchments on shallower soils might have a larger impact than clearing in downstream areas on deeper soils. As a result there is still a need for catchment scale studies related to the impact of changes in forest cover on streamflow.
 
 \hypertarget{model-residuals}{%
 \subsection{Model residuals}\label{model-residuals}}
 
-As pointed out earlier the residuals of the model diverge from the normal distribution for large positive and large negative residuals. These residuals are mainly associated with the small catchments from the paired watershed studies (Figure \ref{fig:overview}), which show very high variability. The final model removing the data with large values of Dryness and long study lengths has removed some of the spreading, mainly for the large negative residuals (Figure \ref{fig:gamcheck7}).
+As pointed out earlier the residuals of the model diverge from the normal distribution for large positive and large negative residuals. These residuals are mainly associated with the small catchments from the paired watershed studies (Figure \ref{fig:overview}), which show very high variability. The final model removing the data with large values of Dryness and long study lengths has removed some of the spreading, mainly for the large negative residuals (Figure \ref{fig:gamcheckredLength}).
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{residual_plot_model7} \caption{Residual plots for the final model indicating a small improvement in the residual distribution towards normal}\label{fig:gamcheck7}
+\includegraphics[width=0.9\linewidth]{residual_plot_model7} \caption{Residual plots for the final model indicating a small improvement in the residual distribution towards normal}\label{fig:gamcheckredLength}
 \end{figure}
 
 The reason why the regression model is better able to resolve the variance in the data for the negative residuals (generally related to increases in forest cover) compared the large positive residuals might link back to the issue of buffering and flow paths in the catchments. Small catchments that are stripped of most of the forest cover would provide little buffering, interception and infiltration, does leading to greater changes in flow. In contrast, revegetated catchments would have increased interception and buffering and therefore relatively smaller changes in flow. This also provides an explanation for the differences between forest cover removal and forest cover restoration (Figure \ref{fig:increasedecrease}).
@@ -907,12 +750,6 @@ EA, HM & 1 \\
 PWE, HM & 1 \\
 \bottomrule()
 \end{longtable}
-
-\begin{figure}
-\includegraphics[width=0.9\linewidth]{AssessmentTechnique_byArea} \caption{Boxplot of the log base 10 of the catchment area (in km2) for the different assessment techniques, showing the dominance of small catchments in the paired watershed experiments}\label{fig:assessment}
-\end{figure}
-
-One concern with the result presented here, is that there are a few assessment techniques in the original dataset with a very low number of observations and this might skew the results of the analysis. This includes the category of Quasi paired watersheds and combinations of elasticity analysis and hydrological modelling (EA,HM) and paired watersheds and hydrological modelling (PWE,HM) (Table \ref{tab:tableassess} and Figure \ref{fig:assessment}).
 
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4000}}

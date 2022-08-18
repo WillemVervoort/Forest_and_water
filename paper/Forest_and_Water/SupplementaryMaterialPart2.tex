@@ -112,6 +112,7 @@
 
 \usepackage{setspace}
 \usepackage{color}
+\newcommand{\beginsupplement}{  \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
 
 
 
@@ -125,13 +126,9 @@
   %
   \fnref{1}}
    \ead{willem.vervoort@sydney.edu.au} 
-    \author[]{Eliana Nervi%
-  %
-  }
+    \author[]{Eliana Nervi}
    \ead{eliananervif@gmail.com} 
-    \author[]{Jimena Alonso%
-  %
-  }
+    \author[]{Jimena Alonso}
    \ead{jalonso@fing.edu.uy} 
       \cortext[cor1]{Corresponding author}
     \fntext[1]{Corresponding Author}
@@ -142,8 +139,12 @@
   
  \end{frontmatter}
 
+\setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}
+
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
+
+This supplementary material is related to `Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
 
 In this document we tested whether the fundamental conclusions in the single variable regressions with the improved data base differed from the original conclusions in \citet{zhang2017}. This is to check how much influence the changes to the data set and the additional data might have changed the original conclusions.
 
@@ -167,7 +168,7 @@ We will combine the different tables, but will keep an indicator to see where th
 \end{Shaded}
 
 \hypertarget{implementing-the-changes-to-the-overall-data}{%
-\subsection{Implementing the changes to the overall data}\label{implementing-the-changes-to-the-overall-data}}
+\section{Implementing the changes to the overall data}\label{implementing-the-changes-to-the-overall-data}}
 
 The following code implements the changes described in the Supplementary data part 1. However, many of the changes were implemented manually into the data set. These are simply the remaining changes not implemented manually.
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.11)  12 AUG 2022 21:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.11)  16 AUG 2022 21:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -338,12 +338,12 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip56
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 50.
+Package hyperref Info: Option `breaklinks' set `true' on input line 51.
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 50.
+(hyperref)                setting the option has no effect on input line 51.
 
-Package hyperref Info: Option `colorlinks' set `false' on input line 50.
+Package hyperref Info: Option `colorlinks' set `false' on input line 51.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTleft=\skip57
@@ -407,80 +407,80 @@ Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 \fn@notes=\box68
 \fn@width=\dimen182
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 76.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 77.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (./Forest_and_Water.aux)
 \openout1 = `Forest_and_Water.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 76.
+Package hyperref Info: Link coloring OFF on input line 77.
 (./Forest_and_Water.out) (./Forest_and_Water.out)
 \@outlinefile=\write4
 \openout4 = `Forest_and_Water.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 96.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 97.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 96.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 97.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 96.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 97.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 96.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 97.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 96.
+(Font)              <10> on input line 97.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 96.
+(Font)              <7> on input line 97.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 96.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 96.
+(Font)              <5> on input line 97.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 96.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 103.
+(Font)              <8> on input line 104.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 103.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 103.
+(Font)              <6> on input line 104.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 104.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 103.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 104.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -495,170 +495,402 @@ Overfull \hbox (2.22221pt too wide) has occurred while \output is active
 
 
 {c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (0.9443pt too wide) in paragraph at lines 112--113
+Overfull \hbox (0.9443pt too wide) in paragraph at lines 113--114
 []\T1/lmr/m/n/10 As men-tioned, sev-eral re-view pa-pers have sum-ma-rized the plethora of foresta-
  []
 
 [2] [3]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 133.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 134.
 (c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 133--135
+Underfull \hbox (badness 10000) in paragraph at lines 136--138
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--137
+Underfull \hbox (badness 10000) in paragraph at lines 138--140
 
  []
 
-[4] [5]
-
-Package natbib Warning: Citation `zhang2015' on page 6 undefined on input line 201.
-
-[6] [7]
-Overfull \hbox (6.82877pt too wide) in paragraph at lines 234--236
+[4] [5] [6] [7]
+Overfull \hbox (6.82877pt too wide) in paragraph at lines 237--239
 []\T1/lmr/m/n/10 https://github.com/WillemVervoort/Forest_and_water[] on the ``pub-lish'' branch. 
  []
 
-<./DataExploration.png, id=276, 602.25pt x 433.62pt>
+<./DataExploration.png, id=273, 602.25pt x 433.62pt>
 File: ./DataExploration.png Graphic file (type png)
 <use ./DataExploration.png>
-Package pdftex.def Info: ./DataExploration.png  used on input line 248.
+Package pdftex.def Info: ./DataExploration.png  used on input line 251.
 (pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-<FAOET0data_final_2022.png, id=277, 910.3611pt x 395.3169pt>
+<FAOET0data_final_2022.png, id=274, 910.3611pt x 395.3169pt>
 File: FAOET0data_final_2022.png Graphic file (type png)
 <use FAOET0data_final_2022.png>
-Package pdftex.def Info: FAOET0data_final_2022.png  used on input line 255.
+Package pdftex.def Info: FAOET0data_final_2022.png  used on input line 258.
 (pdftex.def)             Requested size: 310.4979pt x 134.8282pt.
 [8] [9 <./DataExploration.png> <./FAOET0data_final_2022.png>]
-<variable_corr_plot.png, id=298, 963.6pt x 963.6pt>
+<variable_corr_plot.png, id=295, 963.6pt x 963.6pt>
 File: variable_corr_plot.png Graphic file (type png)
 <use variable_corr_plot.png>
-Package pdftex.def Info: variable_corr_plot.png  used on input line 271.
+Package pdftex.def Info: variable_corr_plot.png  used on input line 274.
 (pdftex.def)             Requested size: 310.4979pt x 310.49028pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 279--281
+Underfull \hbox (badness 10000) in paragraph at lines 282--284
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 281--283
+Underfull \hbox (badness 10000) in paragraph at lines 284--286
 
  []
 
 [10 <./variable_corr_plot.png (PNG copy)>]
-<residual_plot_model1.png, id=309, 602.25pt x 433.62pt>
-File: residual_plot_model1.png Graphic file (type png)
-<use residual_plot_model1.png>
-Package pdftex.def Info: residual_plot_model1.png  used on input line 342.
-(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-[11] [12 <./residual_plot_model1.png>] [13] [14]
-Overfull \hbox (14.27867pt too wide) in paragraph at lines 587--587
- []|\T1/lmr/bx/n/10 Dryness:log10(Area_km2)| 
+
+LaTeX Warning: Reference `eq:eq7' on page 11 undefined on input line 294.
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## DeltaQf_perc ~ DeltaF_perc + s(log10(Area_km2), k = 5, bs = "ts") +[] 
  []
 
-[15]
-Overfull \hbox (8.21962pt too wide) in paragraph at lines 728--728
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ##     s(Dryness, k = 10, bs = "ts") + s(length, k = 35, bs = "ts") +[] 
+ []
+
+
+Overfull \hbox (85.49875pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ##     Precip_data_type + Assessment_technique + Forest_type + Hydrological_regime[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ##                              Estimate Std. Error t value Pr(>|t|)[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## (Intercept)                  -7.47200   15.87043  -0.471  0.63814[] 
+ []
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## DeltaF_perc                  -0.59422    0.05459 -10.885  < 2e-16 ***[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Precip_data_typeOB          -17.87257   12.90741  -1.385  0.16724[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Precip_data_typeSG            0.19950   14.82105   0.013  0.98927[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueEA, HM   18.66830   41.70211   0.448  0.65474[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueHM       26.60929   11.43273   2.327  0.02065 *[] 
+ []
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Assessment_techniquePWE      30.77146   11.68272   2.634  0.00890 **[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Assessment_techniquePWE, HM  15.79891   42.22036   0.374  0.70853[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueQPW      41.34637   19.66208   2.103  0.03636 *[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueQPW, EA  26.04728   23.83570   1.093  0.27542[] 
+ []
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueSH       39.31195   11.53645   3.408  0.00075 ***[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Forest_typeCF                -9.28294    7.41227  -1.252  0.21147[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Forest_typeMF                -6.34249    7.37916  -0.860  0.39078[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 335--335
+[]\T1/lmtt/m/n/10 ## Hydrological_regimeSD         0.13379    8.93522   0.015  0.98806[] 
+ []
+
+[11]
+Overfull \hbox (8.21962pt too wide) in paragraph at lines 376--376
  []|\T1/lmr/bx/n/10 Assessment_techniqueEA, 
  []
 
 
-Overfull \hbox (8.69261pt too wide) in paragraph at lines 729--729
+Overfull \hbox (8.69261pt too wide) in paragraph at lines 377--377
  []|\T1/lmr/bx/n/10 Assessment_techniqueHM| 
  []
 
 
-Overfull \hbox (16.08112pt too wide) in paragraph at lines 730--730
+Overfull \hbox (16.08112pt too wide) in paragraph at lines 378--378
  []|\T1/lmr/bx/n/10 Assessment_techniquePWE| 
  []
 
 
-Overfull \hbox (19.27562pt too wide) in paragraph at lines 731--732
+Overfull \hbox (19.27562pt too wide) in paragraph at lines 379--380
  []|\T1/lmr/bx/n/10 Assessment_techniquePWE, 
  []
 
 
-Overfull \hbox (17.19353pt too wide) in paragraph at lines 733--733
+Overfull \hbox (17.19353pt too wide) in paragraph at lines 381--381
  []|\T1/lmr/bx/n/10 Assessment_techniqueQPW| 
  []
 
 
-Overfull \hbox (20.35915pt too wide) in paragraph at lines 734--735
+Overfull \hbox (20.35915pt too wide) in paragraph at lines 382--383
  []|\T1/lmr/bx/n/10 Assessment_techniqueQPW, 
  []
 
 
-Overfull \hbox (4.16463pt too wide) in paragraph at lines 736--736
+Overfull \hbox (4.16463pt too wide) in paragraph at lines 384--384
  []|\T1/lmr/bx/n/10 Assessment_techniqueSH| 
  []
 
+[12]
+<Forest_model_allsmooths.png, id=315, 602.25pt x 433.62pt>
+File: Forest_model_allsmooths.png Graphic file (type png)
+<use Forest_model_allsmooths.png>
+Package pdftex.def Info: Forest_model_allsmooths.png  used on input line 443.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+<residual_plot_model_all.png, id=318, 602.25pt x 433.62pt>
+File: residual_plot_model_all.png Graphic file (type png)
+<use residual_plot_model_all.png>
+Package pdftex.def Info: residual_plot_model_all.png  used on input line 451.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+
+LaTeX Warning: Reference `fig:gamcheckmodelall' on page 13 undefined on input line 454.
+
+
+LaTeX Warning: Reference `fig:gamcheckmodelall' on page 13 undefined on input line 454.
+
+[13] [14 <./Forest_model_allsmooths.png> <./residual_plot_model_all.png>]
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ##     bs = "ts") + s(log10(Area_km2), k = 5, bs = "ts") + s(length,[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ##     k = 10, bs = "ts") + Precip_data_type + Assessment_technique +[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ##                              Estimate Std. Error t value Pr(>|t|)[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## (Intercept)                 -10.27984   17.60496  -0.584 0.559747[] 
+ []
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## DeltaF_perc                  -0.58628    0.07722  -7.592 4.73e-13 ***[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Forest_SignIncrease           0.92751    9.57534   0.097 0.922903[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Precip_data_typeOB          -12.54417   12.19935  -1.028 0.304714[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Precip_data_typeSG            5.90459   15.05545   0.392 0.695217[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueEA, HM   18.85724   39.89593   0.473 0.636824[] 
+ []
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueHM       29.54406   11.08107   2.666 0.008119 **[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Assessment_techniquePWE      24.55910   12.28800   1.999 0.046618 *[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Assessment_techniquePWE, HM  13.22185   40.95225   0.323 0.747043[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueQPW      44.21273   18.99855   2.327 0.020671 *[] 
+ []
+
+[15]
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueQPW, EA  25.53696   22.81154   1.119 0.263899[] 
+ []
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Assessment_techniqueSH       40.88820   11.15628   3.665 0.000296 ***[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Forest_typeCF               -10.21893    7.12542  -1.434 0.152648[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Forest_typeMF                -3.90403    7.14361  -0.547 0.585153[] 
+ []
+
+
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 547--547
+[]\T1/lmtt/m/n/10 ## Hydrological_regimeSD        -0.02434    8.65352  -0.003 0.997757[] 
+ []
+
+<Forest_and_Water_files/figure-latex/model_all_red_Length-1.pdf, id=344, 469.755pt x 325.215pt>
+File: Forest_and_Water_files/figure-latex/model_all_red_Length-1.pdf Graphic file (type pdf)
+<use Forest_and_Water_files/figure-latex/model_all_red_Length-1.pdf>
+Package pdftex.def Info: Forest_and_Water_files/figure-latex/model_all_red_Length-1.pdf  used on input line 549.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (139.75386pt too wide) in paragraph at lines 549--550
+[][] 
+ []
+
 [16]
-<model6_smooths.png, id=385, 602.25pt x 433.62pt>
-File: model6_smooths.png Graphic file (type png)
-<use model6_smooths.png>
-Package pdftex.def Info: model6_smooths.png  used on input line 788.
-(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-[17 <./model6_smooths.png>]
-<model7_smooths.png, id=393, 602.25pt x 433.62pt>
-File: model7_smooths.png Graphic file (type png)
-<use model7_smooths.png>
-Package pdftex.def Info: model7_smooths.png  used on input line 837.
-(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-[18 <./model7_smooths.png>]
-<flow_forest_byArea.png, id=407, 602.25pt x 433.62pt>
-File: flow_forest_byArea.png Graphic file (type png)
-<use flow_forest_byArea.png>
-Package pdftex.def Info: flow_forest_byArea.png  used on input line 845.
-(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
-[19 <./flow_forest_byArea.png (PNG copy)>] [20]
-<residual_plot_model7.png, id=430, 602.25pt x 433.62pt>
-File: residual_plot_model7.png Graphic file (type png)
-<use residual_plot_model7.png>
-Package pdftex.def Info: residual_plot_model7.png  used on input line 872.
-(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 568--568
+[]\T1/lmtt/m/n/10 ## Basis dimension (k) checking results. Low p-value (k-index<1) may[] 
+ []
 
-LaTeX Warning: Reference `fig:increasedecrease' on page 21 undefined on input line 875.
 
-[21 <./residual_plot_model7.png>]
-<AssessmentTechnique_byArea.png, id=439, 602.25pt x 433.62pt>
-File: AssessmentTechnique_byArea.png Graphic file (type png)
-<use AssessmentTechnique_byArea.png>
-Package pdftex.def Info: AssessmentTechnique_byArea.png  used on input line 912.
-(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+Overfull \hbox (8.21962pt too wide) in paragraph at lines 610--610
+ []|\T1/lmr/bx/n/10 Assessment_techniqueEA, 
+ []
 
-Overfull \hbox (15.55385pt too wide) in paragraph at lines 957--957
+
+Overfull \hbox (8.69261pt too wide) in paragraph at lines 611--611
  []|\T1/lmr/bx/n/10 Assessment_techniqueHM| 
  []
 
 
-Overfull \hbox (22.94235pt too wide) in paragraph at lines 958--958
+Overfull \hbox (16.08112pt too wide) in paragraph at lines 612--612
  []|\T1/lmr/bx/n/10 Assessment_techniquePWE| 
  []
 
 
-Overfull \hbox (24.05476pt too wide) in paragraph at lines 959--959
+Overfull \hbox (19.27562pt too wide) in paragraph at lines 613--614
+ []|\T1/lmr/bx/n/10 Assessment_techniquePWE, 
+ []
+
+
+Overfull \hbox (17.19353pt too wide) in paragraph at lines 615--615
  []|\T1/lmr/bx/n/10 Assessment_techniqueQPW| 
  []
 
 
-Overfull \hbox (11.02586pt too wide) in paragraph at lines 960--960
+Overfull \hbox (20.35915pt too wide) in paragraph at lines 616--617
+ []|\T1/lmr/bx/n/10 Assessment_techniqueQPW, 
+ []
+
+
+Overfull \hbox (4.16463pt too wide) in paragraph at lines 618--618
+ []|\T1/lmr/bx/n/10 Assessment_techniqueSH| 
+ []
+
+[17 <./Forest_and_Water_files/figure-latex/model_all_red_Length-1.pdf>]
+<model_redLength_smooths.png, id=360, 602.25pt x 433.62pt>
+File: model_redLength_smooths.png Graphic file (type png)
+<use model_redLength_smooths.png>
+Package pdftex.def Info: model_redLength_smooths.png  used on input line 667.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+[18]
+<AssessmentTechnique_byArea.png, id=371, 602.25pt x 433.62pt>
+File: AssessmentTechnique_byArea.png Graphic file (type png)
+<use AssessmentTechnique_byArea.png>
+Package pdftex.def Info: AssessmentTechnique_byArea.png  used on input line 682.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+<flow_forest_byArea.png, id=374, 602.25pt x 433.62pt>
+File: flow_forest_byArea.png Graphic file (type png)
+<use flow_forest_byArea.png>
+Package pdftex.def Info: flow_forest_byArea.png  used on input line 688.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+
+LaTeX Warning: Reference `fig:smoothsmodel7' on page 19 undefined on input line 697.
+
+[19 <./model_redLength_smooths.png>] [20 <./AssessmentTechnique_byArea.png> <./flow_forest_byArea.png (PNG copy)>]
+<residual_plot_model7.png, id=397, 602.25pt x 433.62pt>
+File: residual_plot_model7.png Graphic file (type png)
+<use residual_plot_model7.png>
+Package pdftex.def Info: residual_plot_model7.png  used on input line 715.
+(pdftex.def)             Requested size: 310.4979pt x 223.56491pt.
+
+LaTeX Warning: Reference `fig:increasedecrease' on page 21 undefined on input line 718.
+
+[21]
+Overfull \hbox (15.55385pt too wide) in paragraph at lines 794--794
+ []|\T1/lmr/bx/n/10 Assessment_techniqueHM| 
+ []
+
+
+Overfull \hbox (22.94235pt too wide) in paragraph at lines 795--795
+ []|\T1/lmr/bx/n/10 Assessment_techniquePWE| 
+ []
+
+
+Overfull \hbox (24.05476pt too wide) in paragraph at lines 796--796
+ []|\T1/lmr/bx/n/10 Assessment_techniqueQPW| 
+ []
+
+
+Overfull \hbox (11.02586pt too wide) in paragraph at lines 797--797
  []|\T1/lmr/bx/n/10 Assessment_techniqueSH| 
  []
 
 
-Overfull \hbox (2.6382pt too wide) in paragraph at lines 963--963
+Overfull \hbox (2.6382pt too wide) in paragraph at lines 800--800
  []|\T1/lmr/bx/n/10 Hydrological_regimeSD| 
  []
 
-[22] [23 <./AssessmentTechnique_byArea.png>]
-<PCA_biplot_Alldata.png, id=462, 803.0pt x 803.0pt>
+[22 <./residual_plot_model7.png>] [23]
+<PCA_biplot_Alldata.png, id=425, 803.0pt x 803.0pt>
 File: PCA_biplot_Alldata.png Graphic file (type png)
 <use PCA_biplot_Alldata.png>
-Package pdftex.def Info: PCA_biplot_Alldata.png  used on input line 1025.
+Package pdftex.def Info: PCA_biplot_Alldata.png  used on input line 862.
 (pdftex.def)             Requested size: 310.4979pt x 310.49763pt.
-[24 <./PCA_biplot_Alldata.png>] [25] (./Forest_and_Water.bbl
+[24] [25 <./PCA_biplot_Alldata.png>] (./Forest_and_Water.bbl [26]
 Underfull \hbox (badness 3009) in paragraph at lines 61--69
 []\T1/lmr/m/n/10 Alice E. Brown, Lu Zhang, Thomas A. McMa-hon, An-drew W.
  []
@@ -678,12 +910,12 @@ Underfull \hbox (badness 4217) in paragraph at lines 61--69
 \T1/lmr/m/n/10 al-ter-ations in veg-e-ta-tion.  \T1/lmr/m/it/10 Jour-nal of Hy-drol-ogy\T1/lmr/m/n/10 , 310(1-4):28--61,
  []
 
-[26]
+[27]
 Underfull \hbox (badness 2556) in paragraph at lines 138--147
 \T1/lmr/m/n/10 0$.  URL []$\T1/lmtt/m/n/10 http : / / www . sciencedirect . com / science / article / B6V6C -[]
  []
 
-[27]
+[28]
 Underfull \hbox (badness 10000) in paragraph at lines 222--233
 []$\T1/lmtt/m/n/10 http : / / www . hydrol -[] earth -[] syst -[] sci . net / 16 / 267 / 2012 / http : / / www .
  []
@@ -693,35 +925,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 222--233
 \T1/lmtt/m/n/10 hydrol -[] earth -[] syst -[] sci . net / 16 / 267 / 2012 / hess -[] 16 -[] 267 -[] 2012 . pdf$[]\T1/lmr/m/n/10 .
  []
 
-[28]
+
 Underfull \hbox (badness 1092) in paragraph at lines 266--275
 \T1/lmr/m/n/10 ter bal-ance in moun-tain ash forests.  \T1/lmr/m/it/10 For-est Ecol-ogy and Man-age-
  []
 
-[29])
-
-Package natbib Warning: There were undefined citations.
-
-[30] (./Forest_and_Water.aux)
+[29]) [30] (./Forest_and_Water.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Forest_and_Water.out' has not changed.
-(rerunfilecheck)             Checksum: 73CE787CED89EADD871C79F5AFA26730;4209.
+(rerunfilecheck)             Checksum: D5D869292164DFBA07BB5918AF3F530C;4060.
  ) 
 Here is how much of TeX's memory you used:
- 11778 strings out of 479638
- 188790 string characters out of 5876700
- 497785 words of memory out of 5000000
- 29965 multiletter control sequences out of 15000+600000
+ 11756 strings out of 479638
+ 189175 string characters out of 5876700
+ 492409 words of memory out of 5000000
+ 29953 multiletter control sequences out of 15000+600000
  532072 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,9n,77p,1445b,626s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on Forest_and_Water.pdf (30 pages, 2752861 bytes).
+ 72i,9n,77p,1445b,618s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt8.pfb><c:/Users/rver4657/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Forest_and_Water.pdf (30 pages, 2782869 bytes).
 PDF statistics:
- 688 PDF objects out of 1000 (max. 8388607)
- 595 compressed objects within 6 object streams
- 144 named destinations out of 1000 (max. 500000)
- 227 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 654 PDF objects out of 1000 (max. 8388607)
+ 557 compressed objects within 6 object streams
+ 132 named destinations out of 1000 (max. 500000)
+ 224 words of extra memory for PDF output out of 10000 (max. 10000000)
 

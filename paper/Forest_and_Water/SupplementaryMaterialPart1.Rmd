@@ -1,6 +1,16 @@
 ---
 title: 'Supplementary Information part 1: Changes to original database'
-author: "Willem Vervoort/Eliana Nervi/Jimena Alonso"
+author:
+  - name: R. Willem Vervoort
+    email: willem.vervoort@sydney.edu.au
+    footnote: 1
+  - name: Eliana Nervi
+    email: eliananervif@gmail.com
+  - name: Jimena Alonso
+    email: jalonso@fing.edu.uy
+footnote:
+  - code: 1
+    text: "Corresponding Author"  
 date: "`r Sys.Date()`"
 linenumbers: true
 #numbersections: true
@@ -18,7 +28,13 @@ abstract: |
   This supplementary material file gives an overview of the changes that were made in the original data based on review of the original literature. Overall 36 data points were changed. The most common problem was a change in the sign of the forest change or the streamflow change.
 ---
 
+# Introduction
+
+This supplementary material is related to 'Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
+
 This document list all the changes that were made to the original @zhang2017 database after review of all the original papers.
+
+# Discussion of changes
 
 A particular problem was that many catchments had the wrong sign for the change in forest cover. There are many catchments with reported positive change in cover and a large increase in flow. These were all checked and corrected if needed and a full list of all these changes is below:  
 
