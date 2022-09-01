@@ -685,7 +685,7 @@ Clearly, interpreting older papers can be difficult and this can result in varia
 
 ### Issue 3: Aggregation of data that originates from different experiments with different objectives across a wide time period    
 
-The last issue leads into the next issue. For many of the catchment studies listed in the database, the assumption is that the original experimental design can be interpreted in terms of a binary "forestation" or "deforestation". However, the real situation is much more complex.
+The last issue leads into the next issue. For many of the catchment studies listed in the database, the assumption is that the original experimental design can be interpreted in terms of a binary "forestation" or "deforestation". However, the real situation is often much more complex and fuzzy.
 
 ### Transcription errors in the data, especially if data is collected from other review papers as some of the original papers are difficult to locate.
 
