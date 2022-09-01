@@ -656,18 +656,36 @@ The other interesting point in Figure \@ref(fig:overview) is that the variation 
 
 ## Is there a problem with extending local experimental data to larger scales?
 
-The overarching reason for combining past studies at a global scale is to infer relationships that can be used to make more general statements or develop more global scale modelling of impacts [i.e. @zhou2015; @jackson2005; @hoekvandijke2012]. Therefore, the results fromthe analysis could be seen as a confirmation of the earlier research [@zhang2017; @filoso2017; @zhou2015; @jackson2005]. However, as is highlighted in the introduction there are four major issues with this type of analysis, and the results from this paper can also highlight this.
+The overarching reason for combining past studies at a global scale is to infer relationships that can be used to make more general statements or develop more global scale modelling of impacts [i.e. @zhou2015; @jackson2005; @hoekvandijke2012]. Therefore, the results from the analysis could be seen as a confirmation of the earlier research [@zhang2017; @filoso2017; @zhou2015; @jackson2005]. However, as is highlighted in the introduction there are four major issues with this type of analysis, and the results from this paper can also highlight this. 
 
+### Issue 1: Latent variables are not included in the typical single covariate analysis
 
-### Latent variables that are not included in the typical single covariate analysis;
+The results show that it is simply impossible to analyse a single covariate relationship, as there are several latent variables in the data. An example of this is the general relationship of the change in flow as a function of the change in forest cover. Clearly the relationship is highly impacted by the fact that all the small catchments have large changes in forest cover and are all associated with paired watershed experiments. Without taking these factors into account, a definite answer about the impact of forest cover on the change in flow cannot be given. Furthermore, the large variability in the change in flow data for these small catchments (Figure \@ref(fig:overview)) indicates that there is a further (unknown) variable that explains the variation in the data. 
 
+If the remaining variation in the residuals is small relative to the trend, then there is little need to identify further latent variables, but if the variation is large, then it is unclear if it is the latent variable that determines the trend, or the actual relationship in the data.
 
+Similarly, the data for the larger catchments containing smaller changes in forest cover are dominated by hydrological modelling studies, resulting in a further complication. If the reponse of the streamflow in the modelling studies is the result of the conceptualised relationship between streamflow and forest cover (possibly from a subset of the paired catchment studies), then it is impossible to say if the change in streamflow is real, or simply a result of a pre-conceived model relationship. Is the smaller variation in the data for smaller changed in forest cover (Figure \@ref(fig:overview)) a result of similar conceptualised model relationships, or actual variation between catchments and climate types? Currently this question cannot be answered.
 
+This becomes problematic when extrapolated to larger scales. A clear example of this is the paper by @hoekvandijke2022 where the conceptualised relationship between forest cover and streamflow pre-determines the outcomes of the global modelling.
 
-### Interpretation errors due to incomplete descriptions of the experiments in the original papers;  
+The only  way to analyse changes in streamflow as a function of forest cover in larger catchments is to actually derive this from observed data of long term streamflow and forest cover (as was done in @levy2018). 
 
+We are not arguing that there is no relationship between streamflow and forest cover, and there might indeed be a global relationship that can be discovered. But, this relationship can only be discovered if we are able to address some of the major other factors that explain the variability, and work with actual data and not model outputs. 
 
-### Aggregation of data that originates from different experiments with different objectives across a wide time period    
+### Issue 2: Interpretation errors due to complex descriptions of the experiments in the original papers  
+
+The second major issue that became clear from reviewing many of the original papers is that some of the variability might be an interpretation problem. In many cases the original description in the paper is interpreted to extract the \% change in streamflow from the \% change in forest cover. This seems like a simple activity, but this is not always the case.
+
+Two examples can be highlighted:
+
+- The papers from @almeida2016 and @ferreto2021 partly discuss the same experiment and the same catchment. In @almeida2016, the methods discuss how two experimental catchments of approximately 80ha in size which were harvested. One catchment was 100\% harvested and the other 30\% harvested. Throughout the paper the catchments are indicated as 100\% harvested and 30\% harvested. However, only after reading @ferreto2021, did we discover that in fact the 100\% and 30\% refer to the "eucalyptus plantation area", which was about 60\% of the total area. This is in fact mentioned in Table 1 in @almeida2016, but does not appear in the text. The question then becomes how to interpret this in the data base for this paper. Clearly it was a 100\% and 30\% change in forest cover, but only for the 60\% plantation cover, not for any of the other areas in the catchment, which included native vegetation and riparian vegetation. There are several other examples like this in the different papers (for example @blackie1979kimakia and @blackie1979kericho). 
+- Another example is the paper by @waterloo2007. This modelling study in Fiji of the clearing of a catchment reports the changes in streamflow over parts of the year. For a period of 324 days the streamflow increased from 252 mm to 580 mm (a 230\% increase if calculated as $580/252*100$) and for a second period of 309 days the streamflow increased from 90 mm to 194 mm (a 215 \% increase). However, how we convert this to a change in annual flow (which most of the other data relate to) is difficult. The original data base listed a 50 \% change in flow, but it is difficult to identify how this is calculated. We suspect that is results from $252/580*100 ≈ 50$ and $90/194 ≈ 50$. 
+
+Clearly, interpreting older papers can be difficult and this can result in variation and errors in the data that is being analysed. Similar to the last issue, if these errors only introduce small variation in the data, then it will not limit the interpolation to larger scales. At this point, it is not clear if this is indeed the case. The large variation in the experimental watershed data suggests that this might be a more serious problem.
+
+### Issue 3: Aggregation of data that originates from different experiments with different objectives across a wide time period    
+
+The last issue leads into the next issue. For many of the catchment studies listed in the database, the assumption is that the original experimental design can be interpreted in terms of a binary "forestation" or "deforestation". However, the real situation is much more complex.
 
 ### Transcription errors in the data, especially if data is collected from other review papers as some of the original papers are difficult to locate.
 

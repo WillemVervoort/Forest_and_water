@@ -36,11 +36,13 @@ This document list all the changes that were made to the original @zhang2017 dat
 
 # Discussion of changes
 
-A particular problem was that many catchments had the wrong sign for the change in forest cover. There are many catchments with reported positive change in cover and a large increase in flow. These were all checked and corrected if needed and a full list of all these changes is below:  
+**Need to fix up references**
+
+A particular problem was that many catchments appeared to have the wrong sign for the change in forest cover. There are many catchments with reported positive change in cover and a large increase in flow. These were all checked and corrected if needed and a full list of all these changes is below:  
 
 - 76, Beaver Creek, the flow was corrected from 600\% to 157\% after review of the original publication [@baker1984].  
 - 124, D3, Amatya and Skaggs, 2008: The originally recorded 250\% change by @zhang2017 is clearly wrong. The paper says on page 7: Both of these outflow ratios (0.64 and 0.50) were higher than the calculated expected values of 0.55 for 2003 and 0.44 for 2005, respectively. So value should be $0.64/0.55*100 - 100$ or $0.5/044*100 - 100$: 16\% or 13\%. corrected to 16\%
-- 3, Baker Creek, Zhang and Wei, 2012. The original recorde 201.1\% change by @zhang2017 is also wrong. Original paper says on page 2031: Annual mean flow has been increased by 47.6\%. corrected  
+- 3, Baker Creek, Zhang and Wei, 2012. The original recorded 201.1\% change by @zhang2017 also seems wrong. Original paper says on page 2031: Annual mean flow has been increased by 47.6\%. corrected  
 - 67, April rd, which is incorrectly attributed to Ruprecht and Schofield (1991) in @zhang2017. This is actually from Ruprecht and Schofield (1989) and the original paper clearly indicates "clearfelling". As a result the change in forest cover was changed to -100\% rather than +100\%.  
 - 210, March rd, 100, 147.6. Same problem as 67, Bari et al. (1996) clearly state that the catchment was cleared, so therefor the change in forest cover changed to -100\%.  
 - 213, 214 and 215, Monda 1, 2 and 3. These catchments are tricky. The original paper [@oshaughnessy1979] only reports on the control period and indicates that the catchments will be cleared. The later summary paper [@watson2001] shows the timeseries of the flow change, but does not report a single value, so the values in the database must have been estimated from the timeseries. The further complication is that the treatment included clearing and reseeding and regrowth. This suggest that the records should be removed from the database, or only the first few years of the experiment used. In any case, if the values are kept, the sign of the change in forest cover needs to changed to negative (Clearing).  
