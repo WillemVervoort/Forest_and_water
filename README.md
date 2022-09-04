@@ -3,7 +3,7 @@ This github repository contains the data and the analysis of the impacts of refo
 
 This work was submitted as a paper to Journal of Hydrology:
 R.W. Vervoort, E. Nervi, J. Alonso (2022) Factors determining how catchments respond to forest cover change. Re-analysing global data sets.   
-We are currently reviewing the editor's commentsadn producing a vastly revised version.   
+We are currently reviewing the editor's comments and producing a vastly revised version.   
 
 Any **released** final data, manuscript and scripts are in the **publish** branch, please use this branch for any future work. 
 
