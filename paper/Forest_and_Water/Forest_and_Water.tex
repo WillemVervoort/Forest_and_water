@@ -125,7 +125,7 @@ In contrast to the single covariate linear regression in the earlier studies \ci
 
 Given all these previous reviews and the seemingly clear conclusions about the impact of forest cover change on streamflow, the question is why another paper?
 There is a real attraction in the idea of quantitative analysis of past studies to be able to extrapolate findings to larger scales and to identify factors across global scales.
-However, there is also a real danger in this process, which is what we will highlight in this paper. There are three potential errors (or limitations) in the mentioned global analyses:
+However, there is also a real danger in this process, which is what we will highlight in this paper. There are four potential errors (or limitations) in the mentioned global analyses:
 
 \begin{itemize}
 \tightlist
@@ -150,7 +150,7 @@ We are taking advantage of the earlier work by \citet{zhang2017}, \citet{filoso2
 \subsection{The original data set}\label{the-original-data-set}}
 
 As indicated, the starting point of this paper is the data base of studies which were included in \citet{zhang2017} as supplementary material. The columns in this data set (are the catchment number, the catchment name, the Area in km\textsuperscript{2}, the annual average precipitation (Pa) in mm, the forest type, hydrological regime, and climate type, the change in forest cover in \% (\(\Delta F\%\)) and the change in streamflow in \% \((\Delta Qf\%)\), based on equation 1 in \citet{zhang2017}), the precipitation data type, the assessment technique, and the source of the info, which is a citation.
-Several of these columns contain abbreviations to describe the different variables, which are summarised in Table @\ref(tab:table1). These abbreviations will later be used in the models.
+Several of these columns contain abbreviations to describe the different variables, which are summarised in Table \ref{tab:table1}. These abbreviations will later be used in the models.
 
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3611}}
@@ -248,7 +248,7 @@ This can be tested by converting all the change in forest cover data to positive
 A second approach is to test the change in forest cover as a non-linear relationship in the GAM model. Because a shrinkage penalty is used, this will also test the non-linear assumption and allows the variable for forest cover to be continuous. The disadvantage of this approach is that the relationship between forest cover and change in flow is less easy to interpret, as the non-linear fit in the GAM has no direct parametric form.
 Both these approaches are tested in the results.
 
-The over arching test focuses on identifying the change streamflow as a result of a change in forest cover and potentially affected by different other factors (as indicated by the previous research: \citet{zhang2017}; \citet{filoso2017}; \citet{zhou2015}): climate, size of catchment and length of study. In addition to these earlier identified factors, this study also tested for the factors listed in Table @ref:(tab1)
+The over arching test focuses on identifying the change streamflow as a result of a change in forest cover and potentially affected by different other factors (as indicated by the previous research: \citet{zhang2017}; \citet{filoso2017}; \citet{zhou2015}): climate, size of catchment and length of study. In addition to these earlier identified factors, this study also tested for the factors listed in Table \ref{tab:table1}
 
 As an initial approach we only used the data from \citet{zhang2017} to make sure that the additional catchments added to the data set did not influence the results (This analysis is in supplementary material part 2). This analysis highlights that the newly added catchment and the changes to the dataset create minor differences when repeating the analysis from the original paper.
 
@@ -276,17 +276,14 @@ The overall dataset contains 329 observations of changes in flow, which includes
 \includegraphics[width=0.9\linewidth]{FAOET0data_final_2022} \caption{Distribution of included catchments across the globe based on reported or estimated latitude and longitude}\label{fig:globalmap}
 \end{figure}
 
+** DO WE NEED TO REDO THE MAP? Eliana please provide code **
+
 Apart from looking at the distribution of the values, the spatial locations of the data can also be important, in particular when analysing the effect of climate. The catchments are spread across the world, and relative to \citet{zhang2017}, this dataset has a very similar geospatial distribution. The major climate gradients are represented in the data, but there appears to be some bias in the spatial locations of the data. As the global map (Figure \ref{fig:globalmap}) shows, the distribution of case study catchments covers multiple continents. There is some spatial clustering in the studies in North America, Australia and East Asia.
 
 \hypertarget{cross-correlation-between-the-different-variables}{%
 \subsubsection{Cross correlation between the different variables}\label{cross-correlation-between-the-different-variables}}
 
 A final data exploration is to identify potential cross correlations in the data, which can point to possible interactions or potential biases. This analysis can also provide further insight for the statistical modelling, highlighting potential latent variables in the data set.
-
-\begin{verbatim}
-## pdf 
-##   2
-\end{verbatim}
 
 \begin{figure}
 \includegraphics[width=0.9\linewidth]{variable_corr_plot} \caption{Correlation matrix for all variables}\label{fig:corgraphs}
@@ -309,7 +306,7 @@ The correlation plot (Figure \ref{fig:corgraphs}) highlights several correlation
 
 The results of the overall statistical model that includes all the variables (but no interactions) reinforces some of the results from the correlation analysis.
 
-This includes introducing non-linearity (Equation \eqref{eq:eq2}) for the numerical variables in the model. While increasing non-linearity in the model can increase the flexibility if the model, the shrinkage splines assist with limiting overfitting. The number of knots in the non-linear variables was based on assessment of the edf and k' \textbf{check wood 2006 and explain well}
+This includes introducing non-linearity (Equation \eqref{eq:eq2}) for the numerical variables in the model. While increasing non-linearity in the model can increase the flexibility if the model, the shrinkage splines assist with limiting overfitting. Following \citet{wood2006}, the number of degrees of freedom \emph{k} in the non-linear variables was based on assessment of the effective degrees of freedom in the model output. If the effective degrees of freedom were close to \emph{k - 1} then \emph{k} was increased and the model rerun. By using shrinkage splines, this also results in the whole term being shrunk to zero \citep{wood2006}.
 
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4231}}
@@ -317,7 +314,7 @@ This includes introducing non-linearity (Equation \eqref{eq:eq2}) for the numeri
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1667}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1282}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1410}}@{}}
-\caption{(\#tab:m\_all-linear) Statistical summary for the linear terms the full model}\tabularnewline
+\caption{\label{tab:m-all-linear} Statistical summary for the linear terms the full model}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\centering
 ~
@@ -371,7 +368,7 @@ EA} & 26.05 & 23.84 & 1.09 & 0.28 \\
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1250}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}@{}}
-\caption{(\#tab:m\_all-smooth) Statistical summary for the smooth terms for the full model}\tabularnewline
+\caption{\label{tab:m-all-smooth} Statistical summary for the smooth terms for the full model}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\centering
 ~
@@ -408,13 +405,13 @@ p-value
 
 The overall explaining power of the model can be interpreted from the adjusted \emph{r\textsuperscript{2}} (which is penalised for the number of parameters). This indicates an \emph{r\textsuperscript{2}} of 0.46 and deviance explained is 0.5, suggesting the model only explains about 50\% of the variance in the data.
 
-Inspecting the significance of the variables (Table @ref(tab:m\_all-linear) and Table @ref(tab:m\_all-smooth)) indicates some interesting features.
+Inspecting the significance of the variables (Table \ref{tab:m-all-linear} and Table \ref{tab:m-all-smooth}) indicates some interesting features.
 
 The overall partial slope of the change in forest cover is -0.59, if all other variables are kept constant. This suggest quite strong change in streamflow, moving from fully forested to fully cleared. Over the whole forest cover range, this is a change of -118 mm, with other variables held constant. This change is highly significant, as indicated by the low p-value.
 
 In addition, all the smoothed variables \emph{log10(Area (km\textsuperscript{2}))} (p = 0.03)), \emph{Dryness} (p = 0)) and \emph{length} (p = 0.09)) explain variation in the data. For \emph{length}, the p-value is not strictly smaller, than 0.05, but still indicates some reasonable evidence that the variable explains some of the variation in the change in streamflow.
 
-Furthermore Table @ref(tab:m\_all-linear) indicates that several of the assessment methods explain variation in the change in streamflow, which was also indicated in the correlation analysis. In particular, the assessment methods Paired Watersheds experiments (PWE), Hydrological modelling (HM) and Statistical techniques (SH) are important explaining variables (\(p < 0.05\)).
+Furthermore Table \ref{tab:m-all-linear} indicates that several of the assessment methods explain variation in the change in streamflow, which was also indicated in the correlation analysis. In particular, the assessment methods Paired Watersheds experiments (PWE), Hydrological modelling (HM) and Statistical techniques (SH) are important explaining variables (\(p < 0.05\)).
 
 The remaining variables related to rainfall observation technique, forest type or hydrological regime don't appear to have an influence on the change in flow.
 
@@ -463,7 +460,7 @@ As discussed in the methods, the overall linear response to the change in forest
   There is no need to assume a non-linear relationship, as a linear relationship provides a better fit to the data.
 \end{enumerate}
 
-The smoothed variables in the model can be inspected visually to identify if there are any issues with the fit. This is in addition to using \texttt{gam.check()} in the R package \texttt{mgcv} to test whether the number of knots is adequate.
+The smoothed variables in the model can be inspected visually to identify if there are any issues with the fit. This is in addition to the earlier mentioned checks using \texttt{gam.check()} in the R package \texttt{mgcv} to test whether the number of degrees of freedom \emph{k} is adequate.
 
 \begin{figure}
 \includegraphics[width=0.9\linewidth]{Forest_model_allsmooths} \caption{Visualisation of the smooth variables in the model, the shaded areas are the 95\% confidence intervals associated with the fit of the smooth, the blue line is the mean smoothed relationship, with data plotted as individual points}\label{fig:smoothsmodelall}
@@ -535,7 +532,7 @@ The points related to catchments with very long studies (\textgreater{} 60 years
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1667}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1282}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1410}}@{}}
-\caption{(\#tab:m\_red-linear) Statistical summary for the linear terms the restricted model}\tabularnewline
+\caption{\label{tab:m-red-linear} Statistical summary for the linear terms the restricted model}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\centering
 ~
@@ -633,7 +630,7 @@ Therefore it is worth investigating what effect removing these few data points h
 
 This model, which excludes data with long studies and very dry catchments explains only slightly less of the variation with an adjusted \emph{r\textsuperscript{2}} of 0.46 and a deviance explained of 0.49.
 
-Investigating the non-linear responses suggest that \emph{Dryness} has a non-linear response, which is significant, where changes in forest cover in drier catchments having a greater impact on streamflow (Figure \ref{fig:smoothsmodelredLength} and Table \ref{tab:restrictlength}). Catchment area (\emph{log10(Area (km\textsuperscript{2}))}) still has an impact on flow with p = 0.01, and the relationship looks almost linear. More importantly, the variable \emph{length} is no longer significant, after removal of the two studies with very long lengths.
+Investigating the non-linear responses suggest that \emph{Dryness} has a clear non-linear response, which is significant, where changes in forest cover in drier catchments having a greater impact on streamflow (Figure \ref{fig:smoothsmodelredLength} and Table \ref{tab:restrictlength}). Catchment area (\emph{log10(Area (km\textsuperscript{2}))}) still has an impact on flow with p = 0.01, and the relationship looks almost linear. More importantly, the variable \emph{length} is no longer significant, after removal of the two studies with very long lengths.
 
 \textbf{Possibly insert here a model to investigate total forest area as a random effect}
 
@@ -786,86 +783,130 @@ The results presented so far, while using generalised additive modelling rather 
 \includegraphics[width=0.9\linewidth]{flow_forest_byArea} \caption{Overview of the data highlighting the dominance of small catchment studies which are fully forested or cleared and the scatter in the data}\label{fig:overview}
 \end{figure}
 
-Figure \ref{fig:overview} provides a further overview of the whole data set and the size of the catchments and the different assessment methods are highlighted. This figure clearly indicates that the data relating to high changes in forest cover are all small catchments and relate mostly to paired watershed experiments. In contrast, data related to large catchments are related to smaller changes in forest cover and different methods, such as hydrological modelling and elasticity analysis. This confirms the model results (Table @ref(tab:model\_assess-linear)) and the earlier correlation analysis (Figure \ref{fig:corgraphs}).
+Figure \ref{fig:overview} provides a further overview of the whole data set and the size of the catchments and the different assessment methods are highlighted. This figure clearly indicates that the data relating to high changes in forest cover are all small catchments and relate mostly to paired watershed experiments. In contrast, data related to large catchments are related to smaller changes in forest cover and different methods, such as hydrological modelling and elasticity analysis. This confirms the model results (Table \ref{tab:modelassess-linear}) and the earlier correlation analysis (Figure \ref{fig:corgraphs}).
 
-It is possible that one of the reasons why \citet{zhang2017} separated their analysis in large (\textgreater{} 1000 km\textsuperscript{2}) and small (\textless{} 1000 km\textsuperscript{2}) catchments, is that they realised this difference in assessment methods. However, this is not explicitly identified.
+It is possible that one of the reasons why \citet{zhang2017} separated their analysis in large (\textgreater{} 1000 km\textsuperscript{2}) and small (\textless{} 1000 km\textsuperscript{2}) catchments, is that they realised this difference in assessment methods and wanted to account for this. However, this is not explicitly identified, and there is no real physical explanation of the 1000 km\textsuperscript{2} threshold.
 
 The other interesting point in Figure \ref{fig:overview} is that the variation in the data increases as the catchment size decreases and the change in forest cover increases. This also means that the overall variation in the data for paired watershed experiments (PWE) is much greater than for any of the other methods.
 
 \hypertarget{is-there-a-problem-with-extending-local-experimental-data-to-larger-scales}{%
 \subsection{Is there a problem with extending local experimental data to larger scales?}\label{is-there-a-problem-with-extending-local-experimental-data-to-larger-scales}}
 
-\hypertarget{catchment-size}{%
-\subsection{Catchment size}\label{catchment-size}}
+The overarching reason for combining past studies at a global scale is to infer relationships that can be used to make more general statements or develop more global scale modelling of impacts \citep[i.e.][]{zhou2015, jackson2005, hoekvandijke2022}. Therefore, the results from the analysis could be seen as a confirmation of the earlier research \citep{zhang2017, filoso2017, zhou2015, jackson2005}. However, the explaining power of the developed model is quite low and a lot of variation in the data is unexplained. As is highlighted in the introduction there are four major issues with this type of analysis, and the results from this paper also highlight these issues. Here, these issues are further explained.
 
-Essentially, the overall analysis shows that there is a clear effect of catchment size (Figure \ref{fig:smoothsmodel7}), however, in contrast to \citet{zhang2017}, there is no evidence of a distinct threshold in the size of the catchment that determines the change in the streamflow as a result of changes in forestry. If anything the scatter in the data (in the change in flow) is greater for the smaller catchments then for the larger catchments (Figure \ref{fig:overview}). In other words, the response to changes in forest cover is more consistent for larger catchments than it is for smaller catchments.
+\hypertarget{issue-1-latent-variables-are-not-included-in-the-typical-single-covariate-analysis}{%
+\subsubsection{Issue 1: Latent variables are not included in the typical single covariate analysis}\label{issue-1-latent-variables-are-not-included-in-the-typical-single-covariate-analysis}}
 
-An explanation for the catchment size effect might be that large catchments have more storage and longer flow paths and therefore have more opportunity to buffer the effects of forest cover change \citep{navas2019}. Therefore, specifically if the forest cover change is small relative to the catchment size, the effect of this change will be buffered.
+The results show that it is simply impossible to analyse a single covariate relationship, as there are several latent variables in the data. An example of this is the general relationship of the change in flow as a function of the change in forest cover. Clearly the relationship is highly impacted by the fact that all the small catchments have large changes in forest cover and are all associated with paired watershed experiments. Without taking these factors into account, a definite answer about the impact of forest cover on the change in flow cannot be given. Furthermore, the large variability in the change in flow data for these small catchments (Figure \ref{fig:overview}) indicates that there is a further (unknown) variable that explains the variation in the data.
 
-There are two caveats on this explanation. The first is that there is a distinct trend in the data between \(\Delta\)Forest cover and log10(Area (km\textsuperscript{2})) (linear regression indicates an adjusted \emph{r\textsuperscript{2}} of 0.35 with a slope of -9.67) indicating that for every 10 km\textsuperscript{2} increase in catchment size on the average, the forest cover change data is approximately 10\% lower. This is basically a result of the fact that large changes in forest cover in larger catchments are difficult to ``implement'' in an experiment.
+If the remaining variation in the residuals is small relative to the trend, then there is little need to identify further latent variables, but if the variation is large, then it is unclear if it is the latent variable that determines the trend, or the actual relationship in the data.
 
-This is also reflected in the second caveat. Most of the data from the smaller catchments are ``real observed data'' using paired watershed studies, while for larger catchments, the data are mostly based on modelling approximations using either elasticity analysis (EA), Hydrological modelling (HM) or a combined use of statistical methods (SH) or quasi paired watershed analysis (QPW) (Figure \ref{fig:overview}). For larger catchments, these techniques all provide an approximation of the effect of forestry on streamflow rather than a direct comparison of catchments. This is a confounding factor that is not easily addressed in the regression modelling attempted here. Furthermore, the catchments analysed using EA, are concentrated in the drier end of the Dryness index scale compared to the other methods, with only the paired watershed experiment (PWE) assessment technique covering the full range of dryness indices.
+Similarly, the data for the larger catchments containing smaller changes in forest cover are dominated by hydrological modelling studies, resulting in a further complication. If the reponse of the streamflow in the modelling studies is the result of the conceptualised relationship between streamflow and forest cover (possibly from a subset of the paired catchment studies), then it is impossible to say if the change in streamflow is real, or simply a result of a pre-conceived model relationship. Is the smaller variation in the data for smaller changed in forest cover (Figure \ref{fig:overview}) a result of similar conceptualised model relationships, or actual variation between catchments and climate types? Currently this question cannot be answered.
 
-In other words, the current data sets cannot resolve whether there actually is a non-linear catchment size × forest cover effect, which then feeds into the buffering in larger catchments.
+This becomes problematic when extrapolated to larger scales. A clear example of this is the paper by \citet{hoekvandijke2022} where the conceptualised relationship between forest cover and streamflow pre-determines the outcomes of the global modelling.
 
-Apart from a difficulty of analysing complex confounding factors in the data, a general limitation of the type of analysis presented is that this work does not consider the spatial arrangement of the forest clearing in the catchments. While for fully or almost fully cleared smaller catchments this might not be an issue, it is perceivable that for larger catchments being partially cleared, a interaction between spatial location and clearing could be a factor in determining the change in streamflow. Clearing head water catchments on shallower soils might have a larger impact than clearing in downstream areas on deeper soils. As a result there is still a need for catchment scale studies related to the impact of changes in forest cover on streamflow.
+The only way to analyse changes in streamflow as a function of forest cover in larger catchments is to actually derive this from observed data of long term streamflow and forest cover (as was done in \citet{levy2018}).
 
-\hypertarget{model-residuals}{%
-\subsection{Model residuals}\label{model-residuals}}
+We are not arguing that there is no relationship between streamflow and forest cover, and there might indeed be a global relationship that can be discovered. But, this relationship can only be discovered if we are able to address some of the major other factors that explain the variability, and work with actual data and not model outputs.
 
-As pointed out earlier the residuals of the model diverge from the normal distribution for large positive and large negative residuals. These residuals are mainly associated with the small catchments from the paired watershed studies (Figure \ref{fig:overview}), which show very high variability. The final model removing the data with large values of Dryness and long study lengths has removed some of the spreading, mainly for the large negative residuals (Figure \ref{fig:gamcheckredLength}).
+\hypertarget{issue-2-interpretation-errors-due-to-complex-descriptions-of-the-experiments-in-the-original-papers}{%
+\subsubsection{Issue 2: Interpretation errors due to complex descriptions of the experiments in the original papers}\label{issue-2-interpretation-errors-due-to-complex-descriptions-of-the-experiments-in-the-original-papers}}
+
+The second major issue that became clear from reviewing many of the original papers is that some of the variability might be an interpretation problem. In many cases the original description in the paper is interpreted to extract the \% change in streamflow from the \% change in forest cover. This seems like a simple activity, but this is not always the case.
+
+Two examples can be highlighted:
+
+\begin{itemize}
+\tightlist
+\item
+  The papers from \citet{almeida2016} and \citet{ferreto2020} partly discuss the same experiment and the same catchment. In \citet{almeida2016}, the methods discuss how two experimental catchments of approximately 80ha in size which were harvested. One catchment was 100\% harvested and the other 30\% harvested. Throughout the paper the catchments are indicated as 100\% harvested and 30\% harvested. However, only after reading \citet{ferreto2020}, did we discover that in fact the 100\% and 30\% refer to the ``eucalyptus plantation area'', which was about 60\% of the total area. This is in fact mentioned in Table 1 in \citet{almeida2016}, but does not appear in the text. The question then becomes how to interpret this in the data base for this paper. Clearly it was a 100\% and 30\% change in forest cover, but only for the 60\% plantation cover, not for any of the other areas in the catchment, which included native vegetation and riparian vegetation. There are several other examples like this in the different papers \citep[for example][]{blackie1979kimakia, blackie1979kericho}.
+\item
+  Another example is the paper by \citet{waterloo2007}. This modelling study in Fiji of the clearing of a catchment reports the changes in streamflow over parts of the year. For a period of 324 days the streamflow increased from 252 mm to 580 mm (a 230\% increase if calculated as \(580/252*100\)) and for a second period of 309 days the streamflow increased from 90 mm to 194 mm (a 215 \% increase). However, how we convert this to a change in annual flow (which most of the other data relate to) is difficult. The original data base listed a 50 \% change in flow, but it is difficult to identify how this is calculated. We suspect that results from \(252/580*100 \approx 50\) and \(90/194 \approx 50\).
+\end{itemize}
+
+Clearly, interpreting older papers can be difficult and this can result in variation and errors in the data that is being analysed. Similar to the last issue, if these errors only introduce small variation in the data, then it will not limit the interpolation to larger scales. At this point, it is not clear if this is indeed the case. The large variation in the experimental watershed data suggests that this might be a more serious problem.
+
+\hypertarget{issue-3-aggregation-of-data-that-originates-from-different-experiments-with-different-objectives-across-a-wide-time-period}{%
+\subsubsection{Issue 3: Aggregation of data that originates from different experiments with different objectives across a wide time period}\label{issue-3-aggregation-of-data-that-originates-from-different-experiments-with-different-objectives-across-a-wide-time-period}}
+
+The last issue leads into the next issue. For many of the small catchment studies listed in the database, the assumption is that the original experimental design can be interpreted in terms of a binary ``forestation'' or ``deforestation''. However, the real situation is often much more complex and fuzzy.
+
+Many of the paired watershed experiments included a harvesting and replanting or regrowth after harvesting or fire experiment \citep[e.g.][]{cornish1993, cornish2001, webb2013}. As a result, it becomes difficult to assess how we interpret the change in flow as a result of a change in cover. In many cases we would expect the flow to change over time as a function of the recovery \citep{jones2017} and therefore the timeseries of the flow needs to be assessed over a longer time.
+
+Many of the papers in the database report early results (for example 1 or 3 years after harvesting), but some also report longer time periods. As earlier work \citep{cornish2001, jones2017} has highlighted, we can always expect a larger effect directly after harvesting, but this effect diminishes over time (even if it does not always return to the original state). Comparing studies reporting results directly after treatment to longer term studies therefore becomes problematic.
+
+In our work, the variable \emph{length} was used in the model to test for some of these effects, but this was insignificant in the model (Table \ref{tab:restrictlength}). Given the other variation in the data, this does not necessarily mean that there is no effect.
+
+This is further complicated by the variation in different types of clearing and the different types of vegetation. In the original \citet{zhang2017} a variable to describe the \emph{forest type} was included (Table \ref{tab:table1}), but in the model this is not significant (Table \ref{tab:m-all-linear}). This is probably because the broad classification used does not capture the actual variation in runoff response. In addition, as Figure \ref{fig:corgraphs} shows, there is a correlation between coniferous forests and snow dominated hydrological regimes, further complicating the analysis.
+
+An additional complication related to combining studies related to wild fires or bush fires and logging studies is the differences in vegetation recovery. For example, \citet{heath2014} found that catchments with resprouting species around Sydney indicated little change in the streamflow in comparison to species regrowing from seed further south on the continent \citet{zhou2015bushfire}.
+
+As a result, it can be difficult to exactly pinpoint the change in flow as a result of the change in cover, as well as being difficult to assess what the exact change in cover actually was.
+
+As indicated before, if the overall variation due to this issues is small, then this would not be an issue for upscaling the results, but the large variation for the smaller catchments suggest that effects could be considerable. As \citet{jones2017} indicate, this really needs time series analysis of the different experiments. Some of the time series data might not be recoverable from the older experiments, which will limit the opportunities for analysis.
+
+\hypertarget{issue-4-transcription-errors-in-the-data}{%
+\subsubsection{Issue 4: Transcription errors in the data}\label{issue-4-transcription-errors-in-the-data}}
+
+This issue seems to mainly occur if data is collected from other review papers. This might be because some of the original papers are difficult to locate and therefore values from reporting papers are used. In supplementary data part 1, several changes to the original data sets have been documented, and as can be seen several of these are transcription errors.
+
+This does influence the results in \citet{zhang2017}, comparing the results in Supplementary material 2 with the original paper. The main example is that in this study the largest catchment (watershed \#1 in \citet{zhang2017}) had to be removed, as this study actually involved paired watershed experiments on very small plots, for which the characteristics were not recoverable.
+
+Clearly, this is a problem for all reviews that attempt to bring together large numbers of results from published papers, and where actual results are copied rather than using some sort of automated text analysis.
+
+In the end, careful review of the data and the original papers can circumvent most of this issue. And, making the data available (as \citet{zhang2017}, \citet{zhou2015} and \citet{filoso2017} have done) provides an opportunity for review by other researchers, and over time most of the transcription errors can be resolved.
 
 \begin{figure}
-\includegraphics[width=0.9\linewidth]{residual_plot_model7} \caption{Residual plots for the final model indicating a small improvement in the residual distribution towards normal}\label{fig:gamcheckredLength}
+\includegraphics[width=0.9\linewidth]{AssessmentTechnique_byDeltaQf} \caption{Boxplot of the variation in the change in flow for the different assessment techniques, showing the dominance of the variation and the outliers in the dataset in the paired watershed experiments}\label{fig:assessment}
 \end{figure}
 
-The reason why the regression model is better able to resolve the variance in the data for the negative residuals (generally related to increases in forest cover) compared the large positive residuals might link back to the issue of buffering and flow paths in the catchments. Small catchments that are stripped of most of the forest cover would provide little buffering, interception and infiltration, does leading to greater changes in flow. In contrast, revegetated catchments would have increased interception and buffering and therefore relatively smaller changes in flow. This also provides an explanation for the differences between forest cover removal and forest cover restoration (Figure \ref{fig:increasedecrease}).
+\textbf{Maybe include a figure that shows the variation in the flow data by Assessment technique}
 
-\hypertarget{the-effect-of-climate}{%
-\subsection{The effect of climate}\label{the-effect-of-climate}}
+\hypertarget{general-discussion}{%
+\subsection{General discussion}\label{general-discussion}}
 
-In drier catchments, changes in forest cover have greater impact on flow, which is similar to the observations in earlier studies \citep{zhang2017, zhou2015, filoso2017}. This is most likely because in these catchments the overall flow is surface flow dominated and therefore the buffering that is afforded by groundwater flow is not as important. As the dataset currently does not include a separate variable for groundwater inputs (although this effect is estimated in several of the studies), the effect again cannot be analysed separately. This points to a need for future studies that unravel this interaction.
+\textbf{Still to do}
 
-\hypertarget{interactions}{%
-\subsection{Interactions}\label{interactions}}
-
-Generally this study did not consider interactions, but the above discussion suggest that there are possible several interactions. The relationships between forest cover change and \emph{Area (km\textsuperscript{2})} and between \emph{Area (km\textsuperscript{2})} and assessment technique have already been highlighted. However there are further unexplored interactions between the study length and some of the variables.
-
-A principle component analysis of the numeric data reveals some of these interactions (Figure \ref{fig:pcaplot}), such as between \emph{length} and \emph{Dryness}. Including these interactions into the smooths of the models (data not shown) increases the explained variance slightly but does not fundamentally change the significance of the different variables.
-
-\begin{figure}
-\includegraphics[width=0.9\linewidth]{PCA_biplot_Alldata} \caption{Biplot of the first two principle components using a principle component analysis on the numerical values of the data set}\label{fig:pcaplot}
-\end{figure}
-
-\hypertarget{further-considerations}{%
-\subsection{Further considerations}\label{further-considerations}}
-
-In contrast to \citet{filoso2017}, we did not identify that the length of the observation period is a significant variable in our final model. However, there are further confounding factors in the data, which were not analysed in this study. These were also classified by \citet{filoso2017} and these factors might create biases in the data set that can impact the overall assessment. For example, snow dominated hydrological regimes (SD) tend to be dominated by Coniferous Forests (CF), while the majority of the rain dominated regimes are all broadleaf of mixed type forests (BF or MF). However, the forest type classification is very coarse and does not fully capture possible physiological differences that could affect evapotranspiration and therefore changes in streamflow \citep{vervoort2021}. This is not further investigated in this study, but with more data available this might provide further opportunities for investigations.
-
-Large databases based on historical studies, such as used here, also have significant uncertainty. While we have reviewed a large number of the studies in more detail, we have generally assumed that the assessments of past authors of the changes in streamflow and changes in forest cover are correct. More generally a lot of the data in the database are ``summary data'' extracted from the paper and this often neglects a lot of possibly important detail in the original studies. This introduces additional uncertainty in the analysis.
-
-By making the updated the database of this study available, we hope that this provides further incentive to investigate the impact of land cover change on streamflow more generally.
+\begin{itemize}
+\tightlist
+\item
+  studies are conditional on the data
+\item
+  residuals: should the data be further transformed\\
+\item
+  no interactions\\
+\item
+  implications for other ``meta-analysis'' studies\\
+\item
+  future research needs
+\end{itemize}
 
 \hypertarget{conclusions}{%
 \section{Conclusions}\label{conclusions}}
 
-More rigorous checking of an existing database on catchment studies relating to changes in forest cover to changes in flow and more detailed statistical analysis results in both agreement and disagreement with older studies. It demonstrates that analysis of large databases of essentially ``aggregated data'' should be considered carefully and simple single variable regressions often fail to capture the complexity in the data. The variablility in the aggregated historical data is simply too large.
+This study demonstrates that analyses of large databases of essentially ``aggregated data'' should be considered carefully and simple single variable regressions often present simplistic relationships that can be misleading.
 
-As with any analysis, the results of the statistical analysis in this paper need to be considered ``conditional on the data''.
-Conditional on the data, it can be determined that the impact of forestry on streamflow:
+There are four major interlinked reasons why this is the case, and this has implications for meta-analyses in Environmental Science and Hydrology in general:
 
 \begin{itemize}
+\tightlist
 \item
-  is greater for forest clearing then for reforestation;
+  The existence of latent variables in the data that create the appearance of a relationship that really does not exist;\\
 \item
-  is reduced for larger watersheds;
+  The difficulty in fully interpreting the specifics of different studies;\\
 \item
-  Increases for drier watersheds; and
+  The difficulty of integrating data from seemingly similar studies, but with quite different objectives; and\\
 \item
-  is sensitive to the assessment method used in the historical data.
+  The chance of transcription errors influencing the data.
 \end{itemize}
 
-Stronger statements about the trends in the change in flow cannot be made until more data or better data becomes available in this area, especially in relation to larger catchments. Furthermore, the current study analyses a large global dataset of aggregated data. This analysis does not exclude more local and regional effects that cannot be identified in the global data. In addition, a more detailed analysis of the historical studies, in particular focussing on differences in flow components can further clarify some of the uncertainties highlighted here.
+Any statistical analysis, including the one in this paper, needs to be considered ``conditional on the data'', and given the issues indicated, extrapolation of the results of summary studies into global hydrological models has to be done with great care. Better would be to explicitly include uncertainty in the extrapolation of the results.
+
+This therefore has implications for the recent growth in meta-analysis review papers, which has been boosted by increased computational capacity and much better on-line accessible data bases with research data. Clearly, this requires careful definition of the search terms, and follow-up review of the harvested papers, as well as an understanding that the statistical relationships can be hiding other unknown factors. As the old adagium says: Correlation is not the same as causation.
+
+Future research should \ldots{}
+
+In addition, a more detailed analysis of the historical studies, in particular focussing on differences in flow components can further clarify some of the uncertainties highlighted here.
 
 \hypertarget{acknowledgements}{%
 \section{Acknowledgements}\label{acknowledgements}}
