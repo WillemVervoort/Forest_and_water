@@ -232,6 +232,8 @@ The final column in the improved data base is a ``notes'' column, which we added
 
 The aim of the statistical analysis is to highlight the most important variables in the data set that explain the change flow as a consequence of changes in forest cover. This first aim is similar to \citet{zhang2017}, but the main difference is that we start off with all variables in the data set in the model. Subsequently the analysis will concentrate on how the individual variables in the dataset relate to each other and how latent variables in the data set can be masked and result in relationships that might not really exist. Finally, the analysis will highlight how the results are conditional on the dataset.
 
+In the statistical analysis we are not necessarily seeking the best ``predicitive'' model, and as such do not perform a traditional variable selection process. Rather, we focus on analyzing the predictor variables in the full model to identify how all the variables explain the variance in the dependent variable.
+
 To estimate how the change in streamflow is affected by the change in forest cover, while considering the effects of the other variables, we applied generalised additive modelling (GAM) \citep{wood2006}.
 
 The general model tested is:
@@ -253,9 +255,9 @@ Both these approaches are tested in the results.
 
 The over arching test focuses on identifying the change streamflow as a result of a change in forest cover and potentially affected by different other factors (as indicated by the previous research: \citet{zhang2017}; \citet{filoso2017}; \citet{zhou2015}): climate, size of catchment and length of study. In addition to these earlier identified factors, this study also tested for the factors listed in Table \ref{tab:table1}
 
-As an initial approach we only used the data from \citet{zhang2017} to make sure that the additional catchments added to the data set did not influence the results (This analysis is in supplementary material part 2). This analysis highlights that the newly added catchment and the changes to the dataset create minor differences when repeating the analysis from the original paper.
+As an initial approach we tested whether the additional catchments added to the original data from \citet{zhang2017} did not majorly influenced the results (This analysis is in supplementary material part 2). This analysis highlights that the newly added catchment and the changes to the dataset create minor differences when repeating the analysis from the original paper. However, this means that the results of the studies are still comparable.
 
-To make all the data and code publicly available, all the final data and analysis for this paper are located on github:\\
+To make all the data and code used for the analysis publicly available, all the final data and analysis for this paper are located on github:\\
 \href{https://github.com/WillemVervoort/Forest_and_water/tree/publish}{https://github.com/WillemVervoort/Forest\_and\_water} on the ``publish'' branch.
 
 \hypertarget{results}{%
