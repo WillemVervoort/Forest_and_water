@@ -10,7 +10,7 @@
 70,B. Kirkton,6.85,2354,BF,RD,-20,10,OB,PWE,"Blackie,1993",537,56.347393,-4.469782,6,1983,1989,GM,1,,Coordinates from GM as there is no map in the paper. Monachyle and Kirkton catchments with the reference gauge at Tulloch Farm
 71,B. Monachyle,7.7,2770,BF,RD,14,-2,OB,PWE,"Blackie,1993",682,55.11075,-3.629414,6,1983,1989,GM,1,,Coordinates from GM as there is no map in the paper. 
 72,Barratta,0.364,1705,BF,RD,-25,10.8,OB,PWE,"Cornish and Vertessy, 2001",1507,-32.21152816,151.7277882,16,1983,1999,GM,1,,"Original publication, cornish 1993 highlights that this is a clearing operation, so change in cover should be negative. Changed to -25\%"
-73,Bauta,43.5,2038,BF,RD,10.2,-14.7,MD,HM,"Beck et al.,2013",1682,18.236,-66.455,28,1970,2000,PL,1,,"catchment B, in Beck 2013 time was calculated considering landuse maps and data availability, USGS ID 034000. (1996–1998 were excluded)"
+73,Bauta,43.5,2038,BF,RD,10.2,-14.7,MD,HM,"Beck et al.,2013",1682,18.236,-66.455,28,1970,2000,PL,1,,"catchment B, in Beck 2013 time was calculated considering landuse maps and data availability, USGS ID 034000. (1996–1998 were excluded). Paper says results were insignificant"
 74,"Beaver  Creek,  AZ  #1 ",1.24,457,CF,SD,-100,0,OB,PWE,"Brown,1971",1431,34.574444,111.873611,6,1963,1969,PL,1,,"Location determined as per map, using closer USGS station number 343428111511500 BEAVER CREEK AT MOUTH NR CAMP VERDE, AZ, Paper does not mention that is catchment #1"
 75,"Beaver  Creek,  AZ  #3-1",1.46,451,CF,SD,-83,166.7,OB,PWE,"Bosch and Hewlett, 1982",510,35.139167,77.530278,5,1963,1968,GM,1,,"not in the Hibbert reference  from Bosch and Hewlett (1982) exp number 73. Treatmment : 1968, 83% overstorey killed with herbicides
 Location as USGS 350821077314903 JO-047 BEAVER CREEK RS 3
@@ -29,7 +29,7 @@ southwest of the Spout Springs Winter Recreation Area in https://www.fs.fed.us/p
 southwest of the Spout Springs Winter Recreation Area in https://www.fs.fed.us/pnw/pubs/pnw_rn361.pdf"
 82,Blue  Mts.  OR  #3,0.14,1355,CF,SD,-100,0,OB,PWE,"Fowler et al. ,1987",1195,45.71685187,-118.1553033,6,1976,1982,GM,1,,"Location based on statement: about 22 km northwest of Elgin and 8 km
 southwest of the Spout Springs Winter Recreation Area in https://www.fs.fed.us/pnw/pubs/pnw_rn361.pdf"
-83,Bollygum,0.151,1617,BF,RD,-32,48.3,OB,PWE,"Cornish and Vertessy, 2001",1507,-32.21152816,151.7277882,16,1983,1999,GM,1,,This should a decreas in forest cover rather than an increase.
+83,Bollygum,0.151,1617,BF,RD,-32,48.3,OB,PWE,"Cornish and Vertessy, 2001",1507,-32.21152816,151.7277882,16,1983,1999,GM,1,,This should be a decrease in forest cover rather than an increase.
 84,"Boreal Plain, Alberta",0.524,486,CF,SD,-51,0,OB,PWE,"Devito et al., 2005",529,56.63277778,111.7713889,4,1997,2001,PL,1,,
 85,Bosbouk.,2.009,1296,BF,RD,-80,23.6,OB,PWE,"Scott,1993",1687,-33.96,18.93,1,1986,1987,AL,1,1,"Bosboukloof, see also notes on 184 and Slingsby et al. 2021 DOI: 10.1002/hyp.14101  The Scott paper only analyses 1 year after fire, so it should be a decrease in cover, changed to -80"
 86,C. FM-N,0.03,1410,BF,RD,100,-49.5,OB,PWE,"Robinson et al. ,1991",870,47.8,12.433333,15,1970,1985,GM,1,,Chiemsee experimental catchments. Approximate location from Farley 2005
@@ -40,7 +40,7 @@ southwest of the Spout Springs Winter Recreation Area in https://www.fs.fed.us/p
 91,Caramávida,94,1532,BF,RD,18.7,-6.9,OB,SH,"Iroumé and Palacios,2013",1053,-37.918453,-73.072947,30,1962,1992,GM,1,,
 92,"Castle Creek, Ariz U S.A West Fork",3.64,639,CF,SD,-16.6,50.7,OB,PWE,"Rich and Thompson,1974",1591,38.583333,-109.25,17,1955,1972,PL,1,,"Location from USGS 09075400 CASTLE CREEK AT ASPEN, CO"
 93,"Cathedral ,Peak. South Africa CII",1.9,1400,BF,RD,74,-39.5,OB,PWE,"Nänni,1970",1446,-28.925207,29.134798,15,1950,1965,GM,1,0,Different sub catchment from 94
-94,"Cathedral ,Peak. South Africa CIII",1.42,1400,BF,RD,84,-2,OB,PWE,"Bosch,1979",1589,-29,-29.25,8,1950,1958,PL,1,,"Catchment 3, Different sub catchment from 94"
+94,"Cathedral ,Peak. South Africa CIII",1.42,1400,BF,RD,84,-2,OB,PWE,"Bosch,1979",1589,-29,29.25,8,1950,1958,PL,1,,"Catchment 3, Different sub catchment from 94"
 95,"Central New York, U.S.A.: Sage Brook",1.81,974,MF,RD,47,19.8,OB,PWE,"Schneider and Ayer, 1961",975,42.53111111,-75.42527778,26,1932,1958,GM,1,,Data from https://waterdata.usgs.gov/
 96,Chicken Cr.  UT ,0.06,1900,BF,RD,-100,24.5,OB,PWE,"Johnston ,1984",1814,39.478939,-111.991207,4,1975,1978,GM,1,,
 97,Cibuco,39.8,1827,BF,RD,31.4,11.1,MD,HM,"Beck et al.,2013",1811,18.352,-66.336,30,1970,2000,PL,1,,"catch D, USGS ID 038320. All catchments from the study from Beck et al. 2014 should probably be removed from the database as the paper clearly indicates that there is no evidence of a change in flow due to reforestation. The values that are cited in the database should all be set to ""not significant from 0"", so might be included as 0. Including them wiht values is misleading."
@@ -148,9 +148,9 @@ Original source in this book. https://www.vgls.vic.gov.au/client/en_AU/VGLS-publ
 184,"Jonkershoek, South Africa:Bosboukloof",2,1390,BF,RD,57,-4.6,OB,PWE,"Van der Zeland Kruger,1975",1687,-33.96222222,18.93111111,32,1941,1973,PL,1,0,"Same catchment as 85, but older study. Authors are ""van der Zel and Kruger"". Original paper not accessible. Coordinates from supplementary material S1 in Slingsby, JA, de Buys, A, Simmers, ADA, et al. Jonkershoek: Africa's oldest catchment experiment - 80 years and counting. Hydrological Processes. 2021; 35:e14101. https://doi.org/10.1002/hyp.14101. Dates guessed from description of treatments in Slingsby et al supplementary material."
 185,Kamabuchi No. 2,0.03,2641,MF,RD,-100,5.1,OB,PWE,"Nakano, 1971",,,,,,,,0,,"only in japanese, it is in Bosch and Hewlett review but cannot id catchment"
 186,Kangasvaara,0.56,700,CF,RD,-35,5.8,OB,"PWE, HM","Koivusalo et al., 2006",596,63.85,28.966667,10,1992,2001,AL,1,,
-187,Kericho Sambret,7.02,2236,BF,RD,-34,13.1,OB,PWE,"Pereira,1962",1530,-0.366667,35.35,2,1959,1960,GM,1,,Location from Blackie et al . from Bosch and Hewlett 1982. 
+187,Kericho Sambret,7.02,2236,BF,RD,-34,13.1,OB,PWE,"Pereira,1962",1530,-0.366667,35.35,2,1959,1960,GM,1,,Location from Blackie et al . from Bosch and Hawlett 1982. 
 188,Kimakia,0.364,2307,CF,RD,100,10.9,OB,PWE,"Bruijnzeel,1990",1458,-1.216667,36.633333,6,1967,1973,,1,,Time period from Blackie 1979 3.2.1 The Water Balance of the Kimakia Catchments
-189,Kimakia A,0.35,2014,BF,RD,-100,80.5,OB,PWE,"Bruijnzeel,1990",1458,-1.22,36.63,,,,GM,0,1,Duplicate from 188? Could not find evidence of 100% clearcut. It is stated in Blackie 1979 but does not have all the needed data. This could  be just the first year of the clearing.
+189,Kimakia A,0.35,2014,BF,RD,-100,80.5,OB,PWE,"Bruijnzeel,1990",1458,-1.22,36.63,,,,GM,0,1,Duplicate from 188? Could not find evidence of 100% clearcut. It is stated in Blackie 1979 but does not have all the needed data
 190,Kivipuro,0.86,564,CF,SD,-56,4,OB,PWE,"Ide et al.,2013",599,63.866667,28.65,4,1982,1985,AL,1,,
 191,Kokota,0.974,1669,BF,RD,-29,35.4,OB,PWE,"Cornish, 1993",1507,-32.21152816,151.7277882,5,1983,1988,GM,1,,"This treatment was a plantation establishment after logging. So the increase in flow is related to the removal of trees (-29%) and refers to the first five years in the treatment. See also Cornish and Vertessy, 2001."
 192,La Baells in Llobregat,504,905,BF ,RD,14,-15,OB,HM,"Gallart et al.,2011",1219,42.33888889,1.685277778,36,1957,1993,AL,1,,Author gives only one location for 192 and 231
@@ -164,7 +164,7 @@ Original source in this book. https://www.vgls.vic.gov.au/client/en_AU/VGLS-publ
 200,Luano,1.2,1400,BF,RD,-100,56,OB,PWE,"Bruijnzeel,1990",2209,-14.117072,30.163542,5,1964,1969,,1,,"Location from Google Maps. From Bruijnzeel,1990, five year study from 1964"
 201,LuErGou watershed,12,570,BF,RD,4,0,OB,SH,"Wang et al.,2009",1183,34.55833333,105.725,,1989,2003,PL,1,,
 202,Lynx Ck,8.21,1092,CF,SD,-67,15,OB,"QPW, EA","Mahat et al.,2016",914,49.57384193,-114.5671048,5,2005,2010,GM,1,,
-203,Lysina watershed,293,834.5,MF,RD,-54,-9.5,OB,HM,"Yu et al.,2015",686,50.05,12.66666667,28,1984,2012,AL,1,,"Area seems incorrect. Paper says 29.3 ha within a larger 610 km2 area, but modelling is only for the 29.3 ha "
+203,Lysina watershed,0.293,834.5,MF,RD,-54,-9.5,OB,HM,"Yu et al.,2015",686,50.05,12.66666667,28,1984,2012,AL,1,,"Area seems incorrect. Paper says 29.3 ha within a larger 610 km2 area, but modelling is only for the 29.3 ha "
 204,"M2, Canada",401,895,CF,SD,-4.9,0,OB,QPW,"Buttle and Metcalfe, 2000",780,48.55,-81.05,5,1985,1990,PL,1,,Porcupine River at Hoyle. Point location M2 station 04MD004 from  https://www.r-arcticnet.sr.unh.edu/v4.0/ViewPoint.pl?View=ALL&Unit=mm&Point=4378
 205,M5,0.0035,1987,CF,RD,-43.2,35.2,OB,PWE,"Dung et al.,2012",1265,34.35,136.4166667,2,2007,2009,AL,1,,
 206,Mabegondo,0.1,1490,BF,RD,80,-22,OB,HM,"Rodriguez Suarez,2014",2194,8.35,43.016667,9,1999,2008,PL,1,,
@@ -187,7 +187,7 @@ Original source in this book. https://www.vgls.vic.gov.au/client/en_AU/VGLS-publ
 223,N. Fork-2,0.41,810,CF,SD,-40,55.8,OB,PWE,"Troendle and King, 1987",1165,39.85,-105.92,3,1978,1984,GM,1,1,"reference should be: Troendle and King, 1987, watershed is the same as 222, just a part called ""unit 8"" in the paper"
 224,Nanxiaohe Catchment,36.3,523.38,BF,RD,40,-49.6,OB,PWE,"Bi et al,2009",1179,35.683333,107.5,54,1954,2008,AL,1,,Dongzhuanggou and Yangjiagou subcatchments
 225,"Natural Drainages, Ariz., U.S.A, A",0.05,452,BF,RD,-100,0,OB,PWE,Ingebo and Hibbert 1974,2701,32.740981,-111.548249,17,1954,1971,GM,1,,"Hibbert,1971 does not report this catchment Location as Natural Drainage Watersheds in Central Arizona. From Bosch and Hawlett 1982, treatment: 1954, 100% chemically controlled. Ingebo and Hibbert 1974 reports an incrase of 13% in water yield, meanwhile Bosch and Hawlett 1982 saysonly ""not significantly"". "
-226,"Natural Drainages, Ariz., U.S.A, C",0.05,452,BF,RD,-100,30.2,OB,PWE,Ingebo and Hibbert 1974,2701,32.740981,-111.548249,17,1954,1971,,1,,"From Bosch and Hewlett 1982,  in 1954it was 100% chemically controlled. Data from Ingebo and Hibbert 1974. "
+226,"Natural Drainages, Ariz., U.S.A, C",0.05,452,BF,RD,-100,30.2,OB,PWE,Ingebo and Hibbert 1974,2701,32.740981,-111.548249,17,1954,1971,,1,,"From Boch and Hawlett 1982,  in 1954it was 100% chemically controlled. Data from Ingebo and Hibbert 1974. "
 227,"Needle  Branch, OR ",0.71,2480,CF,SD,-82,32.6,OB,PWE,"Stednick ,1996",937,44.53,-123.88,23,1950,1973,GM,1,1,Copy of #63?
 228,Nilgiri,0.318,1535,BF,RD,59,-15.8,OB,PWE,"Samraj et al. ,1988",1543,11.373234,76.760133,13,1968,1981,AL,1,,
 229,North York,8.29,1116,CF,SD,0.2,0,OB,"QPW, EA","Mahat et al.,2016",928,49.59159839,-114.5920183,5,2005,2010,GM,1,,
@@ -215,7 +215,7 @@ Original source in this book. https://www.vgls.vic.gov.au/client/en_AU/VGLS-publ
 251,S. Fork ,1,813,BF,RD,-45,0,OB,PWE,"Bosch and Hawlett, 1982",1974,33.839837,-110.95813,16,1953,1966,GM,1,,"Should be Bosch and Hwelett 1982? Assumed this is South Fork, Workman Creek Approximate location using GE as there is no reference in Bosh and Hewlett 1982"
 252,S. TekamA,0.377,1880,BF,RD,-100,117,OB,PWE,"Bruijnzeel,1990",1466,3.865191,102.5316,1,1973,1973,,1,,Location from Google Maps
 253,S. TekamB,0.592,1880,BF,RD,-60,85.3,OB,PWE,"Bruijnzeel,1990",1466,3.865191,102.5316,1,1973,1973,,1,,Location from Google Maps
-254,Sambret,7,2130,BF,RD,-54,27.7,OB,PWE,"Bruijnzeel,1990",1641,-0.36517,35.286034,1,1958,1958,,1,,"Found in Bruijnzeel,1990 under Kericho catchments. Same catchment as 187 different time study"
+254,Sambret,7,2130,BF,RD,54,27.7,OB,PWE,"Bruijnzeel,1990",1641,-0.36517,35.286034,1,1958,1958,,1,,"Found in Bruijnzeel,1990 under Kericho catchments. Same catchment as 187 different time study"
 255,"San Dimas,  CA ",3.54,650,BF,RD,-1.7,9.4,OB,PWE,"Harris,1973, 1977 , Harr , 1976 ",2072,34.12947,-117.820902,1,1958,1958,GM,1,,"not found in Harr , 1973 . Found in Bosch and Hawlett as Rowe (1963). Treatment 1958, 1.7% cut (riparian vegetation). Assumed one year as in the paper"
 256,Santa Paula,104,680,MF,RD,-71,0,OB,PWE,"Bart and Hope,2010",1913,34.41333333,-119.0730556,5,1986,1990,USGS,1,,usgs coordinates
 257,Sespe,130,707,MF,RD,-40,0,OB,PWE,"Bart and Hope,2010",1829,34.56944444,-119.2563889,5,1986,1990,USGS,1,,usgs coordinates
@@ -235,11 +235,11 @@ Original source in this book. https://www.vgls.vic.gov.au/client/en_AU/VGLS-publ
 271,Tanama,47.1,2102,BF,RD,42.7,-4.7,MD,HM,"Beck et al.,2013",1724,18.301,-66.782,40,1960,2000,PL,1,,"catch  A, USGS ID 028000"
 272,Tanllwyth ,0.89,2500,CF,RD,-49,3.5,OB,PWE,"Robinson and Dupeyrat, 2005",602,52.47208827,-3.716747794,17,1983,2000,GM,1,,"The tree felling is actually incremental in time, so not really a single observation. In addition, there are no clear individual coordinates for the subcatchments in Plynlimon. Approximate location from  https://www.ceh.ac.uk/our-science/projects/plynlimon-experimental-catchments"
 273,Thomas Cr. AZ,2.27,768,CF,SD,-34,14,OB,PWE,"Gottfried, 1991 ",1826,33.70825253,-109.2426114,8,1979,1987,GM,1,,
-274,Thomson,1.964,950,BF,RD,70,-55.3,OB,SH,"Borg et at. , 1988",1443,36.177915,116.0039231,9,1978,1986,GM,1,,
+274,Thomson,1.964,950,BF,RD,70,-55.3,OB,SH,"Borg et al. , 1988",1443,36.177915,116.0039231,9,1978,1986,GM,1,,
 275,"Three Bar, Artz, USA, B",0.19,582,BF,RD,-100,272.7,OB,PWE,"Ingebo,1974; Hibbert et al,1975",2254,33.82856136,-111.1483972,10,1955,1971,GM,0,,Ingebo 1974 mentioned watersedh B from Natural Draiganes as control.
 276,"Three Bar, Artz, USA, C",0.39,638,BF,RD,-100,227.6,OB,PWE,"Hibbert ,1971,1979; Hibbert and Ingebo,1971;",2254,33.82856136,-111.1483972,10,1955,1971,GM,0,,
-277,"Three Bar, Artz, USA, F",0.28,681,BF,RD,-100,225,OB,PWE,"Hibbert,1967,1969,1971,1979; Hibbert et al., 1975",2254,33.82856136,-111.1483972,8,1969,1977,GM,0,,Time study from Bosch and Hewlett 1982. Paper from them says 80% increase in runoff after 8 yrs treatment. In Hibbert 1971 says Watershed F was not treated until 1969 and was not included in that study
-278,Tierkloof,1.57,1809,BF,RD,36,-11.8,OB,PWE,"Bosch and  Hewlett, 1982",1711,-33.95,18.25,24,,,,1,,"better reference is  van Wyk, 1987 https://journals.co.za/doi/pdf/10.10520/AJA03784738_2493. See also Slingsby et al. 2021 Jonkershoek: Africa's oldest catchment experiment - 80 years and counting https://doi.org/10.1002/hyp.14101"
+277,"Three Bar, Artz, USA, F",0.28,681,BF,RD,-100,225,OB,PWE,"Hibbert,1967,1969,1971,1979; Hibbert et al., 1975",2254,33.82856136,-111.1483972,8,1969,1977,GM,0,,Time study from Bosch and Hawlett 1982. Paper from them sayas 80% increase in runoff after 8 yrs treatment. In Hibbert 1971 says Watershed F was not treated until 1969 and was not included in that study
+278,Tierkloof,1.57,1809,BF,RD,36,-11.8,OB,PWE,"Bosch and  Hewlett, 1982",1711,-33.95,18.25,24,,,,1,,"reference should be Bosch, J.M., Hewlett, J.D., 1982. A review of catchment experiments to determine the effect of vegetation changes on water yield and evapotranspiration. Journal of Hydrology, 55: 3-23.  https://www2.ffpri.go.jp/labs/fwdb/sites/takaragawaE.htm"
 279,Treated A,0.553,1080,CF,RD,-43.2,35.3,OB,PWE,"Webb, 2009",1358,-33.373992,148.997547,9,1999,2007,GM,1,,
 280,Treated B,0.554,1080,CF,RD,-40.3,82.7,OB,PWE,"Webb, 2009",1358,-33.373992,148.997547,7,2001,2007,GM,1,,
 281,Upper Penticton Creek - 241 creeks,5,750,CF,SD,-50,6,OB,PWE,"Winkler et al.,2015",963,49.65,119.4,11,1995,2007,GM,1,,

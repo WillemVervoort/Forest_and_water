@@ -21,11 +21,13 @@ address:
   - code: d
     address: Institute of Fluid Mechanics and Environmental Engineering, School of Engineering, Universidad de la Republica, 11200 Montevideo, Uruguay
 abstract: |
-  Three recent papers review and analyse large global datasets related to impacts of forest cover on streamflow. Using three different approaches, they all find a strong relationship between forestation, de-forestation and streamflow. However, the past approaches in the literature are variable and can be substantially improved in statistical rigour, and indicate different confounding factors on the impact of forestation. The data for the recent three papers were reviewed, combined and re-analysed highlight the following: 1) How is streamflow impacted by the change in forest cover as a function of catchment area; 2) how is this relationship conditioned by the length of the study, and climate; and 3) are there other possible variables that impact the observed change in streamflow? Generalised additive models were used to run flexible regressions including multiple variables. 
-  Changes in forest cover cause changes in streamflow, however this change is different between deforestation and reforestation, and strongly affected by climate, with drier climates indicating larger changes in streamflow. Removal of forest cover causes a 32\% greater change in flow relative to increasing forest cover. Area of the catchment only affects the change in streamflow after log transformation, due to high skew in the data. Smaller catchment dominate the database with 42\% of the data < 1 km^2^ and 65\% of the data < 10 km^2^. Length of the study and initial year of the study did not affect the change in flow, in contrast to other reported studies. Despite these findings, overall explained variance (38\%) of the regression model is low due the quality of the inputs and additional unknown confounding factors. 
+  Three recent papers review and analyse large global datasets related to impacts of forest cover on streamflow. Using three different approaches, they all find a strong relationship between forestation, de-forestation and streamflow. The data for the recent three papers were reviewed, combined and re-analysed using generalised additive modelling. The overall results of the modelling indicates similar results to previous papers. The results are however problematic, the data set is unbalanced, and there are underlying correlations that suggest further factors that influence te results. The area of the catchment is strongly related to the assessment technique and the variability in the response data.
+  A careful review of the data and the methodology in the previous papers highlights that there are  four interlinked reasons that are problematic:  1) The existence of latent variables in the data that create the appearance of a relationship that really does not exist; 2) The difficulty in fully interpreting the specifics of different studies; 3) The difficulty of integrating data from seemingly similar studies, but with quite different objectives; and 4) The chance of transcription errors influencing the data. Overall this indicates that while valuable data can be extracted from past studies, the above problems need to be considered before results are extrapolated to greater and global scales.  
 keywords: 
-  - keyword1
-  - keyword2
+  - data analysis
+  - forest cover change
+  - global scales
+  - literature review
 journal: "Journal of Hydrology"
 date: "`r Sys.Date()`"
 # classoption: preprint, 3p, authoryear
@@ -36,6 +38,8 @@ csl: elsevier-harvard.csl
 output:   
   bookdown::pdf_book:
     base_format: rticles::elsevier_article
+header-includes:
+    - \usepackage{setspace}\doublespacing
 ---
 
 Introduction
@@ -47,7 +51,7 @@ For the purpose of this paper, *watershed* and *catchment* are interchangeable t
 
 As mentioned, several review papers have summarized the plethora of forestation and deforestation studies across the globe, in relation to paired watershed studies [@brown2005; @hewlett1984], related to reforestation in particular [@filoso2017], and more generally [@jackson2005; @zhang2017].  These studies aim to generalize the individual experimental and research findings and to identify if there are global trends or relationships. Others have used the understanding from these studies to extrapolate to global scales [@hoekvandijke2022].
 
-There has been a recent push in the hydrological community [@evaristo2017] to use 'meta-analysis' to summarise past studies. The claim is that because a meta-analysis uses clearly defined search terms and statistical methods to analyse the results, that this will lead to more reliable summaries of past research. 
+There has been a recent push in the hydrological community [@evaristo2020metaanalysis] to use 'meta-analysis' to summarise past studies. The claim is that because a meta-analysis uses clearly defined search terms and statistical methods to analyse the results, that this will lead to more reliable summaries of past research. 
 
 From the most recent reviews on forest impact on streamflow [@zhang2017; @filoso2017], the study by @filoso2017 is a clear meta-analysis, while the other is not. However, both authors have developed an impressive global database of catchment studies with changes in streamflow due to changes in forest coverand use statistical approaches to analyse the resulting data. The @zhang2017 dataset, which covers over 312 studies, is described in terms of the change in streamflow as a result of the change in forest cover, where studies related to both forestation (increase in forest cover) and deforestation (decrease in forest cover) were included. In contrast, the paper by @filoso2017 focused primarily on reforestation, and covered an equally impressive database of 167 studies using a systematic review. In this case the collected data is mostly coded as count data and only a subset of 37 studies was analysed for actual water yield change. There is some overlap between the two data sets, but there are also some studies unique to both sets. The more regionally concentrated and detailed study by @levy2018 is a further independent dataset with no overlap with the other studies. However, for this study only the flow and rainfall data is available for the catchments, and the change in landcover was derived from satellite data and was not made available.
 
@@ -62,7 +66,7 @@ There are some clear limitations in these studies, and some of this applies to m
 In contrast to the single covariate linear regression in the earlier studies [@zhang2017; @filoso2017] and the top-down Budyko modelling [@zhou2015; @hoekvandijke2022], the regional Brazilian Cerrado study [@levy2018] provides a carefully designed statistical approach using mixed effects modelling and Differences-in-Differences modelling focusing specifically on the effect of deforestation. The analysis specifically accounted for differences between catchments and differences due to variations in climate. Their conclusion highlighted that in particular dry season streamflow was affected by deforestation.
 
 Given all these previous reviews and the seemingly clear conclusions about the impact of forest cover change on streamflow, the question is why another paper?
-There is a real attraction in the meta-analysis idea of statistical analysis of past studies to be able to extrapolate findings to larger scales and to identify factors across global scales [@evaristo2017]. 
+There is a real attraction in the meta-analysis idea of statistical analysis of past studies to be able to extrapolate findings to larger scales and to identify factors across global scales [@evaristo2020metaanalysis]. 
 However, there is also a real danger in this process, which this paper aims to highlight. There are four potential errors (or limitations) in such global meta-analyses:  
 
 - Impact of latent variables that are not included in the typical single covariate analysis;
@@ -88,6 +92,7 @@ require(mgcv)
 require(visreg)
 require(patchwork)
 library(ggcorrplot)
+require(latex2exp)
 suppressWarnings(require(knitr))
 suppressWarnings(require(bookdown))
 suppressWarnings(require(pander))
@@ -269,7 +274,6 @@ Results
 The overall dataset contains `r nrow(All_data)` observations of changes in flow, which includes the newly identified data sets and after removing identified duplicate data and lines with missing data. In contrast, the original dataset from @zhang2017 contained `r nrow(Zhang_all)` catchments and the @filoso2017 study used 37 catchments (Table S2 in @filoso2017). The current number of catchments is the result of the removal of duplicates and our modifications and additions. The overall distribution of changes in flow is highly skewed as is the distribution of changes in forest cover and *Area km^2^*. The values of changes in flow greater than 100\% and smaller than -100\% clearly create long tails on the change in flow distribution. Note also the large number of studies with 100\% forest cover reduction. Clearly visible is also that smaller catchments dominate the database with 42\% of the data from catchments < 1 km^2^ and 65\% of the data for catchments < 10 km^2^ (Figure 1). This high skew in some of the data can create difficulties in the statistical modelling and further transformation of the data might be required.
 
 ```{r, echo = F, warning = F, message=F, eval =F}
-require(latex2exp)
 png("DataExploration.png", width = 2500, height = 1800, res = 300)
 All_data %>%
   mutate(log10Area = log10(Area_km2)) %>%
@@ -325,8 +329,6 @@ write_csv(All_data2, "All_data2.csv")
 
 include_graphics("FAOET0data_final_2022.png")
 ```
-
-** DO WE NEED TO REDO THE MAP? Eliana please provide code **
 
 Apart from looking at the distribution of the values, the spatial locations of the data can also be important, in particular when analysing the effect of climate. The catchments are spread across the world, and relative to @zhang2017, this dataset has a very similar geospatial distribution.  The major climate gradients are represented in the data, but there appears to be some bias in the spatial locations of the data. As the global map (Figure \@ref(fig:globalmap)) shows, the distribution of case study catchments covers multiple continents. There is some spatial clustering in the studies in North America, Australia and East Asia.
 
@@ -453,7 +455,7 @@ pander(table_comparison, caption = "(\\#tab:tablecomparison) Comparison of alter
 ```
 
 
-As discussed in the methods, the overall linear response to the change in forest cover was compared to a transformation of the negative forest cover to positives and a check whether the relationship might be non-linear. This approach tests whether the impact on streamflow from removing forest cover is different from reforestation, as outlined in the methods. The detail of the comparison is highlighted in Supplementary material part 3. However, generally the results of the analysis showed two main points (Table \@ref(tab:tablecomparison):  
+As discussed in the methods, the overall linear response to the change in forest cover was compared to a transformation of the negative forest cover to positives and a check whether the relationship might be non-linear. This approach tests whether the impact on streamflow from removing forest cover is different from reforestation, as outlined in the methods. The detail of the comparison is highlighted in Supplementary material part 3. However, generally the results of the analysis showed two main points (Table \@ref(tab:tablecomparison)):  
 
 1. The model assuming a simple linear relationship between change in forest cover (both positive and negative) and the change in flow explained the most variation in the data and indicated the best performance in terms of the Aikaike Information Criterium (AIC); and  
 2. There is no need to assume a non-linear relationship, as a linear relationship provides a better fit to the data.
@@ -501,7 +503,7 @@ include_graphics("residual_plot_model_all.png")
 ```
 
 
-As this is not always shown in papers discussing regression relationship, the residual distribution is provided in more detail (Figure \@ref(fig:gamcheckmodelall). Visually, the residuals appear approximately normal, although there is a noticable skew in a limited number of the data in the upper part of the distribution (Figure \@ref(fig:gamcheckmodelall)). This is related to a limited number catchments that have very high changes in streamflow in the data set. In other words, the distribution of the residuals is somewhat fat-tailed. 
+As this is not always shown in papers discussing regression relationship, the residual distribution is provided in more detail (Figure \@ref(fig:gamcheckmodelall)). Visually, the residuals appear approximately normal, although there is a noticable skew in a limited number of the data in the upper part of the distribution (Figure \@ref(fig:gamcheckmodelall)). This is related to a limited number catchments that have very high changes in streamflow in the data set. In other words, the distribution of the residuals is somewhat fat-tailed. 
 
 One solution could be to transform the data, however this is not that simple. As the data for the change in flow cover the domain $\mathbb{R}$, a simple log or Gamma transformation is not a solution. More complex transformations make the results of the regression difficult to interpret, and at some point can be slightly contrived.
 
@@ -590,7 +592,7 @@ pander(Table_assessment, caption = "(\\#tab:tableassess) Distribution of assessm
 ```
 
 
-One concern with the results presented so far is that there are a few assessment techniques in the data set with a very low number of observations and could influence the results of the analysis. This includes the category of Quasi paired watersheds and combinations of elasticity analysis and hydrological modelling (EA,HM) and paired watersheds and hydrological modelling (PWE,HM) (Table \@ref(tab:tableassess). <!-- and Figure \@ref(fig:assessment)). -->
+One concern with the results presented so far is that there are a few assessment techniques in the data set with a very low number of observations and could influence the results of the analysis. This includes the category of Quasi paired watersheds and combinations of elasticity analysis and hydrological modelling (EA,HM) and paired watersheds and hydrological modelling (PWE,HM) (Table \@ref(tab:tableassess)). <!-- and Figure \@ref(fig:assessment)). -->
 
 Therefore, the model was rerun excluding the combined assessment techniques (EA, HM), (PWE, HM) and (QPW, EA).  
 
@@ -684,7 +686,7 @@ Two examples can be highlighted:
 - The papers from @almeida2016 and @ferreto2020 partly discuss the same experiment and the same catchment. In @almeida2016, the methods discuss how two experimental catchments of approximately 80ha in size which were harvested. One catchment was 100\% harvested and the other 30\% harvested. Throughout the paper the catchments are indicated as 100\% harvested and 30\% harvested. However, only after reading @ferreto2020, did we discover that in fact the 100\% and 30\% refer to the "eucalyptus plantation area", which was about 60\% of the total area. This is in fact mentioned in Table 1 in @almeida2016, but does not appear in the text. The question then becomes how to interpret this in the data base for this paper. Clearly it was a 100\% and 30\% change in forest cover, but only for the 60\% plantation cover, not for any of the other areas in the catchment, which included native vegetation and riparian vegetation. There are several other examples like this in the different papers [for example @blackie1979kimakia; @blackie1979kericho]. 
 - Another example is the paper by @waterloo2007. This modelling study in Fiji of the clearing of a catchment reports the changes in streamflow over parts of the year. For a period of 324 days the streamflow increased from 252 mm to 580 mm (a 230\% increase if calculated as $580/252*100$) and for a second period of 309 days the streamflow increased from 90 mm to 194 mm (a 215 \% increase). However, how we convert this to a change in annual flow (which most of the other data relate to) is difficult. The original data base listed a 50 \% change in flow, but it is difficult to identify how this is calculated. We suspect that results from $252/580*100 \approx 50$ and $90/194 \approx 50$. 
 
-Clearly, interpreting older papers can be difficult and this can result in variation and errors in the data that is being analysed. Similar to the last issue, if these errors only introduce small variation in the data, then it will not limit the interpolation to larger scales. At this point, it is not clear if this is indeed the case. The large variation in the experimental watershed data suggests that this might be a more serious problem.
+Clearly, interpreting older papers can be difficult and this can result in variation in the data that is being analysed. Similar to the last issue, if these errors only introduce small variation in the data, then it will not limit the interpolation to larger scales. At this point, it is not clear if this is indeed the case. The large variation in the experimental watershed data suggests that this might be a more serious problem.
 
 ### Issue 3: Aggregation of data that originates from different experiments with different objectives across a wide time period    
 
@@ -702,7 +704,7 @@ An additional complication related to combining studies related to wild fires or
 
 As a result, it can be difficult to exactly pinpoint the change in flow as a result of the change in cover, as well as being difficult to assess what the exact change in cover actually was. 
 
-As indicated before, if the overall variation due to this issues is small, then this would not be an issue for upscaling the results, but the large variation for the smaller catchments suggest that effects could be considerable. As @jones2017 indicate, this really needs time series analysis of the different experiments. Some of the time series data might not be recoverable from the older experiments, which will limit the opportunities for analysis.
+As indicated before, if the overall variation due to this issues is small, then this would not be an issue for upscaling the results, but the large variation for the smaller catchments suggest that effects could be considerable. As @jones2017 indicate, this really needs time series analysis of the different experiments. However, some of the time series data might not be recoverable from the older experiments, which will limit the opportunities for analysis. We will discuss this further below.
 
 ### Issue 4: Transcription errors in the data
 
@@ -730,18 +732,75 @@ dev.off()
 include_graphics("AssessmentTechnique_byDeltaQf.png")
 ```
 
-**Maybe include a figure that shows the variation in the flow data by Assessment technique**
-
 
 ## General discussion
 
-**Still to do**
+In this paper, a few studies have been singled out in the analysis. The choice of focus was mainly driven by the data that was made available by the authors of these papers [@zhang2017; @filoso2017], which provide a rich case study for the current paper. 
 
-- studies are conditional on the data
-- residuals: should the data be further transformed  
-- no interactions  
-- implications for other "meta-analysis" studies  
-- future research needs
+Field research is by nature limited in space and time, due to the high costs involved of setting up experiments. This is particularly true for experiments in hydrology and forest hydrology, where field sites need to cover sufficient spatial and temporal variability. This means there is a general need to extrapolate the local results to larger scales to inform decision making and policy.
+
+However, as is demonstrated in this paper, there are multiple issues when this local scale data is extrapolated to larger scales. It clearly demonstrates that the results of any model (in this case a regression model) is highly dependent on the data, but also on the assumptions in the model. From the perspective of extrapolating local data to global scales for policy advice and decision making [i.e. @hoekvandijke2022; @jackson2005], this is an important point. 
+
+### Residuals of the model
+
+The residuals of the final model presented in this paper (Figure \@ref(fig:gamcheckmodelall)) indicate that the residual distribution remains fat-tailed, causing deviations from an assumed $\epsilon \sim N(0,\sigma^2)$. This once again highlights that there is unexplained variation at the extremes of the distribution, once again related to the paired watershed experiments (Figure \@ref(fig:assessment)). Generally,in statistical models, the approach would be to further normalise the residuals through transformations. However, in this case this might be difficult and might not resolve all the issues due to the large variation in the data.
+
+### Interactions
+
+The current modelling approach does not consider any interactions between the variables, and this would offer another approach to understand the variation in the data. As already indicated in Figure \@ref(fig:corgraphs), there are interactions between different variables. This further complicates the extrapolation of the local scale experiment data to global scales and to extend historical data to current management and decisions.
+
+In this case, interactions were not included because, as was shown, there are bigger problems with trying to extrapolate the existing data, and the data itself can be problematic. To be able to model the interactions well, the nature of the variables and interactions need to be understood and or clearly hypothesized. Otherwise it becomes another case of correlation without causation.
+
+### Implications for other "meta-analysis" studies
+
+There has been a recent push to develop more meta-analysis studies in hydrology [@wang2020; @evaristo2020metaanalysis], and we strongly believe that developing new insights by combining historical data sets from reviewed papers is highly valuable. However, this paper highlights that there is considerable chance that large historical data sets include latent variables and are more complex than envisioned. This is particularly true for more historical work, as methods of observation and even apporaches to management have changed considerably. The same management description is not necessarily the same action on the ground. A carefully designed and systematic approach can prevent some of bigger problems as is demonstrated in @wang2020, where both the approach and the catchment area are investigated as latent variables. 
+This is particularly relevant, where the results of meta-analyses are extrapolated to make global predictions without clearly quantified uncertainties (such as in @hoekvandijke2022 and @wang2020).
+
+A second potential danger is the extrapolation of the local small catchment results and conclusions tolarger scales, but beyond the original  scope of the studies. For example, the current database is mainly related to forest harvest, bush fire and reforestation/plantation management. It is tempting to use the result of a large scale analysis of this data to make inferences about overall landuse change [@li2017; @wang2020], but this would not be valid, as the deforestation studies are generally not a transition to an agricultural landuse or pasture, but regrowing into forest. Similarly, using the plantation studies to extrapolate to "reforestation" (as in @filoso2017 and @hoekvandijke2022) is also tenuous. Plantation forests are generally fast growing hybrids that will have quite different ecophysiology, particularly in South America [@jones2017; @binkley2017], while other reforestation, for example for salinity control in Australia, might focus on a mix of native species. Given the link between ecophysiology and water and carbon budgets, care should be taken in extrapolation, introducing a further error.    
+
+A final factor is the effect of climate change [@vervoort2021] on runoff, even if the effects are still minor. Earlier papers [@li2017; @wang2020] have analysed climate effects relative to management effects in the data, but these studies did not explicitly test for climate change. Given that the database of studies now captures almost 100 years of work, we cannot ignore a climate change trend that is potentially hidden in the data. A simple inclusion of the start date of the experiment (*From*) in the GAM model does suggests an increase in change in the percentage of flow over time. However, this is once again not easy to analyse. As the data distribution is uneven in time, and consists of multiple assessment techniques there could be multiple complicating factors, and drawing a firm conclusion would be premature.
+
+
+
+```{r climate_change, echo = F, eval = F}
+
+model_CC <- gam(DeltaQf_perc ~ DeltaF_perc  + 
+                    s(Dryness, k=10,bs="ts" ) + #s(Latitude, bs="ts") + 
+                      s(log10(Area_km2), k = 10, bs = "ts") + s(From, bs = "ts") + 
+                  #s(From, bs = "ts") +
+                    Precip_data_type  + Forest_type + Assessment_technique +
+                    Hydrological_regime, data = All_data3 %>% filter(From > 1910))
+summary(model_CC)
+plot(model_CC)
+gam.check(model_CC)
+# png("DeltaQf_time.png", width = 2500, height = 1800, res = 300)
+# All_data2 %>%
+#   filter(is.na(Forest_Sign)==F) %>%
+#   ggplot(aes(From, DeltaQf_perc)) + 
+#   geom_point(colour = "blue") + facet_wrap(~Forest_Sign, ncol = 1) +
+#   theme_bw() +
+#     theme(axis.title = element_text(size = rel(2)),
+#         axis.text = element_text(size = rel(1.5)))
+# dev.off()
+
+
+
+```
+
+
+### Future research needs (implications for forest hydrology)
+
+This study also points to several further opportunities and future research needs. 
+
+A major focus of many of the papers related to forest hydrology have been specifically interested in the impact of plantation forest operations on the catchment, rather than the transition of forestry to agriculture. As the paper by @jones2017 highlights this means there are opportunities to analyse the time evolution of the catchment response to forestation. Given the large number of studies that look at a time evolution of forest cover (i.e. either clearing and regrowth, or burning and regrowth), this data can offer further insights into the dynamic response of catchments to changes in landcover. This will give further insights into the equilibrium state under forestry. As highlighted, some of the older data is not fully recoverable, but there is often a series of papers related to one experiment, which at least would provide individual time points.
+
+More generally there is a clear need for a more in depth analysis of the data base of studies used here. In particular, more detailed data can potentially be extracted from many of the studies in terms of vegetation species, streamflow responses and responses of components of streamflow (slow flow, quick flow etc.), as well as a more in depth description of the management and actual experimental design.
+
+There is also a clear need to understand the impact of the assessment methods with respect to scale. Extrapolating paired watershed experiment results into models can possibly overlook landscape interactions that are visible at larger scales, but do not occur on smaller scales. For example, this could be the effects of lateral flow and groundwater connectivity and impacts of elevation on landuse. A carefully designed simulation study that specifically investigates the change in stream flow repsonse with scale using local field data for verification can help solve this problem.
+
+At the moment, providing answers to the impact of streamflow at larger scales should generally not be approached by simulation modelling. A better approach is analyzing streamflow data at multiple spatial scales for responses (rather than running simulations) and using satellite data to dynamically include landuse changes appears to be the best approach. The highlighted paper by @levy2018 is currently the best example of a solid statistical approach to analyzing streamflow responses. Simulation modelling can be an approach to analyze different scenarios, if there is clear recognition of the potential impact of the model structure (the algorithms and parameters that describe for example plantation tree growth) on the simulation outcomes.
+
+We envision that in the future more innovative approaches to analyzing data at different scales will be developed.
 
 
 Conclusions
@@ -749,21 +808,16 @@ Conclusions
 
 This study demonstrates that analyses of large databases of essentially "aggregated data" should be considered carefully and simple single variable regressions often present simplistic relationships that can be misleading. 
 
-There are four major interlinked reasons why this is the case, and this has implications for meta-analyses in Environmental Science and Hydrology in general:  
+While the analysis reveals similar conclusions in relation to the response of streamflow to forest cover, there are four major interlinked reasons why these results should be considered carefully. This subsequently has implications for meta-analyses in Environmental Science and Hydrology in general. The reasons higlighted in this paper are:    
 
 - The existence of latent variables in the data that create the appearance of a relationship that really does not exist;  
 - The difficulty in fully interpreting the specifics of different studies;  
 - The difficulty of integrating data from seemingly similar studies, but with quite different objectives; and  
 - The chance of transcription errors influencing the data.
 
-Any statistical analysis, including the one in this paper, needs to be considered "conditional on the data", and given the issues indicated, extrapolation of the results of summary studies into global hydrological models has to be done with great care. Better would be to explicitly include uncertainty in the extrapolation of the results.
+Any statistical analysis, including the one in this paper, needs to be considered "conditional on the data", and given the issues indicated, extrapolation of the results of summary studies to larger scales and into global hydrological models has to be done with great care. Better would be to analyze observed data and explicitly include uncertainty in the extrapolation of the results.
 
 This therefore has implications for the recent growth in meta-analysis review papers, which has been boosted by increased computational capacity and much better on-line accessible data bases with research data. Clearly, this requires careful definition of the search terms, and follow-up review of the harvested papers, as well as an understanding that the statistical relationships can be hiding other unknown factors. As the old adagium says: Correlation is not the same as causation.
-
-Future research should ...
-
- In addition, a more detailed analysis of the historical studies, in particular focussing on differences in flow components can further clarify some of the uncertainties highlighted here.
-
 
 
 Acknowledgements
