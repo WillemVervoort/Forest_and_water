@@ -19,8 +19,8 @@ output:
   bookdown::pdf_book:
     base_format: rticles::elsevier_article
 bibliography: forestandwater.bib
-editor_options: 
-  chunk_output_type: inline
+#editor_options: 
+#  chunk_output_type: inline
 header-includes:
   - \usepackage{setspace}
   - \usepackage{color}
@@ -35,12 +35,10 @@ abstract: |
 This supplementary material is related to 'Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
 
 In this document we tested the following, which is outlined in the methods of the paper.
-The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang2017, these changes were jointly analysed, assuming the effect on the change in flow was linear and the effect of removing forest cover was the same as an equivalent addition of forest cover. Here we test two variation of this approach, leading to three approaches  
+The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang2017, these changes were jointly analysed, assuming the effect on the change in flow was linear and the effect of removing forest cover was the same as an equivalent addition of forest cover. Here we test two variation of this approach, leading to three approaches:    
 
-1. Joint analysis and assuming a linear relationship between the change in streamflow and the change in forest cover, following @zhang2017. 
-
-2. The impact of an increase in forest cover can be different from the same fractional decrease in forest cover. The question becomes how best to analyse this. One approach would be to allow a different slope and a different intercept for the decreases relative to the increases. 
-
+1. Joint analysis and assuming a linear relationship between the change in streamflow and the change in forest cover, following @zhang2017.
+2. The impact of an increase in forest cover can be different from the same fractional decrease in forest cover. The question becomes how best to analyse this. One approach would be to allow a different slope and a different intercept for the decreases relative to the increases.
 3. A second approach is to test the change in forest cover as a non-linear relationship in the Generalised additive model (GAM).
 
 # Methods

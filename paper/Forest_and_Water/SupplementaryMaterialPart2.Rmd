@@ -158,7 +158,7 @@ Figure \@ref(fig:Fig2Zhang) highlights that the overall relationship in the upda
 
 The next figure (Figure \@ref(fig:Fig2Zhangnew)) is the same analysis, but this includes the new data that we identified in papers. Again, this figure highlights that the new datasets have not fundamentally changed the relationships found in @zhang2017.
 
-```{r, echo = F, message = F, warning = F}
+```{r, echo = F, eval = F, message = F, warning = F}
 png("Fig2Zhang.png", width = 2500, height = 1800, res = 300)
 All_data %>%
   filter(dataset == "original Zhang et al data") %>%
@@ -213,7 +213,7 @@ This analysis replicates Figure 3 in @zhang2017, which investigates for large an
 
 We can see from Figure \@ref(fig:Fig3Zhang) that again the updated database for the original dataset results in little change in the relationships for both large and small catchments. However, when the additional new catchments are added to the database (Figure \@ref(fig:Fig3Zhangnew)), the relationships clearly change. In particular, for small catchments gaining forest cover, the sensitivity appears positively correlated with the logarithm of the size of the catchments.
 
-```{r, echo = F, message = F, warning = F}
+```{r, echo = F, eval = F, message = F, warning = F}
 png("Fig3Zhang.png", width = 2500, height = 1800, res = 300)
 All_data %>%
   filter(dataset == "original Zhang et al data") %>%
@@ -269,7 +269,7 @@ The final analysis that we retest here is the relationship in Figure 4 in the or
 
 Similar to earlier analyses in this document Figure \@ref(fig:Fig4Zhang) show that the updated database for the original dataset results in little change in the relationships for both large and small catchments. However, when the additional new catchments are added to the database (Figure \@ref(fig:Fig4Zhangnew)), the relationships clearly change. In particular, for small catchments both for forest gains and losses the relationship changes and appears stronger.
 
-```{r, echo = F, message = F, warning = F}
+```{r, echo = F, message = F, warning = F, eval = F}
 png("Fig4Zhang.png", width = 2500, height = 1800, res = 300)
 All_data %>%
   filter(dataset == "original Zhang et al data") %>%

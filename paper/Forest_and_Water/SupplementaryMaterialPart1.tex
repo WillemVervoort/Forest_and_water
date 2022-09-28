@@ -41,8 +41,8 @@
 \fi
 \hypersetup{breaklinks=true,
             bookmarks=true,
-            pdfauthor={Willem Vervoort/Eliana Nervi/Jimena Alonso},
-            pdftitle={Supplementary Information: Changes to original database},
+            pdfauthor={},
+            pdftitle={Supplementary Information part 1: Changes to original database},
             colorlinks=false,
             urlcolor=blue,
             linkcolor=magenta,
@@ -79,12 +79,17 @@
 
 \begin{frontmatter}
 
-  \title{Supplementary Information: Changes to original database}
-    \author[]{%
+  \title{Supplementary Information part 1: Changes to original database}
+    \author[]{R. Willem Vervoort%
   %
-  }
-  
+  \fnref{1}}
+   \ead{willem.vervoort@sydney.edu.au} 
+    \author[]{Eliana Nervi}
+   \ead{eliananervif@gmail.com} 
+    \author[]{Jimena Alonso}
+   \ead{jalonso@fing.edu.uy} 
       \cortext[cor1]{Corresponding author}
+    \fntext[1]{Corresponding Author}
   
   \begin{abstract}
   This supplementary material file gives an overview of the changes that were made in the original data based on review of the original literature. Overall 36 data points were changed. The most common problem was a change in the sign of the forest change or the streamflow change.
@@ -92,44 +97,54 @@
   
  \end{frontmatter}
 
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+This supplementary material is related to `Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
+
 This document list all the changes that were made to the original \citet{zhang2017} database after review of all the original papers.
 
-A particular problem was that many catchments had the wrong sign for the change in forest cover. There are many catchments with reported positive change in cover and a large increase in flow. These were all checked and corrected if needed and a full list of all these changes is below:
+\hypertarget{discussion-of-changes}{%
+\section{Discussion of changes}\label{discussion-of-changes}}
+
+\textbf{Need to fix up references}
+
+A particular problem was that many catchments appeared to have the wrong sign for the change in forest cover. There are many catchments with reported positive change in cover and a large increase in flow. These were all checked and corrected if needed and a full list of all these changes is below:
 
 \begin{itemize}
 \tightlist
 \item
-  76, Beaver Creek, the flow was corrected from 600\% to 157\% after review of the original publication \citep{baker1984}.\\
+  76, Beaver Creek, the flow was corrected from 600\% to 157\% after review of the original publication \citep{baker1984}.
 \item
-  124, D3, Amatya and Skaggs, 2008: The originally recorded 250\% change by \citet{zhang2017} is clearly wrong. The paper says on page 7: Both of these outflow ratios (0.64 and 0.50) were higher than the calculated expected values of 0.55 for 2003 and 0.44 for 2005, respectively. So value should be \(0.64/0.55*100 - 100\) or \(0.5/044*100 - 100\): 16\% or 13\%. corrected to 16\%
+  124, D3, \citet{amatya2008effects}: The originally recorded 250\% change by \citet{zhang2017} is clearly wrong. The paper says on page 7: Both of these outflow ratios (0.64 and 0.50) were higher than the calculated expected values of 0.55 for 2003 and 0.44 for 2005, respectively. So value should be \(0.64/0.55*100 - 100\) or \(0.5/044*100 - 100\): 16\% or 13\%. corrected to 16\%.
 \item
-  3, Baker Creek, Zhang and Wei, 2012. The original recorde 201.1\% change by \citet{zhang2017} is also wrong. Original paper says on page 2031: Annual mean flow has been increased by 47.6\%. corrected\\
+  3, Baker Creek, \citet{zhangwei2012}. The original recorded 201.1\% change by \citet{zhang2017} also seems wrong. Original paper says on page 2031: Annual mean flow has been increased by 47.6\%. corrected\\
 \item
-  67, April rd, which is incorrectly attributed to Ruprecht and Schofield (1991) in \citet{zhang2017}. This is actually from Ruprecht and Schofield (1989) and the original paper clearly indicates ``clearfelling''. As a result the change in forest cover was changed to -100\% rather than +100\%.\\
+  67, April rd, which is incorrectly attributed to \citet{ruprecht1991} in \citet{zhang2017}. This is actually from \citet{ruprecht1989} and the original paper clearly indicates ``clearfelling''. As a result the change in forest cover was changed to -100\% rather than +100\%.
 \item
-  210, March rd, 100, 147.6. Same problem as 67, Bari et al.~(1996) clearly state that the catchment was cleared, so therefor the change in forest cover changed to -100\%.\\
+  210, March rd, 100, 147.6. Same problem as 67, \citet{bari1996} clearly state that the catchment was cleared, so therefor the change in forest cover changed to -100\%.
 \item
-  213, 214 and 215, Monda 1, 2 and 3. These catchments are tricky. The original paper \citep{oshaughnessy1979} only reports on the control period and indicates that the catchments will be cleared. The later summary paper \citep{watson2001} shows the timeseries of the flow change, but does not report a single value, so the values in the database must have been estimated from the timeseries. The further complication is that the treatment included clearing and reseeding and regrowth. This suggest that the records should be removed from the database, or only the first few years of the experiment used. In any case, if the values are kept, the sign of the change in forest cover needs to changed to negative (Clearing).\\
+  213, 214 and 215, Monda 1, 2 and 3. These catchments are tricky. The original paper \citep{oshaughnessy1979} only reports on the control period and indicates that the catchments will be cleared. The later summary paper \citep{watson2001} shows the timeseries of the flow change, but does not report a single value, so the values in the database must have been estimated from the timeseries. The further complication is that the treatment included clearing and reseeding and regrowth. This suggest that the records should be removed from the database, or only the first few years of the experiment used. In any case, if the values are kept, the sign of the change in forest cover needs to changed to negative (Clearing).
 \item
-  230, Oleolega catchment. The paper describes a removal of forest up to 85\%. changed Delta\_F\_perc to -85 from 90.\\
+  230, Oleolega catchment. The paper describes a removal of forest up to 85\%. changed Delta\_F\_perc to -85 from 90.
 \item
-  312, Yerraminup South. The original publication for this catchment is a Western Australian Water Authority report from 1987, which is hard to find, but we have added a copy in the ``Papers'' folder on github. In this report, in Table 2 on page 11, for the catchment a ``Crown cover'' decrease of 60\% is given. Changed the sign of the change in forest cover: -60\%.\\
+  312, Yerraminup South. The original publication for this catchment is a Western Australian Water Authority report from 1987, which is hard to find, but we have added a copy in the ``Papers'' folder on github. In this report, in Table 2 on page 11, for the catchment a ``Crown cover'' decrease of 60\% is given. Changed the sign of the change in forest cover: -60\%.
 \item
-  72 Barratta, 100 Coachwood, 103 Corkwood, and 83 Bollygum, as cited by \citet{cornish1993} and \citet{cornish2001}. In the database from \citet{zhang2017}, the forest change for all these catchments is positive. However, the paper highlights that these catchments were all logged and either naturally regenerated or were planted with a plantation species. So, similar to the the earlier mentioned Monda catchments, the reported change probably only refers to the first couple of years after clearing (before regrowth). In any case, the reported change in forest cover should be negative (clearing) rather than positive. Corrected for all three catchments.\\
+  72 Barratta, 100 Coachwood, 103 Corkwood, and 83 Bollygum, as cited by \citet{cornish1993} and \citet{cornish2001}. In the database from \citet{zhang2017}, the forest change for all these catchments is positive. However, the paper highlights that these catchments were all logged and either naturally regenerated or were planted with a plantation species. So, similar to the the earlier mentioned Monda catchments, the reported change probably only refers to the first couple of years after clearing (before regrowth). In any case, the reported change in forest cover should be negative (clearing) rather than positive. Corrected for all three catchments.
 \item
-  78, Black Spur 1, the treatments and effects are only reported in a conference paper \citep{jayasuriya1988} and once again indicated clearing, meaning that the change in forest cover should be negative rather than positive (as reported in \citet{zhang2017}). Corrected. Similar to other paired watershed experiments, only the first couple of years can be linked to the effect as later regrowth cancels out part of the increase in flow.\\
+  78, Black Spur 1, the treatments and effects are only reported in a conference paper \citep{jayasuriya1988} and once again indicated clearing, meaning that the change in forest cover should be negative rather than positive (as reported in \citet{zhang2017}). Corrected. Similar to other paired watershed experiments, only the first couple of years can be linked to the effect as later regrowth cancels out part of the increase in flow.
 \item
-  104, Coshocton. Checking the original paper indicates that this is in fact a reduction in flow as a result of reforestation. Changed the sign of Delta\_Q\_f to be negative.\\
+  104, Coshocton. Checking the original paper indicates that this is in fact a reduction in flow as a result of reforestation. Changed the sign of Delta\_Q\_f to be negative.
 \item
-  102, Cold Spring. Checking the original paper \citep{schneider1961} indicates that this is in fact a reduction in flow as a result of reforestation. Changed the sign of Delta\_Q\_f to be negative.\\
+  102, Cold Spring. Checking the original paper \citep{schneider1961} indicates that this is in fact a reduction in flow as a result of reforestation. Changed the sign of Delta\_Q\_f to be negative.
 \item
-  85 Bosboukloof. This is esssentially a duplicate of 184, but the cited paper analyses only 1 year of runoff after a major fire. In any case, the data should reflect a decrease in forest cover: changed the sign of Delta\_f\_perc to -80\%.\\
+  85 Bosboukloof. This is esssentially a duplicate of 184, but the cited paper analyses only 1 year of runoff after a major fire. In any case, the data should reflect a decrease in forest cover: changed the sign of Delta\_f\_perc to -80\%.
 \item
-  259 Shackam Brook. There were a few issues with this catchment in the original database. The name was misspelled and it was incorrectly attributed to \citet{brown2005}. The original paper is the same as 102 \citep{schneider1961}. Finally, the catchments were all reforestation as the title of the original report indicates and the reported streamflows are all decreases. Corrected Delta\_Qf\_perc to -20.7\%.\\
+  259 Shackam Brook. There were a few issues with this catchment in the original database. The name was misspelled and it was incorrectly attributed to \citet{brown2005}. The original paper is the same as 102 \citep{schneider1961}. Finally, the catchments were all reforestation as the title of the original report indicates and the reported streamflows are all decreases. Corrected Delta\_Qf\_perc to -20.7\%.
 \item
-  95 Sage Brook. Similar to 259 and 102, originates from \citet{schneider1961}. Reforestation so Delta\_Qf\_perc corrected to -19.8\%.\\
+  95 Sage Brook. Similar to 259 and 102, originates from \citet{schneider1961}. Reforestation so Delta\_Qf\_perc corrected to -19.8\%.
 \item
-  101 Coalburn. Original publication (Robinson, 1993) which is a symposium paper, is not available. The best summary of the research is in \citet{birkinshaw2014} which summaries 45 years of resaerch in the Coalburn catchment. It was a reforestation experiment, and there was a decrease in the streamflow over the longer time period. Changed to -20.3\%.
+  101 Coalburn. Original publication (Robinson, 1993) which is a symposium paper, can not be located, even after contacting some of the authors. The best summary of the research is in \citet{birkinshaw2014} which summaries 45 years of resaerch in the Coalburn catchment. It was a reforestation experiment, and there was a decrease in the streamflow over the longer time period. Changed to -20.3\%.
 \end{itemize}
 
 A further issue was the inclusion of the results of several catchments, for example from the study by \citet{beck2013}, which had no significant change in flow. Despite this, the ``average'' change in flow was reported in the database. We don't believe that this is correct and the results from such studies should be set to 0. A full list of changes is provided below:
@@ -137,7 +152,7 @@ A further issue was the inclusion of the results of several catchments, for exam
 \begin{itemize}
 \tightlist
 \item
-  97 Cibucio, 123 Culebrinas, 244 Portugues, 161 Grande de Loıza, 271 Tanama, 132 Fajardo, 89 Canovanas, 73, Bauta, 163 Grande de Patillas, 283 Valenciano, 181 Inabon, and 162 Grande de Manati. These are all catchments in Puerto Rico from the study from \citet{beck2013}. They should probably be removed from the database as the paper clearly indicates that there is no evidence of a change in flow due to reforestation. The values that are cited in the database should all be set to ``not significant from 0'', so might be included as 0. Including them with positive or negative values is misleading. This study is a very detailed hydrological modelling study, but in the end finds no significant change in streamflow as a result of deforestation. Values for all 12 studied catchments set to 0 in the database.\\
+  97 Cibucio, 123 Culebrinas, 244 Portugues, 161 Grande de Loıza, 271 Tanama, 132 Fajardo, 89 Canovanas, 73, Bauta, 163 Grande de Patillas, 283 Valenciano, 181 Inabon, and 162 Grande de Manati. These are all catchments in Puerto Rico from the study from \citet{beck2013}. They should probably be removed from the database as the paper clearly indicates that there is no evidence of a change in flow due to reforestation. The values that are cited in the database should all be set to ``not significant from 0'', so might be included as 0. Including them with positive or negative values is misleading. This study is a very detailed hydrological modelling study, but in the end finds no significant change in streamflow as a result of deforestation. Values for all 12 studied catchments set to 0 in the database.
 \item
   188 Kimakia. and 254 Sambret. The data in the database from \citet{zhang2017} appear to originate from \citet{bruijnzeel1990} which gives 3 values for different lengths of studies. However, the values in the original study by \citet{blackie1979kimakia} and \citet{blackie1979kericho} do not seem to add up to the same values, and the specific values are not mentioned in the actual papers. In addition, as \citet{bruijnzeel1990} mentions in the footnotes, the control for Kimakia is a bamboo catchment, while the control for Sambret is a tea plantation. Overall, this suggests that the data are probably not a clear deforestation/reforestation study and should be discarded from the analysis.
 \item
