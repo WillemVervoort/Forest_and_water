@@ -1,0 +1,67 @@
+Watershed #,Watershed name,Area_km2,Pa_mm,Forest_type,Hydrological_regime,Farea_km2,Perc_Farea_pre,yearFarea,Comments,DeltaF_perc,DeltaQf_perc,Precip_data_type,Assessment_technique,Source of info,E0,Latitude,Longitude,Length of study (years),From,To,Location Details*,"Completed 1, Incomplete 0",Possible duplicate,Notes,Dryness
+2,Araguaia River,82632,1730,MF,RD,81805.68,99,1970,total forest cover are from Souza-Filho et al 2015,-27,16.5,SG,HM,Coe et al. 2011,1597,-11.86,-50.72,20,1970,1990,AL,NA,1,Did not find forest variation reported value,0.923121387283237
+3,Baker Creek,1570,542,CF,SD,502.4,87,1996,"Not in the paper, extracted from Forest Practices Board (FPB). 2007. The effect of mountain pine beetle attack and salvage harvesting on streamflows. Special Investigation Report 16, March 2007",-42.2,47.6,SG,SH,"Zhang and Wei, 2012",872,32,103,26,1999,2009,AL,1,NA,"Did not find reported values, original value of flow change is incorrect: Original paper says on page 2031: Annual mean flow has been increased by 47.6 % corrected 201.1 to 47.6. Forested are also corrected from -42.2 to -41.4, as in page 2022 "" cumulative logged area accounted for about 41.4% of the total watershed area""",1.6088560885608856
+4,Be River catchment,7500,2400,BF,RD,3162,42.16,2005,NA,-16.3,0.4,SG,HM,"Nguyen Khoi and Suetsugi,2014",1742,11,106.01,19,1981,2000,AL,1,NA,"Calibration (1981�1990),Validation (1991�2000)",0.7258333333333333
+5,Bowron  River,3500,920,CF,SD,NA,NA,NA,NA,-27,0,OB,SH,"Wei and Davidson,1998",870,53.68,-121.75,5,1950,1955,AL,1,NA,Data from plot 2,0.9456521739130435
+6,Chaohe,4854,500,BF,RD,820.326,16.9,1969,NA,13.9,-21.9,OB,"EA, HM","Wang et al., 2013",1237,42,116,44,1963,2007,AL,1,NA,NA,2.474
+7,Columbia River,567000,1200,CF,SD,300510,53,1990,NA,-21,6.5,SG,HM,"Matheussen et al., 2000",866,53.68,-121.78,10,1969,1979,AL,1,NA,NA,0.7216666666666667
+8,Comet river,16440,660,BF,RD,13612.32,82.8,1960,NA,-44.8,40,SG,HM,"Siriwardena et al., 2006",1306,-37.35,145.15,30,1970,2000,AL,1,NA,NA,1.9787878787878788
+9,CSHC,129654,440.7,BF,RD,109946.59199999999,84.8,1996,NA,30,-21.6,OB,EA,"Zhang et al. , 2008a",1481,37.5,110,41,1959,2000,AL,1,NA,Whole catchment studied in Zhang 2008a (repetitive?),3.3605627410937147
+10,Delegate,1135.65,859,MF,RD,24.92,2.19,1960,NA,16,-12.2,SG,HM,"Tuteja et al. , 2007",1298,-37.01,146.39,40,1960,2000,AL,1,NA,NA,1.5110593713620488
+11,Duqueco,1545,1687,BF,RD,735.42,47.6,1976,NA,15.9,-19.5,OB,SH,"Iroum� and Palacios,2013",1196,-38,-72,43,1962,2005,AL,1,NA,NA,0.7089508002371073
+12,Galas,13100,2000,BF,RD,9467.37,72.27,1988,NA,-3,0,OB,SH,"Adnan and Atkinson, 2011",1464,0,102,12,1988,2000,AL,1,NA,NA,0.732
+13,Gushan,1304,433.1,BF,RD,1304,100,1959,NA,19,-29,OB,EA,"Zhang et al. , 2008a",1414,38,112,41,1959,2000,AL,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006656,3.26483491110598
+14,Hanjiang,159000,871,MF,RD,69642,43.8,NA,yaer is not mentioned,17.4,-4.4,OB,HM,"Wang et al., 2012",1213,30.78,113.82,11,1997,2008,GE,1,NA,NA,1.3926521239954075
+15,Huangfu,3211,393.6,BF,RD,NA,NA,NA,NA,20,-35.8,OB,EA,"Zhang et al. , 2008a",1482,39,111,41,1959,2000,NA,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006657,3.7652439024390243
+16,Japur� River,217367,2700,BF,RD,NA,NA,NA,NA,-12,0,SG,HM,"Coe et al., 2009",1234,-2.1,-67.13,1,2000,2000,GE,1,NA,in Amazon,0.457037037037037
+17,Jialu,1279,407.4,BF,RD,NA,NA,NA,NA,23,-33.5,OB,EA,"Zhang et al. , 2008a",1481,37.5,110,43,1957,2000,AL,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006657,3.6352479135984295
+18,Juru� River,156376,2300,BF,RD,NA,NA,NA,NA,-1,0,SG,HM,"Lima et al, 2014",1204,-6.57,-69.43,49,1950,1999,AL,1,NA,NA,0.5234782608695652
+19,Kejie watershed,1755,966,MF,RD,385.4,21.9,2006,NA,22.4,-3.7,OB,HM,"Ma et al., 2009",1433,25,99.33,32,1974,2006,AL,1,NA,NA,1.4834368530020703
+20,Kelantan,13100,2000,BF,RD,7968.73,60.83,1988,NA,6,0,OB,SH,"Adnan and Atkinson, 2011",1533,5.01,102,31,1975,2006,PL,1,NA,NA,0.7665
+21,Kuye,9289,399.9,BF,RD,NA,NA,NA,NA,20,-24,OB,EA,"Zhang et al. , 2008a",1444,40,110,43,1957,2000,AL,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006658,3.6109027256814206
+22,"L1, Canada",8940,811,CF,SD,7599,85,nd,"Page 3 ""Forests (including treed wetlands) cover from 79
+(M2) to 89% (L2) of basin area""",-25.2,0,OB,QPW,"Buttle and Metcalfe, 2000",1156,48.31,74.57,2,1994,1996,PL,1,NA,Median location,1.4254007398273736
+23,"L2, Canada",6760,807,CF,SD,6016.4,89,NA,"Forests (including treed wetlands) cover from 79
+(M2) to 89% (L2) of basin area",-12.4,0,OB,QPW,"Buttle and Metcalfe, 2000",1469,48.71,64.45,1,1995,1996,PL,1,NA,Median location,1.8203221809169765
+24,"L3, Canada",11900,802,CF,SD,10115,85,nd,"Page 3 ""Forests (including treed wetlands) cover from 79
+(M2) to 89% (L2) of basin area""",-10.8,0,OB,QPW,"Buttle and Metcalfe, 2000",726,48.71,-75,1,1996,1996,PL,1,NA,Median location,0.9052369077306733
+25,"L4, Canada",10000,813,CF,SD,8500,85,nd,NA,-8.6,0,OB,QPW,"Buttle and Metcalfe, 2000",1078,48.82,74.86,1,1996,1997,PL,1,NA,Median location,1.3259532595325954
+26,Lachlan River,8000,767,MF,RD,2320,29,NA,NA,2.8,-2.8,NA,HM,"van Dijk et al., 2007",1987,-33.24,146.42,10,1988,1998,GE,1,NA,NA,2.590612777053455
+27,"M1, Canada",1140,844,CF,SD,969,85,nd,"Page 3 ""Forests (including treed wetlands) cover from 79
+(M2) to 89% (L2) of basin area""",-18.9,0,OB,QPW,"Buttle and Metcalfe, 2000",1367,48.05,47.95,2,1996,1998,PL,1,NA,Median location,1.6196682464454977
+28,Macquarie River,1400,764,MF,RD,420,30,NA,NA,2.6,-2.7,NA,HM,"van Dijk et al., 2007",2021,-31.6,147.79,11,1988,1999,GE,1,NA,NA,2.6452879581151834
+29,Madeira River,906552,2000,BF,RD,314573.544,34.7,NA,"As protected
+area (%)",-13,7,SG,HM,"Lima et al, 2014",1247,-6.84,-62.31,50,1950,2000,AL,1,NA,NA,0.6235
+30,Meijiang-D,6983,1739,MF,RD,2506.897,35.9,2006,deforestation (1968–1984),-11,13,MD,SH,"Liu et al.,2015",1277,26.5,116,16,1968,1984,AL,1,NA,NA,0.7343300747556066
+31,Meijiang-R,6983,1739,MF,RD,1738.7669999999998,24.9,1983,reforestation (1985–2006),46,-6,MD,SH,"Liu et al.,2015",1277,26.5,116,21,1985,2006,AL,1,NA,NA,0.7343300747556066
+32,Miyun Reservoir catchment,15800,506.2,BF,RD,3539.2,22.4,2006,NA,16,-9.7,SG,HM,"Ma et al., 2010",1362,41,117,27,1956,1983,AL,1,NA,"name not found, it is Kejie watershed in the eastern Himalayas. Change citation to: https://doi.org/10.1016/j.jhydrol.2010.06.010""",2.690636112208613
+33,Mores Creek,1033,850,CF,SD,433.86,42,2003,"Boise-Mores Creek Watershed Subbasin. Assessment and Total Maximum Daily Loads. Final. Department of Environmental Quality. June 2009.  https://www.deq.idaho.gov/ The subbasin is dominated by forest and grassland (GAP II 2003). ""Timber species make up approximately 42% of the vegetation cover.""",-12,6,OB,HM,"VanShaar et al., 2002",1701,43,-115,7,1986,1993,GE,1,NA,NA,2.001176470588235
+34,Murray River,13000,1078,MF,RD,9230,71,nd,NA,1.3,-0.9,NA,HM,"Van Dijk et al., 2007",1727,-35.87,144.31,12,1988,2000,GE,1,NA,NA,1.6020408163265305
+35,Murrumbidgee,15000,847,MF,RD,7350,49,nd,NA,2.2,-2.2,NA,HM,"Van Dijk et al., 2007",1880,-34.89,146.59,13,1988,2001,GE,1,NA,NA,2.219598583234947
+36,Nam Pong catchment,12100,1050,BF,RD,9680,80,1957,NA,-53,0,OB,HM,"Wilk et al., 2001",1404,19.55,105.06,18,1970,1988,GE,1,NA,NA,1.3371428571428572
+37,Negro River,582064,2680,BF,RD,NA,NA,NA,NA,-3,0,SG,HM,"Coe et al., 2009",1275,-8.12,-77.98,1,2000,2000,GE,1,NA,NA,0.47574626865671643
+38,Puget Sound basin,30000,1800,MF,RD,23340,77.8,NA,1883,-10,6.8,SG,HM,"Cuo et al., 2009",1003,47.69,-122.06,119,1883,2002,AL,1,NA,NA,0.5572222222222222
+39,Purus River,333480,2300,BF,RD,176410.92,52.9,NA,"As protected
+area (%)",-3,1,SG,HM,"Lima et al, 2014",1221,-7.65,-66.36,51,1950,2001,AL,1,NA,NA,0.5308695652173913
+40,Roda de Ter,1386,938,BF,RD,665.28,48,NA,1979,5,-12,OB,HM,"Gallart et al., 2011",1336,42.06,3,14,1979,1993,GE,1,NA,NA,1.4243070362473347
+41,Sanchuan,4123,462.8,BF,RD,33,0.8,1957,increase 33 to 942 km2,33,-27,OB,EA,"Zhang et al. , 2008a",1386,37,111,43,1957,2000,AL,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006659,2.994814174589455
+42,Shiwang,2327,536.6,BF,RD,1,0,1959,increase 1 to 223 km2,42,-19.1,OB,EA,"Zhang et al. , 2008a",1396,35,110,41,1959,2000,AL,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006660,2.601565411852404
+43,Solim�es #10,1858883,2200,BF,RD,NA,NA,NA,NA,-6,1,SG,HM,"Coe et al., 2009",1260,-2.64,-66.32,1,2000,2000,GE,1,NA,cound not find location differences btw #5,0.5727272727272728
+44,Solim�es #5,867257,2200,BF,RD,NA,NA,NA,NA,-8,2,SG,HM,"Coe et al., 2009",1260,-2.64,-66.32,1,2000,2000,GE,1,NA,cound not find location differences btw #10,0.5727272727272728
+45,Suomo basin,2536,800,BF,SD,731,28.8,1970,"In the paper says that is hectares in Table 3, but calculating total area this value should be in km2",-9.5,20.8,OB,HM,"Chen et al., 2005",858,32.13,102.53,1,1970,1999,GE,1,NA,NA,1.0725
+46,Talarn,1905,1003,MF,RD,651.5100000000001,34.2,1987,Land use maps indicate an increase in the forest cover in all sub-basins for the period 1987–2009,12.6,-25.7,SG,EA,"Buendia et al., 2016a",1310,42.4,1.13,44,1965,2009,GE,1,NA,other rivers,1.3060817547357926
+47,Tapajet River,285072,2100,BF,RD,NA,NA,NA,NA,-20,4,SG,HM,"Coe et al., 2009",1335,-5.29,-56.93,1,2000,2000,GE,1,NA,"Wrong name, Tapaj�s river",0.6357142857142857
+48,The upper reach of the Weihe River,106500,591.46,BF,RD,24777.9,23.3,2006,Afforestation are in km2 1997–2006 in Table 3,16.9,-18,OB,EA,"Zhao et al., 2013",1321,34.83,108.83,50,1958,2008,AL,1,NA,"Wrong spelled name, it is Wei River basin",2.233456193149156
+49,Tocantins River,189048,2000,BF,RD,NA,NA,NA,NA,-58,26,SG,SH,"Costa et al., 2003",1601,-13,-48,35,1960,1995,AL,1,NA,NA,0.8005
+50,Upper Tacuarembo,2097,1300,MF,RD,538.929,25.7,2002,NA,26,-22,OB,SH,"Silveira and Alonso,2009",1602,-31.53,-55.68,18,1975,1993,PL,1,NA,Manuel Diaz Basin,1.2323076923076923
+51,Upper Zagunao River,2528,1072,CF,RD,808.96,32,1994,NA,-15.5,5,MD,SH,"Zhang et al., 2012",872,32,103,26,1970,1996,AL,1,NA,Situated on the Upper Minjiang River of Yangtze River basin,0.8134328358208955
+52,Upstream Heihe river basin,11145,600,CF,RD,2340.45,21,1980,NA,12,8.6,MD,HM,"Wu et al.,2015",832,38,100,30,1980,2010,AL,1,NA,NA,1.3866666666666667
+53,Victoria River,16000,829,MF,RD,6880,43,1956,NA,0.7,-0.7,NA,HM,"van Dijk et al., 2007",1258,-37.15,147.3,14,1988,2002,GE,1,NA,NA,1.517490952955368
+54,Weifen,1548,491.6,BF,RD,5,0.3,1953,increase 5 to 263 km2,27,-19.8,OB,EA,"Zhang et al. , 2008a",1440,37.5,111,44,1956,2000,AL,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006661,2.9292107404393817
+55,Willow  River,2860,820,CF,SD,NA,NA,NA,NA,-31.9,9.8,OB,SH,"Wei and Zhang, 2010",837,-122.5,54.2,50,1953,2003,PL,1,NA,NA,1.0207317073170732
+56,Wuding River watershed,30261,391,BF,RD,10288.74,34,1996,NA,34,-26.5,OB,EA,"Li et al. , 2007",1493,37.99,109.85,40,1960,2000,AL,1,NA,NA,3.8184143222506393
+57,Xiangxi catchment,3200,1000,BF,RD,2678.4,83.7,1987,NA,3.6,-0.7,NA,HM,"Bieger et al., 2015",1167,31.33,110.67,20,1987,2007,AL,1,NA,NA,1.167
+58,Xinancha watershed,2582,631,CF,RD,516.4,20,nd,NA,20,-22,OB,SH,"Yao et al.,2015",968,46.97,128.7,40,1970,2010,PL,1,NA,NA,1.5340729001584785
+59,Xingu River,377175,2100,BF,RD,NA,NA,NA,NA,-12,5,SG,HM,"Coe et al., 2009",1410,-7.46,-52.66,1,2000,2000,GE,1,NA,NA,0.6714285714285714
+60,Xinshui,4069,524.3,BF,RD,14,0.3,1957,increase 14 to 630 km2,15,-22.5,OB,EA,"Zhang et al. , 2008a",1433,38,111,43,1957,2000,AL,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006662,2.733168033568568
+61,Zhujia,2956,450.4,BF,RD,63,2.1,1959,increase 63 to 687 km2,27,-38.6,OB,EA,"Zhang et al. , 2008a",1306,36,110,41,1959,2000,AL,1,NA,Approximate location from P. Rustomji et al 2008  (Catchment number) https://doi.org/10.1029/2007WR006663,2.899644760213144

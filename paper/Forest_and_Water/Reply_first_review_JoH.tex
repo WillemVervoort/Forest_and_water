@@ -132,11 +132,11 @@ As such, we provide three key insights.
 \begin{itemize}
 \tightlist
 \item
-  While analysing global databases can be interesting, we need to be careful with drawing major conclusions (as in \citet{zhang2017}, \citet{filoso2017}, \citet{zhou2015} and \citet{jackson2005}) based on basic regression analysis or using equilibrium analysis (such as the Fu model). In many cases statistical assumptions are violated and confounding factors can hide or strengthen assumed relationships. In addition, the equilibirum analysis is based on the assumption of water balance closure, which might not always be the case in arid and semi-arid climates. It can easily become a case of `correlation without causation'. This is without considering the number of errors that existed in the data. This is particularly important, since results from these global analyses are used to build further models to analyse global impacts \citep[e.g.][]{hoekvandijke2022}, leading to possible wrong policy or management responses.\\
+  While analysing global databases can be interesting, we need to be careful with drawing major conclusions (as in \citet{zhang2017}, \citet{filoso2017}, \citet{zhou2015} and \citet{jackson2005}) based on basic regression analysis or using equilibrium analysis (such as the Fu model). In many cases statistical assumptions are violated and confounding factors can hide or strengthen assumed relationships. In addition, the equilibirum analysis is based on the assumption of water balance closure, which might not always be the case in arid and semi-arid climates. It can easily become a case of `correlation without causation'. This is without considering the number of errors that existed in the data. This is particularly important, since results from these global analyses are used to build further models to analyse global impacts \citep[e.g.][]{hoekvandijke2022}, leading to possible wrong policy or management responses.
 \item
-  Cumulative and average values of change can be misleading, especially when extracted from published field studies which originally had different objectives. This is particularly true for quite a few studies which focused on regeneration of forests after wildfire or clear cutting followed by re-establishment of plantation of native forest. Many of the Paired Watershed Experiments in Australia \citep[e.g.][]{cornish2001, webb2009, webb2012, webb2013, watson2001} fall in this category, and therefore easily be classified as either forestation or deforestation. In principle a decision needs to be made how many years post clearing needs to be considered, and whether the remainder of the timeseries should be classified as regeneration. We demonstrate how removing these experiments from the total changes the results of the analysis.
+  Cumulative and average values of change can be misleading, especially when extracted from published field studies which originally had different objectives. This is particularly true for quite a few studies which focused on regeneration of forests after wildfire or clear cutting followed by re-establishment of plantation of native forest. Many of the Paired Watershed Experiments \citep[e.g.][]{cornish2001, webb2009, webb2012, webb2013, watson2001} fall in this category, and therefore can easily be classified as either forestation or deforestation. In principle a decision needs to be made how many years post clearing needs to be considered, and whether the remainder of the timeseries should be classified as regeneration. Or, as we discuss, the data should be analysed as a timeseries of change, rather than trying to pick a single point.
 \item
-  In general, the size of the catchment and the length of the study play a huge role in the interpretation of the results. The length of the study relates to the last point, in all cases, there is large change in the streamflow in the first year, but this effect decreases with the length of the study due to either natural regeneration or some sort of other management, such as replanting. In terms of the catchment size, one of the key issues we originally had with the \citet{zhang2017} paper was the arbitrary split between catchment \textgreater{} 1000 km\textsuperscript{2} and catchment \textless{} 1000 km\textsuperscript{2}. Our analysis demonstrates that there is no indication of a distinct split, but that, more importantly there is a distinct difference in the type of methods used to analyse small catchments (mostly direct observation and paired catchment analysis) and large catchments (mostly hydrological modelling or some sort of statistical modelling). The paper by \citet{beck2013} is an exception, focussing on hydrological model analysis of 12 small catchments in Puerto Rico. However, as we argue, the results of this paper are misrepresented in the database, as none of the analysed catchments had a significant change in the streamflow. This means the change should be recorded as 0.
+  In general, the size of the catchment and the length of the study play a huge role in the interpretation of the results. The length of the study relates to the last point, in all cases, there is large change in the streamflow in the first year, but this effect decreases with the length of the study due to either natural regeneration or some sort of other management, such as replanting. Even though length is no significant in the data, does not mean that this effect exists in the data. In terms of the catchment size, one of the key issues we originally had with the \citet{zhang2017} paper was the arbitrary split between catchment \textgreater{} 1000 km\textsuperscript{2} and catchment \textless{} 1000 km\textsuperscript{2}. Our analysis demonstrates that there is no indication of a distinct split, but that, more importantly there is a distinct difference in the type of methods used to analyse small catchments (mostly direct observation and paired catchment analysis) and large catchments (mostly hydrological modelling or some sort of statistical modelling). The paper by \citet{beck2013} is an exception, focussing on hydrological model analysis of 12 small catchments in Puerto Rico. However, as we argue, the results of this paper are misrepresented in the database, as none of the analysed catchments had a significant change in the streamflow. This means the change should be recorded as 0.
 \end{itemize}
 
 \textcolor{blue}{These are substantial changes and go beyond a major revision.  For this reason, we're rejecting the MS at present.  If the authors are able to address the 3 issues above in a substantial revision of the MS, we would be pleased to look at it again.}
@@ -267,7 +267,7 @@ As an alternative we created a correlation plot (Figure \ref{fig:corgraphs}). Th
   As we also indicate in the models, there is a strong inverse relationship between log10(Area) and the paired watershed assessment method, which is simply the inverse from the last point, as also indicated by the negative relationship between the two assessment methods. This is further visible in the relationship between the change in forest cover and the paired watershed assessment method, showing the impact of the latent variable (log10(Area)). There is of course no causal effect of the assessment methods, it is simply that smaller catchments used in paired watershed assessments are easier to fully clear or fully replant.
 \end{itemize}
 
-Overall this analysis shows very clearly the danger of simply investigating single variable regressions as was done in \citet{zhang2017} and \citet{filoso2017} or even using simple modelling as in \citet{jackson2005} and \citet{zhou2015}. It is too easy to miss the latent variables that are the underlying factors and influence the model results.
+Overall this analysis shows very clearly the challenges of simply investigating single variable regressions as was done in \citet{zhang2017} and \citet{filoso2017} or even using simple modelling as in \citet{jackson2005} and \citet{zhou2015}. It is too easy to miss the latent variables that are the underlying factors and influence the model results.
 
 \hypertarget{comment-ae-3}{%
 \subsection{Comment AE 3}\label{comment-ae-3}}
@@ -308,7 +308,7 @@ The issue of interaction terms is a tricky one. As we indicated in the manuscrip
 
 \textcolor{blue}{- The novelty of this work needs to emerge more clearly in the introduction. As it looks now, the manuscript could be easily considered somewhat confirmatory, with respect to most data, approaches and conclusions reached by Zhang et al 2017 and Filoso et al 2017. Furthermore, the introduction needs to be rearranged, starting with a clear statement of the problem, what we know about that based on previous results, what is missing/how these previous analyses can be improved, and, stemming from these knowledge gaps and/or our understanding of the mechanisms, the questions addressed in the work or the hypotheses tested.}
 
-We agree that this is a valid point and a weakness in the original manuscript. As we also outline in our reply to the Editor, we have rewritten the paper to strengthen the novelty of the work. In particular the paper now more directly focuses on the difficulties in analysing aggregated global data and the importance of latent variables. We point out that while global databases seem to be a great opportunity to understand global trends and interactions, we show that this is fraught with danger.
+We agree that this is a valid point and a weakness in the original manuscript. As we also outline in our reply to the Editor, we have rewritten the paper to strengthen the novelty of the work. In particular the paper now focuses more directly on the difficulties in analysing aggregated global data and the importance of latent variables. We point out that while global databases seem to be a great opportunity to understand global trends and interactions, we show that this has significant challenges and can be easily lead to questionable results.
 
 \hypertarget{comment-ae-5}{%
 \subsection{Comment AE 5}\label{comment-ae-5}}
@@ -323,15 +323,90 @@ Thank you for pointing this out, we have reviewed the paper carefully and correc
 \textcolor{blue}{I would also like to provide the authors with a couple of suggestions regarding the statistical model and their interpretation. 
 - The models used in the manuscript consider the absolute value of the forest cover change and then its sign, but this choice is not well justified. It implicitly assumes that the status corresponding to no change distinguishes two ‘realms’. Yet, I would expect (and it is also hinted at at some point in the manuscript) that what really matters is the \%forested area (possibly in relation to the climatic conditions) and how it changes. So, I would suggest the authors to consider whether a model nearer to our understanding of the phenomena at play would be one including, for the forest part, \%change in forested area (with sign) and \%forested area, with the latter possibly as random effect, if not of interested.}
 
-We agree with the AE that this would be an interesting idea and links back to our point about ``latent variables''. The excellent paper by \citet{levy2018} includes \% forest area as a variable, but their data cannot be incorporated into the current paper. This is because their analysis focuses on a time progression rather than a ``before and after'' or a clear ``control'' and ``treatment''.
-Furthermore, extracting the total area of forest from the papers is not a trivial job, and the area is also not always mentioned in the papers. Finally, the actual data is likely to show the same skew as the current information, with most of the small and paired watershed catchments having a 100\% cover and only the larger catchments having mix of landuses. It is definitely an area of future research.
+We agree with the AE that this was a logical idea and links back to our point about ``latent variables''. The excellent paper by \citet{levy2018} includes \% forest area as a variable, but their data cannot be incorporated into the current paper. This is because their analysis focuses on a time progression rather than a ``before and after'' or a clear ``control'' and ``treatment''.
+Regrettably, extracting the total area of forest from the papers is not a trivial job, and also has some issues. The total forested area is also not always mentioned in the papers, or only a range is given. Additionally, the actual data is likely to show the same skew as the current information, with most of the small and paired watershed catchments having a 100\% cover and only the larger catchments having mix of landuses.
+
+As a test, and to further address the AE's comments we have collected as many of the data for the total forest are for the larger catchments (the catchments \textgreater{} 1000 km\textsuperscript{2} from \citet{zhang2017}). This results in 60 data points (as not all forest areas were recoverable from the papers). This variable is called \emph{Perc\_Farea\_pre} in Table \ref{tab:modelforestarea}. The results of a model that includes this variable and simply assumesa generalise linear structure, indicates that the percentage total area of forest in the catchment is insignificant, even though this model explains 82 \% of the variation in the data (for only the larger catchments).
+
+Again, it is clear that the assessment technique (in this case there are no paired watershed experiments) is significant in explaining the variation in the data.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.4231}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1410}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1282}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1410}}@{}}
+\caption{\label{tab:modelforestarea} Statistical overview of the linear components of the model including percent forested area}\tabularnewline
+\toprule()
+\begin{minipage}[b]{\linewidth}\centering
+~
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule()
+\endfirsthead
+\toprule()
+\begin{minipage}[b]{\linewidth}\centering
+~
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Estimate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Std. Error
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+t value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Pr(\textgreater\textbar t\textbar)
+\end{minipage} \\
+\midrule()
+\endhead
+\textbf{(Intercept)} & -16.05 & 15.08 & -1.06 & 0.3 \\
+\textbf{DeltaF\_perc} & -0.37 & 0.12 & -3.24 & 0 \\
+\textbf{log10(Area\_km2)} & 1.56 & 2.31 & 0.67 & 0.51 \\
+\textbf{Dryness} & 4.4 & 3.22 & 1.37 & 0.18 \\
+\textbf{Perc\_Farea\_pre} & 0.04 & 0.08 & 0.49 & 0.63 \\
+\textbf{Precip\_data\_typeOB} & -19.28 & 6.55 & -2.94 & 0.01 \\
+\textbf{Precip\_data\_typeSG} & -12 & 6.76 & -1.78 & 0.09 \\
+\textbf{Assessment\_techniqueEA, HM} & 1.37 & 9.86 & 0.14 & 0.89 \\
+\textbf{Assessment\_techniqueHM} & 15.44 & 6.17 & 2.5 & 0.02 \\
+\textbf{Assessment\_techniqueQPW} & 2.8 & 9.9 & 0.28 & 0.78 \\
+\textbf{Assessment\_techniqueSH} & 18.51 & 7.65 & 2.42 & 0.02 \\
+\textbf{Forest\_typeCF} & -9.47 & 6.17 & -1.54 & 0.14 \\
+\textbf{Forest\_typeMF} & 0.28 & 4.64 & 0.06 & 0.95 \\
+\textbf{Hydrological\_regimeSD} & 20.98 & 6.66 & 3.15 & 0 \\
+\bottomrule()
+\end{longtable}
+
+Inspecting the residuals of the model (Figure \ref{fig:gamcheckmodelarea}) also indicates (as we have highlighted earlier) that the data for the larger catchments are much more well-behaved. In our opinion, this is because most of the larger catchment studies are hydrological modelling studies, and what is analysed here is the underlying conceptualised structure of the models rather than real responses of catchments to change in the forest cover.
+
+In the manuscript we have not repeated this analysis, but we have included the following text in the discussion (l524 - l537 on page 30):
+
+``One of these latent variables could be the total area of forest in a catchment, as was analysed in \citet{levy2018}. In this case, the total \% area of forest was not included in the data. As a test, the total \% area of forest for the larger catchments (\textgreater{} 1000 km\textsuperscript{2} in \citet{zhang2017}) were added to the dataset and the model for just the large catchments was tested. This showed that the \% area of forest was not significant explaining the change in flow for the larger catchments (retaining all other variables in the model, results not shown). While this might be an area of further research on the full dataset, it is complicated for two reasons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The area of forest is not always indicated in the original papers, or a range of values is given, complicating the data collection.
+\item
+  Many of the small catchments have 100\% area covered in forest, introducing a strong skew in the data and complicating if total area of forest has an impact on the change in flow.''
+\end{enumerate}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{residual_plot_model_Farea} \caption{Residual plots for the regression model }\label{fig:gamcheckmodelarea}
+\end{figure}
 
 \hypertarget{comment-ae-7}{%
 \subsection{Comment AE 7}\label{comment-ae-7}}
 
 \textcolor{blue}{- The fact that the explanatory power is low (low r2) does not necessarily make the results uninteresting (against conclusion on L 530), simply it suggests there are other factors, not included in the model, which have a large effect, and that the model presented cannot be used in a predictive mode. While it is important to present also the r2, even a model with low r2 square we learn which factors significantly affect the change in streamflow and which do not do so.}
 
-We totally agree with the AE, and this might be more a matter of symantics. We thought we had the same interpretation as the AE, but might have worded this correctly. The above comment from the AE actually points exactly to the way we are using models in the paper. We use the models to look at factors that significantly affect streamflow rather than looking at a predictive model.
+We totally agree with the AE, and this might be more a matter of symantics. We thought we had the same interpretation as the AE, but might have worded this incorrectly. The above comment from the AE actually points exactly to the way we are using models in the paper. We use the models to look at factors that significantly affect streamflow rather than looking at a predictive model.
 We have reviewed the text in the conclusion and have reworded to make sure we capture the above suggested meaning.
 
 \bibliography{forestandwater.bib}

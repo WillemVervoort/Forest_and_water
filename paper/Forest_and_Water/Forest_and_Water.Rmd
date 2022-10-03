@@ -508,7 +508,7 @@ One solution could be to transform the data, however this is not that simple. As
 
 Given the majority of the residuals indicate a relatively well behaved distribution, we simply note the behaviour at the extremes and will discuss this later in the paper, and explain how this relates to the characteristics of the dataset.
 
-### Test removal of studies of great length and for very dry catchments
+### Removal of studies of great length and for very dry catchments
 
 ```{r, echo = F}
 pander(All_data2 %>% filter(Dryness > 5) %>% select(`Watershed #`,Latitude, Longitude,`Watershed name`) %>%
@@ -576,9 +576,6 @@ Therefore it is worth investigating what effect removing these few data points h
 This model, which excludes data with long studies and very dry catchments explains only slightly less of the variation with an adjusted *r^2^* of `r round(summary(model_redLength)$r.sq,2)` and a deviance explained of `r round(summary(model_redLength)$dev.expl,2)`. 
 
 Investigating the non-linear responses suggest that *Dryness* has a clear non-linear response, which is significant,  where changes in forest cover in drier catchments having a greater impact on streamflow (Figure \@ref(fig:smoothsmodelredLength) and Table \@ref(tab:restrictlength)). Catchment area (*log10(Area (km^2^))*) still has an impact on flow with p = `r round(summary(model_redLength)$s.table[2,4],2)`, and the relationship looks almost linear. More importantly, the variable *Length* is no longer significant, after removal of the two studies with very long lengths.
-
-**Possibly insert here a model to investigate total forest area as a random effect**
-
 
 ```{r, eval =T, echo =F}
 Table_assessment <- All_data2 %>%
@@ -681,6 +678,11 @@ Similarly, the data for the larger catchments containing smaller changes in fore
 This becomes problematic when extrapolated to larger scales. A clear example of this is the paper by @hoekvandijke2022 where the conceptualised relationship between forest cover and streamflow pre-determines the outcomes of the global modelling.
 
 The only  way to analyze changes in streamflow as a function of forest cover in larger catchments is to actually derive this from observed data of long term streamflow and forest cover (as was done in @levy2018). 
+
+One of these latent variables could be the total area of forest in a catchment, as was analysed in @levy2018. In this case, the total \% area of forest was not included in the data. As a test, the total \% area of forest for the larger catchments (> 1000 km^2^ in @zhang2017) were added to the dataset and the model for just the large catchments was tested. This showed that the \% area of forest was not significant explaining the change in flow for the larger catchments (retaining all other variables in the model, results not shown). While this might be an area of further research on the full dataset, it is complicated for two reasons:
+
+1. The area of forest is not always indicated in the original papers, or a range of values is given, complicating the data collection.
+2. Many of the small catchments have 100\% area covered in forest, introducing a strong skew in the data and complicating if total area of forest has an impact on the change in flow.
 
 We are not arguing that there is no relationship between streamflow and forest cover, and there might indeed be a global relationship that can be discovered. But, this relationship can only be discovered if we are able to address some of the major other factors that explain the variability, and work with actual data and not model outputs. 
 

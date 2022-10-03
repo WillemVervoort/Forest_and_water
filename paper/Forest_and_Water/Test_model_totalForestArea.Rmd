@@ -1,0 +1,156 @@
+---
+title: "Testing Forest Area as a random effect"
+author:
+  - name: R. Willem Vervoort
+    email: willem.vervoort@sydney.edu.au
+    footnote: 1
+  - name: Eliana Nervi
+    email: eliananervif@gmail.com
+  - name: Jimena Alonso
+    email: jalonso@fing.edu.uy
+footnote:
+  - code: 1
+    text: "Corresponding Author"    
+date: "`r Sys.Date()`"
+linenumbers: true
+#numbersections: true
+csl: elsevier-harvard.csl
+output:   
+  bookdown::pdf_book:
+    base_format: rticles::elsevier_article
+bibliography: forestandwater.bib
+#editor_options: 
+#  chunk_output_type: inline
+header-includes:
+  - \usepackage{setspace}
+  - \usepackage{color}
+  - \newcommand{\beginsupplement}{  \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}\setcounter{equation}{0} \renewcommand{\theequation}{S\arabic{equation}}}
+abstract: |
+  This supplementary material file compares different linear and non-linear relationships for the impact of forest cover on the change in stream flow.
+---
+\beginsupplement
+
+# Introduction
+
+This supplementary material is related to 'Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
+
+This document outlines a test suggested in the first review of the manuscript. The AE of the Journal of Hydrology suggested that we test if including the total forest area as a variable would make sense. Not only the \% change in area is important, but what total area of forest was there in the first place.
+
+This test focusses on the large catchment data (< 1000 km^2^) for two reasons:
+
+1. This was a manageable subset and many of the papers are fairly accessible, in contrast to the small catchments.
+2. Many of the small catchments have 100\% area covered in forest, so are not useful to identify if total area of forest has an impact on the change in flow.
+
+## set up the packages
+
+```{r setup, include=FALSE, echo =T}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(lubridate)
+require(mgcv)
+require(visreg)
+require(patchwork)
+suppressWarnings(require(knitr))
+suppressWarnings(require(bookdown))
+suppressWarnings(require(pander))
+```
+
+## read in the data
+
+Read in the data and massage column names to make columns useable in the model.
+
+```{r data-w-forest}
+
+Data_wF <- read_csv("../../data/LCdatawithFA.xlsx - LW_TotForest_Area.csv")
+
+# change some column names
+names(Data_wF)[3:4] <- c("Area_km2", "Pa_mm")
+names(Data_wF)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(Data_wF)[13:14] <- c("Precip_data_type", "Assessment_technique")
+
+
+```
+
+## Some changes to the overall data
+
+1. calculating the dryness  
+
+```{r, echo = T}
+# calculate dryness index
+Data_wF <- Data_wF %>%
+  mutate(Dryness = E0/Pa_mm)
+```
+
+2. remove watershed 1 (the Amazon) from the analysis  
+```{r, echo = T}
+Data_wF <- Data_wF %>%
+  filter(`Watershed #` != 1)
+```
+
+3. include length as a variable
+
+```{r length, echo =T}
+All_data <- Data_wF %>%
+  mutate(length = To - From,
+         mid_year = From + (To - From)/2)
+
+```
+
+
+# Results
+
+Run the model simply as a GLM, transform Area using log10, as in the manuscript.
+
+```{r model-percent}
+
+Forest_model_all <- gam(DeltaQf_perc ~ DeltaF_perc + 
+                    log10(Area_km2) + 
+                    Dryness + 
+                    Perc_Farea_pre +
+                    Precip_data_type +  Assessment_technique +
+                    Forest_type +
+                    Hydrological_regime
+                    , data = All_data)
+summary(Forest_model_all)
+```
+This suggest that forest area is not at all significant in the model. In fact, the hydrological modelling technique is much more important. Overall the model explains roughly 82% of the variation.
+
+```{r check-model-percent}
+gam.check(Forest_model_all)
+#plot(Forest_model_all)
+```
+The fit of the model is also well-behaved, as would be expected. The data are mostly from hydrological modelling, stabilising the response of the change in forest to change in streamflow.
+
+
+## run the model on forest area rather than \%
+
+Possibly, using the total \% forest is not taking into account the differences in total area of forest. So we can also test with total ha. Note that this can interact with total area: larger catchments will have larger total areas of forest.
+
+We appear to have less data here as \% is reported more, but we can calculate total ha by multiplying \% by total area.
+
+```{r model-area}
+All_data <- Data_wF %>%
+  mutate(Farea_km2 = ifelse(is.na(Farea_km2)==T,Area_km2*Perc_Farea_pre/100,Farea_km2))
+
+#write_csv(All_data,"../../data/Data_TotForest_Area.csv")
+
+Forest_model_area <- gam(DeltaQf_perc ~ DeltaF_perc + 
+                    log10(Area_km2) + 
+                    Dryness + 
+                    Farea_km2 +
+                    Precip_data_type +  Assessment_technique +
+                    Forest_type +
+                    Hydrological_regime
+                    , data = All_data)
+summary(Forest_model_area)
+```
+```{r check_resid_area}
+gam.check(Forest_model_area)
+#plot(Forest_model_all)
+```
+
+Again, not significant and the model is well-behaved. Note that the Hydrological modelling assessment technique (HM) is again highly significant. 
+
+# Conclusion
+
+There is no effect of forest area in the relationship between change in flow  and percent change in forest cover.
