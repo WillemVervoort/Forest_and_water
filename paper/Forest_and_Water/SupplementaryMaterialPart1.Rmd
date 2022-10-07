@@ -30,7 +30,7 @@ abstract: |
 
 # Introduction
 
-This supplementary material is related to 'Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
+This supplementary material is related to 'Generalizing the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
 
 This document list all the changes that were made to the original @zhang2017 database after review of all the original papers.
 
@@ -41,7 +41,7 @@ This document list all the changes that were made to the original @zhang2017 dat
 A particular problem was that many catchments appeared to have the wrong sign for the change in forest cover. There are many catchments with reported positive change in cover and a large increase in flow. These were all checked and corrected if needed and a full list of all these changes is below:  
 
 - 76, Beaver Creek, the flow was corrected from 600\% to 157\% after review of the original publication [@baker1984].
-- 124, D3, @amatya2008effects: The originally recorded 250\% change by @zhang2017 is clearly wrong. The paper says on page 7: Both of these outflow ratios (0.64 and 0.50) were higher than the calculated expected values of 0.55 for 2003 and 0.44 for 2005, respectively. So value should be $0.64/0.55*100 - 100$ or $0.5/044*100 - 100$: 16\% or 13\%. corrected to 16\%.
+- 124, D3, @amatya2008effects: The originally recorded 250\% change by @zhang2017 is clearly wrong. The paper says on page 7: Both of these outflow ratios (0.64 and 0.50) were higher than the calculated expected values of 0.55 for 2003 and 0.44 for 2005, respectively. So the value should be $0.64/0.55*100 - 100$ or $0.5/044*100 - 100$: 16\% or 13\%. Corrected to 16\%.
 - 3, Baker Creek, @zhangwei2012. The original recorded 201.1\% change by @zhang2017 also seems wrong. Original paper says on page 2031: Annual mean flow has been increased by 47.6\%. corrected  
 - 67, April rd, which is incorrectly attributed to @ruprecht1991 in @zhang2017. This is actually from @ruprecht1989 and the original paper clearly indicates "clearfelling". As a result the change in forest cover was changed to -100\% rather than +100\%.
 - 210, March rd, 100, 147.6. Same problem as 67, @bari1996 clearly state that the catchment was cleared, so therefor the change in forest cover changed to -100\%.
@@ -52,7 +52,7 @@ A particular problem was that many catchments appeared to have the wrong sign fo
 - 78, Black Spur 1, the treatments and effects are only reported in a conference paper [@jayasuriya1988] and once again indicated clearing, meaning that the change in forest cover should be negative rather than positive (as reported in @zhang2017). Corrected. Similar to other paired watershed experiments, only the first couple of years can be linked to the effect as later regrowth cancels out part of the increase in flow.
 - 104, Coshocton. Checking the original paper indicates that this is in fact a reduction in flow as a result of reforestation. Changed the sign of Delta_Q_f to be negative.
 - 102, Cold Spring. Checking the original paper [@schneider1961] indicates that this is in fact a reduction in flow as a result of reforestation. Changed the sign of Delta_Q_f to be negative.
-- 85 Bosboukloof. This is esssentially a duplicate of 184, but the cited paper analyses only 1 year of runoff after a major fire. In any case, the data should reflect a decrease in forest cover: changed the sign of Delta_f_perc to -80\%.
+- 85 Bosboukloof. This is esssentially a duplicate of catchment 184, but the cited paper analyses only 1 year of runoff after a major fire. In any case, the data should reflect a decrease in forest cover: changed the sign of Delta_f_perc to -80\%.
 - 259 Shackam Brook. There were a few issues with this catchment in the original database. The name was misspelled and it was incorrectly attributed to @brown2005. The original paper is the same as 102 [@schneider1961]. Finally, the catchments were all reforestation as the title of the original report indicates and the reported streamflows are all decreases. Corrected Delta_Qf_perc to -20.7\%.
 - 95 Sage Brook. Similar to 259 and 102, originates from @schneider1961. Reforestation so Delta_Qf_perc corrected to -19.8\%.
 - 101 Coalburn. Original publication (Robinson, 1993) which is a symposium paper, can not be located, even after contacting some of the authors. The best summary of the research is in @birkinshaw2014 which summaries 45 years of resaerch in the Coalburn catchment. It was a reforestation experiment, and there was a decrease in the streamflow over the longer time period. Changed to -20.3\%.

@@ -145,7 +145,7 @@
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-This supplementary material is related to `Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
+This supplementary material is related to `Generalizing the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
 
 In this document we tested the following, which is outlined in the methods of the paper.
 The changes in forest cover contain both positive (forestation) and negative values (deforestation). In \citet{zhang2017}, these changes were jointly analysed, assuming the effect on the change in flow was linear and the effect of removing forest cover was the same as an equivalent addition of forest cover. Here we test two variation of this approach, leading to three approaches:
@@ -371,28 +371,28 @@ Pr(\textgreater\textbar t\textbar)
 \end{minipage} \\
 \midrule()
 \endhead
-\textbf{(Intercept)} & -4.81 & 16.31 & -0.29 & 0.77 \\
-\textbf{DeltaF\_perc} & -0.6 & 0.06 & -10.71 & 0 \\
-\textbf{Precip\_data\_typeOB} & -21.4 & 13.23 & -1.62 & 0.11 \\
-\textbf{Precip\_data\_typeSG} & 9.36 & 15.17 & 0.62 & 0.54 \\
-\textbf{Assessment\_techniqueEA, HM} & 20.64 & 42.73 & 0.48 & 0.63 \\
-\textbf{Assessment\_techniqueHM} & 22.81 & 11.71 & 1.95 & 0.05 \\
-\textbf{Assessment\_techniquePWE} & 30.63 & 11.94 & 2.57 & 0.01 \\
+\textbf{(Intercept)} & -5.37 & 16.19 & -0.33 & 0.74 \\
+\textbf{DeltaF\_perc} & -0.61 & 0.06 & -11.03 & 0 \\
+\textbf{Precip\_data\_typeOB} & -21.34 & 13.16 & -1.62 & 0.11 \\
+\textbf{Precip\_data\_typeSG} & 9.57 & 15.16 & 0.63 & 0.53 \\
+\textbf{Assessment\_techniqueEA, HM} & 20.32 & 42.72 & 0.48 & 0.63 \\
+\textbf{Assessment\_techniqueHM} & 23.51 & 11.69 & 2.01 & 0.05 \\
+\textbf{Assessment\_techniquePWE} & 30.71 & 11.92 & 2.58 & 0.01 \\
 \textbf{Assessment\_techniquePWE,
-HM} & 17.42 & 43.26 & 0.4 & 0.69 \\
-\textbf{Assessment\_techniqueQPW} & 39.52 & 20.15 & 1.96 & 0.05 \\
+HM} & 15.79 & 43.24 & 0.37 & 0.72 \\
+\textbf{Assessment\_techniqueQPW} & 41.29 & 20.14 & 2.05 & 0.04 \\
 \textbf{Assessment\_techniqueQPW,
-EA} & 24.39 & 24.42 & 1 & 0.32 \\
-\textbf{Assessment\_techniqueSH} & 45.3 & 11.83 & 3.83 & 0 \\
-\textbf{Forest\_typeCF} & -9.45 & 7.6 & -1.24 & 0.21 \\
-\textbf{Forest\_typeMF} & -8.05 & 7.56 & -1.06 & 0.29 \\
-\textbf{Hydrological\_regimeSD} & 3.57 & 9.16 & 0.39 & 0.7 \\
+EA} & 25.16 & 24.41 & 1.03 & 0.3 \\
+\textbf{Assessment\_techniqueSH} & 46.03 & 11.65 & 3.95 & 0 \\
+\textbf{Forest\_typeCF} & -7.76 & 7.52 & -1.03 & 0.3 \\
+\textbf{Forest\_typeMF} & -7.8 & 7.35 & -1.06 & 0.29 \\
+\textbf{Hydrological\_regimeSD} & 1.5 & 9.1 & 0.17 & 0.87 \\
 \bottomrule()
 \end{longtable}
 
 This is the baseline result as it echoes \citet{zhang2017} but in this case the relationship is tested together with other variables as is discussed in the main paper.
 
-For this model, the focus can be on the linear variables. The variable \texttt{DeltaF\_perc} clearly explains the variation in the change in flow with a p-value of 0. The overall model explains 49 \% of the variation in the data. For comparison across models with different structures and different variables, the Aikaike Information Criteria (AIC) can be used. The AIC of the model is 3181.7600577.
+For this model, the focus can be on the linear variables. The variable \texttt{DeltaF\_perc} clearly explains the variation in the change in flow with a p-value of 0. The overall model explains 49 \% of the variation in the data. For comparison across models with different structures and different variables, the Aikaike Information Criteria (AIC) can be used. The AIC of the model is 3233.1130843.
 
 \hypertarget{the-change-in-forest-cover-converted-to-positive-values}{%
 \subsection{The change in forest cover converted to positive values}\label{the-change-in-forest-cover-converted-to-positive-values}}
@@ -446,29 +446,29 @@ Pr(\textgreater\textbar t\textbar)
 \end{minipage} \\
 \midrule()
 \endhead
-\textbf{(Intercept)} & 14.05 & 20 & 0.7 & 0.48 \\
-\textbf{DeltaF\_perc\_pos} & 0.29 & 0.1 & 2.9 & 0 \\
-\textbf{Forest\_SignIncrease} & -51.91 & 7.79 & -6.67 & 0 \\
-\textbf{Precip\_data\_typeOB} & -19.43 & 14.56 & -1.33 & 0.18 \\
-\textbf{Precip\_data\_typeSG} & 4.43 & 17.22 & 0.26 & 0.8 \\
-\textbf{Assessment\_techniqueEA, HM} & 18.4 & 46.56 & 0.4 & 0.69 \\
-\textbf{Assessment\_techniqueHM} & 21.99 & 13.63 & 1.61 & 0.11 \\
-\textbf{Assessment\_techniquePWE} & 27.8 & 13.85 & 2.01 & 0.05 \\
+\textbf{(Intercept)} & 13.99 & 19.79 & 0.71 & 0.48 \\
+\textbf{DeltaF\_perc\_pos} & 0.3 & 0.1 & 2.98 & 0 \\
+\textbf{Forest\_SignIncrease} & -53.09 & 7.71 & -6.88 & 0 \\
+\textbf{Precip\_data\_typeOB} & -19.15 & 14.46 & -1.32 & 0.19 \\
+\textbf{Precip\_data\_typeSG} & 4.93 & 17.19 & 0.29 & 0.77 \\
+\textbf{Assessment\_techniqueEA, HM} & 18.4 & 46.6 & 0.39 & 0.69 \\
+\textbf{Assessment\_techniqueHM} & 22.56 & 13.55 & 1.67 & 0.1 \\
+\textbf{Assessment\_techniquePWE} & 27.64 & 13.79 & 2 & 0.05 \\
 \textbf{Assessment\_techniquePWE,
-HM} & 17.58 & 46.6 & 0.38 & 0.71 \\
-\textbf{Assessment\_techniqueQPW} & 25.71 & 22.18 & 1.16 & 0.25 \\
+HM} & 16.49 & 46.72 & 0.35 & 0.72 \\
+\textbf{Assessment\_techniqueQPW} & 27.18 & 22.18 & 1.23 & 0.22 \\
 \textbf{Assessment\_techniqueQPW,
-EA} & 33.3 & 26.36 & 1.26 & 0.21 \\
-\textbf{Assessment\_techniqueSH} & 38.7 & 13.25 & 2.92 & 0 \\
-\textbf{Forest\_typeCF} & -12.71 & 8.25 & -1.54 & 0.12 \\
-\textbf{Forest\_typeMF} & -7.05 & 8.36 & -0.84 & 0.4 \\
-\textbf{Hydrological\_regimeSD} & 7.27 & 10 & 0.73 & 0.47 \\
+EA} & 33.53 & 26.38 & 1.27 & 0.2 \\
+\textbf{Assessment\_techniqueSH} & 39.26 & 13.06 & 3.01 & 0 \\
+\textbf{Forest\_typeCF} & -10.87 & 8.18 & -1.33 & 0.19 \\
+\textbf{Forest\_typeMF} & -7.36 & 8.15 & -0.9 & 0.37 \\
+\textbf{Hydrological\_regimeSD} & 4.61 & 9.93 & 0.46 & 0.64 \\
 \bottomrule()
 \end{longtable}
 
-Again the focus can be on the linear variables. In this case the variable \texttt{DeltaF\_perc\_pos} also is important to explain the variation in the change in flow with a p-value of 0. However, the results also show that in this case, the deforestation (\texttt{Forest\_Sign} \textless{} 0) has a different effect than reforestation (\texttt{Forest\_Sign} \textgreater{} 0). In fact, in absolute terms deforestration creates a -5191 \% greater effect on streamflow than reforestation (and of course deforestation creates and increase in flow and reforestation a decrease).
+Again the focus can be on the linear variables. In this case the variable \texttt{DeltaF\_perc\_pos} also is important to explain the variation in the change in flow with a p-value of 0. However, the results also show that in this case, the deforestation (\texttt{Forest\_Sign} \textless{} 0) has a different effect than reforestation (\texttt{Forest\_Sign} \textgreater{} 0). In fact, in absolute terms deforestration creates a -5309 \% greater effect on streamflow than reforestation (and of course deforestation creates and increase in flow and reforestation a decrease).
 
-However, overall this model explains less of the overall variation in the data with a deviance explained of 0.45 and an AIC of 3227.3976077.
+However, overall this model explains less of the overall variation in the data with a deviance explained of 0.45 and an AIC of 3281.055352.
 
 \hypertarget{assuming-the-change-in-forest-cover-is-non-linear}{%
 \subsection{Assuming the change in forest cover is non-linear}\label{assuming-the-change-in-forest-cover-is-non-linear}}
@@ -493,7 +493,7 @@ The difference between reforestation and deforestation might suggest that the re
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3472}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1250}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
+  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1389}}@{}}
 \caption{(\#tab:m\_nonlin-smooth) Statistical summary for the smooth terms for the model that considers the change in forest cover to be a non-linear variable}\tabularnewline
 \toprule()
@@ -524,14 +524,14 @@ p-value
 \end{minipage} \\
 \midrule()
 \endhead
-\textbf{s(DeltaF\_perc)} & 4.14 & 9 & 13.2 & 0 \\
-\textbf{s(log10(Area\_km2))} & 0.74 & 4 & 0.74 & 0.04 \\
-\textbf{s(Dryness)} & 4.73 & 9 & 2.4 & 0 \\
-\textbf{s(length)} & 4.68 & 34 & 0.26 & 0.08 \\
+\textbf{s(DeltaF\_perc)} & 4.48 & 9 & 14.11 & 0 \\
+\textbf{s(log10(Area\_km2))} & 0.77 & 4 & 0.81 & 0.03 \\
+\textbf{s(Dryness)} & 4.7 & 9 & 2.42 & 0 \\
+\textbf{s(length)} & 4.65 & 34 & 0.25 & 0.08 \\
 \bottomrule()
 \end{longtable}
 
-In this case, the non-linear terms of the model need to be checked, which shows that once again, changes in forest cover impact changes in flow as indicated by the p-value of 0. The total deviance explained for the model is 0.5 and the model has an AIC of 3182.1088731. These performance statistics are similar to the first (baseline) model.
+In this case, the non-linear terms of the model need to be checked, which shows that once again, changes in forest cover impact changes in flow as indicated by the p-value of 0. The total deviance explained for the model is 0.51 and the model has an AIC of 3232.9048803. These performance statistics are similar to the first (baseline) model.
 
 One thing that is of interest is the fact that while a non-linear relationship between the change in forest cover and the change in streamflow was conceptualised, the actual relationship turns out to be linear. This can be shown from the plot and by running \texttt{gam.check}.
 
@@ -562,19 +562,19 @@ The residual analysis shows that including this non-linearity makes no differenc
 \begin{verbatim}
 ## 
 ## Method: GCV   Optimizer: magic
-## Smoothing parameter selection converged after 11 iterations.
-## The RMS GCV score gradient at convergence was 0.0003791486 .
+## Smoothing parameter selection converged after 10 iterations.
+## The RMS GCV score gradient at convergence was 0.005535096 .
 ## The Hessian was positive definite.
 ## Model rank =  69 / 69 
 ## 
 ## Basis dimension (k) checking results. Low p-value (k-index<1) may
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
-##                       k'   edf k-index p-value  
-## s(DeltaF_perc)      9.00  4.14    0.91   0.075 .
-## s(log10(Area_km2))  4.00  0.74    0.95   0.140  
-## s(Dryness)          9.00  4.73    0.93   0.135  
-## s(length)          34.00  4.68    0.93   0.110  
+##                        k'    edf k-index p-value  
+## s(DeltaF_perc)      9.000  4.476    0.91   0.080 .
+## s(log10(Area_km2))  4.000  0.766    0.94   0.095 .
+## s(Dryness)          9.000  4.698    0.94   0.100 .
+## s(length)          34.000  4.645    0.94   0.090 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}

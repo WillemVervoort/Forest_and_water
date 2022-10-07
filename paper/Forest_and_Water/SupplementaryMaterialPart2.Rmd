@@ -33,7 +33,7 @@ abstract: |
 
 # Introduction
 
-This supplementary material is related to 'Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
+This supplementary material is related to 'Generalizing the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
 
 In this document we tested whether the fundamental conclusions in the single variable regressions with the improved data base differed from the original conclusions in @zhang2017. This is to check how much influence the changes to the data set and the additional data might have changed the original conclusions.
 

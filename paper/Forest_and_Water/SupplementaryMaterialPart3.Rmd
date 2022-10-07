@@ -32,7 +32,7 @@ abstract: |
 
 # Introduction
 
-This supplementary material is related to 'Generalising the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
+This supplementary material is related to 'Generalizing the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
 
 In this document we tested the following, which is outlined in the methods of the paper.
 The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang2017, these changes were jointly analysed, assuming the effect on the change in flow was linear and the effect of removing forest cover was the same as an equivalent addition of forest cover. Here we test two variation of this approach, leading to three approaches:    
