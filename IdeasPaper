@@ -1,0 +1,23 @@
+
+Ideas paper:
+- time series, how representative is delta F and delta Q, climate effects --> Eliana. calculate rolling windows? look at relationship between length and delta Q
+- check Zhou et al. 2015. They do have time trend studies, but do they correct for climate? Their equation 1 is R/P which assumes R/P is a function of P/PET. This implicitly corrects for climate variation 
+
+second paper, or incorporate
+
+Analyse outliers:
+- check 298 (duplicate): small catchments had rows 286 - 312 repeated, fixed
+- 124, D3, -50, 250, Amatya and Skaggs, 2008: clearly 250% is wrong. The paper says on page 7: Both of these outflow ratios (0.64 and 0.50) were higher than the calculated expected values of 0.55 for 2003 and 0.44 for 2005, respectively. So value should be 0.64/0.55*100 - 100 or 0.5/044*100 - 100: 16% or 13% 
+- 3, Baker Creek, -42.2, 201.1, Zhang and Wei, 2012. Also wrong. Original paper says on page 2031: Annual mean
+flow has been increased by 47.6 %  
+
+It looks like there are many errors where the deltaF perc is actually negative rather than positive. We will have to check all the negative positive combinations
+
+
+Start with correlation matrix
+
+How not to analyse global data for effects
+
+
+https://ecologi.shinyapps.io/Jonkershoek_Hydro/
+

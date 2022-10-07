@@ -1,0 +1,277 @@
+---
+title: 'Supplementary Information part 3: Testing different forest cover relationships'
+author:
+  - name: R. Willem Vervoort
+    email: willem.vervoort@sydney.edu.au
+    footnote: 1
+  - name: Eliana Nervi
+    email: eliananervif@gmail.com
+  - name: Jimena Alonso
+    email: jalonso@fing.edu.uy
+footnote:
+  - code: 1
+    text: "Corresponding Author"    
+date: "`r Sys.Date()`"
+linenumbers: true
+#numbersections: true
+csl: elsevier-harvard.csl
+output:   
+  bookdown::pdf_book:
+    base_format: rticles::elsevier_article
+bibliography: forestandwater.bib
+#editor_options: 
+#  chunk_output_type: inline
+header-includes:
+  - \usepackage{setspace}
+  - \usepackage{color}
+  - \newcommand{\beginsupplement}{  \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}\setcounter{equation}{0} \renewcommand{\theequation}{S\arabic{equation}}}
+abstract: |
+  This supplementary material file compares different linear and non-linear relationships for the impact of forest cover on the change in stream flow.
+---
+\beginsupplement
+
+# Introduction
+
+This supplementary material is related to 'Generalizing the impact of forest cover on streamflow from experimental data: it is not that simple. Vervoort et al.'
+
+In this document we tested the following, which is outlined in the methods of the paper.
+The changes in forest cover contain both positive (forestation) and negative values (deforestation). In @zhang2017, these changes were jointly analysed, assuming the effect on the change in flow was linear and the effect of removing forest cover was the same as an equivalent addition of forest cover. Here we test two variation of this approach, leading to three approaches:    
+
+1. Joint analysis and assuming a linear relationship between the change in streamflow and the change in forest cover, following @zhang2017.
+2. The impact of an increase in forest cover can be different from the same fractional decrease in forest cover. The question becomes how best to analyse this. One approach would be to allow a different slope and a different intercept for the decreases relative to the increases.
+3. A second approach is to test the change in forest cover as a non-linear relationship in the Generalised additive model (GAM).
+
+# Methods
+
+## Approach 1
+
+To estimate how the change in streamflow is affected by the change in forest cover, while considering the effects of the other variables, we applied generalised additive modelling (GAM) [@wood2006].  
+
+The general model tested is:
+
+\begin{align}
+\Delta Qf \% \sim &~ \Delta \% forest~cover + \notag \\ 
+& \sum{X_i} + \sum{s(Z_i)} + \varepsilon (\#eq:eq1)
+\end{align}
+
+
+## Approach 2
+
+Deforestation is different from reforestation. This can be tested by converting all the change in forest cover data to positive values, and an additional binary column ($sign_{forest cover}$) can be included indicating whether it was a forest cover increase or decrease. In the model, the parameter for $sign_{forest cover}$ will indicate the difference in the changes in flow for increases in forest cover compared to decreases in forest cover. The disadvantage of this approach is that the relationship with forest cover becomes discontinuous at the origin (0 change in forest cover).
+
+This results in the following model:
+
+\begin{align}
+\Delta Qf \% \sim &~ \Delta \% forest~cover_{positive} + sign_{forest cover} + \notag \\ 
+& \sum{X_i} + \sum{s(Z_i)} + \varepsilon (\#eq:eq2)
+\end{align}
+
+## Approach 3
+
+The relationship between the change in forest cover and change in streamflow is non-linear. The non-linear approach involves adding a smoothing function the the change in forestry. A shrinkage spline [@wood2006] is applied to allow the non-linear effect to be removed.  Because a shrinkage penalty is used, this will also test the non-linear assumption and allows the variable for forest cover to be continuous. The disadvantage of this approach is that the relationship between forest cover and change in flow is less easy to interpret, as the non-linear fit in the GAM has no direct parametric form. This leads to the following model:
+
+\begin{align}
+\Delta Qf \% \sim &~ s(\Delta \% forest~cover) + \notag \\ 
+& \sum{X_i} + \sum{s(Z_i)} + \varepsilon (\#eq:eq3)
+\end{align}
+
+
+## Preliminary data management
+
+First we will read in the data
+
+```{r setup, include=FALSE, echo =T}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(lubridate)
+require(mgcv)
+require(visreg)
+require(patchwork)
+suppressWarnings(require(knitr))
+suppressWarnings(require(bookdown))
+suppressWarnings(require(pander))
+
+Zhang_small <- read_csv("../../data/SmallCatchments_T2.csv") %>%
+  mutate(table = "Small catchments")
+Zhang_large <- read_csv("../../data/LargeCatchments_T1.csv") %>%
+  mutate(table = "Large catchments")
+new_data <- read_csv("../../data/NewCatchments_T3.csv") %>%
+  mutate(table = ifelse(`Area(km2)` > 1000, "Large catchments", "Small catchments"))
+
+# change some column names
+names(Zhang_small)[3:4] <- c("Area_km2", "Pa_mm")
+names(Zhang_large)[3:4] <- c("Area_km2", "Pa_mm")
+names(new_data)[3:4] <- c("Area_km2", "Pa_mm")
+names(Zhang_small)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(Zhang_large)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(new_data)[5:6] <- c("Forest_type", "Hydrological_regime")
+names(Zhang_small)[9:10] <- c("Precip_data_type", "Assessment_technique")
+names(Zhang_large)[9:10] <- c("Precip_data_type", "Assessment_technique")
+names(new_data)[9:10] <- c("Precip_data_type", "Assessment_technique")
+
+# combine the data into one dataset
+
+```
+
+We will combine the different tables, but will keep an indicator to see where the data are from.
+
+```{r, echo = T, warning = F, message = F}
+Zhang_small$From <- as.numeric(Zhang_small$From)
+Zhang_small$To <- as.numeric(Zhang_small$To)
+Zhang_all <- bind_rows(Zhang_large,Zhang_small) %>%
+  mutate(dataset = "original Zhang et al data")
+new_data <- new_data %>%
+  mutate(dataset = "new data")
+All_data <- bind_rows(Zhang_all, new_data)
+```
+
+## Implementing the changes to the overall data
+
+The following code implements the changes described in the Supplementary data part 1. However, many of the changes were implemented manually into the data set. These are simply the remaining changes not implemented manually.     
+
+1. removing the duplicates.  
+```{r, echo = T}
+All_data <- All_data %>%
+  mutate(`Possible duplicate` = 
+           ifelse(is.na(`Possible duplicate`)==T,0,`Possible duplicate`),
+         `Possible duplicate` = as.numeric(`Possible duplicate`)) %>%
+  filter(`Possible duplicate` != 1)
+```
+
+2. calculating the dryness  
+
+```{r, echo = T}
+# calculate dryness index
+All_data <- All_data %>%
+  mutate(Dryness = E0/Pa_mm)
+```
+
+3. remove watershed 1 (the Amazon) from the analysis  
+```{r, echo = T}
+All_data <- All_data %>%
+  filter(`Watershed #` != 1)
+```
+
+4. remove data set 188 and 254 Kamakia and Sambret
+```{r,echo = T}
+All_data <- All_data %>%
+  filter(`Watershed #` != 188) %>%
+  filter(`Watershed #` != 254)
+```
+
+5. add a column that indicates forst loss of forest gain
+
+```{r, echo = T}
+All_data <- All_data %>%
+  mutate(forest_sign = ifelse(DeltaF_perc < 0, "Forest Cover Loss",
+                              "Forest Cover Gain"))
+```
+
+# Results
+
+## Approach 1: linear relationship across all changes in forest cover
+
+First the variable `length` is added, representing the number of years that the data represents.
+
+```{r model_all, echo = T}
+All_data2 <- All_data %>%
+  mutate(Forest_Sign = ifelse(DeltaF_perc < 0,
+                              "Decrease", "Increase"),
+         DeltaF_perc_pos = ifelse(DeltaF_perc < 0,
+                                  -1*DeltaF_perc,
+                                  DeltaF_perc))
+All_data2 <- All_data2 %>%
+  mutate(length = To - From,
+         mid_year = From + (To - From)/2)
+
+Forest_model_all <- gam(DeltaQf_perc ~ DeltaF_perc + 
+                    s(log10(Area_km2), k = 5, bs="ts") + 
+                    s(Dryness, k = 10, bs="ts" ) + 
+                     s(length, k = 35, bs="ts") +
+                    Precip_data_type +  Assessment_technique +
+                    Forest_type +
+                    Hydrological_regime
+                    , data = All_data2)
+#summary(Forest_model_all)
+#gam.check(Forest_model_all)
+#plot(model6_all)
+```
+
+```{r, echo = F}
+pander(round(summary(Forest_model_all)$p.table,2), caption = "(\\#tab:m_all-linear) Statistical summary for the linear terms the full model")
+#plot(model6_all)
+```
+
+This is the baseline result as it echoes @zhang2017 but in this case the relationship is tested together with other variables as is discussed in the main paper.
+
+For this model, the focus can be on the linear variables. The variable `DeltaF_perc` clearly explains the variation in the change in flow with a p-value of `r round(summary(Forest_model_all)$p.table[2,4],2)`.  The overall model explains `r round(summary(Forest_model_all)$dev.expl,2)*100` \% of the variation in the data. For comparison across models with different structures and different variables, the Aikaike Information Criteria (AIC) can be used. The AIC of the model is `r AIC(Forest_model_all)`.
+
+## The change in forest cover converted to positive values
+
+
+```{r modelforestpos, eval =T, echo =T}
+Forest_model_all2 <- gam(DeltaQf_perc ~ DeltaF_perc_pos + Forest_Sign + 
+                    s(log10(Area_km2), k = 5, bs="ts") + 
+                    s(Dryness, k = 10, bs="ts" ) + 
+                     s(length, k = 35, bs="ts") +
+                    Precip_data_type +  Assessment_technique +
+                    Forest_type +
+                    Hydrological_regime
+                    , data = All_data2)
+#summary(Forest_model_all2)
+```
+
+```{r, echo = F}
+pander(round(summary(Forest_model_all2)$p.table,2), caption = "(\\#tab:m_all2-linear) Statistical summary for the linear terms the alternative model where the change is forestry is all positive")
+#plot(model6_all)
+```
+
+
+Again the focus can be on the linear variables. In this case the variable `DeltaF_perc_pos` also is important to explain the variation in the change in flow with a p-value of `r round(summary(Forest_model_all2)$p.table[2,4],2)`. However, the results also show that in this case, the deforestation (`Forest_Sign` < 0) has a different effect than reforestation (`Forest_Sign` > 0). In fact, in absolute terms deforestration creates a `r round(summary(Forest_model_all2)$p.table[3,1],2)*100` \% greater effect on streamflow than reforestation (and of course deforestation creates and increase in flow and reforestation a decrease). 
+
+However, overall this model explains less of the overall variation in the data with a deviance explained of `r round(summary(Forest_model_all2)$dev.expl,2)` and an AIC of `r AIC(Forest_model_all2)`. 
+
+## Assuming the change in forest cover is non-linear
+
+The difference between reforestation and deforestation might suggest that the relationship between the change in forest cover and change in stream flow is non-linear. This is tested in the model where the change in forest cover is considered non-linear. The number of knots was decided based on checking the edf value relative to the apparent knots k' wiht the procedure `gam.check()` in the package `mgcv` [@wood2006].
+
+```{r modelforestnonlin, eval =T, echo = T}
+Forest_model_nonlin <- gam(DeltaQf_perc ~ s(DeltaF_perc, k=10, bs = "ts") + 
+                    s(log10(Area_km2), k = 5, bs="ts") + 
+                    s(Dryness, k = 10, bs="ts" ) + 
+                     s(length, k = 35, bs="ts") +
+                    Precip_data_type +  Assessment_technique +
+                    Forest_type +
+                    Hydrological_regime
+                    , data = All_data2)
+#summary(Forest_model_nonlin)
+```
+
+```{r , echo = F}
+pander(round(summary(Forest_model_nonlin)$s.table,2), caption = "(\\#tab:m_nonlin-smooth) Statistical summary for the smooth terms for the model that considers the change in forest cover to be a non-linear variable")
+#plot(model6_all)
+```
+
+In this case, the non-linear terms of the model need to be checked, which shows that once again, changes in forest cover impact changes in flow as indicated by the p-value of `r round(summary(Forest_model_nonlin)$s.table[1,4],2)`. The total deviance explained for the model is `r round(summary(Forest_model_nonlin)$dev.expl,2)` and the model has an AIC of `r AIC(Forest_model_nonlin)`. These performance statistics are similar to the first (baseline) model.
+
+One thing that is of interest is the fact that while a non-linear relationship between the change in forest cover and the change in streamflow was conceptualised, the actual relationship turns out to be linear. This can be shown from the plot and by running `gam.check`. 
+
+```{r}
+D <- visreg(Forest_model_nonlin, "DeltaF_perc", gg = T, plot = T) + theme_bw()
+A <- visreg(Forest_model_nonlin, "Area_km2", gg = T, plot = T) + theme_bw() + 
+  scale_x_log10()
+
+(A + D)
+
+```
+The procedure `gam.check` highlights that the p-value of the Basis dimension check of the smooth on `DeltaF_perc` is very small and the actual edf is close to 1 suggesting a linear relationship, similar to the smooth on log10(`Area_km2`).
+
+The residual analysis shows that including this non-linearity makes no difference in terms of he distribution of the residuals. While there is some remaining weak trend in the data, the overall distribution of the residuals is approximately normal.
+
+
+```{r}
+par(mfrow= c(2,2))
+gam.check(Forest_model_nonlin)
+```
+
+# References

@@ -22,7 +22,7 @@
 333,Burdekin,17299,690,BF,RD,-25,1,OB,SH,Pena-Arancibia et al. 2012,2216,-19,145,80,1979,2007,GM,1,,
 334,Comet,16440,650,BF,RD,-45,1,OB,SH,Pena-Arancibia et al. 2012,2166,-24.5,148.5,80,1979,2007,GM,1,1,follow-up study on watershed #8 with different results
 335,Ji-Parana,33000,1875,BF,RD,-50,0,OB,SH,Rodriguez et al. 2010,1289,-10.87,-61.94,22,1991,2004,AL,1,,precipitation varies between 1250 and 2500 mm
-336,Brigalow C2,0.117,720,BF,RD,-100,100,OB,PWE,Thornton et al. 2007,2083,-24.81,149.8,25,1982,2003,GM,1,,"Cropping catchment, grassland catchment is C3, runoff % change estimate based on Table 4 in Thorton et al. 2007"
+336,Brigalow C2,0.117,720,BF,RD,-100,140,OB,PWE,Thornton et al. 2007,2083,-24.81,149.8,25,1982,2003,GM,1,,"Cropping catchment, grassland catchment is C3, runoff % change estimate based on Table 4 in Thorton et al. 2007"
 337,San Antonio,104,680,MF,RD,-32,0,OB,PWE,"Bart and Hope,2010",1695,35.9,-121.09,5,1972,1988,AL,1,,Another catchment in Bart and Hope that was for some reason not added originally. Coordinates from usgs
 338,"M1, Canada",1140,895,CF,SD,18.9,0,OB,QPW,"Buttle and Metcalfe, 2000",746,49.68,-83.65,5,1985,1990,PL,1,,Mattawishkwia River at Hearst Point location from  https://www.r-arcticnet.sr.unh.edu/Points/Des4371.txt
 339,Duqueco,1545,1700,BF,RD,15.19,-19.5,OB,SH,"Iroumé and Palacios,2013",1248,-37.55,-72.01,43,1962,2005,PL,1,,added
@@ -44,3 +44,12 @@
 355,Luchelemu catchment,13.3,1300,MF,RD,93,0,OB,SH,Mwendera 1994,2480,11.75,33.83,17,1961,1978,AL,1,, https://doi.org/10.1016/0378-1127(94)90159-7
 356,Queens river,200,300,MF,RD,55,-40,MD,HM,Pitman 1978 ,1973,-25.75,28.23,23,1948,1971,AL,1,,from Filoso et al. 2017
 357,Valtorto,0.097,1500.699559,MF,RD,-100,60,OB,PWE,Stoof et al. 2012 ,1350,40.1,8.57,2,2008,2010,AL,1,,https://hess.copernicus.org/articles/16/267/2012/. Rainfall and Et calculated as the average of the reported data in Table 3 in the paper
+358,PE30 = Old-EsW,0.83,1507,BF,RD,-18.3,119,OB,PWE,"Almeida et al., 2016",1293,-30.5101,-54.1657,4,2011,2015,,,,"Monitored from 34 month before harvest, to 14 month after harvest. Pa & DQf calculated fron discharge in Table II (mm) (433-483)/483=-10%. E0 from Table III. "
+359,PE100 = Young-EbW,0.8,1388,BF,RD,-65,348,OB,PWE,"Almeida et al., 2016",1293,-30.5069,-54.1679,4,2011,2015,,,,"Monitored from 34 month before harvest, to 14 month after harvest. Pa & DQf calculated fron discharge in Table II (mm) (459/424-248/1027)/(248/1027)=+85%. E0 from Table III. "
+360,PE30 = Old-EsW,0.83,2039,BF,RD,18.3,0.7,OB,PWE,"Ferreto et al., 2021",1179,-30.5101,-54.1657,4,2014,2018,,,,Monitored 4 years after harvest and replanting. Also correcting Almeida´s %for is 30% of the 61% of eucalyptus area. Pa & E0 from Table 2
+361,PE100 = Young-EbW,0.8,2039,BF,RD,65,-40,OB,PWE,"Ferreto et al., 2021",1179,-30.5069,-54.1679,4,2014,2018,,,,Monitored 4 years after harvest and replanting. Also correcting Almeida´s %for is 100% of the 65% of eucalyptus area. Pa & E0 from Table 2
+362,Don Tomas,2.12,1468,BF,RD,56,-43,OB,PWE,"Silveira et al., 2016",1496,-32.249,-57.647,8,2006,2014,Uruguay,1,,DeltaQf_perc calculated from Table II as (QsNatural grasslands-QsForest/QsNatural grasslands) and yearly averaged
+363,La Reina,0.344,2596,CF,RD,-79.4,110,OB,PWE,"Iroumé A, O Mayen, A Huber. 2006. Runoff and peak flow responses to timber harvest and forest age in southern Chile. Hydrological Processes 20: 37-50. DOI: 10.1002/ hyp.5897",1255,-40.343,-73.453,6,1997,2002,Chile,1,,
+364,Duqueco,1595,1660,MF,RD,15.9,-22.2,OB,SH,"Andrés Iroumé, Hardin Palacios, Afforestation and changes in forest composition affect runoff in large river basins with pluvial regime and Mediterranean climate, Chile, Journal of Hydrology, Volume 505, 2013, Pages 113-125, ISSN 0022-1694, https://doi.org/10.1016/j.jhydrol.2013.09.031.",871,-37.585,-72.148,44,1962,2005,Chile,1,,
+365,Caramávida,94,1170,MF,RD,18.7,-6.4,OB,SH,"Iroumé y Palacios., 2013",1188,-37.68,-73.23,31,1962,1992,Chile,1,,
+366,Mulchén,434,1660,MF,RD,50,-25.5,OB,SH,"Iroumé y Palacios., 2013",1029,-37.905,-72.033,44,1962,2005,Chile,1,,

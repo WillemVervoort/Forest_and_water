@@ -4,7 +4,7 @@ output: pdf_document
 ---
   
   
-- Changes in forest cover impact streamflow  
-- Careful reanalysis of existing database highlights confounding factors  
-- Impact on streamflow depends on area of catchment and climate  
-- The type of original data impacts outcomes such as paired watershed studies  
+- Forest cover change can impact streamflow  
+- Meta-analysis to extend of experimental data to global scales is complex  
+- Assessment method has a major impact on the streamflow change  
+- Summarizing studies to single values introduces errors and loses information
