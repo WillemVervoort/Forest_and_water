@@ -1,9 +1,8 @@
 # Forest_and_water
 This github repository contains the data and the analysis of the impacts of reforestation and deforestation on streamflow using generalised additive modelling.  
 
-This work was submitted as a paper to Journal of Hydrology:
-R.W. Vervoort, E. Nervi, J. Alonso (2022) Factors determining how catchments respond to forest cover change. Re-analysing global data sets.   
-We are currently reviewing the editor's comments and producing a vastly revised version.   
+This work was re-submitted as a paper to Journal of Hydrology:
+R.W. Vervoort, E. Nervi, J. Alonso (2022) Generalizing the impact of forest cover on streamflow from experimental data: it is not that simple.   
 
 Any **released** final data, manuscript and scripts are in the **publish** branch, please use this branch for any future work. 
 
