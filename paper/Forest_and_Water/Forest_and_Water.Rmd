@@ -835,6 +835,9 @@ Acknowledgements
 ================
 This work was funded through project FPTA 358, Instituto Nacional de Investigacion Agropecuaria, INIA-Uruguay.
 
+CRediT Statement
+================
+R. Willem Vervoort: Conceptualization, Methodology, Code, Writing- Original draft preparation, Writing- Reviewing and Editing. Eliana Nervi: Data curation, Writing- Original draft preparation, Writing- Reviewing and Editing. Jimena Alonso: Conceptualization, Writing- Reviewing and Editing. 
 
 References {#references .unnumbered}
 ==========
