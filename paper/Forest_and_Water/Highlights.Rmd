@@ -5,6 +5,6 @@ output: pdf_document
   
   
 - Forest cover change can impact streamflow  
-- Meta-analysis to extend of experimental data to global scales is complex  
-- Assessment method has a major impact on the streamflow change  
+- Meta-analysis to extend experimental data to global scales is complex  
+- The method of assessment has a major impact on the streamflow change  
 - Summarizing studies to single values introduces errors and loses information
